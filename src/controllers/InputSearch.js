@@ -3,10 +3,9 @@ import Input from "../models/Input";
 class InputSearchController {
   async Search(req, res) {
     try {
-      const { searchValue, searchParam } = req.body;
       const inputFinder = await Input.findAll({
         where: {
-          searchParam: searchValue,
+          searchParam: req.body.searchValue,
         },
         attributes: ['id', 'email', 'nome', 'isbanned'],
       });
