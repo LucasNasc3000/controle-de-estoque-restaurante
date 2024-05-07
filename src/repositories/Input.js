@@ -5,55 +5,22 @@ class InputsList {
     try {
       const inputs = await Input.findAll({
         attributes: ['id', 'type', 'name', 'quantity', 'totalweight', 'weightperunit',
-        'supplier', 'expirationdate', 'entrydate'],
+        'supplier', 'expirationdate', 'entrydate', 'created_at', 'updated_at'],
         order: [['id', 'DESC']],
       });
       return inputs;
     } catch (e) {
-      return null;
+      return console.log(e);
     }
   }
 
-  async Store(
-    typeParam,
-    nameParam,
-    quantityParam,
-    totalweightParam,
-    weightperunitParam,
-    supplierParam,
-    expirationdateParam,
-    entrydateParam) {
+  async Store(data) {
     try {
-      const newInput = await Input.create(
-        typeParam,
-        nameParam,
-        quantityParam,
-        totalweightParam,
-        weightperunitParam,
-        supplierParam,
-        expirationdateParam,
-        entrydateParam
-      );
-      // const alldata = [];
-
-      const { id, type, name, quantity, totalweight, weightperunit,
-      supplier, expirationdate, entrydate } = newInput;
-
-      // alldata.push(
-      //   id,
-      //   type,
-      //   name,
-      //   quantity,
-      //   totalweight,
-      //   weightperunit,
-      //   supplier,
-      //   expirationdate,
-      //   entrydate
-      // );
-
+      const newInput = await Input.create(data);
       return newInput;
     } catch(e) {
-      return e;
+      // mudar o retorno para null ao terminar
+      return console.log(e);
     }
   }
 
@@ -68,9 +35,8 @@ class InputsList {
       const newInputData = await input.update(data);
       return newInputData;
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err) => err.message),
-      });
+      // mudar o retorno para null ao terminar
+      return console.log(e);
     }
   }
 
@@ -84,11 +50,9 @@ class InputsList {
       }
 
       await input.destroy();
-      return res.json(`insumo ${input.id} deletado`);
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err) => err.message),
-      });
+      // mudar o retorno para null ao terminar
+      return console.log(e);
     }
   }
 }

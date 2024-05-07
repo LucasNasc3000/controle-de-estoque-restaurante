@@ -6,32 +6,10 @@ class InputController {
     const { type, name, quantity, totalweight, weightperunit,
     supplier, expirationdate, entrydate } = req.body;
 
-    // const alldata = [];
-    // let errors = false;
+    const alldata = [];
+    let errors = false;
 
-    // alldata.push(
-    //   id,
-    //   type,
-    //   name,
-    //   quantity,
-    //   totalweight,
-    //   weightperunit,
-    //   supplier,
-    //   expirationdate,
-    //   entrydate
-    // );
-
-    // for(let i = 0; i < alldata.length; i ++) {
-    //   if(alldata[i] === "") errors = true;
-    // }
-
-    // if(errors === true) {
-    //   res.status(500).json({
-    //     errors: ['Um dos campos não foi preenchido'],
-    //   });
-    // }
-
-    const store =  await InputMethods.Store(
+    alldata.push(
       type,
       name,
       quantity,
@@ -40,9 +18,20 @@ class InputController {
       supplier,
       expirationdate,
       entrydate
-    )
+    );
 
-    console.log(store);
+    for(let i = 0; i < alldata.length; i ++) {
+      if(alldata[i] === "") errors = true;
+    }
+
+    if(errors === true) {
+      res.status(500).json({
+        errors: ['Um dos campos não foi preenchido'],
+      });
+    }
+
+    const store = await InputMethods.Store(req.body)
+
     return res.status(201).json(store);
   }
 
@@ -67,14 +56,17 @@ class InputController {
       });
     }
 
-    const inputUpdate = InputMethods.Update(req.params.id, req.body);
+    // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
+    // requisições como insomnia.
+    const inputUpdate = await InputMethods.Update(id, req.body);
 
-    if(inputDelete === null) {
+    if(inputUpdate === null) {
       res.status(400).json({
         errors: ['Insumo não registrado'],
       });
     }
 
+    console.log(inputUpdate);
     return res.status(200).send(inputUpdate);
   }
 
@@ -86,13 +78,15 @@ class InputController {
       });
     }
 
-    const inputDelete = InputMethods.Delete(id);
+    const inputDelete = await InputMethods.Delete(id);
 
     if(inputDelete === null) {
       res.status(400).json({
         errors: ['ID não encontrado'],
       });
     }
+
+    return res.json(`insumo ${id} deletado`);
   }
 }
 

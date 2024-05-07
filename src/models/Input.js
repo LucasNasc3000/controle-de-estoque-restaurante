@@ -26,7 +26,7 @@ export default class Input extends Model {
       },
       quantity: {
         type: Sequelize.INTEGER,
-        defaultValue: 0,
+        defaultValue: '',
         validate: {
           isInt: {
             msg: 'quantidade precisa ser um número inteiro',
@@ -35,7 +35,7 @@ export default class Input extends Model {
       },
       totalweight: {
         type: Sequelize.FLOAT,
-        defaultValue: 0,
+        defaultValue: '',
         validate: {
           isFloat: {
             msg: 'peso total precisa ser um número',
@@ -44,7 +44,7 @@ export default class Input extends Model {
       },
       weightperunit: {
         type: Sequelize.FLOAT,
-        defaultValue: 0,
+        defaultValue: '',
         validate: {
           isFloat: {
             msg: 'peso por unidade precisa ser um número',
