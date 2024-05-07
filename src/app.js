@@ -5,6 +5,7 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import homeRoutes from './routes/home';
+import inputRoutes from './routes/input';
 
 class App {
   constructor() {
@@ -28,6 +29,7 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+    this.app.use('/inputs/', inputRoutes);
   }
 }
 

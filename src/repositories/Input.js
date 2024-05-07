@@ -14,45 +14,59 @@ class InputsList {
     }
   }
 
-  async Store(data) {
+  async Store(
+    typeParam,
+    nameParam,
+    quantityParam,
+    totalweightParam,
+    weightperunitParam,
+    supplierParam,
+    expirationdateParam,
+    entrydateParam) {
     try {
-      const newInput = await Input.create(data);
-      const alldata = [];
+      const newInput = await Input.create(
+        typeParam,
+        nameParam,
+        quantityParam,
+        totalweightParam,
+        weightperunitParam,
+        supplierParam,
+        expirationdateParam,
+        entrydateParam
+      );
+      // const alldata = [];
 
       const { id, type, name, quantity, totalweight, weightperunit,
       supplier, expirationdate, entrydate } = newInput;
 
-      alldata.push(
-        id,
-        type,
-        name,
-        quantity,
-        totalweight,
-        weightperunit,
-        supplier,
-        expirationdate,
-        entrydate
-      );
+      // alldata.push(
+      //   id,
+      //   type,
+      //   name,
+      //   quantity,
+      //   totalweight,
+      //   weightperunit,
+      //   supplier,
+      //   expirationdate,
+      //   entrydate
+      // );
 
-      return alldata;
+      return newInput;
     } catch(e) {
-      const error = 'Ocorreu um erro';
-      return error;
+      return e;
     }
   }
 
-  async Update(id) {
+  async Update(id, data) {
     try {
       const input = await Input.findByPk(id);
 
       if (!input) {
-        return res.status(400).json({
-          errors: ['Insumo não registrado'],
-        });
+        return null;
       }
 
-      const newInputData = await input.update(req.body);
-      return res.json(newInputData);
+      const newInputData = await input.update(data);
+      return newInputData;
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -63,18 +77,10 @@ class InputsList {
   async Delete(id) {
     try {
 
-      if (!id) {
-        res.status(400).json({
-          errors: ['ID não encontrado'],
-        });
-      }
-
       const input = await Input.findByPk(id);
 
       if (!input) {
-        res.status(400).json({
-          errors: ['Insumo não registrado'],
-        });
+        return null;
       }
 
       await input.destroy();
