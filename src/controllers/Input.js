@@ -3,8 +3,16 @@ import InputMethods from "../repositories/Input";
 
 class InputController {
   async store(req, res) {
-    const { type, name, quantity, totalweight, weightperunit,
-    supplier, expirationdate, entrydate } = req.body;
+    const {
+        type,
+        name,
+        quantity,
+        totalweight,
+        weightperunit,
+        supplier,
+        expirationdate,
+        entrydate
+      } = req.body;
 
     const alldata = [];
     let errors = false;

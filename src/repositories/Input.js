@@ -4,10 +4,24 @@ class InputsList {
   async List() {
     try {
       const inputs = await Input.findAll({
-        attributes: ['id', 'type', 'name', 'quantity', 'totalweight', 'weightperunit',
-        'supplier', 'expirationdate', 'entrydate', 'created_at', 'updated_at'],
+        attributes: [
+          'id',
+          'type',
+          'name',
+          'quantity',
+          'totalweight',
+          'weightperunit',
+          'supplier',
+          'expirationdate',
+          'entrydate',
+          'created_at',
+          'updated_at'
+        ],
         order: [['id', 'DESC']],
       });
+
+      if(!inputs) return null;
+
       return inputs;
     } catch (e) {
       return console.log(e);
@@ -17,6 +31,9 @@ class InputsList {
   async Store(data) {
     try {
       const newInput = await Input.create(data);
+
+      if(!newInput) return null;
+
       return newInput;
     } catch(e) {
       // mudar o retorno para null ao terminar
