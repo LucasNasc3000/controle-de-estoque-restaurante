@@ -22,15 +22,15 @@ class InputSearchFloatsController {
   }
 
   async SearchByTotalWeight(req, res) {
-    const { totalWeight } = req.params;
+    const { totalweight } = req.params;
 
-    if(!totalWeight) {
+    if(!totalweight) {
       res.status(500).json({
         errors: ['ID não informado'],
       });
     }
 
-    const inputTotalWeightFinder = await InputSearchFloats.SearchByTotalWeight(totalWeight);
+    const inputTotalWeightFinder = await InputSearchFloats.SearchByTotalWeight(totalweight);
 
     if(!inputTotalWeightFinder) {
       res.status(400).json({

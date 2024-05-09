@@ -3,6 +3,6 @@ import inputSearchFloats from '../controllers/InputSearchFloats';
 
 const router = new Router();
 
-router.get('/:weightperunit', inputSearchFloats.SearchByWeightPerUnit);
+router.get('/:totalweight', inputSearchFloats.SearchByTotalWeight);
 
 export default router;

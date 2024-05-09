@@ -1,6 +1,6 @@
 import Input from "../models/Input";
 
-class InputIntegerSearchList {
+class InputIntegerSearch {
   async SearchByID(id) {
     try {
       const inputFinder = await Input.findAll({
@@ -64,4 +64,4 @@ class InputIntegerSearchList {
   }
 }
 
-export default new InputIntegerSearchList();
+export default new InputIntegerSearch();

@@ -6,6 +6,15 @@ import express from 'express';
 import cors from 'cors';
 import homeRoutes from './routes/home';
 import inputRoutes from './routes/input';
+import inputSearchByID from './routes/inputSearchById';
+import inputSearchByType from './routes/inputSearchByType';
+import inputSearchByName from './routes/inputSearchByName';
+import inputSearchByQuantity from './routes/inputSearchByQuantity';
+import inputSearchByTotalWeight from './routes/inputSearchByTotalWeight';
+import inputSearchByWeightPerUnit from './routes/inputSearchByWeightPerUnit';
+import inputSearchBySupplier from './routes/inputSearchBySupplier';
+import inputSearchByEntryDate from './routes/inputSearchByEntryDate';
+import inputSearchByExpirationDate from './routes/inputSearchByExpirationDate';
 
 class App {
   constructor() {
@@ -30,6 +39,15 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/inputs/', inputRoutes);
+    this.app.use('/inputs/search/id/', inputSearchByID);
+    this.app.use('/inputs/search/type/', inputSearchByType);
+    this.app.use('/inputs/search/name/', inputSearchByName);
+    this.app.use('/inputs/search/quantity/', inputSearchByQuantity);
+    this.app.use('/inputs/search/totalweight/', inputSearchByTotalWeight);
+    this.app.use('/inputs/search/weightperunit/', inputSearchByWeightPerUnit);
+    this.app.use('/inputs/search/supplier/', inputSearchBySupplier);
+    this.app.use('/inputs/search/entrydate/', inputSearchByEntryDate);
+    this.app.use('/inputs/search/expirationdate/', inputSearchByExpirationDate);
   }
 }
 
