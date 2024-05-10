@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Sequelize, { Model } from 'sequelize';
 
-export default class Input extends Model {
+export default class Output extends Model {
   static init(sequelize) {
     super.init({
       date: {
@@ -20,7 +20,7 @@ export default class Input extends Model {
         validate: {
           len: {
             args: [4, 10],
-            msg: 'A data não deve ultrapassar os 10 caracteres e deve ter pelo menos 4',
+            msg: 'A hora não deve ultrapassar os 10 caracteres e deve ter pelo menos 4',
           },
         },
       },
@@ -49,6 +49,15 @@ export default class Input extends Model {
         defaultValue: '',
         validate: {
           isFloat: {
+            msg: 'O peso total precisa ser um número',
+          },
+        },
+      },
+      outputsweightperunit: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+        validate: {
+          isFloat: {
             msg: 'peso por unidade precisa ser um número',
           },
         },
@@ -58,7 +67,7 @@ export default class Input extends Model {
         defaultValue: '',
         validate: {
           isFloat: {
-            msg: 'peso por unidade precisa ser um número',
+            msg: 'O campo unidades precisa ser um número',
           },
         },
       },
