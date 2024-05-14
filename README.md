@@ -11,7 +11,7 @@ em menos código, pois com um ORM não é necessário escrever códigos Sql.
 1 - Cadastrar novos insumos<br>
 2 - Deletar Insumos<br>
 3 - Fornecer uma lista contendo todos os insumos<br>
-4 - Pesquisar por um ou mais insumos de acordo com: id, tipo, nome, quantidade, peso total,<br>
+4 - Pesquisar por um ou mais insumos de acordo com: id, tipo, nome, quantidade, peso total,
     peso por unidade, fornecedor, data de entrada e data de vencimento<br>
 5 - Atualizar um ou mais dados relativos aos insumos<br>
 6 - Registrar todas as operações que os usuários realizarem<br>
@@ -22,7 +22,7 @@ em menos código, pois com um ORM não é necessário escrever códigos Sql.
 
 1 - Registrar as quantidades dos insumos que saíram (vendas)<br>
 2 - Listar os insumos que saíram com todos os dados relativos aos mesmos<br>
-3 - Pesquisar pelas saídas dos insumos com base em: id, tipo, nome, peso total, peso por unidade, unidades,<br>
+3 - Pesquisar pelas saídas dos insumos com base em: id, tipo, nome, peso total, peso por unidade, unidades,
     data e hora.<br>
 4 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de<br>
     arroz, as linhas responsáveis pelo peso total, peso por unidade e quantidade na tabela dos insumos serão<br>
