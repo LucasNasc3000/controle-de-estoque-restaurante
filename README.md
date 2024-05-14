@@ -45,5 +45,6 @@ Em Desenvolvimento 🛠️
 
 ## Principais Tecnologias Utilizadas
 - Node js
+- Express
 - MySql
 - Sequelize ORM
