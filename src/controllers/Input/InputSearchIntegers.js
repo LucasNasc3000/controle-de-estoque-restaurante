@@ -1,4 +1,4 @@
-import InputSearchIntegers from "../repositories/InputSearchIntegers";
+import InputSearchIntegers from "../../repositories/Input/InputSearchIntegers";
 
 class InputSearchIntegersController {
   async SearchByID(req, res) {

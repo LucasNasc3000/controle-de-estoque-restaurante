@@ -1,30 +1,31 @@
-import OutputMethods from "../repositories/Output";
-import InputSearchSimpleStrings from "../repositories/InputSearchSimpleStrings";
-import InputMethods from "../repositories/Input";
+import Input from "../../models/Input";
+import InputMethods from "../../repositories/Input/Input";
 
-class OutputController {
+class InputController {
   async store(req, res) {
     const {
-        date,
-        hour,
-        name,
         type,
-        weight,
+        name,
+        quantity,
+        totalweight,
         weightperunit,
-        unities
+        supplier,
+        expirationdate,
+        entrydate
       } = req.body;
 
     const alldata = [];
     let errors = false;
 
     alldata.push(
-        date,
-        hour,
-        name,
-        type,
-        weight,
-        weightperunit,
-        unities
+      type,
+      name,
+      quantity,
+      totalweight,
+      weightperunit,
+      supplier,
+      expirationdate,
+      entrydate
     );
 
     for(let i = 0; i < alldata.length; i ++) {
@@ -37,30 +38,21 @@ class OutputController {
       });
     }
 
-    const store = await OutputMethods.Store(req.body)
-
-    // Ver se dá pra pegar o id
-    const inputExists = await InputSearchSimpleStrings.SearchByType(type);
-
-    // if(inputExists) this.inputUpdate(unities, weight, weightperunit);
+    const store = await InputMethods.Store(req.body)
 
     return res.status(201).json(store);
   }
 
-  // async inputUpdate(unities, weight, weightperunit) {
-  //     const updateQuantity
-  // }
-
   async index(req, res) {
-    const outputsList = await OutputMethods.List();
+    const inputList = await InputMethods.List();
 
-    if(outputsList === null) {
+    if(inputList === null) {
       res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há produtos cadastrados'],
       });
     }
 
-    return res.status(200).send(outputsList);
+    return res.status(200).send(inputList);
   }
 
   async update(req, res) {
@@ -74,16 +66,16 @@ class OutputController {
 
     // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
     // requisições como insomnia.
-    const outputUpdate = await OutputMethods.Update(id, req.body);
+    const inputUpdate = await InputMethods.Update(id, req.body);
 
-    if(outputUpdate === null) {
+    if(inputUpdate === null) {
       res.status(400).json({
         errors: ['Insumo não registrado'],
       });
     }
 
-    console.log(outputUpdate);
-    return res.status(200).send(outputUpdate);
+    console.log(inputUpdate);
+    return res.status(200).send(inputUpdate);
   }
 
   async delete(req, res) {
@@ -94,9 +86,9 @@ class OutputController {
       });
     }
 
-    const outputDelete = await InputMethods.Delete(id);
+    const inputDelete = await InputMethods.Delete(id);
 
-    if(outputDelete === null) {
+    if(inputDelete === null) {
       res.status(400).json({
         errors: ['ID não encontrado'],
       });
@@ -106,4 +98,4 @@ class OutputController {
   }
 }
 
-export default new OutputController();
+export default new InputController();

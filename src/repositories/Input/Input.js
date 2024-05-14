@@ -1,4 +1,4 @@
-import Input from "../models/Input";
+import Input from "../../models/Input";
 
 class InputsList {
   async List() {

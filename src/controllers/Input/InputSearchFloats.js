@@ -1,4 +1,4 @@
-import InputSearchFloats from "../repositories/InputSearchFloats";
+import InputSearchFloats from "../../repositories/Input/InputSearchFloats";
 
 class InputSearchFloatsController {
   async SearchByWeightPerUnit(req, res) {

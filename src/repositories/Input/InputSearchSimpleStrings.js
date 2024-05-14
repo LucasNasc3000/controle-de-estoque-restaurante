@@ -1,11 +1,11 @@
-import Input from "../models/Input";
+import Input from "../../models/Input";
 
-class InputSearchList {
-  async SearchByEntryDate(entrydate) {
+class InputSimpleStringSearch {
+  async SearchByType(type) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          entrydate: entrydate,
+          type: type,
         },
         attributes: [
           'id',
@@ -32,11 +32,42 @@ class InputSearchList {
     }
   }
 
-  async SearchByExpirationDate(expirationdate) {
+  async SearchByName(name) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          expirationdate: expirationdate,
+          name: name,
+        },
+        attributes: [
+          'id',
+          'type',
+          'name',
+          'quantity',
+          'totalweight',
+          'weightperunit',
+          'supplier',
+          'expirationdate',
+          'entrydate',
+          'created_at',
+          'updated_at',
+        ],
+      });
+
+      if (!inputFinder) {
+        return null;
+      }
+
+      return inputFinder;
+    } catch(e) {
+      return console.log(e);
+    }
+  }
+
+  async SearchBySupplier(supplier) {
+    try {
+      const inputFinder = await Input.findAll({
+        where: {
+          supplier: supplier,
         },
         attributes: [
           'id',
@@ -64,4 +95,4 @@ class InputSearchList {
   }
 }
 
-export default new InputSearchList();
+export default new InputSimpleStringSearch();

@@ -1,11 +1,11 @@
-import Input from "../models/Input";
+import Input from "../../models/Input";
 
-class InputIntegerSearch {
-  async SearchByID(id) {
+class InputDatesSearch {
+  async SearchByEntryDate(entrydate) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          id: id,
+          entrydate: entrydate,
         },
         attributes: [
           'id',
@@ -32,11 +32,11 @@ class InputIntegerSearch {
     }
   }
 
-  async SearchByQuantity(quantityNumber) {
+  async SearchByExpirationDate(expirationdate) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          quantity: quantityNumber,
+          expirationdate: expirationdate,
         },
         attributes: [
           'id',
@@ -64,4 +64,4 @@ class InputIntegerSearch {
   }
 }
 
-export default new InputIntegerSearch();
+export default new InputDatesSearch();

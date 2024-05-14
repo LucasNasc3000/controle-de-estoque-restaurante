@@ -1,4 +1,4 @@
-import InputSearchSimpleStrings from "../repositories/InputSearchSimpleStrings";
+import InputSearchSimpleStrings from "../../repositories/Input/InputSearchSimpleStrings";
 
 class InputSearchSimpleStringsController {
 

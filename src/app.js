@@ -2,19 +2,31 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+//input routes
 import express from 'express';
 import cors from 'cors';
 import homeRoutes from './routes/home';
-import inputRoutes from './routes/input';
-import inputSearchByID from './routes/inputSearchById';
-import inputSearchByType from './routes/inputSearchByType';
-import inputSearchByName from './routes/inputSearchByName';
-import inputSearchByQuantity from './routes/inputSearchByQuantity';
-import inputSearchByTotalWeight from './routes/inputSearchByTotalWeight';
-import inputSearchByWeightPerUnit from './routes/inputSearchByWeightPerUnit';
-import inputSearchBySupplier from './routes/inputSearchBySupplier';
-import inputSearchByEntryDate from './routes/inputSearchByEntryDate';
-import inputSearchByExpirationDate from './routes/inputSearchByExpirationDate';
+import inputRoutes from './routes/input/input';
+import inputSearchByID from './routes/input/inputSearchById';
+import inputSearchByType from './routes/input/inputSearchByType';
+import inputSearchByName from './routes/input/inputSearchByName';
+import inputSearchByQuantity from './routes/input/inputSearchByQuantity';
+import inputSearchByTotalWeight from './routes/input/inputSearchByTotalWeight';
+import inputSearchByWeightPerUnit from './routes/input/inputSearchByWeightPerUnit';
+import inputSearchBySupplier from './routes/input/inputSearchBySupplier';
+import inputSearchByEntryDate from './routes/input/inputSearchByEntryDate';
+import inputSearchByExpirationDate from './routes/input/inputSearchByExpirationDate';
+
+// output routes
+import outputRoutes from './routes/output/output';
+import outputSearchByID from './routes/output/outputSearchById';
+import outputSearchByType from './routes/output/outputSearchByType';
+import outputSearchByName from './routes/output/outputSearchByName';
+import outputSearchByDate from './routes/output/outputSearchByDate';
+import outputSearchByHour from './routes/output/outputSearchByHour';
+import outputSearchByUnities from './routes/output/outputSearchByUnities';
+import outputSearchByWeight from './routes/output/outputSearchByWeight';
+import outputSearchByWeightPerUnit from './routes/output/outputSearchByWeightPerUnit';
 
 class App {
   constructor() {
@@ -38,6 +50,8 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+
+    // input routes
     this.app.use('/inputs/', inputRoutes);
     this.app.use('/inputs/search/id/', inputSearchByID);
     this.app.use('/inputs/search/type/', inputSearchByType);
@@ -48,6 +62,17 @@ class App {
     this.app.use('/inputs/search/supplier/', inputSearchBySupplier);
     this.app.use('/inputs/search/entrydate/', inputSearchByEntryDate);
     this.app.use('/inputs/search/expirationdate/', inputSearchByExpirationDate);
+    this.app.use('/outputs/', outputRoutes);
+
+    // output routes
+    this.app.use('/outputs/search/id/', outputSearchByID);
+    this.app.use('/outputs/search/type/', outputSearchByType);
+    this.app.use('/outputs/search/name/', outputSearchByName);
+    this.app.use('/outputs/search/date/', outputSearchByDate);
+    this.app.use('/outputs/search/hour/', outputSearchByHour);
+    this.app.use('/outputs/search/unities/', outputSearchByUnities);
+    this.app.use('/outputs/search/weight/', outputSearchByWeight);
+    this.app.use('/outputs/search/weightperunit/', outputSearchByWeightPerUnit);
   }
 }
 

@@ -1,11 +1,11 @@
-import Input from "../models/Input";
+import Input from "../../models/Input";
 
-class InputSearchList {
-  async SearchByType(type) {
+class InputIntegerSearch {
+  async SearchByID(id) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          type: type,
+          id: id,
         },
         attributes: [
           'id',
@@ -32,42 +32,11 @@ class InputSearchList {
     }
   }
 
-  async SearchByName(name) {
+  async SearchByQuantity(quantityNumber) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          name: name,
-        },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'created_at',
-          'updated_at',
-        ],
-      });
-
-      if (!inputFinder) {
-        return null;
-      }
-
-      return inputFinder;
-    } catch(e) {
-      return console.log(e);
-    }
-  }
-
-  async SearchBySupplier(supplier) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          supplier: supplier,
+          quantity: quantityNumber,
         },
         attributes: [
           'id',
@@ -95,4 +64,4 @@ class InputSearchList {
   }
 }
 
-export default new InputSearchList();
+export default new InputIntegerSearch();

@@ -1,4 +1,4 @@
-import InputSearchDates from "../repositories/InputSearchDates";
+import InputSearchDates from "../../repositories/Input/InputSearchDates";
 
 class InputSearchDatesController {
   async SearchByEntryDate(req, res) {

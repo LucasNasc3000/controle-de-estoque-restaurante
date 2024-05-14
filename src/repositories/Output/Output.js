@@ -1,4 +1,4 @@
-import Output from "../models/Output";
+import Output from "../../models/Output";
 
 class OutputsList {
   async List() {

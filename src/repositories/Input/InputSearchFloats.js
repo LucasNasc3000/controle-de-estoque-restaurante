@@ -1,6 +1,6 @@
-import Input from "../models/Input";
+import Input from "../../models/Input";
 
-class InputSearchList {
+class InputFloatsSearch {
   async SearchByTotalWeight(totalweight) {
     try {
       const inputFinder = await Input.findAll({
@@ -64,4 +64,4 @@ class InputSearchList {
   }
 }
 
-export default new InputSearchList();
+export default new InputFloatsSearch();
