@@ -53,7 +53,7 @@ export default class Output extends Model {
           },
         },
       },
-      outputsweightperunit: {
+      weightperunit: {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {

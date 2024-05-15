@@ -2,9 +2,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-//input routes
 import express from 'express';
 import cors from 'cors';
+//input routes
+
 import homeRoutes from './routes/home';
 import inputRoutes from './routes/input/input';
 import inputSearchByID from './routes/input/inputSearchById';
@@ -62,9 +63,9 @@ class App {
     this.app.use('/inputs/search/supplier/', inputSearchBySupplier);
     this.app.use('/inputs/search/entrydate/', inputSearchByEntryDate);
     this.app.use('/inputs/search/expirationdate/', inputSearchByExpirationDate);
-    this.app.use('/outputs/', outputRoutes);
 
     // output routes
+    this.app.use('/outputs/', outputRoutes);
     this.app.use('/outputs/search/id/', outputSearchByID);
     this.app.use('/outputs/search/type/', outputSearchByType);
     this.app.use('/outputs/search/name/', outputSearchByName);

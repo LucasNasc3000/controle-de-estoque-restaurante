@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import inputSearchSimpleStrings from '../controllers/InputSearchSimpleStrings';
+import inputSearchSimpleStrings from '../../controllers/Input/InputSearchSimpleStrings';
 
 const router = new Router();
 

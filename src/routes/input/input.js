@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Input from '../controllers/Input';
+import Input from '../../controllers/Input/Input';
 // colocar os middlweares
 
 const router = new Router();

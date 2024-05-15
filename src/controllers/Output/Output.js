@@ -1,6 +1,4 @@
 import OutputMethods from "../../repositories/Output/Output";
-import InputSearchSimpleStrings from "../../repositories/Input/InputSearchSimpleStrings";
-import InputMethods from "../../repositories/Input/Input";
 
 class OutputController {
   async store(req, res) {
@@ -40,7 +38,7 @@ class OutputController {
     const store = await OutputMethods.Store(req.body)
 
     // Ver se dá pra pegar o id
-    const inputExists = await InputSearchSimpleStrings.SearchByType(type);
+    // const inputExists = await InputSearchSimpleStrings.SearchByType(type);
 
     // if(inputExists) this.inputUpdate(unities, weight, weightperunit);
 
@@ -88,13 +86,14 @@ class OutputController {
 
   async delete(req, res) {
     const { id } = req.params;
+
     if(!id) {
       res.status(500).json({
         errors: ['ID não informado'],
       });
     }
 
-    const outputDelete = await InputMethods.Delete(id);
+    const outputDelete = await OutputMethods.Delete(id);
 
     if(outputDelete === null) {
       res.status(400).json({
