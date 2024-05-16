@@ -29,6 +29,9 @@ import outputSearchByUnities from './routes/output/outputSearchByUnities';
 import outputSearchByWeight from './routes/output/outputSearchByWeight';
 import outputSearchByWeightPerUnit from './routes/output/outputSearchByWeightPerUnit';
 
+// user routes
+import userRoutes from './routes/user/user'
+
 class App {
   constructor() {
     this.app = express();
@@ -74,6 +77,9 @@ class App {
     this.app.use('/outputs/search/unities/', outputSearchByUnities);
     this.app.use('/outputs/search/weight/', outputSearchByWeight);
     this.app.use('/outputs/search/weightperunit/', outputSearchByWeightPerUnit);
+
+    // user routes
+    this.app.use('/users/', userRoutes);
   }
 }
 

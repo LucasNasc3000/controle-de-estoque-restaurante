@@ -6,7 +6,7 @@ import bcryptjs from 'bcryptjs';
 export default class User extends Model {
   static init(sequelize) {
     super.init({
-      nome: {
+      name: {
         type: Sequelize.STRING,
         defaultValue: '',
         validate: {
@@ -48,7 +48,17 @@ export default class User extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [12, 25],
+            args: [9, 25],
+            msg: 'O log deve ter ao menos 12 caracteres e no máximo 20',
+          },
+        },
+      },
+      loghour: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [4, 15],
             msg: 'O log deve ter ao menos 12 caracteres e no máximo 20',
           },
         },

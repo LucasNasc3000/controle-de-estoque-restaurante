@@ -81,6 +81,16 @@ export default class Input extends Model {
           },
         },
       },
+      entryhour: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [4, 20],
+            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
+          },
+        },
+      },
     }, {
       sequelize,
     });
