@@ -21,24 +21,44 @@ class UsersSearchCredentialsController {
     return res.json(userIDFinder);
   }
 
-  async SearchByQuantity(req, res) {
-    const { quantity } = req.params;
+  async SearchByName(req, res) {
+    const { name } = req.params;
 
-    if(!quantity) {
+    if(!name) {
       res.status(500).json({
         errors: ['ID não informado'],
       });
     }
 
-    const inputQuantityFinder = await InputSearchIntegers.SearchByQuantity(quantity);
+    const userNameFinder = await UserSearchCredentials.SearchByName(name);
 
-    if(!inputQuantityFinder) {
+    if(!userNameFinder) {
       res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
 
-    return res.json(inputQuantityFinder);
+    return res.json(userNameFinder);
+  }
+
+  async SearchByEmail(req, res) {
+    const { email } = req.params;
+
+    if(!email) {
+      res.status(500).json({
+        errors: ['ID não informado'],
+      });
+    }
+
+    const userEmailFinder = await UserSearchCredentials.SearchByEmail(email);
+
+    if(!userEmailFinder) {
+      res.status(400).json({
+          errors: ['ID não encontrado'],
+      });
+    }
+
+    return res.json(userEmailFinder);
   }
 }
 
