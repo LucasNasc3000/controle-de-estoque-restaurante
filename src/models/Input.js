@@ -76,7 +76,7 @@ export default class Input extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [12, 20],
+            args: [4, 20],
             msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
           },
         },
