@@ -1,40 +1,31 @@
-class InputsValidations{
-
-  CheckForEmptyFields(allData) {
-    for (let i in allData) {
-      if (allData[i] === '') {
-        return 'Empty field(s)';
-      } else {
-        return this.CheckForNullUndefinedFields(allData);
-      }
-    }
-  }
-
-  CheckForNullUndefinedFields(allData) {
-    for (let i in allData) {
-      if (typeof allData[i] === 'undefined' ||
-          allData[i] === null
-      ) {
-        return 'Undefined or null field(s)';
-      } else {
-        return this.CheckIntegersFields(allData);
-      }
-    }
-  }
-
-  CheckIntegersFields(integersFieldsData) {
-    if(typeof integersFieldsData.quantity !== 'number') {
-      return 'Type must be int'
+class InputsValidations {
+  CheckIntegers(integersFieldData) {
+    if(typeof integersFieldData.quantity !== 'number') {
+      return 'Quantity must be a number';
     } else {
-      return this.CheckFloatsFields(integersFieldsData);
+      return this.CheckSimpleStrings(integersFieldData);
     }
   }
 
-  CheckFloatsFields(floatsFieldsData) {
-    if(typeof floatsFieldsData.totalweight !== 'number' ||
-       typeof floatsFieldsData.weightperunit !== 'number'
+  CheckSimpleStrings(simpleStringsFieldsData) {
+    if(typeof simpleStringsFieldsData.supplier !== 'string') {
+      return 'Supplier must be a string';
+    } else {
+      return this.CheckDatesAndHour(simpleStringsFieldsData);
+    }
+  }
+
+  CheckDatesAndHour(DatesFieldsData) {
+    const dateRegex = /d{0,9}\-\d{0,9}\-\d{0,9}/
+    const hourRegex = /(0?[0-9]|1[0-9]|2[0-3]):[0-9]+:(0?[0-9]|[1-5][0-9])/
+
+    if(!dateRegex.test(DatesFieldsData.entrydate)  ||
+       !dateRegex.test(DatesFieldsData.expirationdate) ||
+       !hourRegex.test(DatesFieldsData.entryhour)
     ) {
-      return 'Type must be float'
+      return 'Field(s) must be a date or hour string'
+    } else {
+      return null;
     }
   }
 }

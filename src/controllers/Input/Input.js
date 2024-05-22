@@ -1,32 +1,22 @@
 import InputMethods from "../../repositories/Input/Input";
-import inputsValidations from "../../validations/Inputs";
+import Validation from "../../validations/Validation";
 
 class InputController {
   async store(req, res) {
+    const validations = Validation.MainValidations(req.body);
+    const inputValidations = Validation.InputsValidation(req.body);
 
-   const validation = inputsValidations.CheckForEmptyFields(req.body);
-
-    switch(validation) {
-      case 'Empty Field(s)':
-        res.status(500).json({
-          errors: ['Um dos campos não foi preenchido'],
-        });
-        break;
-
-      case ('Type must be int'):
-        res.status(500).json({
-          errors: ['O tipo deve ser inteiro'],
-        });
-        break;
-
-      case ('Type must be float'):
-        res.status(500).json({
-          errors: ['O tipo deve ser float'],
-        });
-        break;
+    if(validations !== null) {
+      res.status(500).json({
+        errors: [validations],
+      });
     }
 
-    console.log(validation);
+    if(inputValidations !== null) {
+      res.status(500).json({
+        errors: [inputValidations],
+      });
+    }
 
     const store = await InputMethods.Store(req.body)
 
@@ -46,11 +36,26 @@ class InputController {
   }
 
   async update(req, res) {
+    // Uso ou não estas validações aqui?
     const { id } = req.params;
+    const validations = Validation.MainValidations(req.body);
+    const inputValidations = Validation.InputsValidation(req.body);
 
     if(!id) {
       res.status(500).json({
         errors: ['ID não informado'],
+      });
+    }
+
+    if(validations !== null) {
+      res.status(500).json({
+        errors: [validations],
+      });
+    }
+
+    if(inputValidations !== null) {
+      res.status(500).json({
+        errors: [inputValidations],
       });
     }
 

@@ -2,32 +2,6 @@ import OutputMethods from "../../repositories/Output/Output";
 
 class OutputController {
   async store(req, res) {
-    const {
-        date,
-        hour,
-        name,
-        type,
-        weight,
-        weightperunit,
-        unities
-      } = req.body;
-
-    const alldata = [];
-    let errors = false;
-
-    alldata.push(
-        date,
-        hour,
-        name,
-        type,
-        weight,
-        weightperunit,
-        unities
-    );
-
-    for(let i = 0; i < alldata.length; i ++) {
-      if(alldata[i] === "") errors = true;
-    }
 
     if(errors === true) {
       res.status(500).json({
