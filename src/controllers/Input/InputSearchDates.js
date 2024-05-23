@@ -5,7 +5,7 @@ class InputSearchDatesController {
     const { entrydate } = req.params;
 
     if(!entrydate) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -13,7 +13,7 @@ class InputSearchDatesController {
     const inputEntryDateFinder = await InputSearchDates.SearchByEntryDate(entrydate);
 
     if(!inputEntryDateFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -25,7 +25,7 @@ class InputSearchDatesController {
     const { expirationdate } = req.params;
 
     if(!expirationdate) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -33,7 +33,7 @@ class InputSearchDatesController {
     const inputExpirationDateFinder = await InputSearchDates.SearchByExpirationDate(expirationdate);
 
     if(!inputExpirationDateFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

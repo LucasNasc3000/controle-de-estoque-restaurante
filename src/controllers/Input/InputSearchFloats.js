@@ -5,7 +5,7 @@ class InputSearchFloatsController {
     const { weightperunit } = req.params;
 
     if(!weightperunit) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -13,7 +13,7 @@ class InputSearchFloatsController {
     const inputWeightPerUnitFinder = await InputSearchFloats.SearchByWeightPerUnit(weightperunit);
 
     if(!inputWeightPerUnitFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -25,7 +25,7 @@ class InputSearchFloatsController {
     const { totalweight } = req.params;
 
     if(!totalweight) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -33,7 +33,7 @@ class InputSearchFloatsController {
     const inputTotalWeightFinder = await InputSearchFloats.SearchByTotalWeight(totalweight);
 
     if(!inputTotalWeightFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

@@ -57,18 +57,17 @@ class InputController {
         errors: [inputValidations],
       });
     }
-    console.log(validations);
+
     // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
     // requisições como insomnia.
     const inputUpdate = await InputMethods.Update(id, req.body);
 
     if(inputUpdate === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['Insumo não registrado'],
       });
     }
 
-    console.log(inputUpdate);
     return res.status(200).send(inputUpdate);
   }
 
@@ -83,7 +82,7 @@ class InputController {
     const inputDelete = await InputMethods.Delete(id);
 
     if(inputDelete === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['ID não encontrado'],
       });
     }

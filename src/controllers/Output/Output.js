@@ -4,7 +4,7 @@ class OutputController {
   async store(req, res) {
 
     if(errors === true) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['Um dos campos não foi preenchido'],
       });
     }
@@ -27,7 +27,7 @@ class OutputController {
     const outputsList = await OutputMethods.List();
 
     if(outputsList === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há produtos cadastrados'],
       });
     }
@@ -39,7 +39,7 @@ class OutputController {
     const { id } = req.params;
 
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -49,7 +49,7 @@ class OutputController {
     const outputUpdate = await OutputMethods.Update(id, req.body);
 
     if(outputUpdate === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['Insumo não registrado'],
       });
     }
@@ -62,7 +62,7 @@ class OutputController {
     const { id } = req.params;
 
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -70,7 +70,7 @@ class OutputController {
     const outputDelete = await OutputMethods.Delete(id);
 
     if(outputDelete === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['ID não encontrado'],
       });
     }

@@ -6,7 +6,7 @@ class OutputSearchSimpleStringsController {
     const { type } = req.params;
 
     if(!type) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -14,7 +14,7 @@ class OutputSearchSimpleStringsController {
     const outputTypeFinder = await OutputSearchSimpleStrings.SearchByType(type);
 
     if(!outputTypeFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -26,7 +26,7 @@ class OutputSearchSimpleStringsController {
     const { name } = req.params;
 
     if(!name) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -34,7 +34,7 @@ class OutputSearchSimpleStringsController {
     const outputNameFinder = await OutputSearchSimpleStrings.SearchByName(name);
 
     if(!outputNameFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

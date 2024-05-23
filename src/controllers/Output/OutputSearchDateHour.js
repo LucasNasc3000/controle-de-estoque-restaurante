@@ -5,7 +5,7 @@ class OutputSearchDateHourController {
     const { date } = req.params;
 
     if(!date) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -13,7 +13,7 @@ class OutputSearchDateHourController {
     const outputDateFinder = await OutputSearchDateHour.SearchByDate(date);
 
     if(!outputDateFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -25,7 +25,7 @@ class OutputSearchDateHourController {
     const { hour } = req.params;
 
     if(!hour) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -33,7 +33,7 @@ class OutputSearchDateHourController {
     const outputHourFinder = await OutputSearchDateHour.SearchByHour(hour);
 
     if(!outputHourFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

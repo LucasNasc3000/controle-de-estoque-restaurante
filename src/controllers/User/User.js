@@ -13,7 +13,7 @@ class UserController {
     const usersList = await UserMethods.List();
 
     if(usersList === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há usuários cadastrados'],
       });
     }
@@ -25,7 +25,7 @@ class UserController {
     const { id } = req.params;
 
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -35,7 +35,7 @@ class UserController {
     const userUpdate = await UserMethods.Update(id, req.body);
 
     if(userUpdate === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['Usuário não registrado'],
       });
     }
@@ -47,7 +47,7 @@ class UserController {
   async delete(req, res) {
     const { id } = req.params;
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -55,7 +55,7 @@ class UserController {
     const userDelete = await UserMethods.Delete(id);
 
     if(userDelete === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['ID não encontrado'],
       });
     }

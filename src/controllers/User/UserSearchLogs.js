@@ -5,7 +5,7 @@ class UsersSearchCredentialsController {
     const { loghour } = req.params;
 
     if(!loghour) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -13,7 +13,7 @@ class UsersSearchCredentialsController {
     const userLogHourFinder = await UserSearchLogs.SearchByLogHour(loghour);
 
     if(!userLogHourFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -25,7 +25,7 @@ class UsersSearchCredentialsController {
     const { logdate } = req.params;
 
     if(!logdate) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -33,7 +33,7 @@ class UsersSearchCredentialsController {
     const userLogDateFinder = await UserSearchLogs.SearchByLogDate(logdate);
 
     if(!userLogDateFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

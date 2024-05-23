@@ -5,7 +5,7 @@ class OutputSearchIntegersController {
     const { id } = req.params;
 
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -13,7 +13,7 @@ class OutputSearchIntegersController {
     const outputIdFinder = await OutputSearchIntegers.SearchByID(id);
 
     if(!outputIdFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -25,7 +25,7 @@ class OutputSearchIntegersController {
     const { unities } = req.params;
 
     if(!unities) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -33,7 +33,7 @@ class OutputSearchIntegersController {
     const inputUnitiesFinder = await OutputSearchIntegers.SearchByUnities(unities);
 
     if(!inputUnitiesFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

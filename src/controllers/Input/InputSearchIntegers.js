@@ -5,7 +5,7 @@ class InputSearchIntegersController {
     const { id } = req.params;
 
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -13,7 +13,7 @@ class InputSearchIntegersController {
     const inputIDFinder = await InputSearchIntegers.SearchByID(id);
 
     if(!inputIDFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -25,7 +25,7 @@ class InputSearchIntegersController {
     const { quantity } = req.params;
 
     if(!quantity) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -33,7 +33,7 @@ class InputSearchIntegersController {
     const inputQuantityFinder = await InputSearchIntegers.SearchByQuantity(quantity);
 
     if(!inputQuantityFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }

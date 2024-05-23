@@ -6,7 +6,7 @@ class InputSearchSimpleStringsController {
     const { type } = req.params;
 
     if(!type) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -14,7 +14,7 @@ class InputSearchSimpleStringsController {
     const inputTypeFinder = await InputSearchSimpleStrings.SearchByType(type);
 
     if(!inputTypeFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -26,7 +26,7 @@ class InputSearchSimpleStringsController {
     const { name } = req.params;
 
     if(!name) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -34,7 +34,7 @@ class InputSearchSimpleStringsController {
     const inputNameFinder = await InputSearchSimpleStrings.SearchByName(name);
 
     if(!inputNameFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
@@ -46,7 +46,7 @@ class InputSearchSimpleStringsController {
     const { supplier } = req.params;
 
     if(!supplier) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
@@ -54,7 +54,7 @@ class InputSearchSimpleStringsController {
     const inputSupplierFinder = await InputSearchSimpleStrings.SearchBySupplier(supplier);
 
     if(!inputSupplierFinder) {
-      res.status(400).json({
+      return res.status(400).json({
           errors: ['ID não encontrado'],
       });
     }
