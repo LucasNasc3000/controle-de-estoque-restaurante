@@ -27,10 +27,6 @@ class Validation {
   }
 
   InputsValidation(data) {
-    if(!data.supplier || !data.entrydate) {
-      return 'Este método é para validar somente os inputs ou o fornecedor ou a data de entrada não foram informados'
-    }
-
     const inputValidations = Inputs.CheckIntegers(data);
 
     switch(inputValidations) {

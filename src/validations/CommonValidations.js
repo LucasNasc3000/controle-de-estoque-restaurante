@@ -23,24 +23,33 @@ class CommomValidations{
   }
 
   CheckNumericFields(numericFieldsData) {
-    if(
-       typeof numericFieldsData.totalweight !== 'number' ||
-       typeof numericFieldsData.weightperunit !== 'number'
-    ) {
-      return 'Type must be a number'
-    } else {
-      return this.CheckSimpleStrings(numericFieldsData);
+    if(numericFieldsData.totalweight) {
+      if(typeof numericFieldsData.totalweight !== 'number') {
+        return 'Type must be a number';
+      }
     }
+
+    if(numericFieldsData.weightperunit) {
+      if(typeof numericFieldsData.weightperunit !== 'number') {
+        return 'Type must be a number';
+      }
+    }
+    return this.CheckSimpleStrings(numericFieldsData);
   }
 
   CheckSimpleStrings(simpleStringsFieldsData) {
-    if(typeof simpleStringsFieldsData.name !== 'string' ||
-       typeof simpleStringsFieldsData.type !== 'string'
-    ) {
-      return 'Type must be a string'
-    } else {
-      return null;
+    if(simpleStringsFieldsData.type) {
+      if(typeof simpleStringsFieldsData.type !== 'string') {
+        return 'Type must be a string';
+      }
     }
+
+    if(simpleStringsFieldsData.name) {
+      if(typeof simpleStringsFieldsData.name !== 'string') {
+        return 'Type must be a string';
+      }
+    }
+    return null;
   }
 }
 

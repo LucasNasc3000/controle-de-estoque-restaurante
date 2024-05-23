@@ -7,13 +7,13 @@ class InputController {
     const inputValidations = Validation.InputsValidation(req.body);
 
     if(validations !== null) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: [validations],
       });
     }
 
     if(inputValidations !== null) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: [inputValidations],
       });
     }
@@ -27,7 +27,7 @@ class InputController {
     const inputList = await InputMethods.List();
 
     if(inputList === null) {
-      res.status(400).json({
+      return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há produtos cadastrados'],
       });
     }
@@ -36,19 +36,18 @@ class InputController {
   }
 
   async update(req, res) {
-    // Uso ou não estas validações aqui?
     const { id } = req.params;
     const validations = Validation.MainValidations(req.body);
     const inputValidations = Validation.InputsValidation(req.body);
 
     if(!id) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
 
     if(validations !== null) {
-      res.status(500).json({
+      return res.status(500).json({
         errors: [validations],
       });
     }
@@ -58,7 +57,7 @@ class InputController {
         errors: [inputValidations],
       });
     }
-
+    console.log(validations);
     // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
     // requisições como insomnia.
     const inputUpdate = await InputMethods.Update(id, req.body);
