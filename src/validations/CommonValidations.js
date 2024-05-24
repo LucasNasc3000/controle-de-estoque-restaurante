@@ -4,22 +4,22 @@ class CommomValidations{
     for (let i in allData) {
       if (allData[i] === '') {
         return 'Empty field(s)';
-      } else {
-        return this.CheckForNullUndefinedFields(allData);
       }
     }
+    return this.CheckForNullUndefinedFields(allData);
   }
 
   CheckForNullUndefinedFields(allData) {
     for (let i in allData) {
-      if (typeof allData[i] === 'undefined' ||
-          allData[i] === null
-      ) {
-        return 'Undefined or null field(s)';
-      } else {
-        return this.CheckNumericFields(allData);
+      if (typeof allData[i] === 'undefined') {
+        return 'Undefined field(s)';
+      }
+
+      if (typeof allData[i] === null) {
+        return 'Null field(s)';
       }
     }
+    return this.CheckNumericFields(allData);
   }
 
   CheckNumericFields(numericFieldsData) {

@@ -18,6 +18,8 @@ class InputController {
       });
     }
 
+    console.log(validations);
+
     const store = await InputMethods.Store(req.body)
 
     return res.status(201).json(store);

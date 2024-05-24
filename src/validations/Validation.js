@@ -1,25 +1,26 @@
 import CommonValidations from "./CommonValidations"
 import Inputs from "./Inputs";
+import Outputs from "./Outputs";
 
 class Validation {
   MainValidations(data) {
     const validations = CommonValidations.DoTheValidations(data);
 
     switch(validations) {
-      case ('Empty Field(s)'):
+      case ('Empty field(s)'):
         return 'Um ou mais campos não foi preenchido';
 
-      case ('Undefined or null field(s)'):
-        return 'Um ou mais campos é undefined ou null';
+      case ('Null field(s)'):
+        return 'Um ou mais campos é null';
+
+      case ('Undefined field(s)'):
+        return 'Um ou mais campos é undefined';
 
       case ('Type must be a number'):
         return 'O tipo deve ser numérico';
 
       case ('Type must be a string'):
         return 'O tipo deve ser string';
-
-      case ('Field(s) must be a date or hour string'):
-        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
 
       default:
         return null;
@@ -43,6 +44,24 @@ class Validation {
         return null;
     }
   }
+
+  OutputsValidation(data) {
+    const outputsValidations = Outputs.CheckIntegers(data);
+
+    switch(outputsValidations) {
+      case ('Unities must be a number'):
+        return 'O campo "unidades" deve ser numérico';
+
+      case('Weight must be a number'):
+        return 'O campo "peso" precisa ser um string';
+
+      case('Field(s) must be a date or hour string'):
+        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
+
+      default:
+        return null;
+    }
+  }
 }
 
-export default new Validation()
+export default new Validation();

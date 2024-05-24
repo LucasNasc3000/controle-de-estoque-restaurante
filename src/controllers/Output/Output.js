@@ -1,11 +1,22 @@
 import OutputMethods from "../../repositories/Output/Output";
+import Validations from "../../validations/Validation";
 
 class OutputController {
   async store(req, res) {
+    const validations = Validations.MainValidations(req.body);
+    const outputsValidations = Validations.OutputsValidation(req.body);
 
-    if(errors === true) {
+    // O return evita a quebra da aplicação e outras requisições podem ser feitas mesmo que seja
+    // retornado um erro, como o erro 500 abaixo, por exemplo.
+    if(validations !== null) {
       return res.status(500).json({
-        errors: ['Um dos campos não foi preenchido'],
+        errors: [validations],
+      });
+    }
+
+    if(outputsValidations !== null) {
+      return res.status(500).json({
+        errors: [outputsValidations],
       });
     }
 
@@ -37,6 +48,20 @@ class OutputController {
 
   async update(req, res) {
     const { id } = req.params;
+    const validations = Validations.MainValidations(req.body);
+    const outputsValidations = Validations.OutputsValidation(req.body);
+
+    if(validations !== null) {
+      return res.status(500).json({
+        errors: [validations],
+      });
+    }
+
+    if(outputsValidations !== null) {
+      return res.status(500).json({
+        errors: [outputsValidations],
+      });
+    }
 
     if(!id) {
       return res.status(500).json({
