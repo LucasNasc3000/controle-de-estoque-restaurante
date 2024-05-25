@@ -1,15 +1,15 @@
 class CommomValidations{
-  DoTheValidations(allData) {
+  DoTheValidations(allData, isUser) {
     // Verificando se existem campos vazios
     for (let i in allData) {
       if (allData[i] === '') {
         return 'Empty field(s)';
       }
     }
-    return this.CheckForNullUndefinedFields(allData);
+    return this.CheckForNullUndefinedFields(allData, isUser);
   }
 
-  CheckForNullUndefinedFields(allData) {
+  CheckForNullUndefinedFields(allData, isUser) {
     for (let i in allData) {
       if (typeof allData[i] === 'undefined') {
         return 'Undefined field(s)';
@@ -19,6 +19,11 @@ class CommomValidations{
         return 'Null field(s)';
       }
     }
+
+    if(isUser) {
+      return this.CheckSimpleStrings(allData);
+    }
+
     return this.CheckNumericFields(allData);
   }
 

@@ -12,8 +12,6 @@ class UsersSearchCredentials {
           'name',
           'email',
           'password_hash',
-          'logdate',
-          'loghour',
           'created_at',
           'updated_at'
         ],
@@ -40,8 +38,6 @@ class UsersSearchCredentials {
           'name',
           'email',
           'password_hash',
-          'logdate',
-          'loghour',
           'created_at',
           'updated_at'
         ],
@@ -68,8 +64,6 @@ class UsersSearchCredentials {
           'name',
           'email',
           'password_hash',
-          'logdate',
-          'loghour',
           'created_at',
           'updated_at'
         ],

@@ -1,8 +1,22 @@
 import UserMethods from "../../repositories/User/User";
+import Validation from "../../validations/Validation";
 
 class UserController {
   async store(req, res) {
-    // Fazer validações aqui tbm
+    const validations = Validation.MainValidations(req.body);
+    const usersValidations = Validation.UserValidation(req.body);
+
+    if(validations !== null) {
+      return res.status(500).json({
+        errors: [validations],
+      });
+    }
+
+    if(usersValidations !== null) {
+      return res.status(500).json({
+        errors: [usersValidations],
+      });
+    }
 
     const userStore = await UserMethods.Store(req.body)
 

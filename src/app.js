@@ -34,8 +34,6 @@ import userRoutes from './routes/user/user'
 import userSearchByID from './routes/user/userSearchById';
 import userSearchByName from './routes/user/userSearchByName';
 import userSearchByEmail from './routes/user/userSearchByEmail';
-import userSearchByLogHour from './routes/user/userSearchByLogHour';
-import userSearchByLogDate from './routes/user/userSearchByLogDate';
 
 class App {
   constructor() {
@@ -88,8 +86,6 @@ class App {
     this.app.use('/users/search/id', userSearchByID);
     this.app.use('/users/search/name', userSearchByName);
     this.app.use('/users/search/email', userSearchByEmail);
-    this.app.use('/users/search/loghour', userSearchByLogHour);
-    this.app.use('/users/search/logdate', userSearchByLogDate);
   }
 }
 

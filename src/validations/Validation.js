@@ -1,10 +1,11 @@
 import CommonValidations from "./CommonValidations"
 import Inputs from "./Inputs";
 import Outputs from "./Outputs";
+import User from "./User";
 
 class Validation {
-  MainValidations(data) {
-    const validations = CommonValidations.DoTheValidations(data);
+  MainValidations(data, isUser) {
+    const validations = CommonValidations.DoTheValidations(data, isUser);
 
     switch(validations) {
       case ('Empty field(s)'):
@@ -54,6 +55,21 @@ class Validation {
 
       case('Weight must be a number'):
         return 'O campo "peso" precisa ser um string';
+
+      case('Field(s) must be a date or hour string'):
+        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
+
+      default:
+        return null;
+    }
+  }
+
+  UserValidation(data) {
+    const usersValidation = User.CheckEmail(data);
+
+    switch(usersValidation) {
+      case ('Must be a valid email'):
+        return 'O campo "unidades" deve ser numérico';
 
       case('Field(s) must be a date or hour string'):
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
