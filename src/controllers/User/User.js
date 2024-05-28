@@ -3,20 +3,19 @@ import Validation from "../../validations/Validation";
 
 class UserController {
   async store(req, res) {
-    const validations = Validation.MainValidations(req.body);
-    const usersValidations = Validation.UserValidation(req.body);
 
-    if(validations !== null) {
-      return res.status(500).json({
-        errors: [validations],
-      });
-    }
 
-    if(usersValidations !== null) {
-      return res.status(500).json({
-        errors: [usersValidations],
-      });
-    }
+    // if(validations !== null) {
+    //   return res.status(500).json({
+    //     errors: [validations],
+    //   });
+    // }
+
+    // if(usersValidations !== null) {
+    //   return res.status(500).json({
+    //     errors: [usersValidations],
+    //   });
+    // }
 
     const userStore = await UserMethods.Store(req.body)
 
@@ -26,6 +25,7 @@ class UserController {
   async index(req, res) {
     const usersList = await UserMethods.List();
 
+    // Arrumar este retorno. Mudar o lugar talvez
     if(usersList === null) {
       return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há usuários cadastrados'],
@@ -75,6 +75,18 @@ class UserController {
     }
 
     return res.json(`Usuário ${id} deletado`);
+  }
+
+  async DeleteAll(req, res) {
+    const userTruncate = UserMethods.Truncate();
+
+    if(userTruncate === false) {
+      return res.status(400).json({
+        errors: ['Ocoreru um erro'],
+      });
+    }
+
+    return res.json('Usuários deletados');
   }
 }
 

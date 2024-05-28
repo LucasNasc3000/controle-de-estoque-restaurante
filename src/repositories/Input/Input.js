@@ -20,7 +20,7 @@ class InputsList {
         order: [['id', 'DESC']],
       });
 
-      if(!inputs) return null;
+      if(inputs === '') return null;
 
       return inputs;
     } catch (e) {

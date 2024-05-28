@@ -6,6 +6,12 @@ import bcryptjs from 'bcryptjs';
 export default class User extends Model {
   static init(sequelize) {
     super.init({
+      id: {
+        type: Sequelize.DataTypes.UUIDV1,
+        defaultValue: Sequelize.DataTypes.UUIDV1,
+        primaryKey: true,
+        allowNull: false
+      },
       name: {
         type: Sequelize.STRING,
         defaultValue: '',

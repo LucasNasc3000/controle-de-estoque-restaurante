@@ -19,7 +19,7 @@ class OutputsList {
         order: [['id', 'DESC']],
       });
 
-      if(!outputs) return null;
+      if(outputs === '') return null;
 
       return outputs;
     } catch (e) {

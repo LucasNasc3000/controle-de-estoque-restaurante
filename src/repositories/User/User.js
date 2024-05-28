@@ -15,7 +15,7 @@ class UsersList {
         order: [['id', 'DESC']],
       });
 
-      if(!users) return null;
+      if(users === '') return null;
 
       return users;
     } catch (e) {
@@ -65,6 +65,16 @@ class UsersList {
     } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
+    }
+  }
+
+  // Para ser usado apenas no desenvolvimento
+  async Truncate() {
+    try {
+      await User.truncate();
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }
