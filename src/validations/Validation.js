@@ -67,16 +67,15 @@ class Validation {
   UserValidation(data) {
     const usersValidation = User.CheckEmail(data);
 
-    switch(usersValidation) {
-      case ('Must be a valid email'):
-        return 'O campo "unidades" deve ser numérico';
+   if(usersValidation === 'Must be a valid email') {
+      return 'Email inválido';
+   }
 
-      case('Field(s) must be a date or hour string'):
-        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
+   if(usersValidation === 'Password must be a string') {
+      return 'A senha precisa ser uma string';
+   }
 
-      default:
-        return null;
-    }
+   return null;
   }
 }
 

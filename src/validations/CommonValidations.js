@@ -15,12 +15,12 @@ class CommomValidations{
         return 'Undefined field(s)';
       }
 
-      if (typeof allData[i] === null) {
+      if (allData[i] === null) {
         return 'Null field(s)';
       }
     }
 
-    if(isUser) {
+    if(isUser === true) {
       return this.CheckSimpleStrings(allData);
     }
 

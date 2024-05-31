@@ -3,21 +3,22 @@ import Validation from "../../validations/Validation";
 
 class UserController {
   async store(req, res) {
+    const validations = Validation.MainValidations(req.body, true);
+    const usersValidations = Validation.UserValidation(req.body);
 
+    if(validations !== null) {
+      return res.status(500).json({
+        errors: [validations],
+      });
+    }
 
-    // if(validations !== null) {
-    //   return res.status(500).json({
-    //     errors: [validations],
-    //   });
-    // }
+    if(usersValidations !== null) {
+      return res.status(500).json({
+        errors: [usersValidations],
+      });
+    }
 
-    // if(usersValidations !== null) {
-    //   return res.status(500).json({
-    //     errors: [usersValidations],
-    //   });
-    // }
-
-    const userStore = await UserMethods.Store(req.body)
+    const userStore = await UserMethods.Store(req.body);
 
     return res.status(201).json(userStore);
   }
@@ -37,6 +38,20 @@ class UserController {
 
   async update(req, res) {
     const { id } = req.params;
+    const validations = Validation.MainValidations(req.body, true);
+    const usersValidations = Validation.UserValidation(req.body);
+
+    if(validations !== null) {
+      return res.status(500).json({
+        errors: [validations],
+      });
+    }
+
+    if(usersValidations !== null) {
+      return res.status(500).json({
+        errors: [usersValidations],
+      });
+    }
 
     if(!id) {
       return res.status(500).json({
