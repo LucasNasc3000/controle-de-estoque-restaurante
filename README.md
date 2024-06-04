@@ -25,7 +25,7 @@ em menos código, pois com um ORM não é necessário escrever códigos Sql.
 3 - Pesquisar pelas saídas dos insumos com base em: id, tipo, nome, peso total, peso por unidade, unidades,
     data e hora. <strong>/outputs/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> <strong>GET</strong> <br>
 4 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de <br>
-    arroz, as linhas responsáveis pelo peso total, peso por unidade e quantidade na tabela dos insumos serão<br>
+    arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão<br>
     alteradas <strong>/inputs/id</strong> <strong>PUT</strong> <br>
 
 ### Funcionalidades dos Usuários
