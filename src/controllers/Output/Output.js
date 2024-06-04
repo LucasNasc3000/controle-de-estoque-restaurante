@@ -1,8 +1,11 @@
 import OutputMethods from "../../repositories/Output/Output";
+import InputSearchSimpleStrings from "../../repositories/Input/InputSearchSimpleStrings";
+import InputConnection from "./InputConnection";
 import Validations from "../../validations/Validation";
 
 class OutputController {
   async store(req, res) {
+    const { name } = req.body;
     const validations = Validations.MainValidations(req.body);
     const outputsValidations = Validations.OutputsValidation(req.body);
 
@@ -20,19 +23,18 @@ class OutputController {
       });
     }
 
+    const inputExists = await InputSearchSimpleStrings.SearchByName(name);
+
+    if(inputExists.length <= 0) {
+      return res.status(400).json({
+        errors: [`Ocorreu um erro interno ou o insumo ${name} não está cadastrado`],
+      });
+    }
+
+    InputConnection.InputUpdate(inputExists, req.body);
     const store = await OutputMethods.Store(req.body)
-
-    // Ver se dá pra pegar o id
-    // const inputExists = await InputSearchSimpleStrings.SearchByType(type);
-
-    // if(inputExists) this.inputUpdate(unities, weight, weightperunit);
-
     return res.status(201).json(store);
   }
-
-  // async inputUpdate(unities, weight, weightperunit) {
-  //     const updateQuantity
-  // }
 
   async index(req, res) {
     const outputsList = await OutputMethods.List();
@@ -100,7 +102,19 @@ class OutputController {
       });
     }
 
-    return res.json(`insumo ${id} deletado`);
+    return res.json(`saída ${id} deletado`);
+  }
+
+  async DeleteAll(req, res) {
+    const outputsTruncate = OutputMethods.Truncate();
+
+    if(outputsTruncate === false) {
+      return res.status(400).json({
+        errors: ['Ocoreru um erro'],
+      });
+    }
+
+    return res.json('Saídas deletados');
   }
 }
 

@@ -26,7 +26,6 @@ class UserController {
   async index(req, res) {
     const usersList = await UserMethods.List();
 
-    // Arrumar este retorno. Mudar o lugar talvez
     if(usersList === null) {
       return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há usuários cadastrados'],
@@ -69,7 +68,6 @@ class UserController {
       });
     }
 
-    console.log(userUpdate);
     return res.status(200).send(userUpdate);
   }
 

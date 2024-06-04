@@ -71,6 +71,15 @@ class OutputsList {
       return console.log(e);
     }
   }
+
+  async Truncate() {
+    try {
+      await Output.truncate();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
 
 export default new OutputsList();

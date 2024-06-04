@@ -1,6 +1,7 @@
 import InputMethods from "../../repositories/Input/Input";
 import Validation from "../../validations/Validation";
 
+// Método para excluir mais de um mas não todos
 class InputController {
   async store(req, res) {
     const validations = Validation.MainValidations(req.body);
@@ -90,6 +91,18 @@ class InputController {
     }
 
     return res.json(`insumo ${id} deletado`);
+  }
+
+  async DeleteAll(req, res) {
+    const inputsTruncate = InputMethods.Truncate();
+
+    if(inputsTruncate === false) {
+      return res.status(400).json({
+        errors: ['Ocoreru um erro'],
+      });
+    }
+
+    return res.json('Insumos deletados');
   }
 }
 

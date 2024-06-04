@@ -72,6 +72,15 @@ class InputsList {
       return console.log(e);
     }
   }
+
+  async Truncate() {
+    try {
+      await Input.truncate();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
 
 export default new InputsList();

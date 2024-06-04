@@ -8,5 +8,6 @@ router.post('/', Input.store);
 router.get('/', Input.index);
 router.put('/:id', Input.update);
 router.delete('/:id', Input.delete);
+router.delete('/', Input.DeleteAll);
 
 export default router;
