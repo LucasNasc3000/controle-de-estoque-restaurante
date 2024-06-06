@@ -1,26 +1,6 @@
 import OutputSearchFloats from "../../repositories/Output/OutputSearchFloats";
 
 class OutputSearchFloatsController {
-  async SearchByWeightPerUnit(req, res) {
-    const { weightperunit } = req.params;
-
-    if(!weightperunit) {
-      return res.status(500).json({
-        errors: ['ID não informado'],
-      });
-    }
-
-    const inputWeightPerUnitFinder = await OutputSearchFloats.SearchByWeightPerUnit(weightperunit);
-
-    if(!inputWeightPerUnitFinder) {
-      return res.status(400).json({
-          errors: ['ID não encontrado'],
-      });
-    }
-
-    return res.json(inputWeightPerUnitFinder);
-  }
-
   async SearchByWeight(req, res) {
     const { weight } = req.params;
 
@@ -34,7 +14,7 @@ class OutputSearchFloatsController {
 
     if(!outputWeightFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrado'],
       });
     }
 

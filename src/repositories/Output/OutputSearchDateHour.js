@@ -5,7 +5,7 @@ class OutputSearchDateHourRepository {
     try {
       const outputDateFinder = await Output.findAll({
         where: {
-          date: date,
+          date: { [Op.like]: `%${date}%` },
         },
         attributes: [
           'id',
@@ -14,7 +14,6 @@ class OutputSearchDateHourRepository {
           'name',
           'type',
           'weight',
-          'weightperunit',
           'unities',
           'created_at',
           'updated_at',
@@ -35,7 +34,7 @@ class OutputSearchDateHourRepository {
     try {
       const outputHourFinder = await Output.findAll({
         where: {
-          hour: hour,
+          hour: { [Op.like]: `%${hour}%` },
         },
         attributes: [
           'id',
@@ -44,7 +43,6 @@ class OutputSearchDateHourRepository {
           'name',
           'type',
           'weight',
-          'weightperunit',
           'unities',
           'created_at',
           'updated_at',

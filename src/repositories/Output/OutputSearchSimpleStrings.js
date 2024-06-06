@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Output from "../../models/Output";
 
 class OutputSimpleStringSearch {
@@ -5,7 +6,7 @@ class OutputSimpleStringSearch {
     try {
       const outputTypeFinder = await Output.findAll({
         where: {
-          type: type,
+          type: { [Op.like]: `%${type}%` },
         },
         attributes: [
           'id',
@@ -14,7 +15,6 @@ class OutputSimpleStringSearch {
           'name',
           'type',
           'weight',
-          'weightperunit',
           'unities',
           'created_at',
           'updated_at',
@@ -35,7 +35,7 @@ class OutputSimpleStringSearch {
     try {
       const outputNameFinder = await Output.findAll({
         where: {
-          name: name,
+          name: { [Op.like]: `%${name}%` },
         },
         attributes: [
           'id',
@@ -44,7 +44,6 @@ class OutputSimpleStringSearch {
           'name',
           'type',
           'weight',
-          'weightperunit',
           'unities',
           'created_at',
           'updated_at',

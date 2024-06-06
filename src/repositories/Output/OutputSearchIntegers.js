@@ -5,7 +5,7 @@ class OutputIntegersSearch {
     try {
       const outputIdFinder = await Output.findAll({
         where: {
-          id: id,
+          id: { [Op.like]: id },
         },
         attributes: [
           'id',
@@ -14,7 +14,6 @@ class OutputIntegersSearch {
           'name',
           'type',
           'weight',
-          'weightperunit',
           'unities',
           'created_at',
           'updated_at'
@@ -35,7 +34,7 @@ class OutputIntegersSearch {
     try {
       const outputUnitiesFinder = await Output.findAll({
         where: {
-          unities: unities,
+          unities: { [Op.like]: unities },
         },
         attributes: [
           'id',
@@ -44,7 +43,6 @@ class OutputIntegersSearch {
           'name',
           'type',
           'weight',
-          'weightperunit',
           'unities',
           'created_at',
           'updated_at'
