@@ -53,15 +53,6 @@ export default class Output extends Model {
           },
         },
       },
-      weightperunit: {
-        type: Sequelize.FLOAT,
-        defaultValue: '',
-        validate: {
-          isFloat: {
-            msg: 'peso por unidade precisa ser um número',
-          },
-        },
-      },
       unities: {
         type: Sequelize.FLOAT,
         defaultValue: '',

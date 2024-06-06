@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Input from "../../models/Input";
 
 class InputSimpleStringSearch {
@@ -5,7 +6,7 @@ class InputSimpleStringSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          type: type,
+          type: { [Op.like]: `%${type}%` },
         },
         attributes: [
           'id',
@@ -36,7 +37,7 @@ class InputSimpleStringSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          name: name,
+          name: { [Op.like]: `%${name}%` },
         },
         attributes: [
           'id',
@@ -67,7 +68,7 @@ class InputSimpleStringSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          supplier: supplier,
+          supplier: { [Op.like]: `%${supplier}%` },
         },
         attributes: [
           'id',

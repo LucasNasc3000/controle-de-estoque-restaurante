@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import User from "../../models/User";
 
 class UsersSearchCredentials {
@@ -5,7 +6,7 @@ class UsersSearchCredentials {
     try {
       const userFinderById = await User.findAll({
         where: {
-          id: id,
+          id: { [Op.like]: `%${id}%` },
         },
         attributes: [
           'id',
@@ -31,7 +32,7 @@ class UsersSearchCredentials {
     try {
       const userFinderByName = await User.findAll({
         where: {
-          name: name,
+          name: { [Op.like]: `%${name}%` },
         },
         attributes: [
           'id',
@@ -57,7 +58,7 @@ class UsersSearchCredentials {
     try {
       const userFinderByEmail = await User.findAll({
         where: {
-          email: email,
+          email: { [Op.like]: `%${email}%` },
         },
         attributes: [
           'id',

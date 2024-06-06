@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Input from "../../models/Input";
 
 class InputIntegerSearch {
@@ -5,7 +6,7 @@ class InputIntegerSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          id: id,
+          id: { [Op.like]: id },
         },
         attributes: [
           'id',
@@ -36,7 +37,7 @@ class InputIntegerSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          quantity: quantityNumber,
+          quantity: { [Op.like]: quantityNumber },
         },
         attributes: [
           'id',

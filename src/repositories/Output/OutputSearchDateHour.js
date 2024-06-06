@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Output from "../../models/Output";
 
 class OutputSearchDateHourRepository {

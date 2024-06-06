@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Input from "../../models/Input";
 
 class InputDatesSearch {
@@ -5,7 +6,7 @@ class InputDatesSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          entrydate: entrydate,
+          entrydate: { [Op.like]: `%${entrydate}%` },
         },
         attributes: [
           'id',
@@ -36,7 +37,7 @@ class InputDatesSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          expirationdate: expirationdate,
+          expirationdate: { [Op.like]: `%${expirationdate}%` },
         },
         attributes: [
           'id',

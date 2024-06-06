@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Input from "../../models/Input";
 
 class InputFloatsSearch {
@@ -5,7 +6,7 @@ class InputFloatsSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          totalweight: totalweight,
+          totalweight: { [Op.like]: totalweight },
         },
         attributes: [
           'id',
@@ -36,7 +37,7 @@ class InputFloatsSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          weightperunit: weightperunit,
+          weightperunit: { [Op.like]: weightperunit },
         },
         attributes: [
           'id',
