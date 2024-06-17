@@ -23,9 +23,7 @@ class InputSimpleStringSearch {
         ],
       });
 
-      if (!inputFinder) {
-        return null;
-      }
+      if(inputFinder.length <= 0) return null;
 
       return inputFinder;
     } catch(e) {
@@ -54,9 +52,7 @@ class InputSimpleStringSearch {
         ],
       });
 
-      if (!inputFinder) {
-        return null;
-      }
+      if(inputFinder.length <= 0) return null;
 
       return inputFinder;
     } catch(e) {
@@ -85,9 +81,7 @@ class InputSimpleStringSearch {
         ],
       });
 
-      if (!inputFinder) {
-        return null;
-      }
+      if(inputFinder.length <= 0) return null;
 
       return inputFinder;
     } catch(e) {

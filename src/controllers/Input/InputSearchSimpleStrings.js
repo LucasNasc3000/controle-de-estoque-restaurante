@@ -7,7 +7,7 @@ class InputSearchSimpleStringsController {
 
     if(!type) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Tipo não informado'],
       });
     }
 
@@ -15,7 +15,7 @@ class InputSearchSimpleStringsController {
 
     if(!inputTypeFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 
@@ -27,7 +27,7 @@ class InputSearchSimpleStringsController {
 
     if(!name) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Nome não informado'],
       });
     }
 
@@ -35,7 +35,7 @@ class InputSearchSimpleStringsController {
 
     if(!inputNameFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 
@@ -47,7 +47,7 @@ class InputSearchSimpleStringsController {
 
     if(!supplier) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Fornecedor não informado'],
       });
     }
 
@@ -55,7 +55,7 @@ class InputSearchSimpleStringsController {
 
     if(!inputSupplierFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 

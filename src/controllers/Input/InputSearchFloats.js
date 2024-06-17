@@ -6,7 +6,7 @@ class InputSearchFloatsController {
 
     if(!weightperunit) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Peso por unidade não informado'],
       });
     }
 
@@ -14,7 +14,7 @@ class InputSearchFloatsController {
 
     if(!inputWeightPerUnitFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 
@@ -26,7 +26,7 @@ class InputSearchFloatsController {
 
     if(!totalweight) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Peso total não informado'],
       });
     }
 
@@ -34,7 +34,7 @@ class InputSearchFloatsController {
 
     if(!inputTotalWeightFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 

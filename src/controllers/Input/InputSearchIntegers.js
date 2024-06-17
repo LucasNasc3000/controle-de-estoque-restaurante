@@ -14,7 +14,7 @@ class InputSearchIntegersController {
 
     if(!inputIDFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 
@@ -26,7 +26,7 @@ class InputSearchIntegersController {
 
     if(!quantity) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Quantidade não informada'],
       });
     }
 
@@ -34,7 +34,7 @@ class InputSearchIntegersController {
 
     if(!inputQuantityFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 

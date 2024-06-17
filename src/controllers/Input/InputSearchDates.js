@@ -6,7 +6,7 @@ class InputSearchDatesController {
 
     if(!entrydate) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Data de entrada não informada'],
       });
     }
 
@@ -14,7 +14,7 @@ class InputSearchDatesController {
 
     if(!inputEntryDateFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 
@@ -26,7 +26,7 @@ class InputSearchDatesController {
 
     if(!expirationdate) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Data de validade não informada'],
       });
     }
 
@@ -34,7 +34,7 @@ class InputSearchDatesController {
 
     if(!inputExpirationDateFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Insumo não encontrado'],
       });
     }
 
