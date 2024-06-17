@@ -14,7 +14,7 @@ class UsersSearchCredentialsController {
 
     if(!userIDFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Usuário não encontrado'],
       });
     }
 
@@ -26,7 +26,7 @@ class UsersSearchCredentialsController {
 
     if(!name) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Nome não informado'],
       });
     }
 
@@ -34,7 +34,7 @@ class UsersSearchCredentialsController {
 
     if(!userNameFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Usuário não encontrada'],
       });
     }
 
@@ -46,7 +46,7 @@ class UsersSearchCredentialsController {
 
     if(!email) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Email não informado'],
       });
     }
 
@@ -54,7 +54,7 @@ class UsersSearchCredentialsController {
 
     if(!userEmailFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Usuário não encontrado'],
       });
     }
 

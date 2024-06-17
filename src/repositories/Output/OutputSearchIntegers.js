@@ -4,7 +4,7 @@ import Output from "../../models/Output";
 class OutputIntegersSearch {
   async SearchByID(id) {
     try {
-      const outputIdFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           id: { [Op.like]: id },
         },
@@ -21,11 +21,9 @@ class OutputIntegersSearch {
         ],
       });
 
-      if (!outputIdFinder) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputIdFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }
@@ -33,7 +31,7 @@ class OutputIntegersSearch {
 
   async SearchByUnities(unities) {
     try {
-      const outputUnitiesFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           unities: { [Op.like]: unities },
         },
@@ -50,11 +48,9 @@ class OutputIntegersSearch {
         ],
       });
 
-      if (!outputUnitiesFinder) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputUnitiesFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }

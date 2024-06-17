@@ -4,7 +4,7 @@ import User from "../../models/User";
 class UsersSearchCredentials {
   async SearchById(id) {
     try {
-      const userFinderById = await User.findAll({
+      const userFinder = await User.findAll({
         where: {
           id: { [Op.like]: `%${id}%` },
         },
@@ -18,11 +18,9 @@ class UsersSearchCredentials {
         ],
       });
 
-      if (!userFinderById) {
-        return null;
-      }
+      if (userFinder.length <= 0) return null;
 
-      return userFinderById;
+      return userFinder;
     } catch(e) {
       return console.log(e);
     }

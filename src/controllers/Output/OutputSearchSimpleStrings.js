@@ -7,7 +7,7 @@ class OutputSearchSimpleStringsController {
 
     if(!type) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Tipo não informado'],
       });
     }
 
@@ -15,7 +15,7 @@ class OutputSearchSimpleStringsController {
 
     if(!outputTypeFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 
@@ -27,7 +27,7 @@ class OutputSearchSimpleStringsController {
 
     if(!name) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Nome não informado'],
       });
     }
 
@@ -35,7 +35,7 @@ class OutputSearchSimpleStringsController {
 
     if(!outputNameFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 

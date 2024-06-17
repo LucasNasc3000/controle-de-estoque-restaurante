@@ -6,7 +6,7 @@ class OutputSearchDateHourController {
 
     if(!date) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Data da saída não informada'],
       });
     }
 
@@ -14,7 +14,7 @@ class OutputSearchDateHourController {
 
     if(!outputDateFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 
@@ -26,7 +26,7 @@ class OutputSearchDateHourController {
 
     if(!hour) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Hora da saída não informada'],
       });
     }
 
@@ -34,7 +34,7 @@ class OutputSearchDateHourController {
 
     if(!outputHourFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 

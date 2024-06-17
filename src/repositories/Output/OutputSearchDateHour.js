@@ -4,7 +4,7 @@ import Output from "../../models/Output";
 class OutputSearchDateHourRepository {
   async SearchByDate(date) {
     try {
-      const outputDateFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           date: { [Op.like]: `%${date}%` },
         },
@@ -21,11 +21,9 @@ class OutputSearchDateHourRepository {
         ],
       });
 
-      if (!outputDateFinder) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputDateFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }
@@ -33,7 +31,7 @@ class OutputSearchDateHourRepository {
 
   async SearchByHour(hour) {
     try {
-      const outputHourFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           hour: { [Op.like]: `%${hour}%` },
         },
@@ -50,11 +48,9 @@ class OutputSearchDateHourRepository {
         ],
       });
 
-      if (!outputHourFinder) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputHourFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }

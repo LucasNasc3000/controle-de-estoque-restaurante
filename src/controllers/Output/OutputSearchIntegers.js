@@ -14,7 +14,7 @@ class OutputSearchIntegersController {
 
     if(!outputIdFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 
@@ -26,7 +26,7 @@ class OutputSearchIntegersController {
 
     if(!unities) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Unidades não informadas'],
       });
     }
 
@@ -34,7 +34,7 @@ class OutputSearchIntegersController {
 
     if(!inputUnitiesFinder) {
       return res.status(400).json({
-          errors: ['ID não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 

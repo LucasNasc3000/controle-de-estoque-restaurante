@@ -6,7 +6,7 @@ class OutputSearchFloatsController {
 
     if(!weight) {
       return res.status(500).json({
-        errors: ['ID não informado'],
+        errors: ['Peso da saída não informado'],
       });
     }
 
@@ -14,7 +14,7 @@ class OutputSearchFloatsController {
 
     if(!outputWeightFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrado'],
+          errors: ['Saída não encontrada'],
       });
     }
 

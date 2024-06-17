@@ -4,7 +4,7 @@ import Output from "../../models/Output";
 class OutputFloatsSearch {
   async SearchByWeight(weight) {
     try {
-      const outputWeighFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           weight: { [Op.like]: weight }
         },
@@ -21,11 +21,9 @@ class OutputFloatsSearch {
         ],
       });
 
-      if (outputWeighFinder.length < 0) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputWeighFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }

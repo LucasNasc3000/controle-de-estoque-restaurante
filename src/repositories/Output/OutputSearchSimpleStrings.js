@@ -4,7 +4,7 @@ import Output from "../../models/Output";
 class OutputSimpleStringSearch {
   async SearchByType(type) {
     try {
-      const outputTypeFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           type: { [Op.like]: `%${type}%` },
         },
@@ -21,11 +21,9 @@ class OutputSimpleStringSearch {
         ],
       });
 
-      if (!outputTypeFinder) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputTypeFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }
@@ -33,7 +31,7 @@ class OutputSimpleStringSearch {
 
   async SearchByName(name) {
     try {
-      const outputNameFinder = await Output.findAll({
+      const outputFinder = await Output.findAll({
         where: {
           name: { [Op.like]: `%${name}%` },
         },
@@ -50,11 +48,9 @@ class OutputSimpleStringSearch {
         ],
       });
 
-      if (!outputNameFinder) {
-        return null;
-      }
+      if (outputFinder.length <= 0) return null;
 
-      return outputNameFinder;
+      return outputFinder;
     } catch(e) {
       return console.log(e);
     }
