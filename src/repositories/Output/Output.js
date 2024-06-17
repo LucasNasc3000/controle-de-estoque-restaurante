@@ -72,6 +72,7 @@ class OutputsList {
     }
   }
 
+  // Somente para o desenvolvimento
   async Truncate() {
     try {
       await Output.truncate();
