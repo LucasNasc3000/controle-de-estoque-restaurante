@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import Input from '../../controllers/Input/Input';
-// colocar os middlweares
+import loginRequired from '../../middlewares/loginRequired';
 
 const router = new Router();
 
-router.post('/', Input.store);
-router.get('/', Input.index);
-router.put('/:id', Input.update);
-router.delete('/:id', Input.delete);
-router.delete('/', Input.DeleteAll);
+router.post('/', loginRequired, Input.store);
+router.get('/', loginRequired, Input.index);
+router.put('/:id', loginRequired, Input.update);
+router.delete('/:id', loginRequired, Input.delete);
+router.delete('/', loginRequired, Input.DeleteAll);
 
 export default router;

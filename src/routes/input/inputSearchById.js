@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import inputSearchIntegers from '../../controllers/Input/InputSearchIntegers';
+import loginRequired from '../../middlewares/loginRequired';
 
 const router = new Router();
 
-router.get('/:id', inputSearchIntegers.SearchByID);
+router.get('/:id', loginRequired, inputSearchIntegers.SearchByID);
 
 export default router;
