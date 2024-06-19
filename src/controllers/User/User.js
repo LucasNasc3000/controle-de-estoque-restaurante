@@ -3,6 +3,15 @@ import Validation from "../../validations/Validation";
 
 class UserController {
   async store(req, res) {
+    const { adminUser, adminPass } = req.body;
+
+    if(adminUser !== process.env.ADMIN_USER &&
+      adminPass !== process.env.ADMIN_PASS) {
+        return res.status(500).json({
+          errors: ['Credenciais inválidas'],
+        });
+      }
+
     const validations = Validation.MainValidations(req.body, true);
     const usersValidations = Validation.UserValidation(req.body);
 

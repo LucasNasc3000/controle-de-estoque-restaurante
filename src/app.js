@@ -6,11 +6,11 @@ import express from 'express';
 import cors from 'cors';
 //input routes
 
-// Deletar mais de um de uma vez mas nao todos
 // Controle de acesso arquivo de logs --> gerar csv e guardar no bd com load_file()
 // Registro das atividades
 // jwt
 import homeRoutes from './routes/home';
+import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';
 import inputSearchByID from './routes/input/inputSearchById';
 import inputSearchByType from './routes/input/inputSearchByType';
@@ -62,6 +62,7 @@ class App {
     this.app.use('/', homeRoutes);
 
     // input routes
+    this.app.use('/tokens/', tokenRoutes);
     this.app.use('/inputs/', inputRoutes);
     this.app.use('/inputs/search/id/', inputSearchByID);
     this.app.use('/inputs/search/type/', inputSearchByType);
