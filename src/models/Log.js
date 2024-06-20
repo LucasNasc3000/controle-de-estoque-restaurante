@@ -72,5 +72,3 @@ export default class User extends Model {
     this.belongsTo(models.User, { foreignKey: 'user_id' });
   }
 }
-
-// O tipo virtual faz com que um campo seja considerado apenas virtualmente, ele não vai para o BD

@@ -1,3 +1,5 @@
+import { dateRegex, hourRegex, dateAndHourErrorMsg } from "./DateTimeRegexConsts";
+
 class InputsValidations {
   CheckIntegers(integersFieldData) {
     if(integersFieldData.quantity) {
@@ -18,10 +20,6 @@ class InputsValidations {
   }
 
   CheckDatesAndHour(DatesFieldsData) {
-    const dateRegex = /d{0,9}\-\d{0,9}\-\d{0,9}/
-    const hourRegex = /(0?[0-9]|1[0-9]|2[0-3]):[0-9]+:(0?[0-9]|[1-5][0-9])/
-    const dateAndHourErrorMsg = 'Field(s) must be a date or hour string';
-
     if(DatesFieldsData.entrydate) {
       if(!dateRegex.test(DatesFieldsData.entrydate)) {
         return dateAndHourErrorMsg;

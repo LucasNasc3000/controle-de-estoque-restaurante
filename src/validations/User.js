@@ -1,5 +1,5 @@
 class UserValidations {
-  CheckEmail(EmailFieldData) {
+  CheckEmail(EmailFieldData, isLog) {
     let email = EmailFieldData.email;
     let password = EmailFieldData.password;
 
@@ -13,6 +13,10 @@ class UserValidations {
 
     if(!email.includes('.com')) {
       return 'Must be a valid email';
+    }
+
+    if(isLog === true) {
+      return null;
     }
 
     return this.CheckPassword(EmailFieldData);

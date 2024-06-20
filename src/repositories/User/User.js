@@ -15,7 +15,7 @@ class UsersList {
         order: [['id', 'DESC']],
       });
 
-      if(users === '') return null;
+      if(users.length <= 0) return null;
 
       return users;
     } catch (e) {

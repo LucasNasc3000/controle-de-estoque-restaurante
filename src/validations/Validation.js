@@ -2,10 +2,11 @@ import CommonValidations from "./CommonValidations"
 import Inputs from "./Inputs";
 import Outputs from "./Outputs";
 import User from "./User";
+import Logs from "./Logs";
 
 class Validation {
-  MainValidations(data, isUser) {
-    const validations = CommonValidations.DoTheValidations(data, isUser);
+  MainValidations(data, isUser, isLog) {
+    const validations = CommonValidations.DoTheValidations(data, isUser, isLog);
 
     switch(validations) {
       case ('Empty field(s)'):
@@ -76,6 +77,23 @@ class Validation {
    }
 
    return null;
+  }
+
+  LogsValidation(data) {
+    const logsValidation = Logs.CheckUserId(data);
+    const emailValidation = User.CheckEmail(data, true);
+
+    switch(logsValidation) {
+      case 'Type must be a string':
+        return 'O id do log precisa ser do tipo string';
+
+      case 'Field(s) must be a date or hour string':
+        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
+    }
+
+    if(emailValidation === 'Must be a valid email') {
+      return 'Email inválido';
+    }
   }
 }
 
