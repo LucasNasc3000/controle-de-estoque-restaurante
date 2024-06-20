@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Sequelize, { Model } from 'sequelize';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import bcryptjs from 'bcryptjs';
 
 export default class User extends Model {
   static init(sequelize) {
@@ -11,16 +9,6 @@ export default class User extends Model {
         defaultValue: Sequelize.DataTypes.UUIDV1,
         primaryKey: true,
         allowNull: false
-      },
-      name: {
-        type: Sequelize.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'O nome deve ter entre 3 e 255 caracteres',
-          },
-        },
       },
       email: {
         type: Sequelize.STRING,
@@ -35,39 +23,53 @@ export default class User extends Model {
           },
         },
       },
-      password_hash: {
+      name: {
         type: Sequelize.STRING,
-        defaultValue: '',
-      },
-      password: {
-        type: Sequelize.VIRTUAL,
         defaultValue: '',
         validate: {
           len: {
-            args: [8, 60],
-            msg: 'A senha precisa ter entre 8 e 60 caracteres',
+            args: [3, 255],
+            msg: 'O nome deve ter entre 3 e 255 caracteres',
+          },
+        },
+      },
+      date: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [6, 255],
+            msg: 'A data deve ter entre 6 e 255 caracteres',
+          },
+        },
+      },
+      time: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [4, 255],
+            msg: 'O tempo deve ter entre 4 e 255 caracteres',
+          },
+        },
+      },
+      user_id: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: 'user_id precisa ser uma string',
           },
         },
       },
     }, {
       sequelize,
     });
-
-    this.addHook('beforeSave', async (user) => {
-      if (user.password) {
-        user.password_hash = await bcryptjs.hash(user.password, 8);
-      }
-    });
-
     return this;
   }
 
-  PasswordValidator(password) {
-    return bcryptjs.compare(password, this.password_hash);
-  }
-
   static associate(models) {
-    this.hasMany(models.Log, { foreignKey: 'user_id' });
+    this.belongsTo(models.User, { foreignKey: 'user_id' });
   }
 }
 

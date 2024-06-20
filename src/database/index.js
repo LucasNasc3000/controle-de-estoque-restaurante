@@ -4,8 +4,9 @@ import databaseConfig from '../config/database';
 import Input from '../models/Input';
 import Output from '../models/Output';
 import User from '../models/User';
+import Log from '../models/Log';
 
-const models = [Input, Output, User];
+const models = [Input, Output, User, Log];
 
 const connection = new Sequelize(databaseConfig);
 
