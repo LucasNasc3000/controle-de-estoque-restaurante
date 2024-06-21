@@ -23,16 +23,6 @@ export default class User extends Model {
           },
         },
       },
-      name: {
-        type: Sequelize.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'O nome deve ter entre 3 e 255 caracteres',
-          },
-        },
-      },
       date: {
         type: Sequelize.STRING,
         defaultValue: '',
