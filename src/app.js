@@ -6,7 +6,6 @@ import express from 'express';
 import cors from 'cors';
 //input routes
 
-// Arquivo de logs --> gerar csv e guardar registros em uma tabela no bd
 // Registro das atividades
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';

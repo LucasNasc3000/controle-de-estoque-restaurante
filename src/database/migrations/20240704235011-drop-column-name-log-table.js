@@ -3,8 +3,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     queryInterface.removeColumn(
       'logs',
-      'name',
-      {},
+      'name'
     );
   },
 

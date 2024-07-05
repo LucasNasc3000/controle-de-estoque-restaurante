@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-import Log from '../repositories/User/Log';
+import Log from './Log';
 
 class TokenController {
   // Cria o JWT baseado no email e senha que o usuário enviar no front-end para fazer login.
@@ -35,30 +35,9 @@ class TokenController {
       expiresIn: process.env.JWT_EXPIRATION,
     });
 
-    await this.createLog(id, email);
+    await Log.createLog(id, email);
 
     return res.json({ token, user: { nome: user.nome, id, email } });
-  }
-
-  setLogData() {
-    const data = new Date();
-    const dateTime = [];
-
-    const logTime = data.toLocaleTimeString("pt-BR", {
-      hour12: false,
-    });
-
-    const logDate = data.toLocaleDateString('pt-BR', {
-      dateStyle: "long",
-    });
-
-    dateTime.push(logDate, logTime);
-    return dateTime;
-  }
-
-  async createLog(id, email) {
-    const logDateTime = this.setLogData();
-    await Log.Store(id, email, logDateTime);
   }
 }
 

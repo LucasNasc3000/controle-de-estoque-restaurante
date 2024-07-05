@@ -7,6 +7,7 @@ class LogsList {
 
       if(!newLog) return null;
 
+      // tirar isso aqui depois
       return newLog;
     } catch(e) {
       // mudar o retorno para null ao terminar

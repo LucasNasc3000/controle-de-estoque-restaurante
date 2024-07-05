@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Sequelize, { Model } from 'sequelize';
 
-export default class User extends Model {
+export default class Log extends Model {
   static init(sequelize) {
     super.init({
       id: {
@@ -13,9 +13,6 @@ export default class User extends Model {
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
-        unique: {
-          msg: 'Email já existente',
-        },
         validate: {
           isEmail: {
             args: [3, 255],
@@ -44,13 +41,9 @@ export default class User extends Model {
         },
       },
       user_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUIDV1,
+        defaultValue: Sequelize.UUIDV1,
         defaultValue: '',
-        validate: {
-          isInt: {
-            msg: 'user_id precisa ser uma string',
-          },
-        },
       },
     }, {
       sequelize,
