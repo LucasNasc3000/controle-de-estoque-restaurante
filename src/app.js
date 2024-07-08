@@ -6,7 +6,9 @@ import express from 'express';
 import cors from 'cors';
 //input routes
 
-// Registro das atividades
+// Permissionamento
+// Colocar opção de definir um limite mínimo de insumos
+// Opção de enviar emails quando a quantidade minima estiver proxima ou for alcançada
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';

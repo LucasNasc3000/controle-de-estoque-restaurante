@@ -9,6 +9,7 @@ class UsersList {
           'name',
           'email',
           'password_hash',
+          'permission',
           'created_at',
           'updated_at'
         ],
