@@ -5,7 +5,7 @@ export default async (req, res, next) => {
 
   if (!permission || !id) {
     return res.status(401).json({
-      errors: ['Permissao outputsCRS e id necessarios'],
+      errors: ['Permissao para saidas e id necessarios'],
     });
   }
 
@@ -17,9 +17,9 @@ export default async (req, res, next) => {
     });
   }
 
-  if(user[0].dataValues.permission !== permission) {
+  if(user[0].dataValues.permission !== process.env.OUTPUTS_PERMISSION) {
     return res.status(401).json({
-      errors: ['Acesso negado, permissao outputsCRS necessaria'],
+      errors: ['Acesso negado, permissao para saidas necessaria'],
     });
   }
   return next();
