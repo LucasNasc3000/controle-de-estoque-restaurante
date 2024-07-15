@@ -4,7 +4,7 @@ import User from "../../models/User";
 class UsersSearchCredentials {
   async SearchById(id) {
     try {
-      const userFinder = await User.findAll({
+      const userFinder = await User.findOne({
         where: {
           id: { [Op.like]: `%${id}%` },
         },
@@ -13,6 +13,7 @@ class UsersSearchCredentials {
           'name',
           'email',
           'password_hash',
+          'adminpassword_hash',
           'permission',
           'created_at',
           'updated_at'
@@ -38,6 +39,7 @@ class UsersSearchCredentials {
           'name',
           'email',
           'password_hash',
+          'adminpassword_hash',
           'permission',
           'created_at',
           'updated_at'
@@ -65,6 +67,7 @@ class UsersSearchCredentials {
           'name',
           'email',
           'password_hash',
+          'adminpassword_hash',
           'permission',
           'created_at',
           'updated_at'

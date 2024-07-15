@@ -17,18 +17,20 @@ export default async (req, res, next) => {
     });
   }
 
+  const adminPassValidator = await user.PasswordValidator(adminpassword, true);
+
   switch(true) {
-    case (user[0].dataValues.permission !== permission):
+    case (user.permission !== permission):
       return res.status(401).json({
         errors: ['Acesso negado, permissao para insumos necessaria'],
       });
 
-    case (user[0].dataValues.permission !== process.env.INPUTS_PERMISSION):
+    case (user.permission !== process.env.INPUTS_PERMISSION):
       return res.status(401).json({
-        errors: ['Permissao inexistente'],
+        errors: ['Acesso negado, permissao para insumos necessaria'],
       });
 
-    case (user[0].dataValues.permission === process.env.ADMIN_PERMISSION):
+    case (user.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
       return next();
   }
   return next();

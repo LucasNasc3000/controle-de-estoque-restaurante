@@ -39,6 +39,10 @@ export default class User extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
+      adminpassword_hash: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
       password: {
         type: Sequelize.VIRTUAL,
         defaultValue: '',
@@ -46,6 +50,16 @@ export default class User extends Model {
           len: {
             args: [8, 60],
             msg: 'A senha precisa ter entre 8 e 60 caracteres',
+          },
+        },
+      },
+      adminpassword: {
+        type: Sequelize.VIRTUAL,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [0, 60],
+            msg: 'A senha do admin deve ter no máximo 60 caracteres',
           },
         },
       },
@@ -58,7 +72,7 @@ export default class User extends Model {
             msg: 'A permissao deve ter entre 8 e 20 caracteres',
           },
         },
-      }
+      },
     }, {
       sequelize,
     });
@@ -67,12 +81,18 @@ export default class User extends Model {
       if (user.password) {
         user.password_hash = await bcryptjs.hash(user.password, 8);
       }
+      if (user.adminpassword) {
+        user.adminpassword_hash = await bcryptjs.hash(user.adminpassword, 8);
+      }
     });
 
     return this;
   }
 
-  PasswordValidator(password) {
+  PasswordValidator(password, isadmin) {
+    if(isadmin) {
+      return bcryptjs.compare(password, this.adminpassword_hash);
+    }
     return bcryptjs.compare(password, this.password_hash);
   }
 

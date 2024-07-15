@@ -3,20 +3,18 @@ class UserValidations {
     let email = EmailFieldData.email;
     let password = EmailFieldData.password;
 
-    if(!email || !password) {
-      return null;
-    }
+    switch(true) {
+      case (!email || !password):
+        return null;
 
-    if(!email.includes('@')) {
-      return 'Must be a valid email';
-    }
+      case (!email.includes('@')):
+        return 'Must be a valid email';
 
-    if(!email.includes('.com')) {
-      return 'Must be a valid email';
-    }
+      case (!email.includes('.com')):
+        return 'Must be a valid email';
 
-    if(isLog === true) {
-      return null;
+      case (isLog === true):
+        return true;
     }
 
     return this.CheckPassword(EmailFieldData);
@@ -26,6 +24,21 @@ class UserValidations {
     if(typeof PasswordFieldData.password !== 'string') {
       return 'Password must be a string';
     }
+
+    return this.CheckPermission(PasswordFieldData);
+  }
+
+  CheckPermission(PermissionFieldData) {
+    if (typeof PermissionFieldData.permission !== 'string') {
+      return 'Permission must be a string';
+    }
+
+    if (PermissionFieldData.permission !== process.env.INPUTS_PERMISSION &&
+        PermissionFieldData.permission !== process.env.OUTPUTS_PERMISSION &&
+        PermissionFieldData.permission !== process.env.ADMIN_PERMISSION
+      ) {
+        return 'Invalid permission';
+      }
 
     return null;
   }

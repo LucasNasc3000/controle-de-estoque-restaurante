@@ -9,6 +9,7 @@ class UsersList {
           'name',
           'email',
           'password_hash',
+          'adminpassword_hash',
           'permission',
           'created_at',
           'updated_at'
@@ -39,7 +40,18 @@ class UsersList {
 
   async Update(id, data) {
     try {
-      const findUser = await User.findByPk(id);
+      const findUser = await User.findByPk(id, {
+        attributes: [
+          'id',
+          'name',
+          'email',
+          'password_hash',
+          'adminpassword_hash',
+          'permission',
+          'created_at',
+          'updated_at'
+        ],
+      });
 
       if (!findUser) {
         return null;

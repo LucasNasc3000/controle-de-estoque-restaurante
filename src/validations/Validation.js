@@ -68,13 +68,13 @@ class Validation {
   UserValidation(data) {
     const usersValidation = User.CheckEmail(data);
 
-   if(usersValidation === 'Must be a valid email') {
-      return 'Email inválido';
-   }
+    switch(usersValidation) {
+      case 'Must be a valid email':
+        return 'Email inválido';
 
-   if(usersValidation === 'Password must be a string') {
-      return 'A senha precisa ser uma string';
-   }
+      case 'Password must be a string':
+        return 'A senha precisa ser uma string';
+    }
 
    return null;
   }
