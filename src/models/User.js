@@ -98,6 +98,8 @@ export default class User extends Model {
 
   static associate(models) {
     this.hasMany(models.Log, { foreignKey: 'user_id' });
+    this.hasMany(models.Input, { foreignKey: 'user_id' });
+    this.hasMany(models.Output, { foreignKey: 'user_id' });
   }
 }
 

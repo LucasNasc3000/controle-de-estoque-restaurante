@@ -6,8 +6,6 @@ import express from 'express';
 import cors from 'cors';
 //input routes
 
-// Permissionamento
-// Tentar colocar allow null no isadmin
 // Registro de atividades
 // Colocar opção de definir um limite mínimo de insumos
 // Opção de enviar emails quando a quantidade minima estiver proxima ou for alcançada

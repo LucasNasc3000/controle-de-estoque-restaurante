@@ -62,9 +62,18 @@ export default class Output extends Model {
           },
         },
       },
+      user_id: {
+        type: Sequelize.UUIDV1,
+        defaultValue: Sequelize.UUIDV1,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'user_id' });
   }
 }

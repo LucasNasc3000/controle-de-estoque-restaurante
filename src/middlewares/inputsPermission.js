@@ -1,7 +1,7 @@
 import User from "../repositories/User/UserSearchCredentials";
 
 export default async (req, res, next) => {
-  const { permission, id } = req.headers;
+  const { permission, id, adminpassword } = req.headers;
 
   if (!permission || !id) {
     return res.status(401).json({
@@ -25,13 +25,13 @@ export default async (req, res, next) => {
         errors: ['Acesso negado, permissao para insumos necessaria'],
       });
 
+    case (user.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
+      return next();
+
     case (user.permission !== process.env.INPUTS_PERMISSION):
       return res.status(401).json({
         errors: ['Acesso negado, permissao para insumos necessaria'],
       });
-
-    case (user.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
-      return next();
   }
   return next();
 }
