@@ -14,6 +14,8 @@ class InputsList {
           'supplier',
           'expirationdate',
           'entrydate',
+          'user_id',
+          'minimun_quantity',
           'created_at',
           'updated_at'
         ],

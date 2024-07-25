@@ -96,6 +96,15 @@ export default class Input extends Model {
         defaultValue: Sequelize.UUIDV1,
         defaultValue: '',
       },
+      minimun_quantity: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: 'quantidade mínima precisa ser um número inteiro',
+          },
+        },
+      }
     }, {
       sequelize,
     });

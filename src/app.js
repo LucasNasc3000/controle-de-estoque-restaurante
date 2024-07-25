@@ -6,7 +6,6 @@ import express from 'express';
 import cors from 'cors';
 //input routes
 
-// Registro de atividades
 // Colocar opção de definir um limite mínimo de insumos
 // Opção de enviar emails quando a quantidade minima estiver proxima ou for alcançada
 import homeRoutes from './routes/home';
@@ -16,6 +15,7 @@ import inputSearchByID from './routes/input/inputSearchById';
 import inputSearchByType from './routes/input/inputSearchByType';
 import inputSearchByName from './routes/input/inputSearchByName';
 import inputSearchByQuantity from './routes/input/inputSearchByQuantity';
+import inputSearchByMinimunQuantity from './routes/input/inputSearchByMinimunQuantity';
 import inputSearchByTotalWeight from './routes/input/inputSearchByTotalWeight';
 import inputSearchByWeightPerUnit from './routes/input/inputSearchByWeightPerUnit';
 import inputSearchBySupplier from './routes/input/inputSearchBySupplier';
@@ -68,6 +68,7 @@ class App {
     this.app.use('/inputs/search/type/', inputSearchByType);
     this.app.use('/inputs/search/name/', inputSearchByName);
     this.app.use('/inputs/search/quantity/', inputSearchByQuantity);
+    this.app.use('/inputs/search/minimunquantity/', inputSearchByMinimunQuantity);
     this.app.use('/inputs/search/totalweight/', inputSearchByTotalWeight);
     this.app.use('/inputs/search/weightperunit/', inputSearchByWeightPerUnit);
     this.app.use('/inputs/search/supplier/', inputSearchBySupplier);
