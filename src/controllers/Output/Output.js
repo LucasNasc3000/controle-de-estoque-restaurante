@@ -31,7 +31,28 @@ class OutputController {
       });
     }
 
-    InputConnection.InputUpdate(inputExists, req.body);
+    const inputConnection = await InputConnection.InputUpdate(inputExists, req.body);
+
+    if(inputConnection) {
+      if(inputConnection[0] === 'limit reached') {
+        return res.status(400).json({
+          errors: [`Não é possível registrar novas saídas: o limite do insumo ${inputConnection[1]} foi alcançado.`],
+        });
+      }
+
+      if(inputConnection[0] === 'rate is near') {
+        await InputConnection.InputUpdate(inputExists, req.body);
+        const store = await OutputMethods.Store(req.body);
+
+        return res.json({
+          warning: [`ATENÇÃO: Faltam 15 unidades ou menos para o limite do insumo ${inputConnection[1]}.`],
+          saida: [
+            store
+          ]
+        });
+      }
+    }
+
     const store = await OutputMethods.Store(req.body)
     return res.status(201).json(store);
   }

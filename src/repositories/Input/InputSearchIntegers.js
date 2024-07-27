@@ -4,7 +4,7 @@ import Input from "../../models/Input";
 class InputIntegerSearch {
   async SearchByID(id) {
     try {
-      const inputFinder = await Input.findAll({
+      const inputFinder = await Input.findOne({
         where: {
           id: { [Op.like]: id },
         },

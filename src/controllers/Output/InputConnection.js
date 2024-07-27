@@ -1,4 +1,5 @@
 import Input from "../../repositories/Input/Input";
+import QuantityCheck from "../Input/QuantityCheck";
 
 class InputConnectionController{
   async InputUpdate(inputSearchData, outputData) {
@@ -9,6 +10,23 @@ class InputConnectionController{
       quantity: updatedQuantity,
       totalweight: updatedTotalWeight
     };
+
+    const dataForQuantityCheck = [
+      inputSearchData[0].dataValues.quantity,
+      inputSearchData[0].dataValues.minimun_quantity,
+      inputSearchData[0].dataValues.name,
+    ];
+
+    const check = await QuantityCheck.QuantityCheck(dataForQuantityCheck);
+
+    if(check) {
+      if(check[0] === 'rate is near') {
+        await Input.Update(inputSearchData[0].dataValues.id, updatedData);
+        return check;
+      }
+
+      if(check[0] === 'limit reached') return check;
+    }
 
     await Input.Update(inputSearchData[0].dataValues.id, updatedData);
   }
