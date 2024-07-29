@@ -1,9 +1,9 @@
-import { dateRegex, hourRegex, dateAndHourErrorMsg } from "./DateTimeRegexConsts";
+import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DateTimeRegexConsts';
 
 class OutputsValidations {
   CheckIntegers(integersFieldData) {
-    if(integersFieldData.unities) {
-      if(typeof integersFieldData.unities !== 'number') {
+    if (integersFieldData.unities) {
+      if (typeof integersFieldData.unities !== 'number') {
         return 'Unities must be a number';
       }
     }
@@ -11,8 +11,8 @@ class OutputsValidations {
   }
 
   CheckFloats(floatsFieldData) {
-    if(floatsFieldData.weight) {
-      if(typeof floatsFieldData.weight !== 'number') {
+    if (floatsFieldData.weight) {
+      if (typeof floatsFieldData.weight !== 'number') {
         return 'Weight must be a number';
       }
     }
@@ -20,14 +20,14 @@ class OutputsValidations {
   }
 
   CheckDatesAndHour(DatesFieldsData) {
-    if(DatesFieldsData.date) {
-      if(!dateRegex.test(DatesFieldsData.date)) {
+    if (DatesFieldsData.date) {
+      if (!dateRegex.test(DatesFieldsData.date)) {
         return dateAndHourErrorMsg;
       }
     }
 
-    if(DatesFieldsData.hour) {
-      if(!hourRegex.test(DatesFieldsData.hour)) {
+    if (DatesFieldsData.hour) {
+      if (!hourRegex.test(DatesFieldsData.hour)) {
         return dateAndHourErrorMsg;
       }
     }

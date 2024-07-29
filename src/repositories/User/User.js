@@ -1,4 +1,4 @@
-import User from "../../models/User";
+import User from '../../models/User';
 
 class UsersList {
   async List() {
@@ -12,12 +12,12 @@ class UsersList {
           'adminpassword_hash',
           'permission',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
         order: [['id', 'DESC']],
       });
 
-      if(users.length <= 0) return null;
+      if (users.length <= 0) return null;
 
       return users;
     } catch (e) {
@@ -29,10 +29,10 @@ class UsersList {
     try {
       const newUser = await User.create(data);
 
-      if(!newUser) return null;
+      if (!newUser) return null;
 
       return newUser;
-    } catch(e) {
+    } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
     }
@@ -49,7 +49,7 @@ class UsersList {
           'adminpassword_hash',
           'permission',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
       });
 
@@ -65,9 +65,9 @@ class UsersList {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   async Delete(id) {
     try {
-
       const deleteUser = await User.findByPk(id);
 
       if (!deleteUser) {

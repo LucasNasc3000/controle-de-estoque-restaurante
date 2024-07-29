@@ -8,7 +8,7 @@ export default class Log extends Model {
         type: Sequelize.DataTypes.UUIDV1,
         defaultValue: Sequelize.DataTypes.UUIDV1,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
@@ -43,7 +43,6 @@ export default class Log extends Model {
       user_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
-        defaultValue: '',
       },
     }, {
       sequelize,

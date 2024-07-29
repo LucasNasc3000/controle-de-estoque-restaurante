@@ -1,11 +1,10 @@
-import InputSearchSimpleStrings from "../../repositories/Input/InputSearchSimpleStrings";
+import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 
 class InputSearchSimpleStringsController {
-
   async SearchByType(req, res) {
     const { type } = req.params;
 
-    if(!type) {
+    if (!type) {
       return res.status(500).json({
         errors: ['Tipo não informado'],
       });
@@ -13,9 +12,9 @@ class InputSearchSimpleStringsController {
 
     const inputTypeFinder = await InputSearchSimpleStrings.SearchByType(type);
 
-    if(!inputTypeFinder) {
+    if (!inputTypeFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
@@ -25,7 +24,7 @@ class InputSearchSimpleStringsController {
   async SearchByName(req, res) {
     const { name } = req.params;
 
-    if(!name) {
+    if (!name) {
       return res.status(500).json({
         errors: ['Nome não informado'],
       });
@@ -33,9 +32,9 @@ class InputSearchSimpleStringsController {
 
     const inputNameFinder = await InputSearchSimpleStrings.SearchByName(name);
 
-    if(!inputNameFinder) {
+    if (!inputNameFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
@@ -45,7 +44,7 @@ class InputSearchSimpleStringsController {
   async SearchBySupplier(req, res) {
     const { supplier } = req.params;
 
-    if(!supplier) {
+    if (!supplier) {
       return res.status(500).json({
         errors: ['Fornecedor não informado'],
       });
@@ -53,15 +52,14 @@ class InputSearchSimpleStringsController {
 
     const inputSupplierFinder = await InputSearchSimpleStrings.SearchBySupplier(supplier);
 
-    if(!inputSupplierFinder) {
+    if (!inputSupplierFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
     return res.json(inputSupplierFinder);
   }
-
 }
 
 export default new InputSearchSimpleStringsController();

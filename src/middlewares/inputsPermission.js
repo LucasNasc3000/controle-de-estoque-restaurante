@@ -1,4 +1,4 @@
-import User from "../repositories/User/UserSearchCredentials";
+import User from '../repositories/User/UserSearchCredentials';
 
 export default async (req, res, next) => {
   const { permission, id, adminpassword } = req.headers;
@@ -11,15 +11,15 @@ export default async (req, res, next) => {
 
   const user = await User.SearchById(id);
 
-  if(!user) {
+  if (!user) {
     return res.status(400).json({
-        errors: ['Usuário não encontrado'],
+      errors: ['Usuário não encontrado'],
     });
   }
 
   const adminPassValidator = await user.PasswordValidator(adminpassword, true);
 
-  switch(true) {
+  switch (true) {
     case (user.permission !== permission):
       return res.status(401).json({
         errors: ['Acesso negado, permissao para insumos necessaria'],
@@ -34,4 +34,4 @@ export default async (req, res, next) => {
       });
   }
   return next();
-}
+};

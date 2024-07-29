@@ -1,9 +1,9 @@
-import { dateRegex, hourRegex, dateAndHourErrorMsg } from "./DateTimeRegexConsts";
+import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DateTimeRegexConsts';
 
 class InputsValidations {
   CheckIntegers(integersFieldData) {
-    if(integersFieldData.quantity) {
-      if(typeof integersFieldData.quantity !== 'number') {
+    if (integersFieldData.quantity) {
+      if (typeof integersFieldData.quantity !== 'number') {
         return 'Quantity must be a number';
       }
     }
@@ -11,8 +11,8 @@ class InputsValidations {
   }
 
   CheckSimpleStrings(simpleStringsFieldsData) {
-    if(simpleStringsFieldsData.supplier) {
-      if(typeof simpleStringsFieldsData.supplier !== 'string') {
+    if (simpleStringsFieldsData.supplier) {
+      if (typeof simpleStringsFieldsData.supplier !== 'string') {
         return 'Supplier must be a string';
       }
     }
@@ -20,20 +20,20 @@ class InputsValidations {
   }
 
   CheckDatesAndHour(DatesFieldsData) {
-    if(DatesFieldsData.entrydate) {
-      if(!dateRegex.test(DatesFieldsData.entrydate)) {
+    if (DatesFieldsData.entrydate) {
+      if (!dateRegex.test(DatesFieldsData.entrydate)) {
         return dateAndHourErrorMsg;
       }
     }
 
-    if(DatesFieldsData.expirationdate) {
-      if(!dateRegex.test(DatesFieldsData.expirationdate)) {
+    if (DatesFieldsData.expirationdate) {
+      if (!dateRegex.test(DatesFieldsData.expirationdate)) {
         return dateAndHourErrorMsg;
       }
     }
 
-    if(DatesFieldsData.entryhour) {
-      if(!hourRegex.test(DatesFieldsData.entryhour)) {
+    if (DatesFieldsData.entryhour) {
+      if (!hourRegex.test(DatesFieldsData.entryhour)) {
         return dateAndHourErrorMsg;
       }
     }

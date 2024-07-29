@@ -1,5 +1,5 @@
-import InputMethods from "../../repositories/Input/Input";
-import Validation from "../../validations/Validation";
+import InputMethods from '../../repositories/Input/Input';
+import Validation from '../../validations/Validation';
 
 // Método para excluir mais de um mas não todos
 class InputController {
@@ -7,19 +7,19 @@ class InputController {
     const validations = Validation.MainValidations(req.body);
     const inputValidations = Validation.InputsValidation(req.body);
 
-    if(validations !== null) {
+    if (validations !== null) {
       return res.status(500).json({
         errors: [validations],
       });
     }
 
-    if(inputValidations !== null) {
+    if (inputValidations !== null) {
       return res.status(500).json({
         errors: [inputValidations],
       });
     }
 
-    const store = await InputMethods.Store(req.body)
+    const store = await InputMethods.Store(req.body);
 
     return res.status(201).json(store);
   }
@@ -27,7 +27,7 @@ class InputController {
   async index(req, res) {
     const inputList = await InputMethods.List();
 
-    if(inputList === null) {
+    if (inputList === null) {
       return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há produtos cadastrados'],
       });
@@ -41,19 +41,19 @@ class InputController {
     const validations = Validation.MainValidations(req.body);
     const inputValidations = Validation.InputsValidation(req.body);
 
-    if(!id) {
+    if (!id) {
       return res.status(500).json({
         errors: ['ID não informado'],
       });
     }
 
-    if(validations !== null) {
+    if (validations !== null) {
       return res.status(500).json({
         errors: [validations],
       });
     }
 
-    if(inputValidations !== null) {
+    if (inputValidations !== null) {
       res.status(500).json({
         errors: [inputValidations],
       });
@@ -63,7 +63,7 @@ class InputController {
     // requisições como insomnia.
     const inputUpdate = await InputMethods.Update(id, req.body);
 
-    if(inputUpdate === null) {
+    if (inputUpdate === null) {
       return res.status(400).json({
         errors: ['Insumo não registrado'],
       });
@@ -74,7 +74,7 @@ class InputController {
 
   async delete(req, res) {
     const { id } = req.params;
-    if(!id) {
+    if (!id) {
       res.status(500).json({
         errors: ['ID não informado'],
       });
@@ -82,7 +82,7 @@ class InputController {
 
     const inputDelete = await InputMethods.Delete(id);
 
-    if(inputDelete === null) {
+    if (inputDelete === null) {
       return res.status(400).json({
         errors: ['ID não encontrado'],
       });
@@ -94,7 +94,7 @@ class InputController {
   async DeleteAll(req, res) {
     const inputsTruncate = InputMethods.Truncate();
 
-    if(inputsTruncate === false) {
+    if (inputsTruncate === false) {
       return res.status(400).json({
         errors: ['Ocoreru um erro'],
       });

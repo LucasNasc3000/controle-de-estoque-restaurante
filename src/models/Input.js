@@ -94,7 +94,6 @@ export default class Input extends Model {
       user_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
-        defaultValue: '',
       },
       minimun_quantity: {
         type: Sequelize.INTEGER,
@@ -104,7 +103,7 @@ export default class Input extends Model {
             msg: 'quantidade mínima precisa ser um número inteiro',
           },
         },
-      }
+      },
     }, {
       sequelize,
     });

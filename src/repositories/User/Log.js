@@ -1,15 +1,11 @@
+/* eslint-disable consistent-return */
 import Log from '../../models/Log';
 
 class LogsList {
   async Store(data) {
     try {
-      const newLog = await Log.create(data);
-
-      if(!newLog) return null;
-
-      // tirar isso aqui depois
-      return newLog;
-    } catch(e) {
+      await Log.create(data);
+    } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
     }

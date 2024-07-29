@@ -1,11 +1,10 @@
-import OutputSearchSimpleStrings from "../../repositories/Output/OutputSearchSimpleStrings";
+import OutputSearchSimpleStrings from '../../repositories/Output/OutputSearchSimpleStrings';
 
 class OutputSearchSimpleStringsController {
-
   async SearchByType(req, res) {
     const { type } = req.params;
 
-    if(!type) {
+    if (!type) {
       return res.status(500).json({
         errors: ['Tipo não informado'],
       });
@@ -13,9 +12,9 @@ class OutputSearchSimpleStringsController {
 
     const outputTypeFinder = await OutputSearchSimpleStrings.SearchByType(type);
 
-    if(!outputTypeFinder) {
+    if (!outputTypeFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 
@@ -25,7 +24,7 @@ class OutputSearchSimpleStringsController {
   async SearchByName(req, res) {
     const { name } = req.params;
 
-    if(!name) {
+    if (!name) {
       return res.status(500).json({
         errors: ['Nome não informado'],
       });
@@ -33,9 +32,9 @@ class OutputSearchSimpleStringsController {
 
     const outputNameFinder = await OutputSearchSimpleStrings.SearchByName(name);
 
-    if(!outputNameFinder) {
+    if (!outputNameFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 

@@ -1,5 +1,5 @@
-import { Op } from "sequelize";
-import Input from "../../models/Input";
+import { Op } from 'sequelize';
+import Input from '../../models/Input';
 
 class InputSimpleStringSearch {
   async SearchByType(type) {
@@ -25,10 +25,10 @@ class InputSimpleStringSearch {
         ],
       });
 
-      if(inputFinder.length <= 0) return null;
+      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -56,10 +56,10 @@ class InputSimpleStringSearch {
         ],
       });
 
-      if(inputFinder.length <= 0) return null;
+      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -85,10 +85,10 @@ class InputSimpleStringSearch {
         ],
       });
 
-      if(inputFinder.length <= 0) return null;
+      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }

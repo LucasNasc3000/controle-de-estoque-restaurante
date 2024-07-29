@@ -1,9 +1,10 @@
+/* eslint-disable default-case */
 class UserValidations {
   CheckEmail(EmailFieldData, isLog) {
-    let email = EmailFieldData.email;
-    let password = EmailFieldData.password;
+    const { email } = EmailFieldData;
+    const { password } = EmailFieldData;
 
-    switch(true) {
+    switch (true) {
       case (!email || !password):
         return null;
 
@@ -21,7 +22,7 @@ class UserValidations {
   }
 
   CheckPassword(PasswordFieldData) {
-    if(typeof PasswordFieldData.password !== 'string') {
+    if (typeof PasswordFieldData.password !== 'string') {
       return 'Password must be a string';
     }
 
@@ -33,12 +34,12 @@ class UserValidations {
       return 'Permission must be a string';
     }
 
-    if (PermissionFieldData.permission !== process.env.INPUTS_PERMISSION &&
-        PermissionFieldData.permission !== process.env.OUTPUTS_PERMISSION &&
-        PermissionFieldData.permission !== process.env.ADMIN_PERMISSION
-      ) {
-        return 'Invalid permission';
-      }
+    if (PermissionFieldData.permission !== process.env.INPUTS_PERMISSION
+        && PermissionFieldData.permission !== process.env.OUTPUTS_PERMISSION
+        && PermissionFieldData.permission !== process.env.ADMIN_PERMISSION
+    ) {
+      return 'Invalid permission';
+    }
 
     return null;
   }

@@ -1,5 +1,5 @@
-import { Op } from "sequelize";
-import Input from "../../models/Input";
+import { Op } from 'sequelize';
+import Input from '../../models/Input';
 
 class InputDatesSearch {
   async SearchByEntryDate(entrydate) {
@@ -25,10 +25,10 @@ class InputDatesSearch {
         ],
       });
 
-      if(inputFinder.length <= 0) return null;
+      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -56,10 +56,10 @@ class InputDatesSearch {
         ],
       });
 
-      if(inputFinder.length <= 0) return null;
+      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }

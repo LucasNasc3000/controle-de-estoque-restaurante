@@ -1,4 +1,4 @@
-import Output from "../../models/Output";
+import Output from '../../models/Output';
 
 class OutputsList {
   async List() {
@@ -14,12 +14,12 @@ class OutputsList {
           'weightperunit',
           'unities',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
         order: [['id', 'DESC']],
       });
 
-      if(outputs.length <= 0) return null;
+      if (outputs.length <= 0) return null;
 
       return outputs;
     } catch (e) {
@@ -31,10 +31,10 @@ class OutputsList {
     try {
       const newOutput = await Output.create(data);
 
-      if(!newOutput) return null;
+      if (!newOutput) return null;
 
       return newOutput;
-    } catch(e) {
+    } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
     }
@@ -56,9 +56,9 @@ class OutputsList {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   async Delete(id) {
     try {
-
       const output = await Output.findByPk(id);
 
       if (!output) {

@@ -10,7 +10,7 @@ export default class User extends Model {
         type: Sequelize.DataTypes.UUIDV1,
         defaultValue: Sequelize.DataTypes.UUIDV1,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
@@ -90,7 +90,7 @@ export default class User extends Model {
   }
 
   PasswordValidator(password, isadmin) {
-    if(isadmin) {
+    if (isadmin) {
       return bcryptjs.compare(password, this.adminpassword_hash);
     }
     return bcryptjs.compare(password, this.password_hash);

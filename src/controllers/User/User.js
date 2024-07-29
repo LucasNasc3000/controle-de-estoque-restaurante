@@ -1,18 +1,18 @@
-import UserMethods from "../../repositories/User/User";
-import Validation from "../../validations/Validation";
+import UserMethods from '../../repositories/User/User';
+import Validation from '../../validations/Validation';
 
 class UserController {
   async store(req, res) {
     const validations = Validation.MainValidations(req.body, true);
     const usersValidations = Validation.UserValidation(req.body);
 
-    if(validations !== null) {
+    if (validations !== null) {
       return res.status(500).json({
         errors: [validations],
       });
     }
 
-    if(usersValidations !== null) {
+    if (usersValidations !== null) {
       return res.status(500).json({
         errors: [usersValidations],
       });
@@ -26,7 +26,7 @@ class UserController {
   async index(req, res) {
     const usersList = await UserMethods.List();
 
-    if(usersList === null) {
+    if (usersList === null) {
       return res.status(400).json({
         errors: ['Ocorreu um erro interno ou não há usuários cadastrados'],
       });
@@ -40,19 +40,19 @@ class UserController {
     const validations = Validation.MainValidations(req.body, true);
     const usersValidations = Validation.UserValidation(req.body);
 
-    if(validations !== null) {
+    if (validations !== null) {
       return res.status(500).json({
         errors: [validations],
       });
     }
 
-    if(usersValidations !== null) {
+    if (usersValidations !== null) {
       return res.status(500).json({
         errors: [usersValidations],
       });
     }
 
-    if(!id) {
+    if (!id) {
       return res.status(500).json({
         errors: ['ID não informado'],
       });
@@ -62,7 +62,7 @@ class UserController {
     // requisições como insomnia.
     const userUpdate = await UserMethods.Update(id, req.body);
 
-    if(userUpdate === null) {
+    if (userUpdate === null) {
       return res.status(400).json({
         errors: ['Usuário não registrado'],
       });
@@ -73,7 +73,7 @@ class UserController {
 
   async delete(req, res) {
     const { id } = req.params;
-    if(!id) {
+    if (!id) {
       return res.status(500).json({
         errors: ['ID não informado'],
       });
@@ -81,7 +81,7 @@ class UserController {
 
     const userDelete = await UserMethods.Delete(id);
 
-    if(userDelete === null) {
+    if (userDelete === null) {
       return res.status(400).json({
         errors: ['ID não encontrado'],
       });
@@ -93,7 +93,7 @@ class UserController {
   async DeleteAll(req, res) {
     const userTruncate = UserMethods.Truncate();
 
-    if(userTruncate === false) {
+    if (userTruncate === false) {
       return res.status(400).json({
         errors: ['Ocoreru um erro'],
       });

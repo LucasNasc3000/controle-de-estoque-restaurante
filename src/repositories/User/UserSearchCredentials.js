@@ -1,5 +1,5 @@
-import { Op } from "sequelize";
-import User from "../../models/User";
+import { Op } from 'sequelize';
+import User from '../../models/User';
 
 class UsersSearchCredentials {
   async SearchById(id) {
@@ -16,14 +16,14 @@ class UsersSearchCredentials {
           'adminpassword_hash',
           'permission',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
       });
 
       if (userFinder.length <= 0) return null;
 
       return userFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -42,7 +42,7 @@ class UsersSearchCredentials {
           'adminpassword_hash',
           'permission',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
       });
 
@@ -51,7 +51,7 @@ class UsersSearchCredentials {
       }
 
       return userFinderByName;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -70,7 +70,7 @@ class UsersSearchCredentials {
           'adminpassword_hash',
           'permission',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
       });
 
@@ -79,7 +79,7 @@ class UsersSearchCredentials {
       }
 
       return userFinderByEmail;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }

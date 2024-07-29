@@ -1,6 +1,8 @@
-class CommomValidations{
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+class CommomValidations {
   DoTheValidations(allData, isUser, isLog) {
-    for (let i in allData) {
+    for (const i in allData) {
       if (allData[i] === '') {
         return 'Empty field(s)';
       }
@@ -9,7 +11,7 @@ class CommomValidations{
   }
 
   CheckForNullUndefinedFields(allData, isUser, isLog) {
-    for (let i in allData) {
+    for (const i in allData) {
       if (typeof allData[i] === 'undefined') {
         return 'Undefined field(s)';
       }
@@ -19,7 +21,7 @@ class CommomValidations{
       }
     }
 
-    if(isUser === true || isLog === true) {
+    if (isUser === true || isLog === true) {
       return this.CheckSimpleStrings(allData);
     }
 
@@ -27,14 +29,14 @@ class CommomValidations{
   }
 
   CheckNumericFields(numericFieldsData) {
-    if(numericFieldsData.totalweight) {
-      if(typeof numericFieldsData.totalweight !== 'number') {
+    if (numericFieldsData.totalweight) {
+      if (typeof numericFieldsData.totalweight !== 'number') {
         return 'Type must be a number';
       }
     }
 
-    if(numericFieldsData.weightperunit) {
-      if(typeof numericFieldsData.weightperunit !== 'number') {
+    if (numericFieldsData.weightperunit) {
+      if (typeof numericFieldsData.weightperunit !== 'number') {
         return 'Type must be a number';
       }
     }
@@ -42,14 +44,14 @@ class CommomValidations{
   }
 
   CheckSimpleStrings(simpleStringsFieldsData) {
-    if(simpleStringsFieldsData.type) {
-      if(typeof simpleStringsFieldsData.type !== 'string') {
+    if (simpleStringsFieldsData.type) {
+      if (typeof simpleStringsFieldsData.type !== 'string') {
         return 'Type must be a string';
       }
     }
 
-    if(simpleStringsFieldsData.name) {
-      if(typeof simpleStringsFieldsData.name !== 'string') {
+    if (simpleStringsFieldsData.name) {
+      if (typeof simpleStringsFieldsData.name !== 'string') {
         return 'Type must be a string';
       }
     }

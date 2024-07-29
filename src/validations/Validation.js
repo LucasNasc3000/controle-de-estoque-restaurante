@@ -1,14 +1,14 @@
-import CommonValidations from "./CommonValidations"
-import Inputs from "./Inputs";
-import Outputs from "./Outputs";
-import User from "./User";
-import Logs from "./Logs";
+import CommonValidations from './CommonValidations';
+import Inputs from './Inputs';
+import Outputs from './Outputs';
+import User from './User';
+import Logs from './Logs';
 
 class Validation {
   MainValidations(data, isUser, isLog) {
     const validations = CommonValidations.DoTheValidations(data, isUser, isLog);
 
-    switch(validations) {
+    switch (validations) {
       case ('Empty field(s)'):
         return 'Um ou mais campos não foi preenchido';
 
@@ -32,14 +32,14 @@ class Validation {
   InputsValidation(data) {
     const inputValidations = Inputs.CheckIntegers(data);
 
-    switch(inputValidations) {
+    switch (inputValidations) {
       case ('Quantity must be a number'):
         return 'O campo "quantidade" deve ser numérico';
 
-      case('Supplier must be a string'):
+      case ('Supplier must be a string'):
         return 'O campo "fornecedor" precisa ser um string';
 
-      case('Field(s) must be a date or hour string'):
+      case ('Field(s) must be a date or hour string'):
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
 
       default:
@@ -50,14 +50,14 @@ class Validation {
   OutputsValidation(data) {
     const outputsValidations = Outputs.CheckIntegers(data);
 
-    switch(outputsValidations) {
+    switch (outputsValidations) {
       case ('Unities must be a number'):
         return 'O campo "unidades" deve ser numérico';
 
-      case('Weight must be a number'):
+      case ('Weight must be a number'):
         return 'O campo "peso" precisa ser um string';
 
-      case('Field(s) must be a date or hour string'):
+      case ('Field(s) must be a date or hour string'):
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
 
       default:
@@ -68,7 +68,8 @@ class Validation {
   UserValidation(data) {
     const usersValidation = User.CheckEmail(data);
 
-    switch(usersValidation) {
+    // eslint-disable-next-line default-case
+    switch (usersValidation) {
       case 'Must be a valid email':
         return 'Email inválido';
 
@@ -76,14 +77,16 @@ class Validation {
         return 'A senha precisa ser uma string';
     }
 
-   return null;
+    return null;
   }
 
+  // eslint-disable-next-line consistent-return
   LogsValidation(data) {
     const logsValidation = Logs.CheckUserId(data);
     const emailValidation = User.CheckEmail(data, true);
 
-    switch(logsValidation) {
+    // eslint-disable-next-line default-case
+    switch (logsValidation) {
       case 'Type must be a string':
         return 'O id do log precisa ser do tipo string';
 
@@ -91,7 +94,7 @@ class Validation {
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
     }
 
-    if(emailValidation === 'Must be a valid email') {
+    if (emailValidation === 'Must be a valid email') {
       return 'Email inválido';
     }
   }

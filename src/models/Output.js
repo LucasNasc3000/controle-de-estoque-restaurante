@@ -65,7 +65,6 @@ export default class Output extends Model {
       user_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
-        defaultValue: '',
       },
     }, {
       sequelize,

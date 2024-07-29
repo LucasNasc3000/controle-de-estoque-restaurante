@@ -1,10 +1,10 @@
-import InputSearchDates from "../../repositories/Input/InputSearchDates";
+import InputSearchDates from '../../repositories/Input/InputSearchDates';
 
 class InputSearchDatesController {
   async SearchByEntryDate(req, res) {
     const { entrydate } = req.params;
 
-    if(!entrydate) {
+    if (!entrydate) {
       return res.status(500).json({
         errors: ['Data de entrada não informada'],
       });
@@ -12,9 +12,9 @@ class InputSearchDatesController {
 
     const inputEntryDateFinder = await InputSearchDates.SearchByEntryDate(entrydate);
 
-    if(!inputEntryDateFinder) {
+    if (!inputEntryDateFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
@@ -24,7 +24,7 @@ class InputSearchDatesController {
   async SearchByExpirationDate(req, res) {
     const { expirationdate } = req.params;
 
-    if(!expirationdate) {
+    if (!expirationdate) {
       return res.status(500).json({
         errors: ['Data de validade não informada'],
       });
@@ -32,9 +32,9 @@ class InputSearchDatesController {
 
     const inputExpirationDateFinder = await InputSearchDates.SearchByExpirationDate(expirationdate);
 
-    if(!inputExpirationDateFinder) {
+    if (!inputExpirationDateFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 

@@ -1,10 +1,10 @@
-import OutputSearchFloats from "../../repositories/Output/OutputSearchFloats";
+import OutputSearchFloats from '../../repositories/Output/OutputSearchFloats';
 
 class OutputSearchFloatsController {
   async SearchByWeight(req, res) {
     const { weight } = req.params;
 
-    if(!weight) {
+    if (!weight) {
       return res.status(500).json({
         errors: ['Peso da saída não informado'],
       });
@@ -12,9 +12,9 @@ class OutputSearchFloatsController {
 
     const outputWeightFinder = await OutputSearchFloats.SearchByWeight(weight);
 
-    if(!outputWeightFinder) {
+    if (!outputWeightFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 

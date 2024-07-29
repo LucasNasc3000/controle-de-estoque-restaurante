@@ -1,10 +1,10 @@
-import InputSearchIntegers from "../../repositories/Input/InputSearchIntegers";
+import InputSearchIntegers from '../../repositories/Input/InputSearchIntegers';
 
 class InputSearchIntegersController {
   async SearchByID(req, res) {
     const { id } = req.params;
 
-    if(!id) {
+    if (!id) {
       return res.status(500).json({
         errors: ['ID não informado'],
       });
@@ -12,9 +12,9 @@ class InputSearchIntegersController {
 
     const inputIDFinder = await InputSearchIntegers.SearchByID(id);
 
-    if(!inputIDFinder) {
+    if (!inputIDFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
@@ -24,7 +24,7 @@ class InputSearchIntegersController {
   async SearchByQuantity(req, res) {
     const { quantity } = req.params;
 
-    if(!quantity) {
+    if (!quantity) {
       return res.status(500).json({
         errors: ['Quantidade não informada'],
       });
@@ -32,9 +32,9 @@ class InputSearchIntegersController {
 
     const inputQuantityFinder = await InputSearchIntegers.SearchByQuantity(quantity);
 
-    if(!inputQuantityFinder) {
+    if (!inputQuantityFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
@@ -44,7 +44,7 @@ class InputSearchIntegersController {
   async SearchByMinimunQuantity(req, res) {
     const { minimunquantity } = req.params;
 
-    if(!minimunquantity) {
+    if (!minimunquantity) {
       return res.status(500).json({
         errors: ['Quantidade não informada'],
       });
@@ -52,9 +52,9 @@ class InputSearchIntegersController {
 
     const inputQuantityFinder = await InputSearchIntegers.SearchByMinimunQuantity(minimunquantity);
 
-    if(!inputQuantityFinder) {
+    if (!inputQuantityFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 

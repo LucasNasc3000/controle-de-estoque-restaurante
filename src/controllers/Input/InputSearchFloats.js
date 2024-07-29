@@ -1,10 +1,10 @@
-import InputSearchFloats from "../../repositories/Input/InputSearchFloats";
+import InputSearchFloats from '../../repositories/Input/InputSearchFloats';
 
 class InputSearchFloatsController {
   async SearchByWeightPerUnit(req, res) {
     const { weightperunit } = req.params;
 
-    if(!weightperunit) {
+    if (!weightperunit) {
       return res.status(500).json({
         errors: ['Peso por unidade não informado'],
       });
@@ -12,9 +12,9 @@ class InputSearchFloatsController {
 
     const inputWeightPerUnitFinder = await InputSearchFloats.SearchByWeightPerUnit(weightperunit);
 
-    if(!inputWeightPerUnitFinder) {
+    if (!inputWeightPerUnitFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 
@@ -24,7 +24,7 @@ class InputSearchFloatsController {
   async SearchByTotalWeight(req, res) {
     const { totalweight } = req.params;
 
-    if(!totalweight) {
+    if (!totalweight) {
       return res.status(500).json({
         errors: ['Peso total não informado'],
       });
@@ -32,9 +32,9 @@ class InputSearchFloatsController {
 
     const inputTotalWeightFinder = await InputSearchFloats.SearchByTotalWeight(totalweight);
 
-    if(!inputTotalWeightFinder) {
+    if (!inputTotalWeightFinder) {
       return res.status(400).json({
-          errors: ['Insumo não encontrado'],
+        errors: ['Insumo não encontrado'],
       });
     }
 

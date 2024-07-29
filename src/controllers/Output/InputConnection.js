@@ -1,14 +1,15 @@
-import Input from "../../repositories/Input/Input";
-import QuantityCheck from "../Input/QuantityCheck";
+/* eslint-disable consistent-return */
+import Input from '../../repositories/Input/Input';
+import QuantityCheck from '../Input/QuantityCheck';
 
-class InputConnectionController{
+class InputConnectionController {
   async InputUpdate(inputSearchData, outputData) {
     const updatedQuantity = inputSearchData[0].dataValues.quantity - outputData.unities;
     const updatedTotalWeight = inputSearchData[0].dataValues.totalweight - outputData.weight;
 
     const updatedData = {
       quantity: updatedQuantity,
-      totalweight: updatedTotalWeight
+      totalweight: updatedTotalWeight,
     };
 
     const dataForQuantityCheck = [
@@ -17,15 +18,15 @@ class InputConnectionController{
       inputSearchData[0].dataValues.name,
     ];
 
-    const check = await QuantityCheck.QuantityCheck(dataForQuantityCheck);
+    const check = QuantityCheck.QuantityCheck(dataForQuantityCheck);
 
-    if(check) {
-      if(check[0] === 'rate is near') {
+    if (check) {
+      if (check[0] === 'rate is near') {
         await Input.Update(inputSearchData[0].dataValues.id, updatedData);
         return check;
       }
 
-      if(check[0] === 'limit reached') return check;
+      if (check[0] === 'limit reached') return check;
     }
 
     await Input.Update(inputSearchData[0].dataValues.id, updatedData);

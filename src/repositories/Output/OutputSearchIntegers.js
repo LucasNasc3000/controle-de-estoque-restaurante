@@ -1,5 +1,5 @@
-import { Op } from "sequelize";
-import Output from "../../models/Output";
+import { Op } from 'sequelize';
+import Output from '../../models/Output';
 
 class OutputIntegersSearch {
   async SearchByID(id) {
@@ -17,14 +17,14 @@ class OutputIntegersSearch {
           'weight',
           'unities',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
       });
 
       if (outputFinder.length <= 0) return null;
 
       return outputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -44,14 +44,14 @@ class OutputIntegersSearch {
           'weight',
           'unities',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
       });
 
       if (outputFinder.length <= 0) return null;
 
       return outputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }

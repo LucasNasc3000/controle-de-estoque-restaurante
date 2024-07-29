@@ -1,16 +1,16 @@
 import LogList from '../repositories/User/Log';
 
-class LogController{
+class LogController {
   setLogData() {
     const data = new Date();
     const dateTime = [];
 
-    const logTime = data.toLocaleTimeString("pt-BR", {
+    const logTime = data.toLocaleTimeString('pt-BR', {
       hour12: false,
     });
 
     const logDate = data.toLocaleDateString('pt-BR', {
-      dateStyle: "short",
+      dateStyle: 'short',
     });
 
     dateTime.push(logDate, logTime);
@@ -23,7 +23,7 @@ class LogController{
       email,
       date: logDateTime[0],
       time: logDateTime[1],
-      user_id: id
+      user_id: id,
     };
     await LogList.Store(logData);
   }

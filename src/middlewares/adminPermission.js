@@ -1,4 +1,5 @@
-import UserRepo from "../repositories/User/UserSearchCredentials";
+/* eslint-disable default-case */
+import UserRepo from '../repositories/User/UserSearchCredentials';
 
 export default async (req, res, next) => {
   const { permission, id, adminpassword } = req.headers;
@@ -11,15 +12,15 @@ export default async (req, res, next) => {
 
   const user = await UserRepo.SearchById(id);
 
-  if(!user) {
+  if (!user) {
     return res.status(400).json({
-        errors: ['Usuário não encontrado'],
+      errors: ['Usuário não encontrado'],
     });
   }
 
   const adminPassValidator = await user.PasswordValidator(adminpassword, true);
 
-  switch(true) {
+  switch (true) {
     case (user.permission !== permission):
       return res.status(401).json({
         errors: ['Acesso negado, permissao para administrador necessaria'],
@@ -36,4 +37,4 @@ export default async (req, res, next) => {
       });
   }
   return next();
-}
+};

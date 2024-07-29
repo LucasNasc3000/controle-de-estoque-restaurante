@@ -1,5 +1,5 @@
-import { Op } from "sequelize";
-import Output from "../../models/Output";
+import { Op } from 'sequelize';
+import Output from '../../models/Output';
 
 class OutputSearchDateHourRepository {
   async SearchByDate(date) {
@@ -24,7 +24,7 @@ class OutputSearchDateHourRepository {
       if (outputFinder.length <= 0) return null;
 
       return outputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }
@@ -51,7 +51,7 @@ class OutputSearchDateHourRepository {
       if (outputFinder.length <= 0) return null;
 
       return outputFinder;
-    } catch(e) {
+    } catch (e) {
       return console.log(e);
     }
   }

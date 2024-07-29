@@ -1,10 +1,10 @@
-import OutputSearchDateHour from "../../repositories/Output/OutputSearchDateHour";
+import OutputSearchDateHour from '../../repositories/Output/OutputSearchDateHour';
 
 class OutputSearchDateHourController {
   async SearchByDate(req, res) {
     const { date } = req.params;
 
-    if(!date) {
+    if (!date) {
       return res.status(500).json({
         errors: ['Data da saída não informada'],
       });
@@ -12,9 +12,9 @@ class OutputSearchDateHourController {
 
     const outputDateFinder = await OutputSearchDateHour.SearchByDate(date);
 
-    if(!outputDateFinder) {
+    if (!outputDateFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 
@@ -24,7 +24,7 @@ class OutputSearchDateHourController {
   async SearchByHour(req, res) {
     const { hour } = req.params;
 
-    if(!hour) {
+    if (!hour) {
       return res.status(500).json({
         errors: ['Hora da saída não informada'],
       });
@@ -32,9 +32,9 @@ class OutputSearchDateHourController {
 
     const outputHourFinder = await OutputSearchDateHour.SearchByHour(hour);
 
-    if(!outputHourFinder) {
+    if (!outputHourFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 

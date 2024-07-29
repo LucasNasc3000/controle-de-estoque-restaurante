@@ -1,4 +1,4 @@
-import Input from "../../models/Input";
+import Input from '../../models/Input';
 
 class InputsList {
   async List() {
@@ -17,12 +17,12 @@ class InputsList {
           'user_id',
           'minimun_quantity',
           'created_at',
-          'updated_at'
+          'updated_at',
         ],
         order: [['id', 'DESC']],
       });
 
-      if(inputs.length <= 0) return null;
+      if (inputs.length <= 0) return null;
 
       return inputs;
     } catch (e) {
@@ -34,10 +34,10 @@ class InputsList {
     try {
       const newInput = await Input.create(data);
 
-      if(!newInput) return null;
+      if (!newInput) return null;
 
       return newInput;
-    } catch(e) {
+    } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
     }
@@ -59,9 +59,9 @@ class InputsList {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   async Delete(id) {
     try {
-
       const input = await Input.findByPk(id);
 
       if (!input) {

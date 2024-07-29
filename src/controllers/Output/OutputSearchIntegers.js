@@ -1,10 +1,10 @@
-import OutputSearchIntegers from "../../repositories/Output/OutputSearchIntegers";
+import OutputSearchIntegers from '../../repositories/Output/OutputSearchIntegers';
 
 class OutputSearchIntegersController {
   async SearchByID(req, res) {
     const { id } = req.params;
 
-    if(!id) {
+    if (!id) {
       return res.status(500).json({
         errors: ['ID não informado'],
       });
@@ -12,9 +12,9 @@ class OutputSearchIntegersController {
 
     const outputIdFinder = await OutputSearchIntegers.SearchByID(id);
 
-    if(!outputIdFinder) {
+    if (!outputIdFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 
@@ -24,7 +24,7 @@ class OutputSearchIntegersController {
   async SearchByUnities(req, res) {
     const { unities } = req.params;
 
-    if(!unities) {
+    if (!unities) {
       return res.status(500).json({
         errors: ['Unidades não informadas'],
       });
@@ -32,9 +32,9 @@ class OutputSearchIntegersController {
 
     const inputUnitiesFinder = await OutputSearchIntegers.SearchByUnities(unities);
 
-    if(!inputUnitiesFinder) {
+    if (!inputUnitiesFinder) {
       return res.status(400).json({
-          errors: ['Saída não encontrada'],
+        errors: ['Saída não encontrada'],
       });
     }
 

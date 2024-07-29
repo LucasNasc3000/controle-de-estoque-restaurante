@@ -4,10 +4,10 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-//input routes
 
-// Enviar email notificando sobre o limite dos insumos
-// Opção de enviar emails quando a quantidade minima estiver proxima ou for alcançada
+// input routes
+
+// colocar a opção de definir um destinatário para os emails
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';
@@ -33,7 +33,7 @@ import outputSearchByUnities from './routes/output/outputSearchByUnities';
 import outputSearchByWeight from './routes/output/outputSearchByWeight';
 
 // user routes
-import userRoutes from './routes/user/user'
+import userRoutes from './routes/user/user';
 import userSearchByID from './routes/user/userSearchById';
 import userSearchByName from './routes/user/userSearchByName';
 import userSearchByEmail from './routes/user/userSearchByEmail';

@@ -1,10 +1,10 @@
-import UserSearchCredentials from "../../repositories/User/UserSearchCredentials";
+import UserSearchCredentials from '../../repositories/User/UserSearchCredentials';
 
 class UsersSearchCredentialsController {
   async SearchByID(req, res) {
     const { id } = req.params;
 
-    if(!id) {
+    if (!id) {
       return res.status(500).json({
         errors: ['ID não informado'],
       });
@@ -12,9 +12,9 @@ class UsersSearchCredentialsController {
 
     const userIDFinder = await UserSearchCredentials.SearchById(id);
 
-    if(!userIDFinder) {
+    if (!userIDFinder) {
       return res.status(400).json({
-          errors: ['Usuário não encontrado'],
+        errors: ['Usuário não encontrado'],
       });
     }
 
@@ -24,7 +24,7 @@ class UsersSearchCredentialsController {
   async SearchByName(req, res) {
     const { name } = req.params;
 
-    if(!name) {
+    if (!name) {
       return res.status(500).json({
         errors: ['Nome não informado'],
       });
@@ -32,9 +32,9 @@ class UsersSearchCredentialsController {
 
     const userNameFinder = await UserSearchCredentials.SearchByName(name);
 
-    if(!userNameFinder) {
+    if (!userNameFinder) {
       return res.status(400).json({
-          errors: ['Usuário não encontrada'],
+        errors: ['Usuário não encontrada'],
       });
     }
 
@@ -44,7 +44,7 @@ class UsersSearchCredentialsController {
   async SearchByEmail(req, res) {
     const { email } = req.params;
 
-    if(!email) {
+    if (!email) {
       return res.status(500).json({
         errors: ['Email não informado'],
       });
@@ -52,9 +52,9 @@ class UsersSearchCredentialsController {
 
     const userEmailFinder = await UserSearchCredentials.SearchByEmail(email);
 
-    if(!userEmailFinder) {
+    if (!userEmailFinder) {
       return res.status(400).json({
-          errors: ['Usuário não encontrado'],
+        errors: ['Usuário não encontrado'],
       });
     }
 
