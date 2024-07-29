@@ -24,6 +24,7 @@ em menos código, pois com um ORM não é necessário escrever códigos Sql.
 2 - Listar os insumos que saíram com todos os dados relativos aos mesmos <strong>/outputs</strong> <strong>GET</strong> <br>
 3 - Pesquisar pelas saídas dos insumos com base em: id, tipo, nome, peso total, peso por unidade, unidades,
     data e hora. <strong>/outputs/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> <strong>GET</strong> <br>
+5 - Verificar se a quantidade de insumos chegou ao limite ou está próxima dele <br>
 4 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de <br>
     arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão<br>
     alteradas <strong>/inputs/id</strong> <strong>PUT</strong> <br>
@@ -34,10 +35,10 @@ em menos código, pois com um ORM não é necessário escrever códigos Sql.
 2 - Criar novos usuários <strong>/users</strong> <strong>POST</strong> <br>
 3 - Atualizar os dados dos usuários. Alguns não necessitarão de permissões específicas para serem alterados. <strong>/users/id</strong> <strong>PUT</strong> <br>
 4 - Deletar usuários <strong>/users/id</strong> <strong>DELETE</strong> <br>
-5 - Pesquisar usuários com base em id, nome, email ou logs <strong>/users/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> 
+5 - Pesquisar usuários com base em id, nome ou email<strong>/users/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> 
  <strong>GET</strong> <br>
-6 - Criar um arquivo (formato do arquivo em aberto) registrando a data e a hora em que os usuários logaram <strong>/users</strong> <strong>POST</strong> <br>
-7 - Criar registros no banco de dados para as atividades dos usuários enquanto logados <strong>/users</strong> <strong>POST</strong> <br>
+6 - Registrar em uma tabela os logs dos usuários (data e hora do login, email e chave estrangeira) <strong>/users</strong> <strong>POST</strong> <br>
+7 - Criar registros no banco de dados para as atividades dos usuários por meio de chaves estrangeiras contendo os ids dos usuarios em cada tabela<br>
 8 - Gerar JWT para o login de todos os usuários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
 9 - Verificação adicional de credenciais para o login de usuários com maiores níveis de acesso. <strong>/users</strong> <strong>GET</strong> <br>
 
