@@ -15,6 +15,8 @@ class QuantityCheck {
       return warningAndData;
     } if (rate <= 0) {
       warningAndData.push('limit reached', inputData[2]);
+      Notification.LimitReached('lucasfortunato328@gmail.com', inputData);
+
       return warningAndData;
     }
     return null;
