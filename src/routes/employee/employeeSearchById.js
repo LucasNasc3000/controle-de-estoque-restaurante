@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import UserSearchCredentials from '../../controllers/Employee/EmployeeSearchCredentials';
+import EmployeeSearchCredentials from '../../controllers/Employee/EmployeeSearchCredentials';
 import loginRequired from '../../middlewares/loginRequired';
 import adminPermission from '../../middlewares/adminPermission';
 
 const router = new Router();
 
-router.get('/:id', loginRequired, adminPermission, UserSearchCredentials.SearchByID);
+router.get('/:id', loginRequired, adminPermission, EmployeeSearchCredentials.SearchByID);
 
 export default router;

@@ -3,6 +3,7 @@ import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
 export default async (req, res, next) => {
   const { permission, id, adminpassword } = req.headers;
+  let adminPassValidator = '';
 
   if (!permission || !id) {
     return res.status(401).json({
@@ -18,7 +19,9 @@ export default async (req, res, next) => {
     });
   }
 
-  const adminPassValidator = await employee.PasswordValidator(adminpassword, true);
+  if (adminPassValidator) {
+    adminPassValidator = await employee.PasswordValidator(adminpassword, true);
+  }
 
   switch (true) {
     case (employee.permission !== permission):
@@ -27,6 +30,10 @@ export default async (req, res, next) => {
       });
 
     case (employee.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
+      return next();
+
+    case (employee.permission === process.env.INPUTS_OUTPUTS_PERMISSION
+          && employee.permission === permission):
       return next();
 
     case (employee.permission !== process.env.INPUTS_PERMISSION):
