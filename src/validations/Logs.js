@@ -1,9 +1,9 @@
 import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DateTimeRegexConsts';
 
 class LogsValidations {
-  CheckUserId(data) {
-    if (data.userId) {
-      if (typeof data.userId !== 'string') {
+  CheckEmployeeId(data) {
+    if (data.employeeId) {
+      if (typeof data.employeeId !== 'string') {
         return 'Type must be a string';
       }
     }

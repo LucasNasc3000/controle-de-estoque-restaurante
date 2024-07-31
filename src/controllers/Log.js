@@ -1,4 +1,4 @@
-import LogList from '../repositories/User/Log';
+import LogList from '../repositories/Employee/Log';
 
 class LogController {
   setLogData() {

@@ -10,12 +10,12 @@ class QuantityCheck {
 
     if (rate <= 15 && rate > 0) {
       warningAndData.push('rate is near', inputData[2]);
-      Notification.RateIsNear('lucasfortunato328@gmail.com', inputData);
+      Notification.RateIsNear(inputData);
 
       return warningAndData;
     } if (rate <= 0) {
       warningAndData.push('limit reached', inputData[2]);
-      Notification.LimitReached('lucasfortunato328@gmail.com', inputData);
+      Notification.LimitReached(inputData);
 
       return warningAndData;
     }

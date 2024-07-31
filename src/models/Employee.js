@@ -3,7 +3,7 @@ import Sequelize, { Model } from 'sequelize';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import bcryptjs from 'bcryptjs';
 
-export default class User extends Model {
+export default class Employee extends Model {
   static init(sequelize) {
     super.init({
       id: {

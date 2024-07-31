@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import Employee from '../models/Employee';
 import Log from './Log';
 
 class TokenController {
@@ -16,28 +16,28 @@ class TokenController {
       });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const employee = await Employee.findOne({ where: { email } });
 
-    if (!user) {
+    if (!employee) {
       return res.status(401).json({
         errors: ['O usuário não existe'],
       });
     }
 
-    if (!(await user.PasswordValidator(password))) {
+    if (!(await employee.PasswordValidator(password))) {
       return res.status(401).json({
         errors: ['Senha inválida'],
       });
     }
 
-    const { id } = user;
+    const { id } = employee;
     const token = jwt.sign({ id, email }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRATION,
     });
 
     await Log.createLog(id, email);
 
-    return res.json({ token, user: { nome: user.nome, id, email } });
+    return res.json({ token, employee: { nome: employee.name, id, email } });
   }
 }
 

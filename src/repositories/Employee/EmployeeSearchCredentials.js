@@ -1,10 +1,10 @@
 import { Op } from 'sequelize';
-import User from '../../models/User';
+import Employee from '../../models/Employee';
 
-class UsersSearchCredentials {
+class EmployeesSearchCredentials {
   async SearchById(id) {
     try {
-      const userFinder = await User.findOne({
+      const employeeFinder = await Employee.findOne({
         where: {
           id: { [Op.like]: `%${id}%` },
         },
@@ -15,14 +15,15 @@ class UsersSearchCredentials {
           'password_hash',
           'adminpassword_hash',
           'permission',
+          'address_allowed',
           'created_at',
           'updated_at',
         ],
       });
 
-      if (userFinder.length <= 0) return null;
+      if (employeeFinder.length <= 0) return null;
 
-      return userFinder;
+      return employeeFinder;
     } catch (e) {
       return console.log(e);
     }
@@ -30,7 +31,7 @@ class UsersSearchCredentials {
 
   async SearchByName(name) {
     try {
-      const userFinderByName = await User.findAll({
+      const employeeFinderByName = await Employee.findAll({
         where: {
           name: { [Op.like]: `%${name}%` },
         },
@@ -41,16 +42,17 @@ class UsersSearchCredentials {
           'password_hash',
           'adminpassword_hash',
           'permission',
+          'address_allowed',
           'created_at',
           'updated_at',
         ],
       });
 
-      if (!userFinderByName) {
+      if (!employeeFinderByName) {
         return null;
       }
 
-      return userFinderByName;
+      return employeeFinderByName;
     } catch (e) {
       return console.log(e);
     }
@@ -58,7 +60,7 @@ class UsersSearchCredentials {
 
   async SearchByEmail(email) {
     try {
-      const userFinderByEmail = await User.findAll({
+      const employeeFinderByEmail = await Employee.findAll({
         where: {
           email: { [Op.like]: `%${email}%` },
         },
@@ -69,20 +71,21 @@ class UsersSearchCredentials {
           'password_hash',
           'adminpassword_hash',
           'permission',
+          'address_allowed',
           'created_at',
           'updated_at',
         ],
       });
 
-      if (!userFinderByEmail) {
+      if (!employeeFinderByEmail) {
         return null;
       }
 
-      return userFinderByEmail;
+      return employeeFinderByEmail;
     } catch (e) {
       return console.log(e);
     }
   }
 }
 
-export default new UsersSearchCredentials();
+export default new EmployeesSearchCredentials();

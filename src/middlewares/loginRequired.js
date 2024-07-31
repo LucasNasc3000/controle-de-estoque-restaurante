@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import Employee from '../models/Employee';
 
 export default async (req, res, next) => {
   // Das linhas 8 a 16 ocorre uma verificação da existência ou não do campo authorization no
@@ -20,21 +20,21 @@ export default async (req, res, next) => {
     const { email, id } = dados;
 
     // Checa se o id e o email são os mesmos que foram usados para gerar o token
-    const user = await User.findOne({
+    const employee = await Employee.findOne({
       where: {
         id,
         email,
       },
     });
 
-    if (!user) {
+    if (!employee) {
       return res.status(401).json({
-        errors: ['Usuário inválido'], // Este erro quer dizer que o usuário que mudou seu próprio email precisa logar denovo porque o email não vai bater com o token
+        errors: ['Funcionário inválido'], // Este erro quer dizer que o usuário que mudou seu próprio email precisa logar denovo porque o email não vai bater com o token
       });
     }
 
-    req.userId = id;
-    req.userEmail = email;
+    req.employeeId = id;
+    req.employeeEmail = email;
     return next();
   } catch (e) {
     return res.status(401).json({

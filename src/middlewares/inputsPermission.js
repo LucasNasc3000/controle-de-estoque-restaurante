@@ -1,4 +1,5 @@
-import User from '../repositories/User/UserSearchCredentials';
+/* eslint-disable default-case */
+import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
 export default async (req, res, next) => {
   const { permission, id, adminpassword } = req.headers;
@@ -9,26 +10,26 @@ export default async (req, res, next) => {
     });
   }
 
-  const user = await User.SearchById(id);
+  const employee = await Employee.SearchById(id);
 
-  if (!user) {
+  if (!employee) {
     return res.status(400).json({
-      errors: ['Usuário não encontrado'],
+      errors: ['Funcionário não encontrado'],
     });
   }
 
-  const adminPassValidator = await user.PasswordValidator(adminpassword, true);
+  const adminPassValidator = await employee.PasswordValidator(adminpassword, true);
 
   switch (true) {
-    case (user.permission !== permission):
+    case (employee.permission !== permission):
       return res.status(401).json({
         errors: ['Acesso negado, permissao para insumos necessaria'],
       });
 
-    case (user.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
+    case (employee.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
       return next();
 
-    case (user.permission !== process.env.INPUTS_PERMISSION):
+    case (employee.permission !== process.env.INPUTS_PERMISSION):
       return res.status(401).json({
         errors: ['Acesso negado, permissao para insumos necessaria'],
       });

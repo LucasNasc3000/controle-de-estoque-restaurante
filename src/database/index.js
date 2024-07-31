@@ -3,10 +3,10 @@ import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 import Input from '../models/Input';
 import Output from '../models/Output';
-import User from '../models/User';
+import Employee from '../models/Employee';
 import Log from '../models/Log';
 
-const models = [Input, Output, User, Log];
+const models = [Input, Output, Employee, Log];
 
 const connection = new Sequelize(databaseConfig);
 

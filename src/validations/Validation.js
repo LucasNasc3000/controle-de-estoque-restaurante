@@ -1,12 +1,12 @@
 import CommonValidations from './CommonValidations';
 import Inputs from './Inputs';
 import Outputs from './Outputs';
-import User from './User';
+import Employee from './Employee';
 import Logs from './Logs';
 
 class Validation {
-  MainValidations(data, isUser, isLog) {
-    const validations = CommonValidations.DoTheValidations(data, isUser, isLog);
+  MainValidations(data, isEmployee, isLog) {
+    const validations = CommonValidations.DoTheValidations(data, isEmployee, isLog);
 
     switch (validations) {
       case ('Empty field(s)'):
@@ -65,11 +65,11 @@ class Validation {
     }
   }
 
-  UserValidation(data) {
-    const usersValidation = User.CheckEmail(data);
+  EmployeeValidation(data) {
+    const employeesValidation = Employee.CheckEmail(data);
 
     // eslint-disable-next-line default-case
-    switch (usersValidation) {
+    switch (employeesValidation) {
       case 'Must be a valid email':
         return 'Email inválido';
 
@@ -82,8 +82,8 @@ class Validation {
 
   // eslint-disable-next-line consistent-return
   LogsValidation(data) {
-    const logsValidation = Logs.CheckUserId(data);
-    const emailValidation = User.CheckEmail(data, true);
+    const logsValidation = Logs.CheckEmployeeId(data);
+    const emailValidation = Employee.CheckEmail(data, true);
 
     // eslint-disable-next-line default-case
     switch (logsValidation) {

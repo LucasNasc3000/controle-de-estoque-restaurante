@@ -40,7 +40,7 @@ export default class Log extends Model {
           },
         },
       },
-      user_id: {
+      employee_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
       },
@@ -51,6 +51,6 @@ export default class Log extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { foreignKey: 'user_id' });
+    this.belongsTo(models.Employee, { foreignKey: 'employee_id' });
   }
 }

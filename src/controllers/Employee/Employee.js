@@ -1,10 +1,10 @@
-import UserMethods from '../../repositories/User/User';
+import Employees from '../../repositories/Employee/Employee';
 import Validation from '../../validations/Validation';
 
-class UserController {
+class EmployeeController {
   async store(req, res) {
     const validations = Validation.MainValidations(req.body, true);
-    const usersValidations = Validation.UserValidation(req.body);
+    const emlpoyeesValidations = Validation.EmployeeValidation(req.body);
 
     if (validations !== null) {
       return res.status(500).json({
@@ -12,33 +12,33 @@ class UserController {
       });
     }
 
-    if (usersValidations !== null) {
+    if (emlpoyeesValidations !== null) {
       return res.status(500).json({
-        errors: [usersValidations],
+        errors: [emlpoyeesValidations],
       });
     }
 
-    const userStore = await UserMethods.Store(req.body);
+    const emlpoyeeStore = await Employees.Store(req.body);
 
-    return res.status(201).json(userStore);
+    return res.status(201).json(emlpoyeeStore);
   }
 
   async index(req, res) {
-    const usersList = await UserMethods.List();
+    const employeesList = await Employees.List();
 
-    if (usersList === null) {
+    if (employeesList === null) {
       return res.status(400).json({
-        errors: ['Ocorreu um erro interno ou não há usuários cadastrados'],
+        errors: ['Ocorreu um erro interno ou não há funcionários cadastrados'],
       });
     }
 
-    return res.status(200).send(usersList);
+    return res.status(200).send(employeesList);
   }
 
   async update(req, res) {
     const { id } = req.params;
     const validations = Validation.MainValidations(req.body, true);
-    const usersValidations = Validation.UserValidation(req.body);
+    const usersValidations = Validation.EmployeeValidation(req.body);
 
     if (validations !== null) {
       return res.status(500).json({
@@ -60,15 +60,15 @@ class UserController {
 
     // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
     // requisições como insomnia.
-    const userUpdate = await UserMethods.Update(id, req.body);
+    const employeeUpdate = await Employees.Update(id, req.body);
 
-    if (userUpdate === null) {
+    if (employeeUpdate === null) {
       return res.status(400).json({
-        errors: ['Usuário não registrado'],
+        errors: ['Funcionário não registrado'],
       });
     }
 
-    return res.status(200).send(userUpdate);
+    return res.status(200).send(employeeUpdate);
   }
 
   async delete(req, res) {
@@ -79,28 +79,28 @@ class UserController {
       });
     }
 
-    const userDelete = await UserMethods.Delete(id);
+    const employeeDelete = await Employees.Delete(id);
 
-    if (userDelete === null) {
+    if (employeeDelete === null) {
       return res.status(400).json({
         errors: ['ID não encontrado'],
       });
     }
 
-    return res.json(`Usuário ${id} deletado`);
+    return res.json(`Funcionário ${id} deletado`);
   }
 
   async DeleteAll(req, res) {
-    const userTruncate = UserMethods.Truncate();
+    const employeeTruncate = Employees.Truncate();
 
-    if (userTruncate === false) {
+    if (employeeTruncate === false) {
       return res.status(400).json({
         errors: ['Ocoreru um erro'],
       });
     }
 
-    return res.json('Usuários deletados');
+    return res.json('Funcionários deletados');
   }
 }
 
-export default new UserController();
+export default new EmployeeController();

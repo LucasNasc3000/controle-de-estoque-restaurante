@@ -7,7 +7,9 @@ import cors from 'cors';
 
 // input routes
 
-// colocar a opção de definir um destinatário para os emails
+// Colocar no notifications a pesquisa por usuario pelo campo addressallowed
+// É possível enviar o mesmo email para mais de um endereço?
+// Alterar os nomes das permissões para permitir mais de uma sem ter que criar outra tabela
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';
@@ -33,10 +35,10 @@ import outputSearchByUnities from './routes/output/outputSearchByUnities';
 import outputSearchByWeight from './routes/output/outputSearchByWeight';
 
 // user routes
-import userRoutes from './routes/user/user';
-import userSearchByID from './routes/user/userSearchById';
-import userSearchByName from './routes/user/userSearchByName';
-import userSearchByEmail from './routes/user/userSearchByEmail';
+import employeeRoutes from './routes/employee/employee';
+import employeeSearchByID from './routes/employee/employeeSearchById';
+import employeeSearchByName from './routes/employee/employeeSearchByName';
+import employeeSearchByEmail from './routes/employee/employeeSearchByEmail';
 
 class App {
   constructor() {
@@ -85,11 +87,11 @@ class App {
     this.app.use('/outputs/search/unities/', outputSearchByUnities);
     this.app.use('/outputs/search/weight/', outputSearchByWeight);
 
-    // user routes
-    this.app.use('/users/', userRoutes);
-    this.app.use('/users/search/id', userSearchByID);
-    this.app.use('/users/search/name', userSearchByName);
-    this.app.use('/users/search/email', userSearchByEmail);
+    // employee routes
+    this.app.use('/employees/', employeeRoutes);
+    this.app.use('/employees/search/id', employeeSearchByID);
+    this.app.use('/employees/search/name', employeeSearchByName);
+    this.app.use('/employees/search/email', employeeSearchByEmail);
   }
 }
 

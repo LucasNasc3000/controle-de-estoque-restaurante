@@ -1,9 +1,9 @@
-import User from '../../models/User';
+import Employee from '../../models/Employee';
 
-class UsersList {
+class EmployeesList {
   async List() {
     try {
-      const users = await User.findAll({
+      const employees = await Employee.findAll({
         attributes: [
           'id',
           'name',
@@ -11,15 +11,16 @@ class UsersList {
           'password_hash',
           'adminpassword_hash',
           'permission',
+          'address_allowed',
           'created_at',
           'updated_at',
         ],
         order: [['id', 'DESC']],
       });
 
-      if (users.length <= 0) return null;
+      if (employees.length <= 0) return null;
 
-      return users;
+      return employees;
     } catch (e) {
       return console.log(e);
     }
@@ -27,11 +28,11 @@ class UsersList {
 
   async Store(data) {
     try {
-      const newUser = await User.create(data);
+      const newEmployee = await Employee.create(data);
 
-      if (!newUser) return null;
+      if (!newEmployee) return null;
 
-      return newUser;
+      return newEmployee;
     } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
@@ -40,7 +41,7 @@ class UsersList {
 
   async Update(id, data) {
     try {
-      const findUser = await User.findByPk(id, {
+      const findEmployee = await Employee.findByPk(id, {
         attributes: [
           'id',
           'name',
@@ -48,17 +49,18 @@ class UsersList {
           'password_hash',
           'adminpassword_hash',
           'permission',
+          'address_allowed',
           'created_at',
           'updated_at',
         ],
       });
 
-      if (!findUser) {
+      if (!findEmployee) {
         return null;
       }
 
-      const userUpdate = await findUser.update(data);
-      return userUpdate;
+      const employeeUpdate = await findEmployee.update(data);
+      return employeeUpdate;
     } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
@@ -68,13 +70,13 @@ class UsersList {
   // eslint-disable-next-line consistent-return
   async Delete(id) {
     try {
-      const deleteUser = await User.findByPk(id);
+      const deleteEmployee = await Employee.findByPk(id);
 
-      if (!deleteUser) {
+      if (!deleteEmployee) {
         return null;
       }
 
-      await deleteUser.destroy();
+      await deleteEmployee.destroy();
     } catch (e) {
       // mudar o retorno para null ao terminar
       return console.log(e);
@@ -84,7 +86,7 @@ class UsersList {
   // Para ser usado apenas no desenvolvimento
   async Truncate() {
     try {
-      await User.truncate();
+      await Employee.truncate();
       return true;
     } catch (e) {
       return false;
@@ -92,4 +94,4 @@ class UsersList {
   }
 }
 
-export default new UsersList();
+export default new EmployeesList();
