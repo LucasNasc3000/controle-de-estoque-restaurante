@@ -73,33 +73,38 @@ export default class Employee extends Model {
           },
         },
       },
+      address_allowed: {
+        type: Sequelize.CHAR,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });
 
-    this.addHook('beforeSave', async (user) => {
-      if (user.password) {
-        user.password_hash = await bcryptjs.hash(user.password, 8);
+    this.addHook('beforeSave', async (employee) => {
+      if (employee.password) {
+        employee.password_hash = await bcryptjs.hash(employee.password, 8);
       }
-      if (user.adminpassword) {
-        user.adminpassword_hash = await bcryptjs.hash(user.adminpassword, 8);
+      if (employee.adminpassword) {
+        employee.adminpassword_hash = await bcryptjs.hash(employee.adminpassword, 8);
       }
     });
 
     return this;
   }
 
-  PasswordValidator(password, isadmin) {
-    if (isadmin) {
-      return bcryptjs.compare(password, this.adminpassword_hash);
-    }
+  PasswordValidator(password) {
     return bcryptjs.compare(password, this.password_hash);
   }
 
+  AdminPasswordValidator(password) {
+    return bcryptjs.compare(password, this.adminpassword_hash);
+  }
+
   static associate(models) {
-    this.hasMany(models.Log, { foreignKey: 'user_id' });
-    this.hasMany(models.Input, { foreignKey: 'user_id' });
-    this.hasMany(models.Output, { foreignKey: 'user_id' });
+    this.hasMany(models.Log, { foreignKey: 'employee_id' });
+    this.hasMany(models.Input, { foreignKey: 'employee_id' });
+    this.hasMany(models.Output, { foreignKey: 'employee_id' });
   }
 }
 

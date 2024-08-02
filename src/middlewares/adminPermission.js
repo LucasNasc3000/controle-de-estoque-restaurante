@@ -18,12 +18,12 @@ export default async (req, res, next) => {
     });
   }
 
-  const adminPassValidator = await employee.PasswordValidator(adminpassword, true);
+  const adminPassValidator = await employee.AdminPasswordValidator(adminpassword);
 
   switch (true) {
     case (employee.permission !== permission):
       return res.status(401).json({
-        errors: ['Acesso negado, permissao para administrador necessaria'],
+        errors: ['Acesso negado, permissao incorreta'],
       });
 
     case (employee.permission !== process.env.ADMIN_PERMISSION):

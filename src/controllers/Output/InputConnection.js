@@ -18,15 +18,20 @@ class InputConnectionController {
       inputSearchData[0].dataValues.name,
     ];
 
-    const check = QuantityCheck.QuantityCheck(dataForQuantityCheck);
+    const check = await QuantityCheck.QuantityCheck(dataForQuantityCheck);
 
     if (check) {
-      if (check[0] === 'rate is near') {
-        await Input.Update(inputSearchData[0].dataValues.id, updatedData);
-        return check;
-      }
+      // eslint-disable-next-line default-case
+      switch (check[0]) {
+        case 'rate is near':
+          await Input.Update(inputSearchData[0].dataValues.id, updatedData);
+          return check;
 
-      if (check[0] === 'limit reached') return check;
+        case 'limit reached':
+          return check;
+      }
+    } else {
+      return null;
     }
 
     await Input.Update(inputSearchData[0].dataValues.id, updatedData);

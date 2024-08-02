@@ -1,4 +1,4 @@
-import User from '../../repositories/Employee/Employee';
+import EmployeeSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 
 const sgMail = require('@sendgrid/mail');
 
@@ -6,23 +6,17 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 class Notifications {
   async AddressesAllowed() {
-    const userSearch = await User.List();
-    const addressesAllowed = [];
+    const employeeSearch = await EmployeeSearchCredentials.SearchByAddressAllowed();
 
-    userSearch.map((users) => {
-      if (users.address_allowed === process.env.ADDRESS_ALLOWED) {
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < userSearch.length; i++) {
-          addressesAllowed.push(users.address_allowed);
-        }
-      }
-      return addressesAllowed;
-    });
-    return addressesAllowed;
+    if (employeeSearch) return employeeSearch[0].dataValues.address_allowed;
+
+    return null;
   }
 
   async RateIsNear(inputData) {
     const destinatary = this.AddressesAllowed();
+
+    if (destinatary === null) return null;
 
     const msg = {
       to: destinatary,
@@ -47,6 +41,7 @@ class Notifications {
 
   async LimitReached(inputData) {
     const destinatary = this.AddressesAllowed();
+    if (destinatary === null) return null;
 
     const msg = {
       to: destinatary,

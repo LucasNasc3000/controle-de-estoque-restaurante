@@ -86,6 +86,35 @@ class EmployeesSearchCredentials {
       return console.log(e);
     }
   }
+
+  async SearchByAddressAllowed() {
+    try {
+      const employeeFinderByAddressAllowed = await Employee.findAll({
+        where: {
+          address_allowed: process.env.ADDRESS_ALLOWED,
+        },
+        attributes: [
+          'id',
+          'name',
+          'email',
+          'password_hash',
+          'adminpassword_hash',
+          'permission',
+          'address_allowed',
+          'created_at',
+          'updated_at',
+        ],
+      });
+
+      if (!employeeFinderByAddressAllowed) {
+        return null;
+      }
+
+      return employeeFinderByAddressAllowed;
+    } catch (e) {
+      return console.log(e);
+    }
+  }
 }
 
 export default new EmployeesSearchCredentials();

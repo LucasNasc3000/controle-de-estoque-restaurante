@@ -20,7 +20,7 @@ export default async (req, res, next) => {
   }
 
   if (adminPassValidator) {
-    adminPassValidator = await employee.PasswordValidator(adminpassword, true);
+    adminPassValidator = await employee.AdminPasswordValidator(adminpassword);
   }
 
   switch (true) {
@@ -36,9 +36,11 @@ export default async (req, res, next) => {
         && employee.permission === permission):
       return next();
 
-    case (employee.permission !== process.env.OUTPUTS_PERMISSION):
+    case (employee.permission !== process.env.OUTPUTS_PERMISSION
+          && employee.permission !== process.env.ADMIN_PERMISSION
+    ):
       return res.status(401).json({
-        errors: ['Acesso negado, permissao para saidas necessaria'],
+        errors: ['Acesso negado, permissao para saidas ou de administrador necessaria'],
       });
   }
   return next();

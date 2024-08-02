@@ -2,7 +2,7 @@
 import Notification from '../Notifications/Notification';
 
 class QuantityCheck {
-  QuantityCheck(inputData) {
+  async QuantityCheck(inputData) {
     const rate = inputData[0] - inputData[1];
     const warningAndData = [];
 
@@ -10,12 +10,16 @@ class QuantityCheck {
 
     if (rate <= 15 && rate > 0) {
       warningAndData.push('rate is near', inputData[2]);
-      Notification.RateIsNear(inputData);
+      const rateisNear = await Notification.RateIsNear(inputData);
+
+      if (rateisNear === null) return null;
 
       return warningAndData;
     } if (rate <= 0) {
       warningAndData.push('limit reached', inputData[2]);
-      Notification.LimitReached(inputData);
+      const limitReached = await Notification.LimitReached(inputData);
+
+      if (limitReached === null) return null;
 
       return warningAndData;
     }

@@ -10,6 +10,8 @@ import cors from 'cors';
 // Colocar no notifications a pesquisa por usuario pelo campo addressallowed
 // É possível enviar o mesmo email para mais de um endereço?
 // Alterar os nomes das permissões para permitir mais de uma sem ter que criar outra tabela
+// Colocar os novos campos nas validations
+// Truncar as tabelas, os campos user_id ainda estão nos dados já inseridos no BD
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';
