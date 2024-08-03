@@ -53,7 +53,7 @@ class OutputController {
       }
     } else {
       return res.status(400).json({
-        errors: ['Ocorreu um erro ou não há emails destinatários cadastrados'],
+        errors: ['Não há emails destinatários cadastrados ou as permissões estão incorretas.'],
       });
     }
 
