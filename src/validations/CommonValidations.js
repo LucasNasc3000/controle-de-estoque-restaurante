@@ -40,18 +40,24 @@ class CommomValidations {
         return 'Type must be a number';
       }
     }
-    return this.CheckSimpleStrings(numericFieldsData);
+    return this.CheckStrings(numericFieldsData);
   }
 
-  CheckSimpleStrings(simpleStringsFieldsData) {
-    if (simpleStringsFieldsData.type) {
-      if (typeof simpleStringsFieldsData.type !== 'string') {
+  CheckStrings(StringsFieldsData) {
+    if (StringsFieldsData.employee_id) {
+      if (typeof StringsFieldsData.employee_id !== 'string') {
         return 'Type must be a string';
       }
     }
 
-    if (simpleStringsFieldsData.name) {
-      if (typeof simpleStringsFieldsData.name !== 'string') {
+    if (StringsFieldsData.type) {
+      if (typeof StringsFieldsData.type !== 'string') {
+        return 'Type must be a string';
+      }
+    }
+
+    if (StringsFieldsData.name) {
+      if (typeof StringsFieldsData.name !== 'string') {
         return 'Type must be a string';
       }
     }

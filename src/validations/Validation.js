@@ -36,6 +36,9 @@ class Validation {
       case ('Quantity must be a number'):
         return 'O campo "quantidade" deve ser numérico';
 
+      case ('minimun_quantity must be a number'):
+        return 'O campo "minimun_quantity" deve ser numérico';
+
       case ('Supplier must be a string'):
         return 'O campo "fornecedor" precisa ser um string';
 

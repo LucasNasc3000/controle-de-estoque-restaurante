@@ -7,16 +7,22 @@ class InputsValidations {
         return 'Quantity must be a number';
       }
     }
-    return this.CheckSimpleStrings(integersFieldData);
+
+    if (integersFieldData.minimun_quantity) {
+      if (typeof integersFieldData.minimun_quantity !== 'number') {
+        return 'minimun_quantity must be a number';
+      }
+    }
+    return this.CheckStrings(integersFieldData);
   }
 
-  CheckSimpleStrings(simpleStringsFieldsData) {
-    if (simpleStringsFieldsData.supplier) {
-      if (typeof simpleStringsFieldsData.supplier !== 'string') {
+  CheckStrings(StringsFieldsData) {
+    if (StringsFieldsData.supplier) {
+      if (typeof StringsFieldsData.supplier !== 'string') {
         return 'Supplier must be a string';
       }
     }
-    return this.CheckDatesAndHour(simpleStringsFieldsData);
+    return this.CheckDatesAndHour(StringsFieldsData);
   }
 
   CheckDatesAndHour(DatesFieldsData) {
