@@ -1,5 +1,5 @@
 import Employees from '../../repositories/Employee/Employee';
-import Validation from '../../validations/Validation';
+import Validation from '../../middlewares/fieldValidations/Validation';
 
 class EmployeeController {
   async store(req, res) {

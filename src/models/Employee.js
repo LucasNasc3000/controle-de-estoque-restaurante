@@ -105,6 +105,7 @@ export default class Employee extends Model {
     this.hasMany(models.Log, { foreignKey: 'employee_id' });
     this.hasMany(models.Input, { foreignKey: 'employee_id' });
     this.hasMany(models.Output, { foreignKey: 'employee_id' });
+    this.hasMany(models.Sale, { foreignKey: 'employee_id' });
   }
 }
 

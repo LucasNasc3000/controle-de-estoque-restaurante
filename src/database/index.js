@@ -5,8 +5,9 @@ import Input from '../models/Input';
 import Output from '../models/Output';
 import Employee from '../models/Employee';
 import Log from '../models/Log';
+import Sale from '../models/Sale';
 
-const models = [Input, Output, Employee, Log];
+const models = [Input, Output, Employee, Log, Sale];
 
 const connection = new Sequelize(databaseConfig);
 

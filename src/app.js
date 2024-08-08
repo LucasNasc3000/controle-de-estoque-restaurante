@@ -7,9 +7,12 @@ import cors from 'cors';
 
 // input routes
 
+// Colocar as rotas de pesquisa do sales
+// Colocar novas permissões para as vendas
+// Tirar delete do sales e outputs no final
+// Tirar outros métodos desnecessários ou inconveninentes ao final do projeto
 // Resolver o bug dos emails duplicados
 // Truncar as tabelas, os campos user_id ainda estão nos dados já inseridos no BD
-// Criar uma tabela separada para vendas?
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';

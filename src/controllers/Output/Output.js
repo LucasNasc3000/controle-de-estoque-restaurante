@@ -1,7 +1,7 @@
 import OutputMethods from '../../repositories/Output/Output';
 import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 import InputConnection from './InputConnection';
-import Validations from '../../validations/Validation';
+import Validations from '../../middlewares/fieldValidations/Validation';
 
 class OutputController {
   async store(req, res) {

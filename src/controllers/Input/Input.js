@@ -1,5 +1,5 @@
 import InputMethods from '../../repositories/Input/Input';
-import Validation from '../../validations/Validation';
+import Validation from '../../middlewares/fieldValidations/Validation';
 
 // Método para excluir mais de um mas não todos
 class InputController {
