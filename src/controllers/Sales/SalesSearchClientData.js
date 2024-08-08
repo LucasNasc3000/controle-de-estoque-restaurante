@@ -2,16 +2,16 @@ import SalesSearchClientData from '../../repositories/Sales/SalesSearchClientDat
 
 class SalesSearchClientDataController {
   async SearchByClientName(req, res) {
-    const { ClientName } = req.params;
+    const { clientname } = req.params;
 
-    if (!ClientName) {
+    if (!clientname) {
       return res.status(500).json({
         errors: ['Nome do cliente não informado'],
       });
     }
 
     const saleClientNameFinder = await
-    SalesSearchClientData.SearchByClientName(ClientName);
+    SalesSearchClientData.SearchByClientName(clientname);
 
     if (!saleClientNameFinder) {
       return res.status(400).json({
@@ -43,16 +43,16 @@ class SalesSearchClientDataController {
   }
 
   async SearchByPhoneNumber(req, res) {
-    const { phoneNumber } = req.params;
+    const { phonenumber } = req.params;
 
-    if (!phoneNumber) {
+    if (!phonenumber) {
       return res.status(500).json({
         errors: ['Número de telefone não informado'],
       });
     }
 
     const employeePhoneNumberFinder = await
-    SalesSearchClientData.SearchByPhoneNumber(phoneNumber);
+    SalesSearchClientData.SearchByPhoneNumber(phonenumber);
 
     if (!employeePhoneNumberFinder) {
       return res.status(400).json({

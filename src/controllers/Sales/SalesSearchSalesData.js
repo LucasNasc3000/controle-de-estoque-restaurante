@@ -23,15 +23,15 @@ class SalesSearchSalesDataController {
   }
 
   async SearchByEmployeeId(req, res) {
-    const { employeeId } = req.params;
+    const { employeeid } = req.params;
 
-    if (!employeeId) {
+    if (!employeeid) {
       return res.status(500).json({
         errors: ['Id do funcionário não informado'],
       });
     }
 
-    const salesEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeId);
+    const salesEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeid);
 
     if (!salesEmployeeIdFinder) {
       return res.status(400).json({

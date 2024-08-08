@@ -28,7 +28,7 @@ class SalesController {
 
     if (salesList === null) {
       return res.status(400).json({
-        errors: ['Ocorreu um erro interno ou não há funcionários cadastrados'],
+        errors: ['Ocorreu um erro interno ou não há vendas cadastrados'],
       });
     }
 
@@ -64,7 +64,7 @@ class SalesController {
 
     if (salesUpdate === null) {
       return res.status(400).json({
-        errors: ['Funcionário não registrado'],
+        errors: ['Venda não registrada'],
       });
     }
 
@@ -83,7 +83,7 @@ class SalesController {
 
     if (salesDelete === null) {
       return res.status(400).json({
-        errors: ['ID não encontrado'],
+        errors: ['Venda não encontrada'],
       });
     }
 

@@ -7,7 +7,7 @@ import cors from 'cors';
 
 // input routes
 
-// Colocar as rotas de pesquisa do sales
+// Validações para as vendas
 // Colocar novas permissões para as vendas
 // Tirar delete do sales e outputs no final
 // Tirar outros métodos desnecessários ou inconveninentes ao final do projeto
@@ -37,11 +37,22 @@ import outputSearchByHour from './routes/output/outputSearchByHour';
 import outputSearchByUnities from './routes/output/outputSearchByUnities';
 import outputSearchByWeight from './routes/output/outputSearchByWeight';
 
-// user routes
+// employee routes
 import employeeRoutes from './routes/employee/employee';
 import employeeSearchByID from './routes/employee/employeeSearchById';
 import employeeSearchByName from './routes/employee/employeeSearchByName';
 import employeeSearchByEmail from './routes/employee/employeeSearchByEmail';
+
+// sales routes
+import salesRoutes from './routes/sales/sale';
+import saleSearchAddress from './routes/sales/saleSearchAddress';
+import saleSearchClientName from './routes/sales/saleSearchClientName';
+import saleSearchDate from './routes/sales/saleSearchDate';
+import saleSearchEmployeeId from './routes/sales/saleSearchEmployeeId';
+import saleSearchHour from './routes/sales/saleSearchHour';
+import saleSearchId from './routes/sales/saleSearchId';
+import saleSearchPhoneNumber from './routes/sales/saleSearchPhoneNumber';
+import saleSearchProducts from './routes/sales/saleSearchProducts';
 
 class App {
   constructor() {
@@ -95,6 +106,17 @@ class App {
     this.app.use('/employees/search/id', employeeSearchByID);
     this.app.use('/employees/search/name', employeeSearchByName);
     this.app.use('/employees/search/email', employeeSearchByEmail);
+
+    // sales routes
+    this.app.use('/sales/', salesRoutes);
+    this.app.use('/sales/search/address/', saleSearchAddress);
+    this.app.use('/sales/search/clientname/', saleSearchClientName);
+    this.app.use('/sales/search/date/', saleSearchDate);
+    this.app.use('/sales/search/employeeid/', saleSearchEmployeeId);
+    this.app.use('/sales/search/hour/', saleSearchHour);
+    this.app.use('/sales/searchid/', saleSearchId);
+    this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
+    this.app.use('/sales/search/products/', saleSearchProducts);
   }
 }
 
