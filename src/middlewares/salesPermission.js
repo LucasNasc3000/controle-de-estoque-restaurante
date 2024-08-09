@@ -1,12 +1,13 @@
 import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
+// eslint-disable-next-line consistent-return
 export default async (req, res, next) => {
   const { permission, id, adminpassword } = req.headers;
-  let adminPassValidator = false;
+  let adminPassValidator = '';
 
   if (!permission || !id) {
     return res.status(401).json({
-      errors: ['Permissao para insumos e id necessarios'],
+      errors: ['Permissao para vendas e id necessarios'],
     });
   }
 
@@ -24,25 +25,25 @@ export default async (req, res, next) => {
 
   switch (true) {
     case (employee.permission === process.env.ADMIN_PERMISSION
-        && adminPassValidator === true
+          && adminPassValidator === true
+          && employee.permission === permission):
+      return next();
+
+    case (employee.permission === process.env.SALES_PERMISSION
         && employee.permission === permission):
       return next();
 
-    case (employee.permission === process.env.INPUTS_PERMISSION
-          && employee.permission === permission):
-      return next();
-
-    case (employee.permission === process.env.INPUTS_OUTPUTS_PERMISSION
-          && employee.permission === permission):
+    case (employee.permission === process.env.SO_PERMISSION
+        && employee.permission === permission):
       return next();
 
     case (employee.permission === process.env.SOI_PERMISSION
-          && employee.permission === permission):
+        && employee.permission === permission):
       return next();
 
     default:
       return res.status(401).json({
-        errors: ['Acesso negado, permissao para insumos ou de administrador necessaria'],
+        errors: ['Acesso negado, permissao para vendas ou de administrador necessaria'],
       });
   }
 };

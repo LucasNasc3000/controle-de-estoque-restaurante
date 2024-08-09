@@ -6,9 +6,6 @@ class SalesController {
     const validations = Validation.MainValidations(req.body, false, false, true);
     const salesValidations = Validation.SalesValidation(req.body);
 
-    console.log(validations);
-    console.log(salesValidations);
-
     if (validations !== null) {
       return res.status(500).json({
         errors: [validations],

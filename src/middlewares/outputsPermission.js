@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
 export default async (req, res, next) => {
@@ -19,7 +18,7 @@ export default async (req, res, next) => {
     });
   }
 
-  if (adminPassValidator) {
+  if (adminpassword) {
     adminPassValidator = await employee.AdminPasswordValidator(adminpassword);
   }
 
@@ -29,19 +28,30 @@ export default async (req, res, next) => {
         errors: ['Acesso negado, permissao para saidas necessaria'],
       });
 
-    case (employee.permission === process.env.ADMIN_PERMISSION && adminPassValidator === true):
+    case (employee.permission === process.env.ADMIN_PERMISSION
+        && adminPassValidator === true
+        && employee.permission === permission):
+      return next();
+
+    case (employee.permission === process.env.OUTPUTS_PERMISSION
+        && employee.permission === permission):
       return next();
 
     case (employee.permission === process.env.INPUTS_OUTPUTS_PERMISSION
         && employee.permission === permission):
       return next();
 
-    case (employee.permission !== process.env.OUTPUTS_PERMISSION
-          && employee.permission !== process.env.ADMIN_PERMISSION
-    ):
+    case (employee.permission === process.env.SO_PERMISSION
+        && employee.permission === permission):
+      return next();
+
+    case (employee.permission === process.env.SOI_PERMISSION
+        && employee.permission === permission):
+      return next();
+
+    default:
       return res.status(401).json({
         errors: ['Acesso negado, permissao para saidas ou de administrador necessaria'],
       });
   }
-  return next();
 };

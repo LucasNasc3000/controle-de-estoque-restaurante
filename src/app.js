@@ -7,9 +7,6 @@ import cors from 'cors';
 
 // input routes
 
-// Validações para as vendas
-// Colocar novas permissões para as vendas
-// Tirar delete do sales e outputs no final
 // Tirar outros métodos desnecessários ou inconveninentes ao final do projeto
 // Resolver o bug dos emails duplicados
 // Truncar as tabelas, os campos user_id ainda estão nos dados já inseridos no BD

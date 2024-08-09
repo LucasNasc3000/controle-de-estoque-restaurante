@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import SalesSearchSalesData from '../../controllers/Sales/SalesSearchSalesData';
 import loginRequired from '../../middlewares/loginRequired';
-// import adminPermission from '../../middlewares/adminPermission';
+import salesPermission from '../../middlewares/salesPermission';
 
 const router = new Router();
 
-router.get('/:employeeid', loginRequired, SalesSearchSalesData.SearchByEmployeeId);
+router.get('/:employeeid', loginRequired, salesPermission, SalesSearchSalesData.SearchByEmployeeId);
 
 export default router;
