@@ -1,16 +1,16 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 class CommomValidations {
-  DoTheValidations(allData, isEmployee, isLog) {
+  DoTheValidations(allData, isEmployee, isLog, isSale) {
     for (const i in allData) {
       if (allData[i] === '') {
         return 'Empty field(s)';
       }
     }
-    return this.CheckForNullUndefinedFields(allData, isEmployee, isLog);
+    return this.CheckForNullUndefinedFields(allData, isEmployee, isLog, isSale);
   }
 
-  CheckForNullUndefinedFields(allData, isEmployee, isLog) {
+  CheckForNullUndefinedFields(allData, isEmployee, isLog, isSale) {
     for (const i in allData) {
       if (typeof allData[i] === 'undefined') {
         return 'Undefined field(s)';
@@ -21,8 +21,10 @@ class CommomValidations {
       }
     }
 
+    if (isSale === true) return null;
+
     if (isEmployee === true || isLog === true) {
-      return this.CheckSimpleStrings(allData);
+      return this.CheckStrings(allData);
     }
 
     return this.CheckNumericFields(allData);

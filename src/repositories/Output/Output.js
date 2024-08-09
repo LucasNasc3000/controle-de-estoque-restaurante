@@ -56,32 +56,6 @@ class OutputsList {
       return console.log(e);
     }
   }
-
-  // eslint-disable-next-line consistent-return
-  async Delete(id) {
-    try {
-      const output = await Output.findByPk(id);
-
-      if (!output) {
-        return null;
-      }
-
-      await output.destroy();
-    } catch (e) {
-      // mudar o retorno para null ao terminar
-      return console.log(e);
-    }
-  }
-
-  // Somente para o desenvolvimento
-  async Truncate() {
-    try {
-      await Output.truncate();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
 }
 
 export default new OutputsList();

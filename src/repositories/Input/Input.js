@@ -58,32 +58,6 @@ class InputsList {
       return console.log(e);
     }
   }
-
-  // eslint-disable-next-line consistent-return
-  async Delete(id) {
-    try {
-      const input = await Input.findByPk(id);
-
-      if (!input) {
-        return null;
-      }
-
-      await input.destroy();
-    } catch (e) {
-      // mudar o retorno para null ao terminar
-      return console.log(e);
-    }
-  }
-
-  // Somente para o desenvolvimento
-  async Truncate() {
-    try {
-      await Input.truncate();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
 }
 
 export default new InputsList();

@@ -109,38 +109,6 @@ class OutputController {
     console.log(outputUpdate);
     return res.status(200).send(outputUpdate);
   }
-
-  async delete(req, res) {
-    const { id } = req.params;
-
-    if (!id) {
-      return res.status(500).json({
-        errors: ['ID não informado'],
-      });
-    }
-
-    const outputDelete = await OutputMethods.Delete(id);
-
-    if (outputDelete === null) {
-      return res.status(400).json({
-        errors: ['ID não encontrado'],
-      });
-    }
-
-    return res.json(`saída ${id} deletado`);
-  }
-
-  async DeleteAll(req, res) {
-    const outputsTruncate = OutputMethods.Truncate();
-
-    if (outputsTruncate === false) {
-      return res.status(400).json({
-        errors: ['Ocoreru um erro'],
-      });
-    }
-
-    return res.json('Saídas deletados');
-  }
 }
 
 export default new OutputController();

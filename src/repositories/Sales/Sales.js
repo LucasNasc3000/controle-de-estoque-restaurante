@@ -68,32 +68,6 @@ class SalesList {
       return console.log(e);
     }
   }
-
-  // eslint-disable-next-line consistent-return
-  async Delete(id) {
-    try {
-      const deleteSale = await Sales.findByPk(id);
-
-      if (!deleteSale) {
-        return null;
-      }
-
-      await deleteSale.destroy();
-    } catch (e) {
-      // mudar o retorno para null ao terminar
-      return console.log(e);
-    }
-  }
-
-  // Para ser usado apenas no desenvolvimento
-  async Truncate() {
-    try {
-      await Sales.truncate();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
 }
 
 export default new SalesList();

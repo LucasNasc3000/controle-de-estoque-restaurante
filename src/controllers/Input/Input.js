@@ -71,37 +71,6 @@ class InputController {
 
     return res.status(200).send(inputUpdate);
   }
-
-  async delete(req, res) {
-    const { id } = req.params;
-    if (!id) {
-      res.status(500).json({
-        errors: ['ID não informado'],
-      });
-    }
-
-    const inputDelete = await InputMethods.Delete(id);
-
-    if (inputDelete === null) {
-      return res.status(400).json({
-        errors: ['ID não encontrado'],
-      });
-    }
-
-    return res.json(`insumo ${id} deletado`);
-  }
-
-  async DeleteAll(req, res) {
-    const inputsTruncate = InputMethods.Truncate();
-
-    if (inputsTruncate === false) {
-      return res.status(400).json({
-        errors: ['Ocoreru um erro'],
-      });
-    }
-
-    return res.json('Insumos deletados');
-  }
 }
 
 export default new InputController();

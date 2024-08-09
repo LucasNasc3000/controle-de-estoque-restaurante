@@ -9,6 +9,5 @@ router.post('/', loginRequired, adminPermission, Employee.store);
 router.get('/', loginRequired, adminPermission, Employee.index);
 router.put('/:id', loginRequired, adminPermission, Employee.update);
 router.delete('/:id', loginRequired, adminPermission, Employee.delete);
-router.delete('/', Employee.DeleteAll);
 
 export default router;

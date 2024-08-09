@@ -3,10 +3,11 @@ import Inputs from './Inputs';
 import Outputs from './Outputs';
 import Employee from './Employee';
 import Logs from './Logs';
+import Sales from './Sales';
 
 class Validation {
-  MainValidations(data, isEmployee, isLog) {
-    const validations = CommonValidations.DoTheValidations(data, isEmployee, isLog);
+  MainValidations(data, isEmployee, isLog, isSale) {
+    const validations = CommonValidations.DoTheValidations(data, isEmployee, isLog, isSale);
 
     switch (validations) {
       case ('Empty field(s)'):
@@ -99,6 +100,41 @@ class Validation {
 
     if (emailValidation === 'Must be a valid email') {
       return 'Email inválido';
+    }
+  }
+
+  SalesValidation(data) {
+    const salesValidation = Sales.CheckIDs(data);
+
+    console.log(salesValidation);
+
+    switch (salesValidation) {
+      case 'Type must be a string':
+        return 'O id do log precisa ser do tipo string';
+
+      case 'Field(s) must be a date or hour string':
+        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
+
+      case 'id must be a uuid':
+        return 'O id deve ser um uuid';
+
+      case 'employee_id must be a number':
+        return 'O id do funcionário deve ser um uuid';
+
+      case 'address must be a string':
+        return 'O endereço deve ser uma string';
+
+      case 'client_name must be a letters string':
+        return 'O nome do cliente deve conter somente letras do alfabeto';
+
+      case 'phone_number must be a phone number string':
+        return 'O número de telefone deve ser uma string no formato XX-XXXX-XXXXX';
+
+      case 'products must be a string':
+        return 'Os produtos devem ser strings';
+
+      default:
+        return null;
     }
   }
 }
