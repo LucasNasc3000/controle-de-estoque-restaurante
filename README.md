@@ -40,9 +40,12 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 
 ### Funcionalidades das vendas
 
+1 - Registrar vendas <strong>/sales</strong> - <strong>POST</strong> <br>
+2 - Listar as vendas <strong>/sales</strong> - <strong>GET</strong> <br>
+3 - Atualizar dados das vendas <strong>/sales/id</strong> - <strong>PATCH</strong> <br>
 
 ## Status
-Finalizado ✔️
+Finalizado ✔️<br>
 Obs: atualizações serão feitas conforme as necessidades do front-end. Algumas funcionalidades adicionais já foram definidas mas serão implementadas somente quando
 o front-end estiver em desenvolvimento.
 
