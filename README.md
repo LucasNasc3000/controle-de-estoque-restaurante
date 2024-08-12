@@ -25,7 +25,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
 6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas.
 
-<img src>
+<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/outputs.PNG" height=220px width=320px>
 
 ### Funcionalidades dos Funcionários
 
@@ -38,12 +38,16 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <br>
 7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
 
+<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/empl.PNG" height=250px width=350px>
+
 ### Funcionalidades das vendas
 
 1 - Registrar vendas <strong>/sales</strong> - <strong>POST</strong> <br>
 2 - Listar as vendas <strong>/sales</strong> - <strong>GET</strong> <br>
 3 - Atualizar dados das vendas <strong>/sales/id</strong> - <strong>PATCH</strong> <br>
 4 - Pesquisar por vendas de acordo com seus dados <strong>/sales/search/client_name/nomeAqui</strong> - <strong>GET</strong> <br>
+
+<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/Sales.PNG" height=240px width=370px> 
 
 ### Acessos
 
