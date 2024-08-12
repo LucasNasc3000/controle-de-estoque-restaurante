@@ -8,8 +8,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 
 1 - Cadastrar novos insumos  <strong>/inputs</strong> - <strong>POST</strong> <br>
 2 - Fornecer uma lista contendo todos os insumos  <strong>/inputs</strong> - <strong>GET</strong> <br>
-3 - Pesquisar por um ou mais insumos de acordo com: id, tipo, nome, quantidade, peso total,
-    peso por unidade, fornecedor, data de entrada, data de vencimento ou pelo id do funcionário que o registrou <strong>/inputs/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> -   
+3 - Pesquisar por um ou mais insumos de acordo com seus dados <strong>/inputs/search/weightperunit/2</strong> -   
     <strong>GET</strong> <br>
 4 - Atualizar um ou mais dados relativos aos insumos <strong>/inputs/id</strong> <strong>PUT</strong> <br>
 5 - Determinar uma quantidade mínima de insumos no estoque (opcional)
@@ -19,8 +18,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 
 1 - Registrar os dados relativos aos insumos que saíram <strong>/outputs</strong> - <strong>POST</strong> <br>
 2 - Listar todas as saídas <strong>/outputs</strong> - <strong>GET</strong> <br>
-3 - Pesquisar pelas saídas dos insumos com base em: id, tipo, nome, peso total, peso por unidade, unidades,
-    data, hora ou pelo id do funcionário que a registrou. <strong>/outputs/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> -<strong>GET</strong> <br>
+3 - Pesquisar pelas saídas dos insumos de acordo com seus dados <strong>/outputs/search/weight/2,34</strong> - <strong>GET</strong> <br>
 4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma <br>
 5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.
 6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de <br>
@@ -33,9 +31,9 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 2 - Criar novos funcionários <strong>/employees</strong> - <strong>POST</strong> <br>
 3 - Atualizar os dados dos funcionários <strong>/employees/id</strong> - <strong>PUT</strong> <br>
 4 - Deletar funcionários <strong>/employees/id</strong> <strong>DELETE</strong> <br>
-5 - Pesquisar funcionários com base em id, nome ou email<strong>/employees/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong> -
+5 - Pesquisar funcionários de acordo com seus dados<strong>/employees/search/email/emailAqui</strong> -
  <strong>GET</strong> <br>
-6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <strong>/employees</strong> <strong>POST</strong> <br>
+6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <br>
 7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
 
 ### Funcionalidades das vendas
@@ -43,6 +41,20 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 1 - Registrar vendas <strong>/sales</strong> - <strong>POST</strong> <br>
 2 - Listar as vendas <strong>/sales</strong> - <strong>GET</strong> <br>
 3 - Atualizar dados das vendas <strong>/sales/id</strong> - <strong>PATCH</strong> <br>
+4 - Pesquisar por vendas de acordo com seus dados <strong>/sales/search/client_name/nomeAqui</strong> - <strong>GET</strong> <br>
+
+### Acessos
+
+Nesta aplicação existem diferentes acessos para cada funcionalidade e estes são concedidos por meio da verificação de dados específicos enviados pelo cabeçalho da requisição, como id, permissão e a senha de administrador, caso o funcionário tenha este acesso, além do JWT, exigido para todos os funcionários.<br>Os acessos são:<br>
+- Acesso total: acesso à todas as funcionalidades da API. Este é o único tipo de acesso com o qual é possível utilizar as funcionalidades dos funcionários <br>
+#### Acessos únicos <br>
+- Insumos: permite ao funcionário utilizar todas as funcionalidades dos insumos
+- Saídas: permite ao funcionário utilizar todas as funcionalidades das saídas
+- Vendas: permite ao funcionário utilizar todas as funcionalidades das vendas <br>
+#### Acessos mistos <br>
+- Insumos e saídas: funcionalidades dos insumos e das saídas disponíveis
+- Saídas e vendas: funcionalidades das saídas e das vendas disponíveis
+- Insumos, saídas e vendas: funcionalidades dos insumos, das saídas e das vendas disponíveis
 
 ## Status
 Finalizado ✔️<br>
