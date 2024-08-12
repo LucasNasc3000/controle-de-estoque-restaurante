@@ -38,7 +38,6 @@ class InputsList {
 
       return newInput;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }
@@ -54,7 +53,6 @@ class InputsList {
       const newInputData = await input.update(data);
       return newInputData;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }

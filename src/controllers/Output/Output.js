@@ -66,7 +66,7 @@ class OutputController {
 
     if (outputsList === null) {
       return res.status(400).json({
-        errors: ['Ocorreu um erro interno ou não há produtos cadastrados'],
+        errors: ['Ocorreu um erro interno ou não há sáidas registradas.'],
       });
     }
 

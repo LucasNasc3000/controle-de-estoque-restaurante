@@ -35,7 +35,6 @@ class SalesList {
 
       return newSale;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }
@@ -64,7 +63,6 @@ class SalesList {
       const saleUpdate = await findSale.update(data);
       return saleUpdate;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }

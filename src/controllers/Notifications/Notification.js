@@ -14,6 +14,7 @@ class Notifications {
 
     for (let i = 0; i < employeeSearch.length; i++) {
       if (employeeSearch[i].dataValues.permission === process.env.INPUTS_OUTPUTS_PERMISSION
+          || employeeSearch[i].dataValues.permission === process.env.SOI_PERMISSION
           || employeeSearch[i].dataValues.permission === process.env.ADMIN_PERMISSION
       ) {
         addressesAllowed.push(employeeSearch[i].dataValues.email);
@@ -40,8 +41,7 @@ class Notifications {
         from: process.env.FROM_EMAIL,
         subject: 'Insumo chegando à quantidade limite',
         text: `Atenção:\nO insumo ${inputData[2]} está perto da quantidade
-        limite de ${inputData[1]}.\n
-        Quantidade atual: ${inputData[0]}`,
+        limite de ${inputData[1]}.\nQuantidade atual: ${inputData[0]}`,
         // html: '<strong>and easy to do anywhere, even with Node.js</strong>',
       };
 
@@ -64,8 +64,7 @@ class Notifications {
           from: process.env.FROM_EMAIL,
           subject: 'Insumo chegando à quantidade limite',
           text: `Atenção:\nO insumo ${inputData[2]} está perto da quantidade
-          limite de ${inputData[1]}.\n
-          Quantidade atual: ${inputData[0]}`,
+          limite de ${inputData[1]}.\nQuantidade atual: ${inputData[0]}`,
           // html: '<strong>and easy to do anywhere, even with Node.js</strong>',
         };
 
@@ -74,7 +73,6 @@ class Notifications {
           .then((response) => {
             console.log(response[0].statusCode);
             console.log(response[0].headers);
-            return 'Notificacao enviada';
           })
           .catch((error) => {
             console.error(error);

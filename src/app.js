@@ -6,10 +6,6 @@ import express from 'express';
 import cors from 'cors';
 
 // input routes
-
-// Tirar outros métodos desnecessários ou inconveninentes ao final do projeto
-// Resolver o bug dos emails duplicados
-// Truncar as tabelas, os campos user_id ainda estão nos dados já inseridos no BD
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';
@@ -111,7 +107,7 @@ class App {
     this.app.use('/sales/search/date/', saleSearchDate);
     this.app.use('/sales/search/employeeid/', saleSearchEmployeeId);
     this.app.use('/sales/search/hour/', saleSearchHour);
-    this.app.use('/sales/searchid/', saleSearchId);
+    this.app.use('/sales/search/id/', saleSearchId);
     this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
     this.app.use('/sales/search/products/', saleSearchProducts);
   }

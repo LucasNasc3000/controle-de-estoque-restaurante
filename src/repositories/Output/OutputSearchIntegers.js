@@ -4,7 +4,7 @@ import Output from '../../models/Output';
 class OutputIntegersSearch {
   async SearchByID(id) {
     try {
-      const outputFinder = await Output.findAll({
+      const outputFinder = await Output.findOne({
         where: {
           id: { [Op.like]: id },
         },

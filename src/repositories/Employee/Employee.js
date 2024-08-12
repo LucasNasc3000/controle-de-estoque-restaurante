@@ -35,7 +35,6 @@ class EmployeesList {
 
       return newEmployee;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }
@@ -63,7 +62,6 @@ class EmployeesList {
       const employeeUpdate = await findEmployee.update(data);
       return employeeUpdate;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }
@@ -79,7 +77,6 @@ class EmployeesList {
 
       await deleteEmployee.destroy();
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }

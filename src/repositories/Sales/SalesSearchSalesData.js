@@ -32,7 +32,7 @@ class SalesSearchSalesData {
 
   async SearchByemployeeId(employeeId) {
     try {
-      const saleFinderByEmployeeId = await Sale.findAll({
+      const saleFinderByEmployeeId = await Sale.findOne({
         where: {
           employee_id: { [Op.like]: `%${employeeId}%` },
         },

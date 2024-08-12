@@ -6,7 +6,6 @@ class LogsList {
     try {
       await Log.create(data);
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }

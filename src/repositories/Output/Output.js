@@ -36,7 +36,6 @@ class OutputsList {
 
       return newOutput;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }
@@ -52,7 +51,6 @@ class OutputsList {
       const newOutputData = await output.update(data);
       return newOutputData;
     } catch (e) {
-      // mudar o retorno para null ao terminar
       return console.log(e);
     }
   }
