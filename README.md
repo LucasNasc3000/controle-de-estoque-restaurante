@@ -14,16 +14,16 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 5 - Determinar uma quantidade mínima de insumos no estoque (opcional)
 6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira
 
+<img src="">
+
 ### Funcionalidades das Saídas
 
 1 - Registrar os dados relativos aos insumos que saíram <strong>/outputs</strong> - <strong>POST</strong> <br>
 2 - Listar todas as saídas <strong>/outputs</strong> - <strong>GET</strong> <br>
 3 - Pesquisar pelas saídas dos insumos de acordo com seus dados <strong>/outputs/search/weight/2,34</strong> - <strong>GET</strong> <br>
 4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma <br>
-5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.
-6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de <br>
-    arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão<br>
-    alteradas.
+5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
+6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas.
 
 ### Funcionalidades dos Funcionários
 
@@ -31,7 +31,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 2 - Criar novos funcionários <strong>/employees</strong> - <strong>POST</strong> <br>
 3 - Atualizar os dados dos funcionários <strong>/employees/id</strong> - <strong>PUT</strong> <br>
 4 - Deletar funcionários <strong>/employees/id</strong> <strong>DELETE</strong> <br>
-5 - Pesquisar funcionários de acordo com seus dados<strong>/employees/search/email/emailAqui</strong> -
+5 - Pesquisar funcionários de acordo com seus dados <strong>/employees/search/email/emailAqui</strong> -
  <strong>GET</strong> <br>
 6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <br>
 7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
