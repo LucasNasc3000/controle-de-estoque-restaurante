@@ -14,7 +14,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 5 - Determinar uma quantidade mínima de insumos no estoque (opcional)
 6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira
 
-<img src="">
+<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/inputs.PNG" height=220px width=320px>
 
 ### Funcionalidades das Saídas
 
@@ -24,6 +24,8 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma <br>
 5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
 6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas.
+
+<img src>
 
 ### Funcionalidades dos Funcionários
 
