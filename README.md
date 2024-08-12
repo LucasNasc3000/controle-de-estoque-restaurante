@@ -38,7 +38,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <br>
 7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
 
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/empl.PNG" height=250px width=350px>
+<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/empl.PNG" height=220px width=380px>
 
 ### Funcionalidades das vendas
 
@@ -47,7 +47,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 3 - Atualizar dados das vendas <strong>/sales/id</strong> - <strong>PATCH</strong> <br>
 4 - Pesquisar por vendas de acordo com seus dados <strong>/sales/search/client_name/nomeAqui</strong> - <strong>GET</strong> <br>
 
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/Sales.PNG" height=240px width=370px> 
+<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/Sales.PNG" height=210px width=370px> 
 
 ### Acessos
 
