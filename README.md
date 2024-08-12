@@ -1,22 +1,18 @@
 # Sistema de controle de estoque
 Esta é uma API desenvolvida para o controle de estoque de um restaurante fictício. O sistema foi construído na arquitetura
-REST. Sendo o lado do servidor de uma aplicação web, este sistema foi desenvolvido com Node js para a programação das rotinas, rotas, validações de dados.
-A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador Objeto Relacional) para a modelagem de dados e para facilitar o uso do banco de dados, implicando
-em menos código, pois com um ORM não é necessário escrever códigos Sql.
+REST. Sendo o lado do servidor de uma aplicação web, este sistema foi desenvolvido com Node js para a programação das rotinas, rotas e validações de dados.
+A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador Objeto Relacional) para a modelagem de dados e para facilitar o uso do banco de dados.
 
 ## Funcionalidades
 ### Funcionalidades dos Insumos
 
-1 - Cadastrar novos insumos <strong>/inputs</strong> <strong>POST</strong> <br>
-2 - Deletar Insumos <strong>/inputs/id</strong>  <strong>DELETE</strong> <br>
-3 - Fornecer uma lista contendo todos os insumos <strong>/inputs</strong> <strong>GET</strong> <br>
-4 - Pesquisar por um ou mais insumos de acordo com: id, tipo, nome, quantidade, peso total,
+1 - Cadastrar novos insumos  <p style="font-size: 18px;">/inputs</strong> <strong>POST</strong> <br>
+2 - Fornecer uma lista contendo todos os insumos  <strong>/inputs</strong> <strong>GET</strong> <br>
+3 - Pesquisar por um ou mais insumos de acordo com: id, tipo, nome, quantidade, peso total,
     peso por unidade, fornecedor, data de entrada e data de vencimento <strong>/inputs/search/<varia_de_acordo_com_parametro_de_pesquisa>/<dado_a_ser_pesquisado></strong>  
     <strong>GET</strong> <br>
-5 - Atualizar um ou mais dados relativos aos insumos <strong>/inputs/id</strong> <strong>PUT</strong> <br>
-6 - Registrar todas as operações que os usuários realizarem <strong>/inputs</strong> <strong>POST</strong> <br>
-7 - Diferentes níveis de acesso. Por exemplo, um funcionário que registra as saídas dos insumos não poderá adicionar<br>
-    novos insumos, alterar os dados relativos a eles ou deleta-los.<br>
+4 - Atualizar um ou mais dados relativos aos insumos <strong>/inputs/id</strong> <strong>PUT</strong> <br>
+5 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira<strong>/inputs</strong> <strong>POST</strong> <br>
 
 ### Funcionalidades das Saídas
 
