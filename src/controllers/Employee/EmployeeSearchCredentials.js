@@ -34,7 +34,7 @@ class EmployeesSearchCredentialsController {
 
     if (!employeeNameFinder) {
       return res.status(400).json({
-        errors: ['Funcionário não encontrada'],
+        errors: ['Funcionário não encontrado'],
       });
     }
 

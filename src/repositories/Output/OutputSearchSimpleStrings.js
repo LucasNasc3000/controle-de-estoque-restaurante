@@ -1,25 +1,15 @@
 import { Op } from 'sequelize';
 import Output from '../../models/Output';
+import outputAttributes from './Attributes';
 
 class OutputSimpleStringSearch {
   async SearchByType(type) {
     try {
       const outputFinder = await Output.findAll({
         where: {
-          type: { [Op.like]: `%${type}%` },
+          type: { [Op.startsWith]: type },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;
@@ -34,20 +24,9 @@ class OutputSimpleStringSearch {
     try {
       const outputFinder = await Output.findAll({
         where: {
-          name: { [Op.like]: `%${name}%` },
+          name: { [Op.startsWith]: name },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;

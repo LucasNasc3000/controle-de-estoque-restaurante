@@ -1,28 +1,14 @@
-import { Op } from 'sequelize';
 import Input from '../../models/Input';
+import inputAttributes from './Attributes';
 
 class InputFloatsSearch {
   async SearchByTotalWeight(totalweight) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          totalweight: { [Op.like]: totalweight },
+          totalweight,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;
@@ -37,23 +23,9 @@ class InputFloatsSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          weightperunit: { [Op.like]: weightperunit },
+          weightperunit,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;

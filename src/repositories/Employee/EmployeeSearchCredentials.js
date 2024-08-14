@@ -1,24 +1,15 @@
 import { Op } from 'sequelize';
 import Employee from '../../models/Employee';
+import employeeAttributes from './Attributes';
 
 class EmployeesSearchCredentials {
   async SearchById(id) {
     try {
       const employeeFinder = await Employee.findOne({
         where: {
-          id: { [Op.like]: `%${id}%` },
+          id,
         },
-        attributes: [
-          'id',
-          'name',
-          'email',
-          'password_hash',
-          'adminpassword_hash',
-          'permission',
-          'address_allowed',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: employeeAttributes,
       });
 
       if (employeeFinder.length <= 0) return null;
@@ -33,24 +24,14 @@ class EmployeesSearchCredentials {
     try {
       const employeeFinderByName = await Employee.findAll({
         where: {
-          name: { [Op.like]: `%${name}%` },
+          name: { [Op.startsWith]: name },
         },
-        attributes: [
-          'id',
-          'name',
-          'email',
-          'password_hash',
-          'adminpassword_hash',
-          'permission',
-          'address_allowed',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: employeeAttributes,
       });
 
-      if (!employeeFinderByName) {
-        return null;
-      }
+      console.log(employeeFinderByName);
+
+      if (employeeFinderByName.length <= 0) return null;
 
       return employeeFinderByName;
     } catch (e) {
@@ -62,19 +43,9 @@ class EmployeesSearchCredentials {
     try {
       const employeeFinderByEmail = await Employee.findAll({
         where: {
-          email: { [Op.like]: `%${email}%` },
+          email,
         },
-        attributes: [
-          'id',
-          'name',
-          'email',
-          'password_hash',
-          'adminpassword_hash',
-          'permission',
-          'address_allowed',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: employeeAttributes,
       });
 
       if (!employeeFinderByEmail) {
@@ -93,17 +64,7 @@ class EmployeesSearchCredentials {
         where: {
           address_allowed: process.env.ADDRESS_ALLOWED,
         },
-        attributes: [
-          'id',
-          'name',
-          'email',
-          'password_hash',
-          'adminpassword_hash',
-          'permission',
-          'address_allowed',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: employeeAttributes,
       });
 
       if (!employeeFinderByAddressAllowed) {

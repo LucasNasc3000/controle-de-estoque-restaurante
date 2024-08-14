@@ -1,25 +1,15 @@
 import { Op } from 'sequelize';
 import Output from '../../models/Output';
+import outputAttributes from './Attributes';
 
 class OutputSearchDateHourRepository {
   async SearchByDate(date) {
     try {
       const outputFinder = await Output.findAll({
         where: {
-          date: { [Op.like]: `%${date}%` },
+          date: { [Op.startsWith]: date },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;
@@ -34,20 +24,9 @@ class OutputSearchDateHourRepository {
     try {
       const outputFinder = await Output.findAll({
         where: {
-          hour: { [Op.like]: `%${hour}%` },
+          hour: { [Op.startsWith]: hour },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;

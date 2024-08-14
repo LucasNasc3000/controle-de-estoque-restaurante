@@ -1,24 +1,11 @@
 import Input from '../../models/Input';
+import inputAttributes from './Attributes';
 
 class InputsList {
   async List() {
     try {
       const inputs = await Input.findAll({
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
         order: [['id', 'DESC']],
       });
 
@@ -46,9 +33,7 @@ class InputsList {
     try {
       const input = await Input.findByPk(id);
 
-      if (!input) {
-        return null;
-      }
+      if (input.length <= 0) return null;
 
       const newInputData = await input.update(data);
       return newInputData;

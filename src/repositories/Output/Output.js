@@ -1,22 +1,11 @@
 import Output from '../../models/Output';
+import outputAttributes from './Attributes';
 
 class OutputsList {
   async List() {
     try {
       const outputs = await Output.findAll({
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'weightperunit',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
         order: [['id', 'DESC']],
       });
 

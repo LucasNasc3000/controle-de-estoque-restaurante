@@ -1,25 +1,15 @@
 import { Op } from 'sequelize';
 import Output from '../../models/Output';
+import outputAttributes from './Attributes';
 
 class OutputFloatsSearch {
   async SearchByWeight(weight) {
     try {
       const outputFinder = await Output.findAll({
         where: {
-          weight: { [Op.like]: weight },
+          weight: { [Op.startsWith]: weight },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;

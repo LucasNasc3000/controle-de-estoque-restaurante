@@ -1,28 +1,14 @@
-import { Op } from 'sequelize';
 import Input from '../../models/Input';
+import inputAttributes from './Attributes';
 
 class InputIntegerSearch {
   async SearchByID(id) {
     try {
       const inputFinder = await Input.findOne({
         where: {
-          id: { [Op.like]: id },
+          id,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;
@@ -33,27 +19,13 @@ class InputIntegerSearch {
     }
   }
 
-  async SearchByQuantity(quantityNumber) {
+  async SearchByQuantity(quantity) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          quantity: { [Op.like]: quantityNumber },
+          quantity,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;
@@ -64,27 +36,13 @@ class InputIntegerSearch {
     }
   }
 
-  async SearchByMinimunQuantity(minimunQuantityNumber) {
+  async SearchByMinimunQuantity(minimunQuantity) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          minimun_quantity: { [Op.like]: minimunQuantityNumber },
+          minimun_quantity: minimunQuantity,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;

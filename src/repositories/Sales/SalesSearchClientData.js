@@ -1,25 +1,15 @@
 import { Op } from 'sequelize';
 import Sale from '../../models/Sale';
+import salesAttributes from './Attributes';
 
 class SalesSearchClientData {
   async SearchByClientName(clientName) {
     try {
       const SaleFinder = await Sale.findAll({
         where: {
-          client_name: { [Op.like]: `%${clientName}%` },
+          client_name: { [Op.startsWith]: clientName },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
       if (SaleFinder.length <= 0) return null;
@@ -34,20 +24,9 @@ class SalesSearchClientData {
     try {
       const SaleFinderByPhoneNumber = await Sale.findAll({
         where: {
-          phone_number: { [Op.like]: `%${phoneNumber}%` },
+          phone_number: phoneNumber,
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
       if (!SaleFinderByPhoneNumber) {
@@ -64,25 +43,12 @@ class SalesSearchClientData {
     try {
       const saleFinderByAddress = await Sale.findAll({
         where: {
-          address: { [Op.like]: `%${address}%` },
+          address,
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
-      if (!saleFinderByAddress) {
-        return null;
-      }
+      if (!saleFinderByAddress) return null;
 
       return saleFinderByAddress;
     } catch (e) {

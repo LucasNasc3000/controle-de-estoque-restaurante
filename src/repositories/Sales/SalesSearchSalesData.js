@@ -1,25 +1,15 @@
 import { Op } from 'sequelize';
 import Sale from '../../models/Sale';
+import salesAttributes from './Attributes';
 
 class SalesSearchSalesData {
   async SearchById(id) {
     try {
       const SaleFinder = await Sale.findOne({
         where: {
-          id: { [Op.like]: `%${id}%` },
+          id,
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
       if (SaleFinder.length <= 0) return null;
@@ -34,25 +24,12 @@ class SalesSearchSalesData {
     try {
       const saleFinderByEmployeeId = await Sale.findOne({
         where: {
-          employee_id: { [Op.like]: `%${employeeId}%` },
+          employee_id: employeeId,
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
-      if (!saleFinderByEmployeeId) {
-        return null;
-      }
+      if (!saleFinderByEmployeeId) return null;
 
       return saleFinderByEmployeeId;
     } catch (e) {
@@ -66,23 +43,10 @@ class SalesSearchSalesData {
         where: {
           products: { [Op.like]: `%${products}%` },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
-      if (!salesFinderByProducts) {
-        return null;
-      }
+      if (!salesFinderByProducts) return null;
 
       return salesFinderByProducts;
     } catch (e) {
@@ -94,25 +58,12 @@ class SalesSearchSalesData {
     try {
       const salesFinderDate = await Sale.findAll({
         where: {
-          date: { [Op.like]: `%${date}%` },
+          date: { [Op.startsWith]: date },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
-      if (!salesFinderDate) {
-        return null;
-      }
+      if (!salesFinderDate) return null;
 
       return salesFinderDate;
     } catch (e) {
@@ -124,20 +75,9 @@ class SalesSearchSalesData {
     try {
       const salesFinderByHour = await Sale.findAll({
         where: {
-          hour: { [Op.like]: `%${hour}%` },
+          hour: { [Op.startsWith]: hour },
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
       });
 
       if (!salesFinderByHour) {

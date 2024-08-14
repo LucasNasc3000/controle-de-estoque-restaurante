@@ -1,25 +1,14 @@
-import { Op } from 'sequelize';
 import Output from '../../models/Output';
+import outputAttributes from './Attributes';
 
 class OutputIntegersSearch {
   async SearchByID(id) {
     try {
       const outputFinder = await Output.findOne({
         where: {
-          id: { [Op.like]: id },
+          id,
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;
@@ -34,20 +23,9 @@ class OutputIntegersSearch {
     try {
       const outputFinder = await Output.findAll({
         where: {
-          unities: { [Op.like]: unities },
+          unities,
         },
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'name',
-          'type',
-          'weight',
-          'unities',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: outputAttributes,
       });
 
       if (outputFinder.length <= 0) return null;

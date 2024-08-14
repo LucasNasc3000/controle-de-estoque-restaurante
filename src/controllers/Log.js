@@ -23,7 +23,7 @@ class LogController {
       email,
       date: logDateTime[0],
       time: logDateTime[1],
-      user_id: id,
+      employee_id: id,
     };
     await LogList.Store(logData);
   }

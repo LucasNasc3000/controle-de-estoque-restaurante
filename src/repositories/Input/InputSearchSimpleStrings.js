@@ -1,28 +1,15 @@
 import { Op } from 'sequelize';
 import Input from '../../models/Input';
+import inputAttributes from './Attributes';
 
 class InputSimpleStringSearch {
   async SearchByType(type) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          type: { [Op.like]: `%${type}%` },
+          type: { [Op.startsWith]: type },
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;
@@ -37,23 +24,9 @@ class InputSimpleStringSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          name: { [Op.like]: `%${name}%` },
+          name: { [Op.startsWith]: name },
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;
@@ -68,22 +41,9 @@ class InputSimpleStringSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          supplier: { [Op.like]: `%${supplier}%` },
+          supplier: { [Op.startsWith]: supplier },
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;

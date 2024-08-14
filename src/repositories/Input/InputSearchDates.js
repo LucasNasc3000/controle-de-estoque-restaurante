@@ -1,28 +1,14 @@
-import { Op } from 'sequelize';
 import Input from '../../models/Input';
+import inputAttributes from './Attributes';
 
 class InputDatesSearch {
   async SearchByEntryDate(entrydate) {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          entrydate: { [Op.like]: `%${entrydate}%` },
+          entrydate,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;
@@ -37,23 +23,9 @@ class InputDatesSearch {
     try {
       const inputFinder = await Input.findAll({
         where: {
-          expirationdate: { [Op.like]: `%${expirationdate}%` },
+          expirationdate,
         },
-        attributes: [
-          'id',
-          'type',
-          'name',
-          'quantity',
-          'totalweight',
-          'weightperunit',
-          'supplier',
-          'expirationdate',
-          'entrydate',
-          'employee_id',
-          'minimun_quantity',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: inputAttributes,
       });
 
       if (inputFinder.length <= 0) return null;

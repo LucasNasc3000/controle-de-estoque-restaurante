@@ -1,21 +1,11 @@
 import Sales from '../../models/Sale';
+import salesAttributes from './Attributes';
 
 class SalesList {
   async List() {
     try {
       const sales = await Sales.findAll({
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: salesAttributes,
         order: [['id', 'DESC']],
       });
 
@@ -41,24 +31,9 @@ class SalesList {
 
   async Update(id, data) {
     try {
-      const findSale = await Sales.findByPk(id, {
-        attributes: [
-          'id',
-          'date',
-          'hour',
-          'client_name',
-          'phone_number',
-          'address',
-          'products',
-          'employee_id',
-          'created_at',
-          'updated_at',
-        ],
-      });
+      const findSale = await Sales.findByPk(id);
 
-      if (!findSale) {
-        return null;
-      }
+      if (!findSale) return null;
 
       const saleUpdate = await findSale.update(data);
       return saleUpdate;

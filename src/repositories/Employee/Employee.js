@@ -1,21 +1,11 @@
 import Employee from '../../models/Employee';
+import employeeAttributes from './Attributes';
 
 class EmployeesList {
   async List() {
     try {
       const employees = await Employee.findAll({
-        attributes: [
-          'id',
-          'name',
-          'email',
-          'password_hash',
-          'adminpassword_hash',
-          'adminpassword',
-          'permission',
-          'address_allowed',
-          'created_at',
-          'updated_at',
-        ],
+        attributes: employeeAttributes,
         order: [['id', 'DESC']],
       });
 
@@ -41,23 +31,9 @@ class EmployeesList {
 
   async Update(id, data) {
     try {
-      const findEmployee = await Employee.findByPk(id, {
-        attributes: [
-          'id',
-          'name',
-          'email',
-          'password_hash',
-          'adminpassword_hash',
-          'permission',
-          'address_allowed',
-          'created_at',
-          'updated_at',
-        ],
-      });
+      const findEmployee = await Employee.findByPk(id);
 
-      if (!findEmployee) {
-        return null;
-      }
+      if (!findEmployee) return null;
 
       const employeeUpdate = await findEmployee.update(data);
       return employeeUpdate;
