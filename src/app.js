@@ -4,6 +4,7 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
+import errorHandler from './middlewares/errorHandler';
 
 // input routes
 import homeRoutes from './routes/home';
@@ -110,6 +111,8 @@ class App {
     this.app.use('/sales/search/id/', saleSearchId);
     this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
     this.app.use('/sales/search/products/', saleSearchProducts);
+
+    this.app.use(errorHandler);
   }
 }
 

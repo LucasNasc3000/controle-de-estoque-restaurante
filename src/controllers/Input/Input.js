@@ -1,27 +1,31 @@
 import InputMethods from '../../repositories/Input/Input';
 import Validation from '../../middlewares/fieldValidations/Validation';
+import { BadRequest } from '../../errors/clientErrors';
 
 // Método para excluir mais de um mas não todos
 class InputController {
-  async store(req, res) {
-    const validations = Validation.MainValidations(req.body);
-    const inputValidations = Validation.InputsValidation(req.body);
+  // eslint-disable-next-line consistent-return
+  async store(req, res, next) {
+    try {
+      const validations = Validation.MainValidations(req.body);
+      const inputValidations = Validation.InputsValidation(req.body);
 
-    if (validations !== null) {
-      return res.status(500).json({
-        errors: [validations],
-      });
+      if (validations !== null) {
+        throw new BadRequest(validations);
+      }
+
+      if (inputValidations !== null) {
+        return res.status(500).json({
+          errors: [inputValidations],
+        });
+      }
+
+      const store = await InputMethods.Store(req.body);
+
+      return res.status(201).json(store);
+    } catch (err) {
+      next(err);
     }
-
-    if (inputValidations !== null) {
-      return res.status(500).json({
-        errors: [inputValidations],
-      });
-    }
-
-    const store = await InputMethods.Store(req.body);
-
-    return res.status(201).json(store);
   }
 
   async index(req, res) {
