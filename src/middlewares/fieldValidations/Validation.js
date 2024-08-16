@@ -25,6 +25,9 @@ class Validation {
       case ('Type must be a string'):
         return 'O tipo deve ser string';
 
+      case 'employee_id must be a uuid':
+        return 'O id do funcionário deve ser um uuid';
+
       default:
         return null;
     }
@@ -117,9 +120,6 @@ class Validation {
 
       case 'id must be a uuid':
         return 'O id deve ser um uuid';
-
-      case 'employee_id must be a number':
-        return 'O id do funcionário deve ser um uuid';
 
       case 'address must be a string':
         return 'O endereço deve ser uma string';

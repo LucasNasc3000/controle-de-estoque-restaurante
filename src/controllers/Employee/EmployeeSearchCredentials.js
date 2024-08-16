@@ -1,64 +1,48 @@
+/* eslint-disable consistent-return */
 import EmployeesSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
+import { BadRequest } from '../../errors/clientErrors';
 
 class EmployeesSearchCredentialsController {
-  async SearchByID(req, res) {
-    const { id } = req.params;
+  async SearchByID(req, res, next) {
+    try {
+      const { id } = req.params;
 
-    if (!id) {
-      return res.status(500).json({
-        errors: ['ID não informado'],
-      });
+      const employeeIDFinder = await EmployeesSearchCredentials.SearchById(id);
+
+      if (!employeeIDFinder) throw new BadRequest('Funcionário não encontrado');
+
+      return res.status(200).json(employeeIDFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const employeeIDFinder = await EmployeesSearchCredentials.SearchById(id);
-
-    if (!employeeIDFinder) {
-      return res.status(400).json({
-        errors: ['Funcionário não encontrado'],
-      });
-    }
-
-    return res.json(employeeIDFinder);
   }
 
-  async SearchByName(req, res) {
-    const { name } = req.params;
+  async SearchByName(req, res, next) {
+    try {
+      const { name } = req.params;
 
-    if (!name) {
-      return res.status(500).json({
-        errors: ['Nome não informado'],
-      });
+      const employeeNameFinder = await EmployeesSearchCredentials.SearchByName(name);
+
+      if (!employeeNameFinder) throw new BadRequest('Funcionário não encontrado');
+
+      return res.status(200).json(employeeNameFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const employeeNameFinder = await EmployeesSearchCredentials.SearchByName(name);
-
-    if (!employeeNameFinder) {
-      return res.status(400).json({
-        errors: ['Funcionário não encontrado'],
-      });
-    }
-
-    return res.json(employeeNameFinder);
   }
 
-  async SearchByEmail(req, res) {
-    const { email } = req.params;
+  async SearchByEmail(req, res, next) {
+    try {
+      const { email } = req.params;
 
-    if (!email) {
-      return res.status(500).json({
-        errors: ['Email não informado'],
-      });
+      const employeeEmailFinder = await EmployeesSearchCredentials.SearchByEmail(email);
+
+      if (!employeeEmailFinder) throw new BadRequest('Funcionário não encontrado');
+
+      return res.status(200).json(employeeEmailFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const employeeEmailFinder = await EmployeesSearchCredentials.SearchByEmail(email);
-
-    if (!employeeEmailFinder) {
-      return res.status(400).json({
-        errors: ['Funcionário não encontrado'],
-      });
-    }
-
-    return res.json(employeeEmailFinder);
   }
 }
 

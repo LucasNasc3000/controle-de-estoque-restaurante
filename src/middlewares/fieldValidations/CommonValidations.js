@@ -1,5 +1,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
+import { uuidCheck } from './DataRegex';
+
 class CommomValidations {
   DoTheValidations(allData, isEmployee, isLog, isSale) {
     for (const i in allData) {
@@ -47,8 +49,8 @@ class CommomValidations {
 
   CheckStrings(StringsFieldsData) {
     if (StringsFieldsData.employee_id) {
-      if (typeof StringsFieldsData.employee_id !== 'string') {
-        return 'Type must be a string';
+      if (!uuidCheck.test(StringsFieldsData.employee_id)) {
+        return 'employee_id must be a uuid';
       }
     }
 

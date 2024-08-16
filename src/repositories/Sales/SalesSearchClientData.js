@@ -12,8 +12,6 @@ class SalesSearchClientData {
         attributes: salesAttributes,
       });
 
-      if (SaleFinder.length <= 0) return null;
-
       return SaleFinder;
     } catch (e) {
       return console.log(e);
@@ -29,10 +27,6 @@ class SalesSearchClientData {
         attributes: salesAttributes,
       });
 
-      if (!SaleFinderByPhoneNumber) {
-        return null;
-      }
-
       return SaleFinderByPhoneNumber;
     } catch (e) {
       return console.log(e);
@@ -47,8 +41,6 @@ class SalesSearchClientData {
         },
         attributes: salesAttributes,
       });
-
-      if (!saleFinderByAddress) return null;
 
       return saleFinderByAddress;
     } catch (e) {

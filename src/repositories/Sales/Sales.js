@@ -9,8 +9,6 @@ class SalesList {
         order: [['id', 'DESC']],
       });
 
-      if (sales.length <= 0) return null;
-
       return sales;
     } catch (e) {
       return console.log(e);
@@ -20,9 +18,6 @@ class SalesList {
   async Store(data) {
     try {
       const newSale = await Sales.create(data);
-
-      if (!newSale) return null;
-
       return newSale;
     } catch (e) {
       return console.log(e);
@@ -33,9 +28,10 @@ class SalesList {
     try {
       const findSale = await Sales.findByPk(id);
 
-      if (!findSale) return null;
+      if (!findSale) return 'venda não encontrada';
 
       const saleUpdate = await findSale.update(data);
+
       return saleUpdate;
     } catch (e) {
       return console.log(e);

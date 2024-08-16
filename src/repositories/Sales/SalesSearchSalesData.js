@@ -12,8 +12,6 @@ class SalesSearchSalesData {
         attributes: salesAttributes,
       });
 
-      if (SaleFinder.length <= 0) return null;
-
       return SaleFinder;
     } catch (e) {
       return console.log(e);
@@ -28,8 +26,6 @@ class SalesSearchSalesData {
         },
         attributes: salesAttributes,
       });
-
-      if (!saleFinderByEmployeeId) return null;
 
       return saleFinderByEmployeeId;
     } catch (e) {
@@ -46,8 +42,6 @@ class SalesSearchSalesData {
         attributes: salesAttributes,
       });
 
-      if (!salesFinderByProducts) return null;
-
       return salesFinderByProducts;
     } catch (e) {
       return console.log(e);
@@ -63,8 +57,6 @@ class SalesSearchSalesData {
         attributes: salesAttributes,
       });
 
-      if (!salesFinderDate) return null;
-
       return salesFinderDate;
     } catch (e) {
       return console.log(e);
@@ -79,10 +71,6 @@ class SalesSearchSalesData {
         },
         attributes: salesAttributes,
       });
-
-      if (!salesFinderByHour) {
-        return null;
-      }
 
       return salesFinderByHour;
     } catch (e) {

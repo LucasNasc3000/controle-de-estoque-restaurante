@@ -5,9 +5,9 @@ import adminPermission from '../../middlewares/adminPermission';
 
 const router = new Router();
 
-router.post('/', loginRequired, adminPermission, Employee.store);
-router.get('/', loginRequired, adminPermission, Employee.index);
-router.put('/:id', loginRequired, adminPermission, Employee.update);
-router.delete('/:id', loginRequired, adminPermission, Employee.delete);
+router.post('/', loginRequired, adminPermission, Employee.Store);
+router.get('/', loginRequired, adminPermission, Employee.Index);
+router.put('/:id', loginRequired, adminPermission, Employee.Update);
+router.delete('/:id', loginRequired, adminPermission, Employee.Delete);
 
 export default router;

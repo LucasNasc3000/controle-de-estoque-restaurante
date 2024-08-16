@@ -1,4 +1,6 @@
-import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DateTimeRegexConsts';
+import {
+  dateRegex, hourRegex, dateAndHourErrorMsg,
+} from './DataRegex';
 
 class InputsValidations {
   CheckIntegers(integersFieldData) {

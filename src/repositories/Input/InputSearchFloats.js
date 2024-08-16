@@ -11,8 +11,6 @@ class InputFloatsSearch {
         attributes: inputAttributes,
       });
 
-      if (inputFinder.length <= 0) return null;
-
       return inputFinder;
     } catch (e) {
       return console.log(e);
@@ -27,8 +25,6 @@ class InputFloatsSearch {
         },
         attributes: inputAttributes,
       });
-
-      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
     } catch (e) {

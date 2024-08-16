@@ -6,6 +6,14 @@ import express from 'express';
 import cors from 'cors';
 import errorHandler from './middlewares/errorHandler';
 
+// resolver os retornos das pesquisas nos controllers
+// criar classe para o 404 not found?
+// try catch nos repositories
+// Personalizar erros criando mais classes que extendem de erro
+// Como fica o novo sistema de erros para os repositories?
+// Trocar os nomes dos metodos para uppercase
+// Arquivo com o regex para o uuid para as employee id validations
+
 // input routes
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';

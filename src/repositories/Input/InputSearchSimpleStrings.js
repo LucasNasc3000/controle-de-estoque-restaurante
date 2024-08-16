@@ -12,7 +12,7 @@ class InputSimpleStringSearch {
         attributes: inputAttributes,
       });
 
-      if (inputFinder.length <= 0) return null;
+      if (inputFinder.length < 1) return null;
 
       return inputFinder;
     } catch (e) {
@@ -29,8 +29,6 @@ class InputSimpleStringSearch {
         attributes: inputAttributes,
       });
 
-      if (inputFinder.length <= 0) return null;
-
       return inputFinder;
     } catch (e) {
       return console.log(e);
@@ -46,7 +44,7 @@ class InputSimpleStringSearch {
         attributes: inputAttributes,
       });
 
-      if (inputFinder.length <= 0) return null;
+      if (inputFinder.length < 1) return null;
 
       return inputFinder;
     } catch (e) {

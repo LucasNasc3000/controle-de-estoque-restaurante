@@ -9,8 +9,6 @@ class EmployeesList {
         order: [['id', 'DESC']],
       });
 
-      if (employees.length <= 0) return null;
-
       return employees;
     } catch (e) {
       return console.log(e);
@@ -20,9 +18,6 @@ class EmployeesList {
   async Store(data) {
     try {
       const newEmployee = await Employee.create(data);
-
-      if (!newEmployee) return null;
-
       return newEmployee;
     } catch (e) {
       return console.log(e);
@@ -33,9 +28,10 @@ class EmployeesList {
     try {
       const findEmployee = await Employee.findByPk(id);
 
-      if (!findEmployee) return null;
+      if (!findEmployee) return 'funcionário não encontrado';
 
       const employeeUpdate = await findEmployee.update(data);
+
       return employeeUpdate;
     } catch (e) {
       return console.log(e);
@@ -47,23 +43,11 @@ class EmployeesList {
     try {
       const deleteEmployee = await Employee.findByPk(id);
 
-      if (!deleteEmployee) {
-        return null;
-      }
+      if (!deleteEmployee) return 'funcionário não registrado';
 
       await deleteEmployee.destroy();
     } catch (e) {
       return console.log(e);
-    }
-  }
-
-  // Para ser usado apenas no desenvolvimento
-  async Truncate() {
-    try {
-      await Employee.truncate();
-      return true;
-    } catch (e) {
-      return false;
     }
   }
 }

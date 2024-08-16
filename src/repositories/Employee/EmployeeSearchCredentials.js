@@ -12,8 +12,6 @@ class EmployeesSearchCredentials {
         attributes: employeeAttributes,
       });
 
-      if (employeeFinder.length <= 0) return null;
-
       return employeeFinder;
     } catch (e) {
       return console.log(e);
@@ -28,10 +26,6 @@ class EmployeesSearchCredentials {
         },
         attributes: employeeAttributes,
       });
-
-      console.log(employeeFinderByName);
-
-      if (employeeFinderByName.length <= 0) return null;
 
       return employeeFinderByName;
     } catch (e) {
@@ -48,10 +42,6 @@ class EmployeesSearchCredentials {
         attributes: employeeAttributes,
       });
 
-      if (!employeeFinderByEmail) {
-        return null;
-      }
-
       return employeeFinderByEmail;
     } catch (e) {
       return console.log(e);
@@ -66,10 +56,6 @@ class EmployeesSearchCredentials {
         },
         attributes: employeeAttributes,
       });
-
-      if (!employeeFinderByAddressAllowed) {
-        return null;
-      }
 
       return employeeFinderByAddressAllowed;
     } catch (e) {

@@ -12,8 +12,6 @@ class OutputSimpleStringSearch {
         attributes: outputAttributes,
       });
 
-      if (outputFinder.length <= 0) return null;
-
       return outputFinder;
     } catch (e) {
       return console.log(e);
@@ -28,8 +26,6 @@ class OutputSimpleStringSearch {
         },
         attributes: outputAttributes,
       });
-
-      if (outputFinder.length <= 0) return null;
 
       return outputFinder;
     } catch (e) {

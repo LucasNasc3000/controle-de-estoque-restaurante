@@ -1,44 +1,35 @@
+/* eslint-disable consistent-return */
 import InputSearchDates from '../../repositories/Input/InputSearchDates';
+import { BadRequest } from '../../errors/clientErrors';
 
 class InputSearchDatesController {
-  async SearchByEntryDate(req, res) {
-    const { entrydate } = req.params;
+  async SearchByEntryDate(req, res, next) {
+    try {
+      const { entrydate } = req.params;
 
-    if (!entrydate) {
-      return res.status(500).json({
-        errors: ['Data de entrada não informada'],
-      });
+      const inputEntryDateFinder = await InputSearchDates.SearchByEntryDate(entrydate);
+
+      if (!inputEntryDateFinder) throw new BadRequest('Insumo não encontrado');
+
+      return res.status(200).json(inputEntryDateFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const inputEntryDateFinder = await InputSearchDates.SearchByEntryDate(entrydate);
-
-    if (!inputEntryDateFinder) {
-      return res.status(400).json({
-        errors: ['Insumo não encontrado'],
-      });
-    }
-
-    return res.json(inputEntryDateFinder);
   }
 
-  async SearchByExpirationDate(req, res) {
-    const { expirationdate } = req.params;
+  async SearchByExpirationDate(req, res, next) {
+    try {
+      const { expirationdate } = req.params;
 
-    if (!expirationdate) {
-      return res.status(500).json({
-        errors: ['Data de validade não informada'],
-      });
+      const inputExpirationDateFinder = await
+      InputSearchDates.SearchByExpirationDate(expirationdate);
+
+      if (!inputExpirationDateFinder) throw new BadRequest('Insumo não encontrado');
+
+      return res.status(200).json(inputExpirationDateFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const inputExpirationDateFinder = await InputSearchDates.SearchByExpirationDate(expirationdate);
-
-    if (!inputExpirationDateFinder) {
-      return res.status(400).json({
-        errors: ['Insumo não encontrado'],
-      });
-    }
-
-    return res.json(inputExpirationDateFinder);
   }
 }
 

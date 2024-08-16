@@ -1,4 +1,4 @@
-import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DateTimeRegexConsts';
+import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DataRegex';
 
 class LogsValidations {
   CheckEmployeeId(data) {

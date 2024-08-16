@@ -1,64 +1,49 @@
+/* eslint-disable consistent-return */
 import InputSearchIntegers from '../../repositories/Input/InputSearchIntegers';
+import { BadRequest } from '../../errors/clientErrors';
 
 class InputSearchIntegersController {
-  async SearchByID(req, res) {
-    const { id } = req.params;
+  async SearchByID(req, res, next) {
+    try {
+      const { id } = req.params;
 
-    if (!id) {
-      return res.status(500).json({
-        errors: ['ID não informado'],
-      });
+      const inputIDFinder = await InputSearchIntegers.SearchByID(id);
+
+      if (!inputIDFinder) throw new BadRequest('Insumo não encontrado');
+
+      return res.status(200).json(inputIDFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const inputIDFinder = await InputSearchIntegers.SearchByID(id);
-
-    if (!inputIDFinder) {
-      return res.status(400).json({
-        errors: ['Insumo não encontrado'],
-      });
-    }
-
-    return res.json(inputIDFinder);
   }
 
-  async SearchByQuantity(req, res) {
-    const { quantity } = req.params;
+  async SearchByQuantity(req, res, next) {
+    try {
+      const { quantity } = req.params;
 
-    if (!quantity) {
-      return res.status(500).json({
-        errors: ['Quantidade não informada'],
-      });
+      const inputQuantityFinder = await InputSearchIntegers.SearchByQuantity(quantity);
+
+      if (!inputQuantityFinder) throw new BadRequest('Insumo não encontrado');
+
+      return res.status(200).json(inputQuantityFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const inputQuantityFinder = await InputSearchIntegers.SearchByQuantity(quantity);
-
-    if (!inputQuantityFinder) {
-      return res.status(400).json({
-        errors: ['Insumo não encontrado'],
-      });
-    }
-
-    return res.json(inputQuantityFinder);
   }
 
-  async SearchByMinimunQuantity(req, res) {
-    const { minimunquantity } = req.params;
+  async SearchByMinimunQuantity(req, res, next) {
+    try {
+      const { minimunquantity } = req.params;
 
-    if (!minimunquantity) {
-      return res.status(500).json({
-        errors: ['Quantidade não informada'],
-      });
+      const inputQuantityFinder = await
+      InputSearchIntegers.SearchByMinimunQuantity(minimunquantity);
+
+      if (!inputQuantityFinder) throw new BadRequest('Insumo não encontrado');
+
+      return res.status(200).json(inputQuantityFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const inputQuantityFinder = await InputSearchIntegers.SearchByMinimunQuantity(minimunquantity);
-
-    if (!inputQuantityFinder) {
-      return res.status(400).json({
-        errors: ['Insumo não encontrado'],
-      });
-    }
-
-    return res.json(inputQuantityFinder);
   }
 }
 

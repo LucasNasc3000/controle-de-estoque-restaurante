@@ -9,8 +9,6 @@ class InputsList {
         order: [['id', 'DESC']],
       });
 
-      if (inputs.length <= 0) return null;
-
       return inputs;
     } catch (e) {
       return console.log(e);
@@ -20,9 +18,6 @@ class InputsList {
   async Store(data) {
     try {
       const newInput = await Input.create(data);
-
-      if (!newInput) return null;
-
       return newInput;
     } catch (e) {
       return console.log(e);
@@ -33,9 +28,10 @@ class InputsList {
     try {
       const input = await Input.findByPk(id);
 
-      if (input.length <= 0) return null;
+      if (!input) return 'insumo não encontrado';
 
       const newInputData = await input.update(data);
+
       return newInputData;
     } catch (e) {
       return console.log(e);

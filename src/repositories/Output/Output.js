@@ -9,8 +9,6 @@ class OutputsList {
         order: [['id', 'DESC']],
       });
 
-      if (outputs.length <= 0) return null;
-
       return outputs;
     } catch (e) {
       return console.log(e);
@@ -20,9 +18,6 @@ class OutputsList {
   async Store(data) {
     try {
       const newOutput = await Output.create(data);
-
-      if (!newOutput) return null;
-
       return newOutput;
     } catch (e) {
       return console.log(e);
@@ -33,11 +28,10 @@ class OutputsList {
     try {
       const output = await Output.findByPk(id);
 
-      if (!output) {
-        return null;
-      }
+      if (!output) return 'saída não encontrada';
 
       const newOutputData = await output.update(data);
+
       return newOutputData;
     } catch (e) {
       return console.log(e);

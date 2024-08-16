@@ -11,8 +11,6 @@ class InputIntegerSearch {
         attributes: inputAttributes,
       });
 
-      if (inputFinder.length <= 0) return null;
-
       return inputFinder;
     } catch (e) {
       return console.log(e);
@@ -28,8 +26,6 @@ class InputIntegerSearch {
         attributes: inputAttributes,
       });
 
-      if (inputFinder.length <= 0) return null;
-
       return inputFinder;
     } catch (e) {
       return console.log(e);
@@ -44,8 +40,6 @@ class InputIntegerSearch {
         },
         attributes: inputAttributes,
       });
-
-      if (inputFinder.length <= 0) return null;
 
       return inputFinder;
     } catch (e) {
