@@ -25,7 +25,7 @@ const errorHandler = (err, req, res, next) => {
 
     case (err instanceof EmailErrors):
       return res.status(500).json({
-        error: [err.message],
+        error: [err.name],
       });
 
     default:
