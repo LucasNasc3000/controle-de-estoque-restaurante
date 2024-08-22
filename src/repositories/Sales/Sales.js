@@ -3,39 +3,27 @@ import salesAttributes from './Attributes';
 
 class SalesList {
   async List() {
-    try {
-      const sales = await Sales.findAll({
-        attributes: salesAttributes,
-        order: [['id', 'DESC']],
-      });
+    const sales = await Sales.findAll({
+      attributes: salesAttributes,
+      order: [['id', 'DESC']],
+    });
 
-      return sales;
-    } catch (e) {
-      return console.log(e);
-    }
+    return sales;
   }
 
   async Store(data) {
-    try {
-      const newSale = await Sales.create(data);
-      return newSale;
-    } catch (e) {
-      return console.log(e);
-    }
+    const newSale = await Sales.create(data);
+    return newSale;
   }
 
   async Update(id, data) {
-    try {
-      const findSale = await Sales.findByPk(id);
+    const findSale = await Sales.findByPk(id);
 
-      if (!findSale) return 'venda não encontrada';
+    if (!findSale) return 'venda não encontrada';
 
-      const saleUpdate = await findSale.update(data);
+    const saleUpdate = await findSale.update(data);
 
-      return saleUpdate;
-    } catch (e) {
-      return console.log(e);
-    }
+    return saleUpdate;
   }
 }
 

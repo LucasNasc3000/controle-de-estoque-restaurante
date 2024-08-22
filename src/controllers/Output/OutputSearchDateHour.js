@@ -1,44 +1,37 @@
+/* eslint-disable consistent-return */
 import OutputSearchDateHour from '../../repositories/Output/OutputSearchDateHour';
+import { NotFound } from '../../errors/notFound';
+import { InternalServerError } from '../../errors/serverErrors';
 
 class OutputSearchDateHourController {
-  async SearchByDate(req, res) {
-    const { date } = req.params;
+  async SearchByDate(req, res, next) {
+    try {
+      const { date } = req.params;
 
-    if (!date) {
-      return res.status(500).json({
-        errors: ['Data da saída não informada'],
-      });
+      const outputDateFinder = await OutputSearchDateHour.SearchByDate(date);
+
+      if (!outputDateFinder) throw new InternalServerError('Erro interno');
+      if (outputDateFinder.length < 1) throw new NotFound('Saída não encontrada');
+
+      return res.status(200).json(outputDateFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const outputDateFinder = await OutputSearchDateHour.SearchByDate(date);
-
-    if (!outputDateFinder) {
-      return res.status(400).json({
-        errors: ['Saída não encontrada'],
-      });
-    }
-
-    return res.json(outputDateFinder);
   }
 
-  async SearchByHour(req, res) {
-    const { hour } = req.params;
+  async SearchByHour(req, res, next) {
+    try {
+      const { hour } = req.params;
 
-    if (!hour) {
-      return res.status(500).json({
-        errors: ['Hora da saída não informada'],
-      });
+      const outputHourFinder = await OutputSearchDateHour.SearchByHour(hour);
+
+      if (!outputHourFinder) throw new InternalServerError('Erro interno');
+      if (outputHourFinder.length < 1) throw new NotFound('Saída não encontrada');
+
+      return res.status(200).json(outputHourFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const outputHourFinder = await OutputSearchDateHour.SearchByHour(hour);
-
-    if (!outputHourFinder) {
-      return res.status(400).json({
-        errors: ['Saída não encontrada'],
-      });
-    }
-
-    return res.json(outputHourFinder);
   }
 }
 

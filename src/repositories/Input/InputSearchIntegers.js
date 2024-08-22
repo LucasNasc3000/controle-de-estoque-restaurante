@@ -3,48 +3,36 @@ import inputAttributes from './Attributes';
 
 class InputIntegerSearch {
   async SearchByID(id) {
-    try {
-      const inputFinder = await Input.findOne({
-        where: {
-          id,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findOne({
+      where: {
+        id,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 
   async SearchByQuantity(quantity) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          quantity,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        quantity,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 
   async SearchByMinimunQuantity(minimunQuantity) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          minimun_quantity: minimunQuantity,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        minimun_quantity: minimunQuantity,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 }
 

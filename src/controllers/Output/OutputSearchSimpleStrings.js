@@ -1,44 +1,52 @@
+/* eslint-disable consistent-return */
+import { NotFound } from '../../errors/notFound';
+import { InternalServerError } from '../../errors/serverErrors';
 import OutputSearchSimpleStrings from '../../repositories/Output/OutputSearchSimpleStrings';
 
 class OutputSearchSimpleStringsController {
-  async SearchByType(req, res) {
-    const { type } = req.params;
+  async SearchByType(req, res, next) {
+    try {
+      const { type } = req.params;
 
-    if (!type) {
-      return res.status(500).json({
-        errors: ['Tipo não informado'],
-      });
+      const outputTypeFinder = await OutputSearchSimpleStrings.SearchByType(type);
+
+      if (!outputTypeFinder) throw new InternalServerError('Erro interno');
+      if (outputTypeFinder.length < 1) throw new NotFound('Saída não encontrada');
+
+      return res.status(200).json(outputTypeFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const outputTypeFinder = await OutputSearchSimpleStrings.SearchByType(type);
-
-    if (!outputTypeFinder) {
-      return res.status(400).json({
-        errors: ['Saída não encontrada'],
-      });
-    }
-
-    return res.json(outputTypeFinder);
   }
 
-  async SearchByName(req, res) {
-    const { name } = req.params;
+  async SearchByName(req, res, next) {
+    try {
+      const { name } = req.params;
 
-    if (!name) {
-      return res.status(500).json({
-        errors: ['Nome não informado'],
-      });
+      const outputNameFinder = await OutputSearchSimpleStrings.SearchByName(name);
+
+      if (!outputNameFinder) throw new InternalServerError('Erro interno');
+      if (outputNameFinder.length < 1) throw new NotFound('Saída não encontrada');
+
+      return res.status(200).json(outputNameFinder);
+    } catch (err) {
+      next(err);
     }
+  }
 
-    const outputNameFinder = await OutputSearchSimpleStrings.SearchByName(name);
+  async SearchByEmployeeId(req, res, next) {
+    try {
+      const { employeeid } = req.params;
 
-    if (!outputNameFinder) {
-      return res.status(400).json({
-        errors: ['Saída não encontrada'],
-      });
+      const outputEmployeeIdFinder = await OutputSearchSimpleStrings.SearchByEmployeeId(employeeid);
+
+      if (!outputEmployeeIdFinder) throw new InternalServerError('Erro interno');
+      if (outputEmployeeIdFinder.length < 1) throw new NotFound('Insumo não encontrado');
+
+      return res.status(200).json(outputEmployeeIdFinder);
+    } catch (err) {
+      next(err);
     }
-
-    return res.json(outputNameFinder);
   }
 }
 

@@ -1,44 +1,36 @@
+/* eslint-disable consistent-return */
 import OutputSearchIntegers from '../../repositories/Output/OutputSearchIntegers';
+import { NotFound } from '../../errors/notFound';
+import { InternalServerError } from '../../errors/serverErrors';
 
 class OutputSearchIntegersController {
-  async SearchByID(req, res) {
-    const { id } = req.params;
+  async SearchByID(req, res, next) {
+    try {
+      const { id } = req.params;
 
-    if (!id) {
-      return res.status(500).json({
-        errors: ['ID não informado'],
-      });
+      const outputIdFinder = await OutputSearchIntegers.SearchByID(id);
+
+      if (!outputIdFinder) throw new NotFound('Saída não encontrada');
+
+      return res.status(200).json(outputIdFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const outputIdFinder = await OutputSearchIntegers.SearchByID(id);
-
-    if (!outputIdFinder) {
-      return res.status(400).json({
-        errors: ['Saída não encontrada'],
-      });
-    }
-
-    return res.json(outputIdFinder);
   }
 
-  async SearchByUnities(req, res) {
-    const { unities } = req.params;
+  async SearchByUnities(req, res, next) {
+    try {
+      const { unities } = req.params;
 
-    if (!unities) {
-      return res.status(500).json({
-        errors: ['Unidades não informadas'],
-      });
+      const inputUnitiesFinder = await OutputSearchIntegers.SearchByUnities(unities);
+
+      if (!inputUnitiesFinder) throw new InternalServerError('Erro interno');
+      if (inputUnitiesFinder.length < 1) throw new NotFound('Saída não encontrada');
+
+      return res.status(200).json(inputUnitiesFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const inputUnitiesFinder = await OutputSearchIntegers.SearchByUnities(unities);
-
-    if (!inputUnitiesFinder) {
-      return res.status(400).json({
-        errors: ['Saída não encontrada'],
-      });
-    }
-
-    return res.json(inputUnitiesFinder);
   }
 }
 

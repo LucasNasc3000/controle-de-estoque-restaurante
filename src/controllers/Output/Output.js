@@ -19,7 +19,7 @@ class OutputController {
       const inputExists = await InputSearchSimpleStrings.SearchByName(name);
 
       if (inputExists.length < 1) throw new BadRequest(`Ocorreu um erro interno ou o insumo ${name} não está cadastrado`);
-      if (!inputExists) throw new InternalServerError('Erro desconhecido');
+      if (!inputExists) throw new InternalServerError('Erro interno');
 
       const inputConnection = await InputConnection.InputUpdate(inputExists, req.body);
 
@@ -43,7 +43,7 @@ class OutputController {
 
       const store = await OutputMethods.Store(req.body);
 
-      if (!store) throw new InternalServerError('Erro desconhecido');
+      if (!store) throw new InternalServerError('Erro interno');
 
       return res.status(201).json(store);
     } catch (err) {
@@ -55,8 +55,8 @@ class OutputController {
     try {
       const outputsList = await OutputMethods.List();
 
-      if (outputsList.length < 1) throw new BadRequest('Não há sáidas registradas.');
-      if (!outputsList) throw new InternalServerError('Erro desconhecido');
+      if (!outputsList) throw new InternalServerError('Erro interno');
+      if (outputsList.length < 1) throw new BadRequest('Não há sáidas registradas');
 
       return res.status(200).send(outputsList);
     } catch (err) {
@@ -78,7 +78,7 @@ class OutputController {
       const outputUpdate = await OutputMethods.Update(id, req.body);
 
       if (outputUpdate === 'saída não encontrada') throw new BadRequest('Insumo não registrado');
-      if (!outputUpdate) throw new InternalServerError('Erro desconhecido');
+      if (!outputUpdate) throw new InternalServerError('Erro interno');
 
       return res.status(200).send(outputUpdate);
     } catch (err) {

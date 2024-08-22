@@ -4,78 +4,58 @@ import salesAttributes from './Attributes';
 
 class SalesSearchSalesData {
   async SearchById(id) {
-    try {
-      const SaleFinder = await Sale.findOne({
-        where: {
-          id,
-        },
-        attributes: salesAttributes,
-      });
+    const SaleFinder = await Sale.findOne({
+      where: {
+        id,
+      },
+      attributes: salesAttributes,
+    });
 
-      return SaleFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return SaleFinder;
   }
 
   async SearchByemployeeId(employeeId) {
-    try {
-      const saleFinderByEmployeeId = await Sale.findOne({
-        where: {
-          employee_id: employeeId,
-        },
-        attributes: salesAttributes,
-      });
+    const saleFinderByEmployeeId = await Sale.findOne({
+      where: {
+        employee_id: employeeId,
+      },
+      attributes: salesAttributes,
+    });
 
-      return saleFinderByEmployeeId;
-    } catch (e) {
-      return console.log(e);
-    }
+    return saleFinderByEmployeeId;
   }
 
   async SearchByProducts(products) {
-    try {
-      const salesFinderByProducts = await Sale.findAll({
-        where: {
-          products: { [Op.like]: `%${products}%` },
-        },
-        attributes: salesAttributes,
-      });
+    const salesFinderByProducts = await Sale.findAll({
+      where: {
+        products: { [Op.like]: `%${products}%` },
+      },
+      attributes: salesAttributes,
+    });
 
-      return salesFinderByProducts;
-    } catch (e) {
-      return console.log(e);
-    }
+    return salesFinderByProducts;
   }
 
   async SearchDate(date) {
-    try {
-      const salesFinderDate = await Sale.findAll({
-        where: {
-          date: { [Op.startsWith]: date },
-        },
-        attributes: salesAttributes,
-      });
+    const salesFinderDate = await Sale.findAll({
+      where: {
+        date: { [Op.startsWith]: date },
+      },
+      attributes: salesAttributes,
+    });
 
-      return salesFinderDate;
-    } catch (e) {
-      return console.log(e);
-    }
+    return salesFinderDate;
   }
 
   async SearchByHour(hour) {
-    try {
-      const salesFinderByHour = await Sale.findAll({
-        where: {
-          hour: { [Op.startsWith]: hour },
-        },
-        attributes: salesAttributes,
-      });
+    const salesFinderByHour = await Sale.findAll({
+      where: {
+        hour: { [Op.startsWith]: hour },
+      },
+      attributes: salesAttributes,
+    });
 
-      return salesFinderByHour;
-    } catch (e) {
-      return console.log(e);
-    }
+    return salesFinderByHour;
   }
 }
 

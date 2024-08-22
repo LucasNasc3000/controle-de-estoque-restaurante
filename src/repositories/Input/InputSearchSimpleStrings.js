@@ -4,52 +4,47 @@ import inputAttributes from './Attributes';
 
 class InputSimpleStringSearch {
   async SearchByType(type) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          type: { [Op.startsWith]: type },
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        type: { [Op.startsWith]: type },
+      },
+      attributes: inputAttributes,
+    });
 
-      if (inputFinder.length < 1) return null;
-
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 
   async SearchByName(name) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          name: { [Op.startsWith]: name },
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        name: { [Op.startsWith]: name },
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 
   async SearchBySupplier(supplier) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          supplier: { [Op.startsWith]: supplier },
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        supplier: { [Op.startsWith]: supplier },
+      },
+      attributes: inputAttributes,
+    });
 
-      if (inputFinder.length < 1) return null;
+    return inputFinder;
+  }
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+  async SearchByEmployeeId(employeeId) {
+    const inputFinderByEmployeeId = await Input.findAll({
+      where: {
+        employee_id: employeeId,
+      },
+      attributes: inputAttributes,
+    });
+
+    return inputFinderByEmployeeId;
   }
 }
 

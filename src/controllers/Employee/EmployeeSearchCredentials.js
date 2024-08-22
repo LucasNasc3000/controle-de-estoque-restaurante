@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import EmployeesSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
-import { BadRequest } from '../../errors/clientErrors';
+import { NotFound } from '../../errors/notFound';
+import { InternalServerError } from '../../errors/serverErrors';
 
 class EmployeesSearchCredentialsController {
   async SearchByID(req, res, next) {
@@ -9,7 +10,7 @@ class EmployeesSearchCredentialsController {
 
       const employeeIDFinder = await EmployeesSearchCredentials.SearchById(id);
 
-      if (!employeeIDFinder) throw new BadRequest('Funcionário não encontrado');
+      if (!employeeIDFinder) throw new NotFound('Funcionário não encontrado');
 
       return res.status(200).json(employeeIDFinder);
     } catch (err) {
@@ -23,7 +24,8 @@ class EmployeesSearchCredentialsController {
 
       const employeeNameFinder = await EmployeesSearchCredentials.SearchByName(name);
 
-      if (!employeeNameFinder) throw new BadRequest('Funcionário não encontrado');
+      if (!employeeNameFinder) throw new InternalServerError('Erro interno');
+      if (employeeNameFinder.length < 1) throw new NotFound('Funcionário não encontrado');
 
       return res.status(200).json(employeeNameFinder);
     } catch (err) {
@@ -37,7 +39,8 @@ class EmployeesSearchCredentialsController {
 
       const employeeEmailFinder = await EmployeesSearchCredentials.SearchByEmail(email);
 
-      if (!employeeEmailFinder) throw new BadRequest('Funcionário não encontrado');
+      if (!employeeEmailFinder) throw new InternalServerError('Erro interno');
+      if (employeeEmailFinder.length < 1) throw new NotFound('Funcionário não encontrado');
 
       return res.status(200).json(employeeEmailFinder);
     } catch (err) {

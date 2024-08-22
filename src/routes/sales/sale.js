@@ -5,8 +5,8 @@ import salesPermission from '../../middlewares/salesPermission';
 
 const router = new Router();
 
-router.post('/', loginRequired, salesPermission, Sales.store);
-router.get('/', loginRequired, salesPermission, Sales.index);
-router.patch('/:id', loginRequired, salesPermission, Sales.update);
+router.post('/', loginRequired, salesPermission, Sales.Store);
+router.get('/', loginRequired, salesPermission, Sales.Index);
+router.patch('/:id', loginRequired, salesPermission, Sales.Update);
 
 export default router;

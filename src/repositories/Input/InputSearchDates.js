@@ -3,33 +3,25 @@ import inputAttributes from './Attributes';
 
 class InputDatesSearch {
   async SearchByEntryDate(entrydate) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          entrydate,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        entrydate,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 
   async SearchByExpirationDate(expirationdate) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          expirationdate,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        expirationdate,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 }
 

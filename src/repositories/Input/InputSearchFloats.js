@@ -3,33 +3,25 @@ import inputAttributes from './Attributes';
 
 class InputFloatsSearch {
   async SearchByTotalWeight(totalweight) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          totalweight,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        totalweight,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 
   async SearchByWeightPerUnit(weightperunit) {
-    try {
-      const inputFinder = await Input.findAll({
-        where: {
-          weightperunit,
-        },
-        attributes: inputAttributes,
-      });
+    const inputFinder = await Input.findAll({
+      where: {
+        weightperunit,
+      },
+      attributes: inputAttributes,
+    });
 
-      return inputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputFinder;
   }
 }
 

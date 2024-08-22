@@ -15,7 +15,7 @@ class InputController {
 
       const store = await InputMethods.Store(req.body);
 
-      if (!store) throw new InternalServerError('Erro desconhecido');
+      if (!store) throw new InternalServerError('Erro interno');
 
       return res.status(201).json(store);
     } catch (err) {
@@ -27,8 +27,8 @@ class InputController {
     try {
       const inputList = await InputMethods.List();
 
-      if (inputList === null) throw new InternalServerError('Ocorreu um erro interno ou não há insumos cadastrados');
-      if (inputList !== null && !inputList) throw new InternalServerError('Erro desconhecido');
+      if (!inputList) throw new InternalServerError('Erro interno');
+      if (inputList.length < 1) throw new InternalServerError('Não há insumos cadastrados');
 
       return res.status(200).send(inputList);
     } catch (err) {
@@ -42,7 +42,6 @@ class InputController {
       const validations = Validation.MainValidations(req.body);
       const inputValidations = Validation.InputsValidation(req.body);
 
-      if (!id) throw new BadRequest('id não informado');
       if (validations !== null) throw new BadRequest(validations);
       if (inputValidations !== null) throw new BadRequest(inputValidations);
 
@@ -50,8 +49,8 @@ class InputController {
       // requisições como insomnia.
       const inputUpdate = await InputMethods.Update(id, req.body);
 
-      if (inputUpdate === null) throw new BadRequest('Insumo não registrado');
-      if (inputUpdate !== null && !inputUpdate) throw new InternalServerError('Erro desconhecido');
+      if (inputUpdate === 'insumo não encontrado') throw new BadRequest('Insumo não registrado');
+      if (!inputUpdate) throw new InternalServerError('Erro interno');
 
       return res.status(200).send(inputUpdate);
     } catch (err) {

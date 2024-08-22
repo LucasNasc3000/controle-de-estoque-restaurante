@@ -6,13 +6,8 @@ import express from 'express';
 import cors from 'cors';
 import errorHandler from './middlewares/errorHandler';
 
-// resolver os retornos das pesquisas nos controllers
-// criar classe para o 404 not found?
+// ver a questão dos findAll
 // try catch nos repositories
-// Personalizar erros criando mais classes que extendem de erro
-// Como fica o novo sistema de erros para os repositories?
-// Trocar os nomes dos metodos para uppercase
-// Arquivo com o regex para o uuid para as employee id validations
 
 // input routes
 import homeRoutes from './routes/home';
@@ -28,6 +23,7 @@ import inputSearchByWeightPerUnit from './routes/input/inputSearchByWeightPerUni
 import inputSearchBySupplier from './routes/input/inputSearchBySupplier';
 import inputSearchByEntryDate from './routes/input/inputSearchByEntryDate';
 import inputSearchByExpirationDate from './routes/input/inputSearchByExpirationDate';
+import inputSearchByEmployeeId from './routes/input/inputSearchByEmployeeId';
 
 // output routes
 import outputRoutes from './routes/output/output';
@@ -38,6 +34,7 @@ import outputSearchByDate from './routes/output/outputSearchByDate';
 import outputSearchByHour from './routes/output/outputSearchByHour';
 import outputSearchByUnities from './routes/output/outputSearchByUnities';
 import outputSearchByWeight from './routes/output/outputSearchByWeight';
+import outputSearchByEmployeeId from './routes/output/outputSearchByEmployeeId';
 
 // employee routes
 import employeeRoutes from './routes/employee/employee';
@@ -92,6 +89,7 @@ class App {
     this.app.use('/inputs/search/supplier/', inputSearchBySupplier);
     this.app.use('/inputs/search/entrydate/', inputSearchByEntryDate);
     this.app.use('/inputs/search/expirationdate/', inputSearchByExpirationDate);
+    this.app.use('/inputs/search/employeeid/', inputSearchByEmployeeId);
 
     // output routes
     this.app.use('/outputs/', outputRoutes);
@@ -102,6 +100,7 @@ class App {
     this.app.use('/outputs/search/hour/', outputSearchByHour);
     this.app.use('/outputs/search/unities/', outputSearchByUnities);
     this.app.use('/outputs/search/weight/', outputSearchByWeight);
+    this.app.use('/outputs/search/employeeid/', outputSearchByEmployeeId);
 
     // employee routes
     this.app.use('/employees/', employeeRoutes);

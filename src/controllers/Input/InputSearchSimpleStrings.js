@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
-import { BadRequest } from '../../errors/clientErrors';
+import { NotFound } from '../../errors/notFound';
+import { InternalServerError } from '../../errors/serverErrors';
 
 class InputSearchSimpleStringsController {
   async SearchByType(req, res, next) {
@@ -9,7 +10,8 @@ class InputSearchSimpleStringsController {
 
       const inputTypeFinder = await InputSearchSimpleStrings.SearchByType(type);
 
-      if (!inputTypeFinder) throw new BadRequest('Insumo não encontrado');
+      if (!inputTypeFinder) throw new InternalServerError('Erro interno');
+      if (inputTypeFinder.length < 1) throw new NotFound('Insumo não encontrado');
 
       return res.status(200).json(inputTypeFinder);
     } catch (err) {
@@ -23,7 +25,8 @@ class InputSearchSimpleStringsController {
 
       const inputNameFinder = await InputSearchSimpleStrings.SearchByName(name);
 
-      if (!inputNameFinder) throw new BadRequest('Insumo não encontrado');
+      if (!inputNameFinder) throw new InternalServerError('Erro interno');
+      if (inputNameFinder.length < 1) throw new NotFound('Insumo não encontrado');
 
       return res.status(200).json(inputNameFinder);
     } catch (err) {
@@ -37,9 +40,25 @@ class InputSearchSimpleStringsController {
 
       const inputSupplierFinder = await InputSearchSimpleStrings.SearchBySupplier(supplier);
 
-      if (!inputSupplierFinder) throw new BadRequest('Insumo não encontrado');
+      if (!inputSupplierFinder) throw new InternalServerError('Erro interno');
+      if (inputSupplierFinder.length < 1) throw new NotFound('Insumo não encontrado');
 
       return res.status(200).json(inputSupplierFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchByEmployeeId(req, res, next) {
+    try {
+      const { employeeid } = req.params;
+
+      const inputEmployeeIdFinder = await InputSearchSimpleStrings.SearchByEmployeeId(employeeid);
+
+      if (!inputEmployeeIdFinder) throw new InternalServerError('Erro interno');
+      if (inputEmployeeIdFinder.length < 1) throw new NotFound('Insumo não encontrado');
+
+      return res.status(200).json(inputEmployeeIdFinder);
     } catch (err) {
       next(err);
     }

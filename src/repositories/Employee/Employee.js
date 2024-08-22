@@ -3,52 +3,36 @@ import employeeAttributes from './Attributes';
 
 class EmployeesList {
   async List() {
-    try {
-      const employees = await Employee.findAll({
-        attributes: employeeAttributes,
-        order: [['id', 'DESC']],
-      });
+    const employees = await Employee.findAll({
+      attributes: employeeAttributes,
+      order: [['id', 'DESC']],
+    });
 
-      return employees;
-    } catch (e) {
-      return console.log(e);
-    }
+    return employees;
   }
 
   async Store(data) {
-    try {
-      const newEmployee = await Employee.create(data);
-      return newEmployee;
-    } catch (e) {
-      return console.log(e);
-    }
+    const newEmployee = await Employee.create(data);
+    return newEmployee;
   }
 
   async Update(id, data) {
-    try {
-      const findEmployee = await Employee.findByPk(id);
+    const findEmployee = await Employee.findByPk(id);
 
-      if (!findEmployee) return 'funcionário não encontrado';
+    if (!findEmployee) return 'funcionário não encontrado';
 
-      const employeeUpdate = await findEmployee.update(data);
+    const employeeUpdate = await findEmployee.update(data);
 
-      return employeeUpdate;
-    } catch (e) {
-      return console.log(e);
-    }
+    return employeeUpdate;
   }
 
   // eslint-disable-next-line consistent-return
   async Delete(id) {
-    try {
-      const deleteEmployee = await Employee.findByPk(id);
+    const deleteEmployee = await Employee.findByPk(id);
 
-      if (!deleteEmployee) return 'funcionário não registrado';
+    if (!deleteEmployee) return 'funcionário não registrado';
 
-      await deleteEmployee.destroy();
-    } catch (e) {
-      return console.log(e);
-    }
+    await deleteEmployee.destroy();
   }
 }
 

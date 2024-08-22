@@ -3,39 +3,27 @@ import inputAttributes from './Attributes';
 
 class InputsList {
   async List() {
-    try {
-      const inputs = await Input.findAll({
-        attributes: inputAttributes,
-        order: [['id', 'DESC']],
-      });
+    const inputs = await Input.findAll({
+      attributes: inputAttributes,
+      order: [['id', 'DESC']],
+    });
 
-      return inputs;
-    } catch (e) {
-      return console.log(e);
-    }
+    return inputs;
   }
 
   async Store(data) {
-    try {
-      const newInput = await Input.create(data);
-      return newInput;
-    } catch (e) {
-      return console.log(e);
-    }
+    const newInput = await Input.create(data);
+    return newInput;
   }
 
   async Update(id, data) {
-    try {
-      const input = await Input.findByPk(id);
+    const input = await Input.findByPk(id);
 
-      if (!input) return 'insumo não encontrado';
+    if (!input) return 'insumo não encontrado';
 
-      const newInputData = await input.update(data);
+    const newInputData = await input.update(data);
 
-      return newInputData;
-    } catch (e) {
-      return console.log(e);
-    }
+    return newInputData;
   }
 }
 

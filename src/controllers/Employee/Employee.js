@@ -15,7 +15,7 @@ class EmployeeController {
 
       const employeeStore = await Employees.Store(req.body);
 
-      if (!employeeStore) throw new InternalServerError('Erro desconhecido');
+      if (!employeeStore) throw new InternalServerError('Erro interno');
 
       return res.status(201).json(employeeStore);
     } catch (err) {
@@ -27,8 +27,8 @@ class EmployeeController {
     try {
       const employeesList = await Employees.List();
 
+      if (!employeesList) throw new InternalServerError('Erro interno');
       if (employeesList.length < 1) throw new InternalServerError('Não há funcionários cadastrados.');
-      if (!employeesList) throw new InternalServerError('Erro desconhecido');
 
       return res.status(200).send(employeesList);
     } catch (err) {
@@ -50,7 +50,7 @@ class EmployeeController {
       const employeeUpdate = await Employees.Update(id, req.body);
 
       if (employeeUpdate === 'funcionário não encontrado') throw new BadRequest('Funcionário não registrado');
-      if (!employeeUpdate) throw new InternalServerError('Erro desconhecido');
+      if (!employeeUpdate) throw new InternalServerError('Erro interno');
 
       return res.status(200).send(employeeUpdate);
     } catch (err) {
@@ -65,7 +65,7 @@ class EmployeeController {
       const employeeDelete = await Employees.Delete(id);
 
       if (employeeDelete === 'funcionário não registrado') throw new BadRequest('Funcionário não registrado');
-      if (!employeeDelete) throw new InternalServerError('Erro desconhecido');
+      if (!employeeDelete) throw new InternalServerError('Erro interno');
 
       return res.status(200).json(`Funcionário ${id} deletado`);
     } catch (err) {

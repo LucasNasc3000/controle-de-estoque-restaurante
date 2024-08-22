@@ -4,33 +4,36 @@ import outputAttributes from './Attributes';
 
 class OutputSimpleStringSearch {
   async SearchByType(type) {
-    try {
-      const outputFinder = await Output.findAll({
-        where: {
-          type: { [Op.startsWith]: type },
-        },
-        attributes: outputAttributes,
-      });
+    const outputFinder = await Output.findAll({
+      where: {
+        type: { [Op.startsWith]: type },
+      },
+      attributes: outputAttributes,
+    });
 
-      return outputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return outputFinder;
   }
 
   async SearchByName(name) {
-    try {
-      const outputFinder = await Output.findAll({
-        where: {
-          name: { [Op.startsWith]: name },
-        },
-        attributes: outputAttributes,
-      });
+    const outputFinder = await Output.findAll({
+      where: {
+        name: { [Op.startsWith]: name },
+      },
+      attributes: outputAttributes,
+    });
 
-      return outputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return outputFinder;
+  }
+
+  async SearchByEmployeeId(employeeId) {
+    const outputFinderByEmployeeId = await Output.findAll({
+      where: {
+        employee_id: employeeId,
+      },
+      attributes: outputAttributes,
+    });
+
+    return outputFinderByEmployeeId;
   }
 }
 

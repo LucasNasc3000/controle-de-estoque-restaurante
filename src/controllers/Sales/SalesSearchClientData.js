@@ -1,66 +1,54 @@
+/* eslint-disable consistent-return */
+import { NotFound } from '../../errors/notFound';
+import { InternalServerError } from '../../errors/serverErrors';
 import SalesSearchClientData from '../../repositories/Sales/SalesSearchClientData';
 
 class SalesSearchClientDataController {
-  async SearchByClientName(req, res) {
-    const { clientname } = req.params;
+  async SearchByClientName(req, res, next) {
+    try {
+      const { clientname } = req.params;
 
-    if (!clientname) {
-      return res.status(500).json({
-        errors: ['Nome do cliente não informado'],
-      });
+      const saleClientNameFinder = await
+      SalesSearchClientData.SearchByClientName(clientname);
+
+      if (!saleClientNameFinder) throw new InternalServerError('Erro interno');
+      if (saleClientNameFinder.length < 1) throw new NotFound('Venda não encontrada');
+
+      return res.status(200).json(saleClientNameFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const saleClientNameFinder = await
-    SalesSearchClientData.SearchByClientName(clientname);
-
-    if (!saleClientNameFinder) {
-      return res.status(400).json({
-        errors: ['Venda não encontrada'],
-      });
-    }
-
-    return res.json(saleClientNameFinder);
   }
 
-  async SearchByAddress(req, res) {
-    const { address } = req.params;
+  async SearchByAddress(req, res, next) {
+    try {
+      const { address } = req.params;
 
-    if (!address) {
-      return res.status(500).json({
-        errors: ['Endereço não informado'],
-      });
+      const salesAddressFinder = await SalesSearchClientData.SearchByAddress(address);
+
+      if (!salesAddressFinder) throw new InternalServerError('Erro interno');
+      if (salesAddressFinder.length < 1) throw new NotFound('Venda não encontrada');
+
+      return res.status(200).json(salesAddressFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const salesAddressFinder = await SalesSearchClientData.SearchByAddress(address);
-
-    if (!salesAddressFinder) {
-      return res.status(400).json({
-        errors: ['Venda não encontrada'],
-      });
-    }
-
-    return res.json(salesAddressFinder);
   }
 
-  async SearchByPhoneNumber(req, res) {
-    const { phonenumber } = req.params;
+  async SearchByPhoneNumber(req, res, next) {
+    try {
+      const { phonenumber } = req.params;
 
-    if (!phonenumber) {
-      return res.status(500).json({
-        errors: ['Número de telefone não informado'],
-      });
+      const employeePhoneNumberFinder = await
+      SalesSearchClientData.SearchByPhoneNumber(phonenumber);
+
+      if (!employeePhoneNumberFinder) throw new InternalServerError('Erro interno');
+      if (employeePhoneNumberFinder.length < 1) throw new NotFound('Venda não encontrada');
+
+      return res.status(200).json(employeePhoneNumberFinder);
+    } catch (err) {
+      next(err);
     }
-
-    const employeePhoneNumberFinder = await
-    SalesSearchClientData.SearchByPhoneNumber(phonenumber);
-
-    if (!employeePhoneNumberFinder) {
-      return res.status(400).json({
-        errors: ['Venda não encontrada'],
-      });
-    }
-
-    return res.json(employeePhoneNumberFinder);
   }
 }
 

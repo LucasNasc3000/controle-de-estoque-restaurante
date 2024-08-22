@@ -4,33 +4,25 @@ import outputAttributes from './Attributes';
 
 class OutputSearchDateHourRepository {
   async SearchByDate(date) {
-    try {
-      const outputFinder = await Output.findAll({
-        where: {
-          date: { [Op.startsWith]: date },
-        },
-        attributes: outputAttributes,
-      });
+    const outputFinder = await Output.findAll({
+      where: {
+        date: { [Op.startsWith]: date },
+      },
+      attributes: outputAttributes,
+    });
 
-      return outputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return outputFinder;
   }
 
   async SearchByHour(hour) {
-    try {
-      const outputFinder = await Output.findAll({
-        where: {
-          hour: { [Op.startsWith]: hour },
-        },
-        attributes: outputAttributes,
-      });
+    const outputFinder = await Output.findAll({
+      where: {
+        hour: { [Op.startsWith]: hour },
+      },
+      attributes: outputAttributes,
+    });
 
-      return outputFinder;
-    } catch (e) {
-      return console.log(e);
-    }
+    return outputFinder;
   }
 }
 
