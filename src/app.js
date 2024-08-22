@@ -7,7 +7,8 @@ import cors from 'cors';
 import errorHandler from './middlewares/errorHandler';
 
 // ver a questão dos findAll
-// try catch nos repositories
+// criar erros para logs
+// verificar codigo (geral)
 
 // input routes
 import homeRoutes from './routes/home';

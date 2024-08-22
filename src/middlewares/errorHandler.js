@@ -2,6 +2,8 @@ import { BadRequest } from '../errors/clientErrors';
 import { InternalServerError } from '../errors/serverErrors';
 import { NotFound } from '../errors/notFound';
 import { EmailErrors } from '../errors/emailsErrors';
+import { LogError } from '../errors/logErrors';
+import { Unauthorized } from '../errors/authErrors';
 
 // O return evita a quebra da aplicação e outras requisições podem ser feitas mesmo que seja
 // retornado um erro, como o erro 500 abaixo, por exemplo.
@@ -23,7 +25,17 @@ const errorHandler = (err, req, res, next) => {
         error: [err.message],
       });
 
+    case (err instanceof Unauthorized):
+      return res.status(401).json({
+        error: [err.message],
+      });
+
     case (err instanceof EmailErrors):
+      return res.status(500).json({
+        error: [err.name],
+      });
+
+    case (err instanceof LogError):
       return res.status(500).json({
         error: [err.name],
       });

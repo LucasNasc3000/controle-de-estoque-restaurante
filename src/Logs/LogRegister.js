@@ -1,6 +1,8 @@
 import LogList from '../repositories/Employee/Log';
+import Notification from '../Notifications/Notification';
+import { LogError } from '../errors/logErrors';
 
-class LogController {
+class LogRegister {
   setLogData() {
     const data = new Date();
     const dateTime = [];
@@ -25,8 +27,14 @@ class LogController {
       time: logDateTime[1],
       employee_id: id,
     };
-    await LogList.Store(logData);
+
+    const logStore = await LogList.Store(logData);
+
+    if (!logStore) {
+      await Notification.DataFilter('', '', logStore);
+      throw new LogError('Erro ao realizar login');
+    }
   }
 }
 
-export default new LogController();
+export default new LogRegister();
