@@ -30,7 +30,7 @@ class EmployeeController {
       if (!employeesList) throw new InternalServerError('Erro interno');
       if (employeesList.length < 1) throw new InternalServerError('Não há funcionários cadastrados.');
 
-      return res.status(200).send(employeesList);
+      return res.status(200).json(employeesList);
     } catch (err) {
       next(err);
     }

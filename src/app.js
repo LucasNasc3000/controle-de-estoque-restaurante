@@ -3,11 +3,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
-import cors from 'cors';
+// import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from './swagger_output.json';
 import errorHandler from './middlewares/errorHandler';
 
 // ver a questão dos findAll
-// criar erros para logs
 // verificar codigo (geral)
 
 // input routes
@@ -67,9 +68,9 @@ class App {
    a um erro que não consegui solucionar e que impedia o uso desta API pela aplicação web.
    */
   middlewares() {
-    this.app.use(cors({
-      origin: '*',
-    }));
+  //   this.app.use(cors({
+  //     origin: '*',
+  //   }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
@@ -104,7 +105,7 @@ class App {
     this.app.use('/outputs/search/employeeid/', outputSearchByEmployeeId);
 
     // employee routes
-    this.app.use('/employees/', employeeRoutes);
+    this.app.use('/employees', employeeRoutes);
     this.app.use('/employees/search/id', employeeSearchByID);
     this.app.use('/employees/search/name', employeeSearchByName);
     this.app.use('/employees/search/email', employeeSearchByEmail);
@@ -119,6 +120,8 @@ class App {
     this.app.use('/sales/search/id/', saleSearchId);
     this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
     this.app.use('/sales/search/products/', saleSearchProducts);
+
+    this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
     this.app.use(errorHandler);
   }
