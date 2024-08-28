@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "Storage manager",
+    "description": "API para ser o back-end de um sistema de controle de estoque"
   },
   "host": "localhost:3333",
   "basePath": "/",
@@ -303,7 +303,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -435,7 +435,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -528,7 +528,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -621,7 +621,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -711,7 +711,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -804,7 +804,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -897,7 +897,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -990,7 +990,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1083,7 +1083,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1176,7 +1176,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1269,7 +1269,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1362,7 +1362,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1449,7 +1449,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1564,7 +1564,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1651,7 +1651,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1771,7 +1771,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1858,7 +1858,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1945,7 +1945,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2032,7 +2032,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2119,7 +2119,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2206,7 +2206,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2293,7 +2293,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2380,7 +2380,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -3026,6 +3026,9 @@
     },
     "/sales/": {
       "post": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3047,11 +3050,78 @@
             "name": "adminpassword",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "hour": {
+                  "type": "string"
+                },
+                "client_name": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "products": {
+                  "type": "string"
+                },
+                "employee_id": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3062,6 +3132,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3087,7 +3160,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3100,6 +3210,9 @@
     },
     "/sales/{id}": {
       "patch": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3127,11 +3240,69 @@
             "name": "adminpassword",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "hour": {
+                  "type": "string"
+                },
+                "client_name": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3144,6 +3315,9 @@
     },
     "/sales/search/address/{address}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3175,7 +3349,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3188,6 +3399,9 @@
     },
     "/sales/search/clientname/{clientname}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3219,7 +3433,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3232,6 +3483,9 @@
     },
     "/sales/search/date/{date}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3263,7 +3517,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3276,6 +3567,9 @@
     },
     "/sales/search/employeeid/{employeeid}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3307,7 +3601,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3320,6 +3651,9 @@
     },
     "/sales/search/hour/{hour}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3351,7 +3685,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3364,6 +3735,9 @@
     },
     "/sales/search/id/{id}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3395,7 +3769,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3408,6 +3819,9 @@
     },
     "/sales/search/phonenumber/{phonenumber}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3439,7 +3853,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -3452,6 +3903,9 @@
     },
     "/sales/search/products/{products}": {
       "get": {
+        "tags": [
+          "Sales"
+        ],
         "description": "",
         "parameters": [
           {
@@ -3483,7 +3937,44 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
