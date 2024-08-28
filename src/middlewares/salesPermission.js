@@ -2,16 +2,16 @@ import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
 // eslint-disable-next-line consistent-return
 export default async (req, res, next) => {
-  const { permission, id, adminpassword } = req.headers;
+  const { permission, employeeid, adminpassword } = req.headers;
   let adminPassValidator = '';
 
-  if (!permission || !id) {
+  if (!permission || !employeeid) {
     return res.status(401).json({
       errors: ['Permissao para vendas e id necessarios'],
     });
   }
 
-  const employee = await Employee.SearchById(id);
+  const employee = await Employee.SearchById(employeeid);
 
   if (!employee) {
     return res.status(400).json({

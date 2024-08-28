@@ -2,15 +2,15 @@
 import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
 export default async (req, res, next) => {
-  const { permission, id, adminpassword } = req.headers;
+  const { permission, employeeid, adminpassword } = req.headers;
 
-  if (!permission || !id || !adminpassword) {
+  if (!permission || !employeeid || !adminpassword) {
     return res.status(401).json({
-      errors: ['Permissao, senha de admin e id necessarios'],
+      errors: ['Permissao, senha de admin e employeeid necessarios'],
     });
   }
 
-  const employee = await Employee.SearchById(id);
+  const employee = await Employee.SearchById(employeeid);
 
   if (!employee) {
     return res.status(400).json({

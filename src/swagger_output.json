@@ -68,12 +68,12 @@
       }
     },
     "/inputs/": {
-      "description": "Retorna todos os insumos",
+      "description": "",
       "post": {
         "tags": [
           "Inputs"
         ],
-        "description": "Retorna todos os insumos",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -86,7 +86,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -171,10 +171,10 @@
                     "type": "date"
                   },
                   "employee_id": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "minimun_quantity": {
-                    "type": "date"
+                    "type": "number"
                   },
                   "created_at": {
                     "type": "date"
@@ -210,7 +210,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -256,10 +256,10 @@
                     "type": "date"
                   },
                   "employee_id": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "minimun_quantity": {
-                    "type": "date"
+                    "type": "number"
                   },
                   "created_at": {
                     "type": "date"
@@ -343,11 +343,11 @@
                   "type": "date"
                 },
                 "employee_id": {
-                  "type": "date"
-                },
-                "minimun_quantity": {
-                  "type": "date"
-                }
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  }
               }
             }
           }
@@ -388,10 +388,10 @@
                     "type": "date"
                   },
                   "employee_id": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "minimun_quantity": {
-                    "type": "date"
+                    "type": "number"
                   },
                   "created_at": {
                     "type": "date"
@@ -447,7 +447,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -494,7 +540,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -541,7 +633,50 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -588,7 +723,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -635,7 +816,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -682,7 +909,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -729,7 +1002,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -776,7 +1095,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -823,7 +1188,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -870,7 +1281,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -917,7 +1374,53 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "entrydate": {
+                    "type": "date"
+                  },
+                  "expirationdate": {
+                    "type": "date"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -930,6 +1433,9 @@
     },
     "/outputs/": {
       "post": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -958,8 +1464,29 @@
             "schema": {
               "type": "object",
               "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "hour": {
+                  "type": "string"
+                },
                 "name": {
-                  "example": "any"
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "number"
+                },
+                "weightperunit": {
+                  "type": "number"
+                },
+                "unities": {
+                  "type": "number"
+                },
+                "employee_id": {
+                  "type": "string"
                 }
               }
             }
@@ -970,7 +1497,47 @@
             "description": "OK"
           },
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -981,6 +1548,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1006,7 +1576,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1019,6 +1629,9 @@
     },
     "/outputs/{id}": {
       "put": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1046,11 +1659,84 @@
             "name": "adminpassword",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "hour": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "number"
+                },
+                "weightperunit": {
+                  "type": "number"
+                },
+                "unities": {
+                  "type": "number"
+                },
+                "employee_id": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1063,6 +1749,9 @@
     },
     "/outputs/search/id/{id}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1094,7 +1783,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1107,6 +1836,9 @@
     },
     "/outputs/search/type/{type}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1138,7 +1870,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1151,6 +1923,9 @@
     },
     "/outputs/search/name/{name}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1182,7 +1957,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1195,6 +2010,9 @@
     },
     "/outputs/search/date/{date}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1226,7 +2044,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1239,6 +2097,9 @@
     },
     "/outputs/search/hour/{hour}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1270,7 +2131,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1283,6 +2184,9 @@
     },
     "/outputs/search/unities/{unities}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1314,7 +2218,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1327,6 +2271,9 @@
     },
     "/outputs/search/weight/{weight}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1358,7 +2305,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1371,6 +2358,9 @@
     },
     "/outputs/search/employeeid/{employeeid}": {
       "get": {
+        "tags": [
+          "Outputs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1402,7 +2392,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1415,6 +2445,9 @@
     },
     "/employees/": {
       "post": {
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1428,7 +2461,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1436,11 +2469,72 @@
             "name": "adminpassword",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "adminpassword": {
+                  "type": "string"
+                },
+                "permission": {
+                  "type": "string"
+                },
+                "address_allowed": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1451,6 +2545,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1464,7 +2561,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1476,7 +2573,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1489,48 +2620,9 @@
     },
     "/employees/{id}": {
       "put": {
-        "description": "Retorna todos os funcionários",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
+        "tags": [
+          "Employees"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "delete": {
         "description": "",
         "parameters": [
           {
@@ -1550,7 +2642,113 @@
             "type": "string"
           },
           {
+            "name": "employeeid",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "adminpassword": {
+                  "type": "string"
+                },
+                "permission": {
+                  "type": "string"
+                },
+                "address_allowed": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "",
+        "parameters": [
+          {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1562,7 +2760,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1575,6 +2783,9 @@
     },
     "/employees/search/id/{id}": {
       "get": {
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1594,7 +2805,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1606,7 +2817,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1619,6 +2864,9 @@
     },
     "/employees/search/name/{name}": {
       "get": {
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1638,7 +2886,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1650,7 +2898,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1663,6 +2945,9 @@
     },
     "/employees/search/email/{email}": {
       "get": {
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1682,7 +2967,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1694,7 +2979,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
           },
           "400": {
             "description": "Bad Request"
@@ -1720,7 +3039,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1756,7 +3075,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1800,7 +3119,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1844,7 +3163,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1888,7 +3207,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1932,7 +3251,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -1976,7 +3295,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2020,7 +3339,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2064,7 +3383,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2108,7 +3427,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
@@ -2152,7 +3471,7 @@
             "type": "string"
           },
           {
-            "name": "id",
+            "name": "employeeid",
             "in": "header",
             "type": "string"
           },
