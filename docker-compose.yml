@@ -21,4 +21,4 @@ services:
     links:
       - stm_database
     ports:
-      - 3333:3333
+      - 80:3333
