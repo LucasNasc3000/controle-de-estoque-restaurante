@@ -11,9 +11,9 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_USER: user
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-      MYSQL_DATABASE: controle_de_estoque
+      MYSQL_USER=user
+      MYSQL_ALLOW_EMPTY_PASSWORD=true
+      MYSQL_DATABASE=controle_de_estoque
 
   application:
     restart: "always"
@@ -21,4 +21,14 @@ services:
     links:
       - stm_database
     ports:
-      - 80:3333
+      - 3333
+    environment:
+      - JWT_SECRET=qwdh2idwuw&%$*SDFKJEWN!desc
+      - JWT_EXPIRATION=5d
+      - OUTPUTS_PERMISSION=outputsCRS
+      - INPUTS_PERMISSION=inputsCRUS
+      - INPUTS_OUTPUTS_PERMISSION=inputs-outputs
+      - SALES_PERMISSION=salesCRUS
+      - SO_PERMISSION=sales-outputsCRUS
+      - SOI_PERMISSION=salesInOutCRUS
+      - ADMIN_PERMISSION=fullAccess
