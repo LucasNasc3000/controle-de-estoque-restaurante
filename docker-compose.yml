@@ -14,7 +14,6 @@ services:
       MYSQL_USER: user
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
       MYSQL_DATABASE: controle_de_estoque
-
     application:
       restart: "always"
       image: myimage/node:stm
