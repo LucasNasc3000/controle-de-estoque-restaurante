@@ -73,6 +73,7 @@ class App {
   //   }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
   }
 
   routes() {
@@ -120,8 +121,6 @@ class App {
     this.app.use('/sales/search/id/', saleSearchId);
     this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
     this.app.use('/sales/search/products/', saleSearchProducts);
-
-    this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
     this.app.use(errorHandler);
   }

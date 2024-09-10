@@ -1,8 +1,6 @@
 import app from './app';
 import './database';
 
-const listenPort = process.env.APP_PORT;
+app.listen(3000);
 
-app.listen(listenPort);
-
-console.log(`Acesso na porta http://localhost:${listenPort}`);
+console.log('Acesso na porta http://localhost:3000');
