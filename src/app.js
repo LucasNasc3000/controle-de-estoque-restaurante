@@ -73,13 +73,14 @@ class App {
   //   }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
   }
 
   routes() {
     this.app.use('/', homeRoutes);
 
     // input routes
+    this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
     this.app.use('/tokens/', tokenRoutes);
     this.app.use('/inputs/', inputRoutes);
     this.app.use('/inputs/search/id/', inputSearchByID);

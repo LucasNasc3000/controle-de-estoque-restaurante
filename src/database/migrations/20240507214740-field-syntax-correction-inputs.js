@@ -1,10 +1,6 @@
-// your migration-file.js
-'use strict';
-
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.renameColumn('inputs', 'quatity', 'quantity');
-  },
+  up: (queryInterface, Sequelize) => queryInterface.renameColumn('inputs', 'quatity', 'quantity'),
 
-  down: () => {}
+  down: () => {},
 };
