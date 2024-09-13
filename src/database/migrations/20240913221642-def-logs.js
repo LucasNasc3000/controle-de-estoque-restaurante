@@ -2,36 +2,35 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('outputs', {
+    await queryInterface.createTable('logs', {
       id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: 1,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       date: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      hour: {
+      time: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      name: {
-        type: Sequelize.INTEGER,
+      employee_id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
         allowNull: false,
-      },
-      type: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      weight: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      unities: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
+        references: {
+          model: 'employees',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       created_at: {
         type: Sequelize.DATE,
@@ -45,6 +44,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('outputs');
+    await queryInterface.dropTable('logs');
   },
 };

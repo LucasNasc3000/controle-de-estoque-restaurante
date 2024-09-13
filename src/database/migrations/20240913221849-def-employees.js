@@ -1,8 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
-
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('logs', {
+    await queryInterface.createTable('employees', {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1,
@@ -18,23 +17,21 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      date: {
+      password_hash: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      time: {
+      adminpassword_hash: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      user_id: {
+      permission: {
         type: Sequelize.STRING,
         allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
+      },
+      address_allowed: {
+        type: Sequelize.CHAR,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -48,6 +45,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('employees');
   },
 };

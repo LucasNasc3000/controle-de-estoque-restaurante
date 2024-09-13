@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      minimun_quantity: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
       totalweight: {
         type: Sequelize.FLOAT,
         allowNull: false,
@@ -45,11 +49,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      user_id: {
-        type: Sequelize.STRING,
+      employee_id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
         allowNull: false,
         references: {
-          model: 'users',
+          model: 'employees',
           key: 'id',
         },
         onDelete: 'CASCADE',

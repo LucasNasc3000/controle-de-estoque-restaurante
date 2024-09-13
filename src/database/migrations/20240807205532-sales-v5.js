@@ -34,7 +34,8 @@ module.exports = {
         allowNull: false,
       },
       employee_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
         allowNull: false,
         references: {
           model: 'employees',
