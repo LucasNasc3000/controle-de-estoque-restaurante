@@ -1,48 +1,49 @@
+/* eslint-disable consistent-return */
 import Employee from '../repositories/Employee/EmployeeSearchCredentials';
+import { Unauthorized } from '../errors/authErrors';
+import { BadRequest } from '../errors/clientErrors';
 
 export default async (req, res, next) => {
-  const { permission, employeeid, adminpassword } = req.headers;
-  let adminPassValidator = false;
+  try {
+    const { permission, employeeid, adminpassword } = req.headers;
+    let adminPassValidator = false;
 
-  if (!permission || !employeeid) {
-    return res.status(401).json({
-      errors: ['Permissao para insumos e id necessarios'],
-    });
-  }
+    if (!permission || !employeeid) {
+      throw new Unauthorized('Permissao para insumos e id necessarios');
+    }
 
-  const employee = await Employee.SearchById(employeeid);
+    const employee = await Employee.SearchById(employeeid);
 
-  if (!employee) {
-    return res.status(400).json({
-      errors: ['Funcionário não encontrado'],
-    });
-  }
+    if (!employee) {
+      throw new BadRequest('Funcionário não encontrado');
+    }
 
-  if (adminpassword) {
-    adminPassValidator = await employee.AdminPasswordValidator(adminpassword);
-  }
+    if (adminpassword) {
+      adminPassValidator = await employee.AdminPasswordValidator(adminpassword);
+    }
 
-  switch (true) {
-    case (employee.permission === process.env.ADMIN_PERMISSION
+    switch (true) {
+      case (employee.permission === process.env.ADMIN_PERMISSION
         && adminPassValidator === true
         && employee.permission === permission):
-      return next();
+        return next();
 
-    case (employee.permission === process.env.INPUTS_PERMISSION
+      case (employee.permission === process.env.INPUTS_PERMISSION
           && employee.permission === permission):
-      return next();
+        return next();
 
-    case (employee.permission === process.env.INPUTS_OUTPUTS_PERMISSION
+      case (employee.permission === process.env.INPUTS_OUTPUTS_PERMISSION
           && employee.permission === permission):
-      return next();
+        return next();
 
-    case (employee.permission === process.env.SOI_PERMISSION
+      case (employee.permission === process.env.SOI_PERMISSION
           && employee.permission === permission):
-      return next();
+        return next();
 
-    default:
-      return res.status(401).json({
-        errors: ['Acesso negado, permissao para insumos ou de administrador necessaria'],
-      });
+      default:
+        throw new Unauthorized('Acesso negado, permissao para insumos ou de administrador necessaria');
+    }
+  } catch (err) {
+    next(err);
   }
 };
