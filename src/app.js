@@ -8,11 +8,6 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger_output.json';
 import errorHandler from './middlewares/errorHandler';
 
-// colocar tag para tokens e get vazio com descrição
-// colocar entryhour nos inputs e verificar os outros campos das outras tabelas
-// mudar o tipo em minimun quanitty
-// pesquisar por employee id
-
 // input routes
 import homeRoutes from './routes/home';
 import tokenRoutes from './routes/token';
