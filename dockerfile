@@ -23,4 +23,4 @@ ENV SO_PERMISSION=sales-outputsCRUS
 ENV SOI_PERMISSION=salesInOutCRUS
 ENV ADMIN_PERMISSION=fullAccess
 
-ENTRYPOINT ["sh", "-c", "npx sequelize db:migrate && npm run dev"]
+ENTRYPOINT ["sh", "-c", "npx sequelize db:migrate && node dist/server.js"]
