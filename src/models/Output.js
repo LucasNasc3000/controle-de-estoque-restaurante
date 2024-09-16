@@ -54,10 +54,10 @@ export default class Output extends Model {
         },
       },
       unities: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         defaultValue: '',
         validate: {
-          isFloat: {
+          isInteger: {
             msg: 'O campo unidades precisa ser um número',
           },
         },

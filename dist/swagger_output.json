@@ -13,7 +13,10 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "tags":[
+          "Server test"
+        ],
+        "description": "Use esta rota para verificar se o servidor esta rodando",
         "responses": {
           "200": {
             "description": "OK"
@@ -23,6 +26,9 @@
     },
     "/tokens/": {
       "post": {
+        "tags": [
+          "Tokens"
+        ],
         "description": "",
         "parameters": [
           {
@@ -119,17 +125,20 @@
                 "supplier": {
                   "type": "string"
                 },
-                "entrydate": {
-                  "type": "date"
-                },
                 "expirationdate": {
-                  "type": "date"
+                  "type": "string"
+                },
+                "entrydate": {
+                  "type": "string"
+                },
+                "entryhour": {
+                  "type": "string"
                 },
                 "employee_id": {
-                  "type": "date"
+                  "type": "string"
                 },
                 "minimun_quantity": {
-                  "type": "date"
+                  "type": "number"
                 }
               }
             }
@@ -165,10 +174,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -250,10 +262,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -336,18 +351,21 @@
                 "supplier": {
                   "type": "string"
                 },
-                "entrydate": {
-                  "type": "date"
-                },
                 "expirationdate": {
-                  "type": "date"
+                  "type": "string"
+                },
+                "entrydate": {
+                  "type": "string"
+                },
+                "entryhour": {
+                  "type": "string"
                 },
                 "employee_id": {
-                    "type": "string"
-                  },
-                  "minimun_quantity": {
-                    "type": "number"
-                  }
+                  "type": "string"
+                },
+                "minimun_quantity": {
+                  "type": "number"
+                }
               }
             }
           }
@@ -382,10 +400,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -475,10 +496,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -568,10 +592,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -661,16 +688,22 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
                   },
                   "minimun_quantity": {
                     "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
                   },
                   "updated_at": {
                     "type": "date"
@@ -751,10 +784,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -844,10 +880,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -937,10 +976,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -1030,10 +1072,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -1123,10 +1168,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -1216,10 +1264,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -1309,10 +1360,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -1402,10 +1456,13 @@
                     "type": "string"
                   },
                   "entrydate": {
-                    "type": "date"
+                    "type": "string"
+                  },
+                  "entryhour": {
+                    "type": "string"
                   },
                   "expirationdate": {
-                    "type": "date"
+                    "type": "string"
                   },
                   "employee_id": {
                     "type": "string"
@@ -1479,9 +1536,6 @@
                 "weight": {
                   "type": "number"
                 },
-                "weightperunit": {
-                  "type": "number"
-                },
                 "unities": {
                   "type": "number"
                 },
@@ -1519,9 +1573,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -1598,9 +1649,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -1681,9 +1729,6 @@
                 "weight": {
                   "type": "number"
                 },
-                "weightperunit": {
-                  "type": "number"
-                },
                 "unities": {
                   "type": "number"
                 },
@@ -1718,9 +1763,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -1807,9 +1849,6 @@
                   "weight": {
                     "type": "number"
                   },
-                  "weightperunit": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -1892,9 +1931,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -1981,9 +2017,6 @@
                   "weight": {
                     "type": "number"
                   },
-                  "weightperunit": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -2066,9 +2099,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -2155,9 +2185,6 @@
                   "weight": {
                     "type": "number"
                   },
-                  "weightperunit": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -2240,9 +2267,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -2329,9 +2353,6 @@
                   "weight": {
                     "type": "number"
                   },
-                  "weightperunit": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -2414,9 +2435,6 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
                     "type": "number"
                   },
                   "unities": {
@@ -2507,7 +2525,7 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "name": {
                     "type": "string"
@@ -2580,7 +2598,7 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "name": {
                     "type": "string"
@@ -2688,7 +2706,7 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "name": {
                     "type": "string"
@@ -2824,7 +2842,7 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "name": {
                     "type": "string"
@@ -2905,7 +2923,7 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "name": {
                     "type": "string"
@@ -2986,7 +3004,7 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "name": {
                     "type": "string"
