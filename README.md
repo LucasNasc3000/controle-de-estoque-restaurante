@@ -1,5 +1,5 @@
 # Sistema de controle de estoque
-Esta é uma API desenvolvida para o controle de estoque de um restaurante fictício. O sistema foi construído na arquitetura
+Esta é uma API desenvolvida para o controle de estoque de um restaurante. O sistema foi construído na arquitetura
 REST. Sendo o lado do servidor de uma aplicação web, este sistema foi desenvolvido com Node js para a programação das rotinas, rotas e validações de dados.
 A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador Objeto Relacional) para a modelagem de dados e para facilitar o uso do banco de dados.
 
@@ -29,25 +29,20 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 
 ### Funcionalidades dos Funcionários
 
-1 - Listar funcionários <strong>/employees</strong> - <strong>GET</strong> <br>
-2 - Criar novos funcionários <strong>/employees</strong> - <strong>POST</strong> <br>
-3 - Atualizar os dados dos funcionários <strong>/employees/id</strong> - <strong>PUT</strong> <br>
-4 - Deletar funcionários <strong>/employees/id</strong> <strong>DELETE</strong> <br>
-5 - Pesquisar funcionários de acordo com seus dados <strong>/employees/search/email/emailAqui</strong> -
- <strong>GET</strong> <br>
-6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <br>
-7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
-
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/empl.PNG" height=220px width=380px>
+1 - Listar funcionários<br>
+2 - Criar novos funcionários<br>
+3 - Atualizar os dados dos funcionários<br>
+4 - Deletar funcionários<br>
+5 - Pesquisar funcionários de acordo com seus dados<br>
+6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira)<br>
+7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso<br>
 
 ### Funcionalidades das vendas
 
-1 - Registrar vendas <strong>/sales</strong> - <strong>POST</strong> <br>
-2 - Listar as vendas <strong>/sales</strong> - <strong>GET</strong> <br>
-3 - Atualizar dados das vendas <strong>/sales/id</strong> - <strong>PATCH</strong> <br>
-4 - Pesquisar por vendas de acordo com seus dados <strong>/sales/search/client_name/nomeAqui</strong> - <strong>GET</strong> <br>
-
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/Sales.PNG" height=210px width=370px> 
+1 - Registrar vendas<br>
+2 - Listar as vendas<br>
+3 - Atualizar dados das vendas<br>
+4 - Pesquisar por vendas de acordo com seus dados<br>
 
 ### Acessos
 
@@ -72,3 +67,7 @@ o front-end estiver em desenvolvimento.
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" hight=50px width=50px />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" hight=50px width=50px />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
+
+## Documentação
+Quem desejar acessar a documentação em swagger, caso tenha instalado em sua máquina o Nodejs -->
+`git clone `
