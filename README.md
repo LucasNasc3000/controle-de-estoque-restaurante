@@ -14,8 +14,6 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 5 - Determinar uma quantidade mínima de insumos no estoque (opcional)
 6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira
 
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/inputs.PNG" height=220px width=320px>
-
 ### Funcionalidades das Saídas
 
 1 - Registrar os dados relativos aos insumos que saíram <strong>/outputs</strong> - <strong>POST</strong> <br>
@@ -24,8 +22,6 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma <br>
 5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
 6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas.
-
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/outputs.PNG" height=220px width=320px>
 
 ### Funcionalidades dos Funcionários
 
@@ -37,7 +33,7 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira)<br>
 7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso<br>
 
-### Funcionalidades das vendas
+### Funcionalidades das Vendas
 
 1 - Registrar vendas<br>
 2 - Listar as vendas<br>
@@ -68,6 +64,19 @@ o front-end estiver em desenvolvimento.
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" hight=50px width=50px />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
 
-## Documentação
-Quem desejar acessar a documentação em swagger, caso tenha instalado em sua máquina o Nodejs -->
-`git clone `
+## Documentação e uso
+### Quem desejar acessar a documentação em swagger, caso tenha instalado em sua máquina o Nodejs --><br>
+- `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
+- Na raiz do projeto --><br>
+- `npm install` ou `npm i`<br>
+- `npm run dev`<br>
+- Acessar no seu navegador a url `localhost:3000/doc`
+
+### Para usar a api, caso você tenha docker na sua máquina --><br>
+- `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
+- Entrar em `dist/database` e rodar `docker build -t mydb:database .`<br>
+- Rodar em dist/database `docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=controleestoque -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword mydb:database`<br>
+- Alterar a variável de ambiente `DATABASE_HOST` no dockerfile na raiz do proejeto para localhost ou o ip da sua máquina<br>
+- Na raiz do projeto rodar `docker build -t nodeapp:app .`
+- Rodar o comando `docker images` e copiar o id da imagem nodeapp:app
+- `docker run -p 3000:3000 <id_nodeapp>`
