@@ -6,22 +6,21 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 ## Funcionalidades
 ### Funcionalidades dos Insumos
 
-1 - Cadastrar novos insumos  <strong>/inputs</strong> - <strong>POST</strong> <br>
-2 - Fornecer uma lista contendo todos os insumos  <strong>/inputs</strong> - <strong>GET</strong> <br>
-3 - Pesquisar por um ou mais insumos de acordo com seus dados <strong>/inputs/search/weightperunit/2</strong> -   
-    <strong>GET</strong> <br>
-4 - Atualizar um ou mais dados relativos aos insumos <strong>/inputs/id</strong> <strong>PUT</strong> <br>
-5 - Determinar uma quantidade mínima de insumos no estoque (opcional)
-6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira
+1 - Cadastrar novos insumos<br>
+2 - Fornecer uma lista contendo todos os insumos <br>
+3 - Pesquisar por um ou mais insumos de acordo com seus dados<br>
+4 - Atualizar um ou mais dados relativos aos insumos<br>
+5 - Determinar uma quantidade mínima de insumos no estoque (opcional)<br>
+6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira<br>
 
 ### Funcionalidades das Saídas
 
-1 - Registrar os dados relativos aos insumos que saíram <strong>/outputs</strong> - <strong>POST</strong> <br>
-2 - Listar todas as saídas <strong>/outputs</strong> - <strong>GET</strong> <br>
-3 - Pesquisar pelas saídas dos insumos de acordo com seus dados <strong>/outputs/search/weight/2,34</strong> - <strong>GET</strong> <br>
-4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma <br>
+1 - Registrar os dados relativos aos insumos que saíram<br>
+2 - Listar todas as saídas<br>
+3 - Pesquisar pelas saídas dos insumos de acordo com seus dados<br>
+4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma<br>
 5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
-6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas.
+6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas<br>
 
 ### Funcionalidades dos Funcionários
 
