@@ -5,7 +5,7 @@ var _adminPermission = require('../../middlewares/adminPermission'); var _adminP
 
 const router = new (0, _express.Router)();
 
-router.post('/', _loginRequired2.default, _adminPermission2.default, _Employee2.default.Store);
+router.post('/', _Employee2.default.Store);
 router.get('/', _loginRequired2.default, _adminPermission2.default, _Employee2.default.Index);
 router.put('/:id', _loginRequired2.default, _adminPermission2.default, _Employee2.default.Update);
 router.delete('/:id', _loginRequired2.default, _adminPermission2.default, _Employee2.default.Delete);

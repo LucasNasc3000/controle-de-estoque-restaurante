@@ -8,9 +8,6 @@ var _swaggeruiexpress = require('swagger-ui-express'); var _swaggeruiexpress2 = 
 var _swagger_outputjson = require('./swagger_output.json'); var _swagger_outputjson2 = _interopRequireDefault(_swagger_outputjson);
 var _errorHandler = require('./middlewares/errorHandler'); var _errorHandler2 = _interopRequireDefault(_errorHandler);
 
-// ver a questão dos findAll
-// verificar codigo (geral)
-
 // input routes
 var _home = require('./routes/home'); var _home2 = _interopRequireDefault(_home);
 var _token = require('./routes/token'); var _token2 = _interopRequireDefault(_token);

@@ -41,7 +41,7 @@ class OutputSearchSimpleStringsController {
       const outputEmployeeIdFinder = await _OutputSearchSimpleStrings2.default.SearchByEmployeeId(employeeid);
 
       if (!outputEmployeeIdFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
-      if (outputEmployeeIdFinder.length < 1) throw new (0, _notFound.NotFound)('Insumo não encontrado');
+      if (outputEmployeeIdFinder.length < 1) throw new (0, _notFound.NotFound)('Saída não encontrada');
 
       return res.status(200).json(outputEmployeeIdFinder);
     } catch (err) {

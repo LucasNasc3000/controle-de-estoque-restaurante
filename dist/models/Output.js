@@ -54,10 +54,10 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
         },
       },
       unities: {
-        type: _sequelize2.default.FLOAT,
+        type: _sequelize2.default.INTEGER,
         defaultValue: '',
         validate: {
-          isFloat: {
+          isInteger: {
             msg: 'O campo unidades precisa ser um número',
           },
         },
