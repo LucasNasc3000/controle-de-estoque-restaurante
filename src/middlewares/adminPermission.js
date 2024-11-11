@@ -1,18 +1,18 @@
 /* eslint-disable consistent-return */
 /* eslint-disable default-case */
-import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 import { Unauthorized } from '../errors/authErrors';
 import { BadRequest } from '../errors/clientErrors';
+import Employee from '../repositories/Employee/EmployeeSearchCredentials';
 
 export default async (req, res, next) => {
   try {
-    const { permission, employeeid, adminpassword } = req.headers;
+    const { permission, email, adminpassword } = req.headers;
 
-    if (!permission || !employeeid || !adminpassword) {
-      throw new Unauthorized('Permissao, senha de admin e employeeid necessarios');
+    if (!permission || !email || !adminpassword) {
+      throw new Unauthorized('Permissao, senha de admin e email necessarios');
     }
 
-    const employee = await Employee.SearchById(employeeid);
+    const employee = await Employee.SearchByEmail(email);
 
     if (!employee) {
       throw new BadRequest('Funcionário não encontrado');

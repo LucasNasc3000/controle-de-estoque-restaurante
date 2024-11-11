@@ -1,9 +1,9 @@
+import { Unauthorized } from '../errors/authErrors';
 import { BadRequest } from '../errors/clientErrors';
-import { InternalServerError } from '../errors/serverErrors';
-import { NotFound } from '../errors/notFound';
 import { EmailErrors } from '../errors/emailsErrors';
 import { LogError } from '../errors/logErrors';
-import { Unauthorized } from '../errors/authErrors';
+import { NotFound } from '../errors/notFound';
+import { InternalServerError } from '../errors/serverErrors';
 
 // O return evita a quebra da aplicação e outras requisições podem ser feitas mesmo que seja
 // retornado um erro, como o erro 500 abaixo, por exemplo.

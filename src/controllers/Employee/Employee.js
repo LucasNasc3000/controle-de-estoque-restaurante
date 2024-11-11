@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
-import Employees from '../../repositories/Employee/Employee';
-import Validation from '../../middlewares/fieldValidations/Validation';
 import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
+import Validation from '../../middlewares/fieldValidations/Validation';
+import Employees from '../../repositories/Employee/Employee';
 
 class EmployeeController {
   async Store(req, res, next) {

@@ -2,44 +2,45 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import cors from 'cors';
 import express from 'express';
-// import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
-import swaggerFile from './swagger_output.json';
 import errorHandler from './middlewares/errorHandler';
+import swaggerFile from './swagger_output.json';
 
 // input routes
 import homeRoutes from './routes/home';
-import tokenRoutes from './routes/token';
 import inputRoutes from './routes/input/input';
-import inputSearchByID from './routes/input/inputSearchById';
-import inputSearchByType from './routes/input/inputSearchByType';
-import inputSearchByName from './routes/input/inputSearchByName';
-import inputSearchByQuantity from './routes/input/inputSearchByQuantity';
-import inputSearchByMinimunQuantity from './routes/input/inputSearchByMinimunQuantity';
-import inputSearchByTotalWeight from './routes/input/inputSearchByTotalWeight';
-import inputSearchByWeightPerUnit from './routes/input/inputSearchByWeightPerUnit';
-import inputSearchBySupplier from './routes/input/inputSearchBySupplier';
+import inputSearchByEmployeeId from './routes/input/inputSearchByEmployeeId';
 import inputSearchByEntryDate from './routes/input/inputSearchByEntryDate';
 import inputSearchByExpirationDate from './routes/input/inputSearchByExpirationDate';
-import inputSearchByEmployeeId from './routes/input/inputSearchByEmployeeId';
+import inputSearchByID from './routes/input/inputSearchById';
+import inputSearchByMinimunQuantity from './routes/input/inputSearchByMinimunQuantity';
+import inputSearchByName from './routes/input/inputSearchByName';
+import inputSearchByQuantity from './routes/input/inputSearchByQuantity';
+import inputSearchBySupplier from './routes/input/inputSearchBySupplier';
+import inputSearchByTotalWeight from './routes/input/inputSearchByTotalWeight';
+import inputSearchByType from './routes/input/inputSearchByType';
+import inputSearchByWeightPerUnit from './routes/input/inputSearchByWeightPerUnit';
+import tokenRoutes from './routes/token';
 
 // output routes
 import outputRoutes from './routes/output/output';
-import outputSearchByID from './routes/output/outputSearchById';
-import outputSearchByType from './routes/output/outputSearchByType';
-import outputSearchByName from './routes/output/outputSearchByName';
 import outputSearchByDate from './routes/output/outputSearchByDate';
+import outputSearchByEmployeeId from './routes/output/outputSearchByEmployeeId';
 import outputSearchByHour from './routes/output/outputSearchByHour';
+import outputSearchByID from './routes/output/outputSearchById';
+import outputSearchByName from './routes/output/outputSearchByName';
+import outputSearchByType from './routes/output/outputSearchByType';
 import outputSearchByUnities from './routes/output/outputSearchByUnities';
 import outputSearchByWeight from './routes/output/outputSearchByWeight';
-import outputSearchByEmployeeId from './routes/output/outputSearchByEmployeeId';
 
 // employee routes
 import employeeRoutes from './routes/employee/employee';
+import employeeSearchByEmail from './routes/employee/employeeSearchByEmail';
 import employeeSearchByID from './routes/employee/employeeSearchById';
 import employeeSearchByName from './routes/employee/employeeSearchByName';
-import employeeSearchByEmail from './routes/employee/employeeSearchByEmail';
 
 // sales routes
 import salesRoutes from './routes/sales/sale';
@@ -65,9 +66,9 @@ class App {
    a um erro que não consegui solucionar e que impedia o uso desta API pela aplicação web.
    */
   middlewares() {
-  //   this.app.use(cors({
-  //     origin: '*',
-  //   }));
+    this.app.use(cors({
+      origin: '*',
+    }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }
