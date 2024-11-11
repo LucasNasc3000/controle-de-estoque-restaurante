@@ -1,53 +1,43 @@
 # Sistema de controle de estoque
-Esta é uma API desenvolvida para o controle de estoque de um restaurante fictício. O sistema foi construído na arquitetura
+Esta é uma API desenvolvida para o controle de estoque de um restaurante. O sistema foi construído na arquitetura
 REST. Sendo o lado do servidor de uma aplicação web, este sistema foi desenvolvido com Node js para a programação das rotinas, rotas e validações de dados.
 A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador Objeto Relacional) para a modelagem de dados e para facilitar o uso do banco de dados.
 
 ## Funcionalidades
 ### Funcionalidades dos Insumos
 
-1 - Cadastrar novos insumos  <strong>/inputs</strong> - <strong>POST</strong> <br>
-2 - Fornecer uma lista contendo todos os insumos  <strong>/inputs</strong> - <strong>GET</strong> <br>
-3 - Pesquisar por um ou mais insumos de acordo com seus dados <strong>/inputs/search/weightperunit/2</strong> -   
-    <strong>GET</strong> <br>
-4 - Atualizar um ou mais dados relativos aos insumos <strong>/inputs/id</strong> <strong>PUT</strong> <br>
-5 - Determinar uma quantidade mínima de insumos no estoque (opcional)
-6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira
-
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/inputs.PNG" height=220px width=320px>
+1 - Cadastrar novos insumos<br>
+2 - Fornecer uma lista contendo todos os insumos <br>
+3 - Pesquisar por um ou mais insumos de acordo com seus dados<br>
+4 - Atualizar um ou mais dados relativos aos insumos<br>
+5 - Determinar uma quantidade mínima de insumos no estoque (opcional)<br>
+6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira<br>
 
 ### Funcionalidades das Saídas
 
-1 - Registrar os dados relativos aos insumos que saíram <strong>/outputs</strong> - <strong>POST</strong> <br>
-2 - Listar todas as saídas <strong>/outputs</strong> - <strong>GET</strong> <br>
-3 - Pesquisar pelas saídas dos insumos de acordo com seus dados <strong>/outputs/search/weight/2,34</strong> - <strong>GET</strong> <br>
-4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma <br>
+1 - Registrar os dados relativos aos insumos que saíram<br>
+2 - Listar todas as saídas<br>
+3 - Pesquisar pelas saídas dos insumos de acordo com seus dados<br>
+4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma<br>
 5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
-6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas.
-
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/outputs.PNG" height=220px width=320px>
+6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas<br>
 
 ### Funcionalidades dos Funcionários
 
-1 - Listar funcionários <strong>/employees</strong> - <strong>GET</strong> <br>
-2 - Criar novos funcionários <strong>/employees</strong> - <strong>POST</strong> <br>
-3 - Atualizar os dados dos funcionários <strong>/employees/id</strong> - <strong>PUT</strong> <br>
-4 - Deletar funcionários <strong>/employees/id</strong> <strong>DELETE</strong> <br>
-5 - Pesquisar funcionários de acordo com seus dados <strong>/employees/search/email/emailAqui</strong> -
- <strong>GET</strong> <br>
-6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira) <br>
-7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso. <strong>/tokens</strong> <strong>POST</strong> <br>
+1 - Listar funcionários<br>
+2 - Criar novos funcionários<br>
+3 - Atualizar os dados dos funcionários<br>
+4 - Deletar funcionários<br>
+5 - Pesquisar funcionários de acordo com seus dados<br>
+6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira)<br>
+7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso<br>
 
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/empl.PNG" height=220px width=380px>
+### Funcionalidades das Vendas
 
-### Funcionalidades das vendas
-
-1 - Registrar vendas <strong>/sales</strong> - <strong>POST</strong> <br>
-2 - Listar as vendas <strong>/sales</strong> - <strong>GET</strong> <br>
-3 - Atualizar dados das vendas <strong>/sales/id</strong> - <strong>PATCH</strong> <br>
-4 - Pesquisar por vendas de acordo com seus dados <strong>/sales/search/client_name/nomeAqui</strong> - <strong>GET</strong> <br>
-
-<img src="https://github.com/LucasNasc3000/controle-de-estoque-restaurante/blob/master/requestExamples/Sales.PNG" height=210px width=370px> 
+1 - Registrar vendas<br>
+2 - Listar as vendas<br>
+3 - Atualizar dados das vendas<br>
+4 - Pesquisar por vendas de acordo com seus dados<br>
 
 ### Acessos
 
@@ -72,3 +62,20 @@ o front-end estiver em desenvolvimento.
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" hight=50px width=50px />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" hight=50px width=50px />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
+
+## Documentação e uso
+### Quem desejar acessar a documentação em swagger, caso tenha instalado em sua máquina o Nodejs --><br>
+- `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
+- Na raiz do projeto --><br>
+- `npm install` ou `npm i`<br>
+- `npm run dev`<br>
+- Acessar no seu navegador a url `localhost:3000/doc`
+
+### Para usar a api, caso você tenha docker na sua máquina --><br>
+- `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
+- Entrar em `dist/database` e rodar `docker build -t mydb:database .`<br>
+- Rodar em dist/database `docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=controleestoque -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword mydb:database`<br>
+- Alterar a variável de ambiente `DATABASE_HOST` no dockerfile na raiz do proejeto para localhost ou o ip da sua máquina<br>
+- Na raiz do projeto rodar `docker build -t nodeapp:app .`
+- Rodar o comando `docker images` e copiar o id da imagem nodeapp:app
+- `docker run -p 3000:3000 <id_nodeapp>`
