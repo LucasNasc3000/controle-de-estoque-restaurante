@@ -1,26 +1,36 @@
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import jwt from 'jsonwebtoken';
-import Employee from '../models/Employee';
 import Log from '../Logs/LogRegister';
-import { BadRequest } from '../errors/clientErrors';
 import { Unauthorized } from '../errors/authErrors';
+import { BadRequest } from '../errors/clientErrors';
+import Employee from '../models/Employee';
 
 class TokenController {
-  // Cria o JWT baseado no email e senha que o usuário enviar no front-end para fazer login.
-  // É feita uma pesquisa com o email enviado para verificar se ele existe, depois uma validação
-  // de senha. Se ambos os dados forem confirmados o JWT é gerado para o usuário.
   async Store(req, res, next) {
     try {
-      const { email = '', password = '' } = req.body;
+      const {
+        email = '', password = '', adminpassword, permission = '',
+      } = req.body;
 
       if (!email || !password) throw new BadRequest('Email e senha necessários para logar');
 
       const employee = await Employee.findOne({ where: { email } });
 
-      if (!employee) throw new Unauthorized('O usuário não existe');
+      // eslint-disable-next-line default-case
+      switch (true) {
+        case !employee:
+          throw new Unauthorized('O funcionário não existe');
 
-      if (!(await employee.PasswordValidator(password))) throw new Unauthorized('Senha inválida');
+        case !(await employee.PasswordValidator(password)):
+          throw new Unauthorized('Senha inválida');
+
+        case !(await employee.AdminPasswordValidator(adminpassword)):
+          throw new Unauthorized('Senha de administrador inválida');
+
+        case permission !== employee.permission:
+          throw new Unauthorized('Permissão incorreta');
+      }
 
       const { id } = employee;
 
