@@ -5,7 +5,7 @@
     "title": "Storage manager",
     "description": "API para ser o back-end de um sistema de controle de estoque"
   },
-  "host": "localhost:3000",
+  "host": "localhost:3333",
   "basePath": "/",
   "schemes": [
     "http"
@@ -41,6 +41,12 @@
                   "example": "any"
                 },
                 "password": {
+                  "example": "any"
+                },
+                "adminpassword": {
+                  "example": "any"
+                },
+                "permission": {
                   "example": "any"
                 }
               }
