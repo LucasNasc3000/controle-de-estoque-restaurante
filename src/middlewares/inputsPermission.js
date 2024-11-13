@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { Unauthorized } from '../errors/authErrors';
 import { BadRequest } from '../errors/clientErrors';
-import Employee from '../repositories/Employee/EmployeeSearchCredentials';
+import Employee from '../models/Employee';
 
 export default async (req, res, next) => {
   try {
@@ -12,7 +12,12 @@ export default async (req, res, next) => {
       throw new Unauthorized('Permissao para insumos e id necessarios');
     }
 
-    const employee = await Employee.SearchByEmail(email);
+    const employee = await Employee.findOne({
+      where: {
+        email,
+        permission,
+      },
+    });
 
     if (!employee) {
       throw new BadRequest('Funcionário não encontrado');

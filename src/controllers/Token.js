@@ -10,7 +10,7 @@ class TokenController {
   async Store(req, res, next) {
     try {
       const {
-        email = '', password = '', adminpassword, permission = '',
+        email = '', password = '', adminpassword = '', permission = '',
       } = req.body;
 
       if (!email || !password) throw new BadRequest('Email e senha necessários para logar');
