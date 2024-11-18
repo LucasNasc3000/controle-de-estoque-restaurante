@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
-import InputMethods from '../../repositories/Input/Input';
-import Validation from '../../middlewares/fieldValidations/Validation';
 import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
+import Validation from '../../middlewares/fieldValidations/Validation';
+import InputMethods from '../../repositories/Input/Input';
 
 class InputController {
   async Store(req, res, next) {
@@ -39,7 +39,7 @@ class InputController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
-      const validations = Validation.MainValidations(req.body);
+      const validations = Validation.MainValidations(req.body, false, false, false, true);
       const inputValidations = Validation.InputsValidation(req.body);
 
       if (validations !== null) throw new BadRequest(validations);

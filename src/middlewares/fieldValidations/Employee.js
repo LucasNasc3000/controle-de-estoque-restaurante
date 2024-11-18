@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 class UserValidations {
-  CheckEmail(EmailFieldData, isLog) {
+  CheckEmail(EmailFieldData, isLog, isUpdate) {
     const { email } = EmailFieldData;
     const { password } = EmailFieldData;
 
@@ -16,12 +16,19 @@ class UserValidations {
 
       case (isLog === true):
         return true;
+
+      case (isUpdate === true && !email):
+        return this.CheckPassword(EmailFieldData);
     }
 
     return this.CheckPassword(EmailFieldData);
   }
 
-  CheckPassword(PasswordFieldData) {
+  CheckPassword(PasswordFieldData, isUpdate) {
+    if (isUpdate === true && !PasswordFieldData.password) {
+      return this.CheckPermission(PasswordFieldData);
+    }
+
     if (typeof PasswordFieldData.password !== 'string') {
       return 'Password must be a string';
     }
@@ -29,9 +36,18 @@ class UserValidations {
     return this.CheckPermission(PasswordFieldData);
   }
 
-  CheckPermission(PermissionFieldData) {
-    if (typeof PermissionFieldData.permission !== 'string') {
-      return 'Permission must be a string';
+  CheckPermission(PermissionFieldData, isUpdate) {
+    const alphabetRegex = /^[a-zA-Z]+$/;
+
+    switch (true) {
+      case isUpdate === true && !PermissionFieldData.permission:
+        return null;
+
+      case typeof PermissionFieldData.permission !== 'string':
+        return 'Permission must be a string';
+
+      case !(alphabetRegex.test(PermissionFieldData.permission)):
+        return 'Permission must be a string';
     }
 
     if (PermissionFieldData.permission !== process.env.INPUTS_PERMISSION

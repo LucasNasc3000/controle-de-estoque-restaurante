@@ -3,6 +3,7 @@ import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import Employees from '../../repositories/Employee/Employee';
+import EmployeeSearch from '../../repositories/Employee/EmployeeSearchCredentials';
 
 class EmployeeController {
   async Store(req, res, next) {
@@ -12,6 +13,10 @@ class EmployeeController {
 
       if (validations !== null) throw new BadRequest(validations);
       if (employeesValidations !== null) throw new BadRequest(employeesValidations);
+
+      const emailExists = await EmployeeSearch.SearchByEmail(req.body.email);
+
+      if (emailExists.length > 0) throw new BadRequest('E-mail em uso, tente cadastrar outro');
 
       const employeeStore = await Employees.Store(req.body);
 
@@ -39,11 +44,15 @@ class EmployeeController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
-      const validations = Validation.MainValidations(req.body, true);
-      const usersValidations = Validation.EmployeeValidation(req.body);
+      const validations = Validation.MainValidations(req.body, true, false, false, true);
+      const usersValidations = Validation.EmployeeValidation(req.body, true);
 
       if (validations !== null) throw new BadRequest(validations);
       if (usersValidations !== null) throw new BadRequest(usersValidations);
+
+      const emailExists = await EmployeeSearch.SearchByEmail(req.body.email);
+
+      if (emailExists.length > 0) throw new BadRequest('E-mail em uso, tente cadastrar outro');
 
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.

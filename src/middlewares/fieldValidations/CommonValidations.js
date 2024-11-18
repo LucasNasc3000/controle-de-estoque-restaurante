@@ -3,7 +3,11 @@
 import { uuidCheck } from './DataRegex';
 
 class CommomValidations {
-  DoTheValidations(allData, isEmployee, isLog, isSale) {
+  DoTheValidations(allData, isEmployee, isLog, isSale, isUpdate) {
+    if (isUpdate === true) {
+      return this.CheckForNullUndefinedFields(allData, isEmployee, isLog, isSale);
+    }
+
     for (const i in allData) {
       if (allData[i] === '') {
         return 'Empty field(s)';

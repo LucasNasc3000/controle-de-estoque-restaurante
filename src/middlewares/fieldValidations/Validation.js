@@ -1,13 +1,19 @@
 import CommonValidations from './CommonValidations';
-import Inputs from './Inputs';
-import Outputs from './Outputs';
 import Employee from './Employee';
+import Inputs from './Inputs';
 import Logs from './Logs';
+import Outputs from './Outputs';
 import Sales from './Sales';
 
 class Validation {
-  MainValidations(data, isEmployee, isLog, isSale) {
-    const validations = CommonValidations.DoTheValidations(data, isEmployee, isLog, isSale);
+  MainValidations(data, isEmployee, isLog, isSale, isUpdate) {
+    const validations = CommonValidations.DoTheValidations(
+      data,
+      isEmployee,
+      isLog,
+      isSale,
+      isUpdate,
+    );
 
     switch (validations) {
       case ('Empty field(s)'):
@@ -81,7 +87,10 @@ class Validation {
         return 'Email inválido';
 
       case 'Password must be a string':
-        return 'A senha precisa ser uma string';
+        return 'A senha precisa estar em formato de texto';
+
+      case 'Permission must be a string':
+        return 'A permissao precisa estar em formato de texto';
     }
 
     return null;
