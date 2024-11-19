@@ -78,8 +78,8 @@ class Validation {
     }
   }
 
-  EmployeeValidation(data) {
-    const employeesValidation = Employee.CheckEmail(data);
+  EmployeeValidation(data, isUpdate) {
+    const employeesValidation = Employee.CheckEmail(data, false, isUpdate);
 
     // eslint-disable-next-line default-case
     switch (employeesValidation) {
@@ -91,6 +91,12 @@ class Validation {
 
       case 'Permission must be a string':
         return 'A permissao precisa estar em formato de texto';
+
+      case 'Password is too short':
+        return 'A senha precisa ter pelo menos 8 caracteres';
+
+      case 'Name is too short':
+        return 'O nome precisa ter pelo menos 3 caracteres';
     }
 
     return null;

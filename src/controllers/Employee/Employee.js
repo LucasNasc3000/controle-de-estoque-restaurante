@@ -50,9 +50,10 @@ class EmployeeController {
       if (validations !== null) throw new BadRequest(validations);
       if (usersValidations !== null) throw new BadRequest(usersValidations);
 
-      const emailExists = await EmployeeSearch.SearchByEmail(req.body.email);
-
-      if (emailExists.length > 0) throw new BadRequest('E-mail em uso, tente cadastrar outro');
+      if (req.body.email) {
+        const emailExists = await EmployeeSearch.SearchByEmail(req.body.email);
+        if (emailExists.length > 0) throw new BadRequest('E-mail em uso, tente cadastrar outro');
+      }
 
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.

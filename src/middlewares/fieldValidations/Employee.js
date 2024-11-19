@@ -7,8 +7,8 @@ class UserValidations {
     const { password } = EmailFieldData;
 
     switch (true) {
-      case (!email || !password):
-        return null;
+      case (isUpdate === true && (!email || !password)):
+        return this.CheckName(EmailFieldData, isUpdate);
 
       case (!email.includes('@')):
         return 'Must be a valid email';
@@ -18,24 +18,37 @@ class UserValidations {
 
       case (isLog === true):
         return true;
-
-      case (isUpdate === true && !email):
-        return this.CheckPassword(EmailFieldData);
     }
 
-    return this.CheckPassword(EmailFieldData);
+    return this.CheckName(EmailFieldData, isUpdate);
+  }
+
+  CheckName(NameFieldData, isUpdate) {
+    if (isUpdate === true && !NameFieldData.name) {
+      return this.CheckPassword(NameFieldData, isUpdate);
+    }
+
+    if (NameFieldData.name.length < 3) {
+      return 'Name is too short';
+    }
+
+    return this.CheckPassword(NameFieldData, isUpdate);
   }
 
   CheckPassword(PasswordFieldData, isUpdate) {
     if (isUpdate === true && !PasswordFieldData.password) {
-      return this.CheckPermission(PasswordFieldData);
+      return this.CheckPermission(PasswordFieldData, isUpdate);
     }
 
     if (typeof PasswordFieldData.password !== 'string') {
       return 'Password must be a string';
     }
 
-    return this.CheckPermission(PasswordFieldData);
+    if (PasswordFieldData.password.length < 8) {
+      return 'Password is too short';
+    }
+
+    return this.CheckPermission(PasswordFieldData, isUpdate);
   }
 
   CheckPermission(PermissionFieldData, isUpdate) {
