@@ -1,5 +1,6 @@
 import {
-  dateRegex, hourRegex, dateAndHourErrorMsg,
+  dateAndHourErrorMsg,
+  dateRegex, hourRegex,
 } from './DataRegex';
 
 class SalesValidations {
@@ -23,10 +24,14 @@ class SalesValidations {
       if (typeof PersonalAndSalesData.products !== 'string') {
         return 'products must be a string';
       }
+
+      if (!alphabetCheck.test(PersonalAndSalesData.products)) {
+        return 'products must be a string';
+      }
     }
 
     if (PersonalAndSalesData.address) {
-      if (typeof PersonalAndSalesData.address !== 'string') {
+      if (!alphabetCheck.test(PersonalAndSalesData.address)) {
         return 'address must be a string';
       }
     }

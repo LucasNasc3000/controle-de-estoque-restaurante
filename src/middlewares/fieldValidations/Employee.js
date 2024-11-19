@@ -1,3 +1,5 @@
+import { alphabetRegex } from './DataRegex';
+
 /* eslint-disable default-case */
 class UserValidations {
   CheckEmail(EmailFieldData, isLog, isUpdate) {
@@ -37,8 +39,6 @@ class UserValidations {
   }
 
   CheckPermission(PermissionFieldData, isUpdate) {
-    const alphabetRegex = /^[a-zA-Z]+$/;
-
     switch (true) {
       case isUpdate === true && !PermissionFieldData.permission:
         return null;

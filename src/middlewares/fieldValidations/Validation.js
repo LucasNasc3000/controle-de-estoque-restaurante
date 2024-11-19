@@ -29,7 +29,7 @@ class Validation {
         return 'O tipo deve ser numérico';
 
       case ('Type must be a string'):
-        return 'O tipo deve ser string';
+        return 'O tipo precisa estar em formato de texto';
 
       case 'employee_id must be a uuid':
         return 'O id do funcionário deve ser um uuid';
@@ -50,7 +50,7 @@ class Validation {
         return 'O campo "minimun_quantity" deve ser numérico';
 
       case ('Supplier must be a string'):
-        return 'O campo "fornecedor" precisa ser um string';
+        return 'O campo "fornecedor" precisa estar em formato de texto';
 
       case ('Field(s) must be a date or hour string'):
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
@@ -68,7 +68,7 @@ class Validation {
         return 'O campo "unidades" deve ser numérico';
 
       case ('Weight must be a number'):
-        return 'O campo "peso" precisa ser um string';
+        return 'O campo "peso" precisa estar em formato de texto';
 
       case ('Field(s) must be a date or hour string'):
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
@@ -104,7 +104,7 @@ class Validation {
     // eslint-disable-next-line default-case
     switch (logsValidation) {
       case 'Type must be a string':
-        return 'O id do log precisa ser do tipo string';
+        return 'O id do log precisa estar em formato de texto';
 
       case 'Field(s) must be a date or hour string':
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
@@ -122,7 +122,7 @@ class Validation {
 
     switch (salesValidation) {
       case 'Type must be a string':
-        return 'O id do log precisa ser do tipo string';
+        return 'O id do log precisa estar em formato de texto';
 
       case 'Field(s) must be a date or hour string':
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
@@ -131,7 +131,7 @@ class Validation {
         return 'O id deve ser um uuid';
 
       case 'address must be a string':
-        return 'O endereço deve ser uma string';
+        return 'O endereço precisa estar em formato de texto';
 
       case 'client_name must be a letters string':
         return 'O nome do cliente deve conter somente letras do alfabeto';
@@ -140,7 +140,7 @@ class Validation {
         return 'O número de telefone deve ser uma string no formato XX-XXXX-XXXXX';
 
       case 'products must be a string':
-        return 'Os produtos devem ser strings';
+        return 'Os produtos devem estar em formato de texto';
 
       default:
         return null;

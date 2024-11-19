@@ -1,9 +1,17 @@
-import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DataRegex';
+import {
+  dateAndHourErrorMsg,
+  dateRegex, hourRegex,
+  uuidCheck,
+} from './DataRegex';
 
 class LogsValidations {
   CheckEmployeeId(data) {
     if (data.employeeId) {
       if (typeof data.employeeId !== 'string') {
+        return 'Type must be a string';
+      }
+
+      if (!uuidCheck.test(data.employeeId)) {
         return 'Type must be a string';
       }
     }
