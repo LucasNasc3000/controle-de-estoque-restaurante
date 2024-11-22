@@ -13,7 +13,6 @@ import swaggerFile from './swagger_output.json';
 import homeRoutes from './routes/home';
 import inputRoutes from './routes/input/input';
 import inputSearchByEmployeeId from './routes/input/inputSearchByEmployeeId';
-import inputSearchByEntryDate from './routes/input/inputSearchByEntryDate';
 import inputSearchByExpirationDate from './routes/input/inputSearchByExpirationDate';
 import inputSearchByID from './routes/input/inputSearchById';
 import inputSearchByMinimunQuantity from './routes/input/inputSearchByMinimunQuantity';
@@ -34,7 +33,6 @@ import outputSearchByID from './routes/output/outputSearchById';
 import outputSearchByName from './routes/output/outputSearchByName';
 import outputSearchByType from './routes/output/outputSearchByType';
 import outputSearchByUnities from './routes/output/outputSearchByUnities';
-import outputSearchByWeight from './routes/output/outputSearchByWeight';
 
 // employee routes
 import employeeRoutes from './routes/employee/employee';
@@ -89,7 +87,6 @@ class App {
     this.app.use('/inputs/search/totalweight/', inputSearchByTotalWeight);
     this.app.use('/inputs/search/weightperunit/', inputSearchByWeightPerUnit);
     this.app.use('/inputs/search/supplier/', inputSearchBySupplier);
-    this.app.use('/inputs/search/entrydate/', inputSearchByEntryDate);
     this.app.use('/inputs/search/expirationdate/', inputSearchByExpirationDate);
     this.app.use('/inputs/search/employeeid/', inputSearchByEmployeeId);
 
@@ -101,7 +98,6 @@ class App {
     this.app.use('/outputs/search/date/', outputSearchByDate);
     this.app.use('/outputs/search/hour/', outputSearchByHour);
     this.app.use('/outputs/search/unities/', outputSearchByUnities);
-    this.app.use('/outputs/search/weight/', outputSearchByWeight);
     this.app.use('/outputs/search/employeeid/', outputSearchByEmployeeId);
 
     // employee routes

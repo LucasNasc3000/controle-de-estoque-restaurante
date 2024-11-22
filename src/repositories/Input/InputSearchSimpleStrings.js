@@ -14,10 +14,21 @@ class InputSimpleStringSearch {
     return inputFinder;
   }
 
-  async SearchByName(name) {
+  async SearchByNameForUsers(name) {
     const inputFinder = await Input.findAll({
       where: {
         name: { [Op.startsWith]: name },
+      },
+      attributes: inputAttributes,
+    });
+
+    return inputFinder;
+  }
+
+  async SearchByNameInternal(name) {
+    const inputFinder = await Input.findOne({
+      where: {
+        name,
       },
       attributes: inputAttributes,
     });

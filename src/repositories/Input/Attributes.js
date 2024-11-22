@@ -7,9 +7,9 @@ const inputAttributes = [
   'weightperunit',
   'supplier',
   'expirationdate',
-  'entrydate',
   'employee_id',
   'minimun_quantity',
+  'rateisnear',
   'created_at',
   'updated_at',
 ];

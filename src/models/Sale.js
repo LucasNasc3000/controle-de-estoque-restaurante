@@ -62,6 +62,10 @@ export default class Sale extends Model {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
       },
+      client_birthday: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });

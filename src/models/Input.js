@@ -71,26 +71,6 @@ export default class Input extends Model {
           },
         },
       },
-      entrydate: {
-        type: Sequelize.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [4, 20],
-            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
-          },
-        },
-      },
-      entryhour: {
-        type: Sequelize.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [4, 20],
-            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
-          },
-        },
-      },
       employee_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
@@ -101,6 +81,15 @@ export default class Input extends Model {
         validate: {
           isInt: {
             msg: 'quantidade mínima precisa ser um número inteiro',
+          },
+        },
+      },
+      rateisnear: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: 'a quantidade próxima ao limite precisa ser um número inteiro',
           },
         },
       },

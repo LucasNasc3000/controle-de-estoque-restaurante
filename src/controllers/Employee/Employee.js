@@ -9,7 +9,7 @@ class EmployeeController {
   async Store(req, res, next) {
     try {
       const validations = Validation.MainValidations(req.body, true);
-      const employeesValidations = Validation.EmployeeValidation(req.body);
+      const employeesValidations = Validation.EmployeeValidation(req.body, false, false);
 
       if (validations !== null) throw new BadRequest(validations);
       if (employeesValidations !== null) throw new BadRequest(employeesValidations);

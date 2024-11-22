@@ -4,8 +4,6 @@ const outputAttributes = [
   'hour',
   'name',
   'type',
-  'weight',
-  'weightperunit',
   'unities',
   'employee_id',
   'created_at',

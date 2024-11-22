@@ -4,8 +4,8 @@ import QuantityCheck from '../Input/QuantityCheck';
 
 class InputConnectionController {
   async InputUpdate(inputSearchData, outputData) {
-    const updatedQuantity = inputSearchData[0].dataValues.quantity - outputData.unities;
-    const updatedTotalWeight = inputSearchData[0].dataValues.totalweight - outputData.weight;
+    const updatedQuantity = inputSearchData.dataValues.quantity - outputData.unities;
+    const updatedTotalWeight = inputSearchData.dataValues.totalweight - outputData.weight;
 
     const updatedData = {
       quantity: updatedQuantity,
@@ -13,9 +13,10 @@ class InputConnectionController {
     };
 
     const dataForQuantityCheck = [
-      inputSearchData[0].dataValues.quantity,
-      inputSearchData[0].dataValues.minimun_quantity,
-      inputSearchData[0].dataValues.name,
+      inputSearchData.dataValues.quantity,
+      inputSearchData.dataValues.minimun_quantity,
+      inputSearchData.dataValues.name,
+      inputSearchData.dataValues.rateisnear,
     ];
 
     const check = await QuantityCheck.QuantityCheck(dataForQuantityCheck);
@@ -24,7 +25,7 @@ class InputConnectionController {
       // eslint-disable-next-line default-case
       switch (check[0]) {
         case 'rate is near':
-          await Input.Update(inputSearchData[0].dataValues.id, updatedData);
+          await Input.Update(inputSearchData.dataValues.id, updatedData);
           return check;
 
         case 'limit reached':

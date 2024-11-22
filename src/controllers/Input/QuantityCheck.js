@@ -8,7 +8,7 @@ class QuantityCheck {
 
     if (inputData.minimun_quantity === null) return;
 
-    if (rate <= 15 && rate > 0) {
+    if (rate <= inputData[3] && rate > 0) {
       warningAndData.push('rate is near', inputData[2]);
       const rateisNear = await Notification.DataFilter(inputData, 'rateIsNear');
 

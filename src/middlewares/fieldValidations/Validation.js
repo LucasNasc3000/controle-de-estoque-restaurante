@@ -78,8 +78,8 @@ class Validation {
     }
   }
 
-  EmployeeValidation(data, isUpdate) {
-    const employeesValidation = Employee.CheckEmail(data, false, isUpdate);
+  EmployeeValidation(data, islog, isUpdate) {
+    const employeesValidation = Employee.CheckEmail(data, islog, isUpdate);
 
     // eslint-disable-next-line default-case
     switch (employeesValidation) {

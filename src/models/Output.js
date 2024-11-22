@@ -44,23 +44,9 @@ export default class Output extends Model {
           },
         },
       },
-      weight: {
-        type: Sequelize.FLOAT,
-        defaultValue: '',
-        validate: {
-          isFloat: {
-            msg: 'O peso total precisa ser um número',
-          },
-        },
-      },
       unities: {
         type: Sequelize.INTEGER,
         defaultValue: '',
-        validate: {
-          isInteger: {
-            msg: 'O campo unidades precisa ser um número',
-          },
-        },
       },
       employee_id: {
         type: Sequelize.UUIDV1,
