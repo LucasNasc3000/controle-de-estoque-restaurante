@@ -2,7 +2,6 @@
 import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validations from '../../middlewares/fieldValidations/Validation';
-import EmployeeSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 import OutputMethods from '../../repositories/Output/Output';
 import InputConnection from './InputConnection';
@@ -23,24 +22,15 @@ class OutputController {
       if (!inputExists) throw new InternalServerError('Erro interno');
 
       const inputConnection = await InputConnection.InputUpdate(inputExists, req.body);
-      const etst = await EmployeeSearchCredentials.SearchByAddressAllowed();
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < etst.length; i++) {
-        if (etst[i].dataValues.permission === process.env.INPUTS_OUTPUTS_PERMISSION
-            || etst[i].dataValues.permission === process.env.SOI_PERMISSION
-            || etst[i].dataValues.permission === process.env.ADMIN_PERMISSION
-        ) {
-          console.log(`ESTE: ${etst[i].email}`);
-        }
-      }
-      console.log(etst);
 
       if (inputConnection) {
+        if (inputConnection === 'no destinataries') {
+          throw new BadRequest('Não há emails destinatários cadastrados ou as permissões estão incorretas.');
+        }
+
         if (inputConnection[0] === 'limit reached') throw new BadRequest(`Não é possível registrar novas saídas: o limite do insumo ${inputConnection[1]} foi alcançado.`);
 
         if (inputConnection[0] === 'rate is near') {
-          // pq é chamado duas vezes o InputUpdate?
-          await InputConnection.InputUpdate(inputExists, req.body);
           const store = await OutputMethods.Store(req.body);
 
           return res.json({
@@ -50,8 +40,6 @@ class OutputController {
             ],
           });
         }
-      } else {
-        throw new BadRequest('Não há emails destinatários cadastrados ou as permissões estão incorretas.');
       }
 
       const store = await OutputMethods.Store(req.body);

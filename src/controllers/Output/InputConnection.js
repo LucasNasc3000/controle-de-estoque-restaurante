@@ -5,11 +5,9 @@ import QuantityCheck from '../Input/QuantityCheck';
 class InputConnectionController {
   async InputUpdate(inputSearchData, outputData) {
     const updatedQuantity = inputSearchData.dataValues.quantity - outputData.unities;
-    const updatedTotalWeight = inputSearchData.dataValues.totalweight - outputData.weight;
 
     const updatedData = {
       quantity: updatedQuantity,
-      totalweight: updatedTotalWeight,
     };
 
     const dataForQuantityCheck = [
@@ -31,11 +29,11 @@ class InputConnectionController {
         case 'limit reached':
           return check;
       }
-    } else {
-      return null;
+
+      if (check === 'no destinataries') return 'no destinataries';
     }
 
-    await Input.Update(inputSearchData[0].dataValues.id, updatedData);
+    await Input.Update(inputSearchData.dataValues.id, updatedData);
   }
 }
 

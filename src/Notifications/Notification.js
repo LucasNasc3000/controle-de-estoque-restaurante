@@ -39,7 +39,7 @@ class Notifications {
       `Ocorreu o seguinte erro ao registrar um log: \n${logError}`,
     ];
 
-    if (destinatary === null) return null;
+    if (destinatary === null) return 'no destinataries';
 
     // eslint-disable-next-line default-case
     switch (emailSubject) {
