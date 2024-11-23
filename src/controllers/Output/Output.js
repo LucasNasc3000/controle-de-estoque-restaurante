@@ -1,7 +1,9 @@
+/* eslint-disable default-case */
 /* eslint-disable consistent-return */
 import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validations from '../../middlewares/fieldValidations/Validation';
+import Notification from '../../Notifications/Notification';
 import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 import OutputMethods from '../../repositories/Output/Output';
 import InputConnection from './InputConnection';
@@ -9,6 +11,11 @@ import InputConnection from './InputConnection';
 class OutputController {
   async Store(req, res, next) {
     try {
+      const areThereRegistredEmails = await Notification.AddressesAllowed();
+      if (areThereRegistredEmails.length < 1) {
+        throw new BadRequest('É necessário haver ao menos um funcionário autorizado a receber e-mails');
+      }
+
       const { name } = req.body;
       const validations = Validations.MainValidations(req.body);
       const outputsValidations = Validations.OutputsValidation(req.body);
@@ -28,13 +35,15 @@ class OutputController {
           throw new BadRequest('Não há emails destinatários cadastrados ou as permissões estão incorretas.');
         }
 
-        if (inputConnection[0] === 'limit reached') throw new BadRequest(`Não é possível registrar novas saídas: o limite do insumo ${inputConnection[1]} foi alcançado.`);
+        if (inputConnection[0] === 'limit reached') {
+          throw new BadRequest(`Não é possível registrar novas saídas: o limite do insumo ${inputConnection[1]} foi alcançado.`);
+        }
 
         if (inputConnection[0] === 'rate is near') {
           const store = await OutputMethods.Store(req.body);
 
           return res.json({
-            warning: [`ATENÇÃO: Faltam 15 unidades ou menos para o limite do insumo ${inputConnection[1]}.`],
+            warning: [`ATENÇÃO: Faltam ${inputExists.dataValues.rateisnear} unidades ou menos para o limite do insumo ${inputConnection[1]}.`],
             saida: [
               store,
             ],
@@ -42,11 +51,11 @@ class OutputController {
         }
       }
 
-      const store = await OutputMethods.Store(req.body);
+      const store2 = await OutputMethods.Store(req.body);
 
-      if (!store) throw new InternalServerError('Erro interno');
+      if (!store2) throw new InternalServerError('Erro interno');
 
-      return res.status(201).json(store);
+      return res.status(201).json(store2);
     } catch (err) {
       next(err);
     }

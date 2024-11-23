@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import Employee from '../../controllers/Employee/Employee';
-import loginRequired from '../../middlewares/loginRequired';
 import adminPermission from '../../middlewares/adminPermission';
+import loginRequired from '../../middlewares/loginRequired';
 
 const router = new Router();
 

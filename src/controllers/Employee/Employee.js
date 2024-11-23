@@ -45,7 +45,7 @@ class EmployeeController {
     try {
       const { id } = req.params;
       const validations = Validation.MainValidations(req.body, true, false, false, true);
-      const usersValidations = Validation.EmployeeValidation(req.body, true);
+      const usersValidations = Validation.EmployeeValidation(req.body, false, true);
 
       if (validations !== null) throw new BadRequest(validations);
       if (usersValidations !== null) throw new BadRequest(usersValidations);

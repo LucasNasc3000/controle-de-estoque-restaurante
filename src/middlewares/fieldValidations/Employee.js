@@ -1,5 +1,3 @@
-import { alphabetRegex } from './DataRegex';
-
 /* eslint-disable default-case */
 class UserValidations {
   CheckEmail(EmailFieldData, isLog, isUpdate) {
@@ -57,9 +55,6 @@ class UserValidations {
         return null;
 
       case typeof PermissionFieldData.permission !== 'string':
-        return 'Permission must be a string';
-
-      case !(alphabetRegex.test(PermissionFieldData.permission)):
         return 'Permission must be a string';
     }
 
