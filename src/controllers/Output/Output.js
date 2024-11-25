@@ -12,7 +12,7 @@ class OutputController {
   async Store(req, res, next) {
     try {
       const areThereRegistredEmails = await Notification.AddressesAllowed();
-      if (areThereRegistredEmails.length < 1) {
+      if (areThereRegistredEmails.length < 1 || areThereRegistredEmails === null) {
         throw new BadRequest('É necessário haver ao menos um funcionário autorizado a receber e-mails');
       }
 
