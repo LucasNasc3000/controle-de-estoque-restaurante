@@ -15,6 +15,7 @@ class InputConnectionController {
       inputSearchData.dataValues.minimun_quantity,
       inputSearchData.dataValues.name,
       inputSearchData.dataValues.rateisnear,
+      updatedData.quantity,
     ];
 
     const check = await QuantityCheck.QuantityCheck(dataForQuantityCheck);

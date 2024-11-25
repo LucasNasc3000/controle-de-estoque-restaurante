@@ -34,7 +34,7 @@ class Notifications {
     const destinatary = await this.AddressesAllowed();
     const subjects = ['Insumo chegando à quantidade limite', 'Insumo chegou à quantidade limite', 'Erro ao registrar log'];
     const emailBodies = [
-      `Atenção:\nO insumo ${inputData[2]} está perto da quantidade limite de ${inputData[1]}.\nQuantidade até antes da última saída: ${inputData[0]}`,
+      `Atenção:\nO insumo ${inputData[2]} está perto da quantidade limite de ${inputData[1]}.\nQuantidade atual: ${inputData[4]}`,
       `Atenção:\nO insumo ${inputData[2]} chegou à quantidade limite de ${inputData[1]}.`,
       `Ocorreu o seguinte erro ao registrar um log: \n${logError}`,
     ];
