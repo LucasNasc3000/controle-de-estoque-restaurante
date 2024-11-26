@@ -36,6 +36,7 @@ import outputSearchByUnities from './routes/output/outputSearchByUnities';
 
 // employee routes
 import employeeRoutes from './routes/employee/employee';
+import employeeSearchByBoss from './routes/employee/employeeSearchByBoss';
 import employeeSearchByEmail from './routes/employee/employeeSearchByEmail';
 import employeeSearchByID from './routes/employee/employeeSearchById';
 import employeeSearchByName from './routes/employee/employeeSearchByName';
@@ -105,6 +106,7 @@ class App {
     this.app.use('/employees/search/id', employeeSearchByID);
     this.app.use('/employees/search/name', employeeSearchByName);
     this.app.use('/employees/search/email', employeeSearchByEmail);
+    this.app.use('/employees/search/boss', employeeSearchByBoss);
 
     // sales routes
     this.app.use('/sales/', salesRoutes);

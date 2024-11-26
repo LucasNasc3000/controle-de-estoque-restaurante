@@ -77,6 +77,11 @@ export default class Employee extends Model {
         type: Sequelize.CHAR,
         defaultValue: '',
       },
+      boss: {
+        type: Sequelize.DataTypes.UUIDV1,
+        defaultValue: Sequelize.DataTypes.UUIDV1,
+        allowNull: true,
+      },
     }, {
       sequelize,
     });

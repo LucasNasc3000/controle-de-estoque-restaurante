@@ -7,6 +7,7 @@ const employeeAttributes = [
   'adminpassword',
   'permission',
   'address_allowed',
+  'boss',
   'created_at',
   'updated_at',
 ];
