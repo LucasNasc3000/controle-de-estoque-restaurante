@@ -3,7 +3,7 @@ import employeeAttributes from './Attributes';
 
 class EmployeesSearchBoss {
   async SearchByBoss(boss) {
-    const employeeFinder = await Employee.findOne({
+    const employeeFinder = await Employee.findAll({
       where: {
         boss,
       },
