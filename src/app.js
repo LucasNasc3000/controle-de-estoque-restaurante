@@ -40,6 +40,7 @@ import employeeSearchByBoss from './routes/employee/employeeSearchByBoss';
 import employeeSearchByEmail from './routes/employee/employeeSearchByEmail';
 import employeeSearchByID from './routes/employee/employeeSearchById';
 import employeeSearchByName from './routes/employee/employeeSearchByName';
+import employeeSearchOneByName from './routes/employee/employeeSearchOneByName';
 
 // sales routes
 import salesRoutes from './routes/sales/sale';
@@ -105,6 +106,7 @@ class App {
     this.app.use('/employees', employeeRoutes);
     this.app.use('/employees/search/id', employeeSearchByID);
     this.app.use('/employees/search/name', employeeSearchByName);
+    this.app.use('/employees/search/uniquename', employeeSearchOneByName);
     this.app.use('/employees/search/email', employeeSearchByEmail);
     this.app.use('/employees/search/boss', employeeSearchByBoss);
 

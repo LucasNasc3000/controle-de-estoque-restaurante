@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import EmployeesSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
+import EmployeesSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 
 class EmployeesSearchCredentialsController {
   async SearchByID(req, res, next) {
@@ -26,6 +26,20 @@ class EmployeesSearchCredentialsController {
 
       if (!employeeNameFinder) throw new InternalServerError('Erro interno');
       if (employeeNameFinder.length < 1) throw new NotFound('Funcionário não encontrado');
+
+      return res.status(200).json(employeeNameFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchOneByName(req, res, next) {
+    try {
+      const { uniquename } = req.params;
+
+      const employeeNameFinder = await EmployeesSearchCredentials.SearchOneByName(uniquename);
+
+      if (!employeeNameFinder) throw new NotFound('Funcionário não encontrado');
 
       return res.status(200).json(employeeNameFinder);
     } catch (err) {

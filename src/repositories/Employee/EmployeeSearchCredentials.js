@@ -25,6 +25,17 @@ class EmployeesSearchCredentials {
     return employeeFinderByName;
   }
 
+  async SearchOneByName(name) {
+    const employeeFinderByName = await Employee.findOne({
+      where: {
+        name,
+      },
+      attributes: employeeAttributes,
+    });
+
+    return employeeFinderByName;
+  }
+
   async SearchByEmail(email) {
     const employeeFinderByEmail = await Employee.findAll({
       where: {
