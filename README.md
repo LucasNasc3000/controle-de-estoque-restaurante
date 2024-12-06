@@ -1,4 +1,4 @@
-# Sistema de controle de estoque
+# Storage Manager System
 Esta é uma API desenvolvida para o controle de estoque de um restaurante. O sistema foi construído na arquitetura
 REST. Sendo o lado do servidor de uma aplicação web, este sistema foi desenvolvido com Node js para a programação das rotinas, rotas e validações de dados.
 A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador Objeto Relacional) para a modelagem de dados e para facilitar o uso do banco de dados.
