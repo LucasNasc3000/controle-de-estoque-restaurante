@@ -80,7 +80,7 @@ o front-end estiver em desenvolvimento.
 - Rodar o comando `docker images` e copiar o id da imagem nodeapp:app
 - `docker run -p 3000:3000 <id_nodeapp>`
 
-# Storage Management system
+# Storage Manager system
 This is an API developed for the storage control of a restaurant. The system was built in the REST architecture. Being the server side of a web application, this system was developed with Node js for programming routines, routes and data validations. The database is in MySql and to handle it I used the Sequelize ORM (Object Relational Mapper) for data modeling and to facilitate the use of the database.
 
 ## Features
