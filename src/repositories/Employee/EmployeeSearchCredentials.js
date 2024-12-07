@@ -20,6 +20,7 @@ class EmployeesSearchCredentials {
         name: { [Op.startsWith]: name },
       },
       attributes: employeeAttributes,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByName;

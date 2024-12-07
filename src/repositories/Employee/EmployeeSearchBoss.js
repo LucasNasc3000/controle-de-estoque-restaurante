@@ -8,6 +8,7 @@ class EmployeesSearchBoss {
         boss,
       },
       attributes: employeeAttributes,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinder;
