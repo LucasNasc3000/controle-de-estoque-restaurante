@@ -16,7 +16,7 @@ class EmployeeController {
 
       const emailExists = await EmployeeSearch.SearchByEmail(req.body.email);
 
-      if (emailExists.length > 0) throw new BadRequest('E-mail em uso, tente cadastrar outro');
+      if (emailExists) throw new BadRequest('E-mail em uso, tente cadastrar outro');
 
       const employeeStore = await Employees.Store(req.body);
 

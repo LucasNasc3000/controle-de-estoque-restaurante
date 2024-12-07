@@ -61,6 +61,10 @@ class UserValidations {
     if (PermissionFieldData.permission !== process.env.INPUTS_PERMISSION
         && PermissionFieldData.permission !== process.env.OUTPUTS_PERMISSION
         && PermissionFieldData.permission !== process.env.ADMIN_PERMISSION
+        && PermissionFieldData.permission !== process.env.INPUTS_OUTPUTS_PERMISSION
+        && PermissionFieldData.permission !== process.env.SALES_PERMISSION
+        && PermissionFieldData.permission !== process.env.SO_PERMISSION
+        && PermissionFieldData.permission !== process.env.SOI_PERMISSION
     ) {
       return 'Invalid permission';
     }
