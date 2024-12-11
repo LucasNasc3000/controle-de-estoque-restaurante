@@ -13,14 +13,14 @@ class TokenController {
         email = '', password = '', adminpassword = '', permission = '',
       } = req.body;
 
-      if (!email || !password) throw new BadRequest('Email e senha necessários para logar');
+      if (!email || !password || !adminpassword || !permission) throw new BadRequest('Email, senha, senha de admin e permissao necessários para logar');
 
-      const employee = await Employee.findOne({ where: { email } });
+      const employee = await Employee.findOne({ where: { email, is_active: 1 } });
 
       // eslint-disable-next-line default-case
       switch (true) {
         case !employee:
-          throw new Unauthorized('O funcionário não existe');
+          throw new Unauthorized('O funcionário não existe ou está inativo');
 
         case !(await employee.PasswordValidator(password)):
           throw new Unauthorized('Senha inválida');
