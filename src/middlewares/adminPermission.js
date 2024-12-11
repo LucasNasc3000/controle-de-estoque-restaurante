@@ -16,11 +16,12 @@ export default async (req, res, next) => {
       where: {
         email,
         permission,
+        is_active: 1,
       },
     });
 
     if (!employee) {
-      throw new BadRequest('Funcionário não encontrado');
+      throw new BadRequest('Funcionário não encontrado ou inativo');
     }
 
     const adminPassValidator = await employee.AdminPasswordValidator(adminpassword);
