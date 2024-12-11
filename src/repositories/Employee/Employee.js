@@ -1,16 +1,6 @@
 import Employee from '../../models/Employee';
-import employeeAttributes from './Attributes';
 
 class EmployeesList {
-  async List() {
-    const employees = await Employee.findAll({
-      attributes: employeeAttributes,
-      order: [['id', 'DESC']],
-    });
-
-    return employees;
-  }
-
   async Store(data) {
     const newEmployee = await Employee.create(data);
     return newEmployee;

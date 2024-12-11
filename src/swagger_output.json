@@ -2517,6 +2517,12 @@
                 },
                 "address_allowed": {
                   "type": "string"
+                },
+                "boss": {
+                  "type": "string|null"
+                },
+                "is_active": {
+                  "type": "boolean"
                 }
               }
             }
@@ -2551,78 +2557,11 @@
                   "address_allowed": {
                     "type": "string"
                   },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "updated_at": {
-                    "type": "date"
-                  }
-                }
-              }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Employees"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
+                  "boss": {
                     "type": "string"
                   },
-                  "name": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  },
-                  "password_hash": {
-                    "type": "string"
-                  },
-                  "adminpassword_hash": {
-                    "type": "string"
-                  },
-                  "permission": {
-                    "type": "string"
-                  },
-                  "address_allowed": {
-                    "type": "string"
+                  "is_active": {
+                    "type": "boolean"
                   },
                   "created_at": {
                     "type": "date"
@@ -2698,6 +2637,12 @@
                 },
                 "address_allowed": {
                   "type": "string"
+                },
+                "boss": {
+                  "type": "string|null"
+                },
+                "is_active": {
+                  "type": "boolean"
                 }
               }
             }
@@ -2731,6 +2676,12 @@
                   },
                   "address_allowed": {
                     "type": "string"
+                  },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
                   },
                   "created_at": {
                     "type": "date"
@@ -2868,6 +2819,12 @@
                   "address_allowed": {
                     "type": "string"
                   },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -2949,6 +2906,12 @@
                   "address_allowed": {
                     "type": "string"
                   },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -3029,6 +2992,12 @@
                   },
                   "address_allowed": {
                     "type": "string"
+                  },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
                   },
                   "created_at": {
                     "type": "date"

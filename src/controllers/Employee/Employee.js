@@ -28,19 +28,6 @@ class EmployeeController {
     }
   }
 
-  async Index(req, res, next) {
-    try {
-      const employeesList = await Employees.List();
-
-      if (!employeesList) throw new InternalServerError('Erro interno');
-      if (employeesList.length < 1) throw new InternalServerError('Não há funcionários cadastrados.');
-
-      return res.status(200).json(employeesList);
-    } catch (err) {
-      next(err);
-    }
-  }
-
   async Update(req, res, next) {
     try {
       const { id } = req.params;
