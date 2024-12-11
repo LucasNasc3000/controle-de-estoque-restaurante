@@ -82,6 +82,11 @@ export default class Employee extends Model {
         defaultValue: Sequelize.DataTypes.UUIDV1,
         allowNull: true,
       },
+      is_active: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        defaultValue: true,
+      },
     }, {
       sequelize,
     });
