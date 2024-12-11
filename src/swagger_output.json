@@ -2930,6 +2930,87 @@
         }
       }
     },
+    "/employees/search/uniquename/{uniquename}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "uniquename",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/employees/search/email/{email}": {
       "get": {
         "tags": [
@@ -3010,6 +3091,87 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/employees/search/boss/{boss}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "boss",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
