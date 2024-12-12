@@ -1,6 +1,7 @@
 import { Unauthorized } from '../errors/authErrors';
 import { BadRequest } from '../errors/clientErrors';
 import { EmailErrors } from '../errors/emailsErrors';
+import { Forbidden } from '../errors/forbidden';
 import { LogError } from '../errors/logErrors';
 import { NotFound } from '../errors/notFound';
 import { InternalServerError } from '../errors/serverErrors';
@@ -22,6 +23,11 @@ const errorHandler = (err, req, res, next) => {
 
     case (err instanceof NotFound):
       return res.status(404).json({
+        error: [err.message],
+      });
+
+    case (err instanceof Forbidden):
+      return res.status(403).json({
         error: [err.message],
       });
 

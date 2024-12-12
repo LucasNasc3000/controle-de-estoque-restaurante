@@ -27,7 +27,6 @@ export default async (req, res, next) => {
         is_active: 1,
       },
     });
-    console.log(employee);
 
     if (!employee) {
       return res.status(401).json({

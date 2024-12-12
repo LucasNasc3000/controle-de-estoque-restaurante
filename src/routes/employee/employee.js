@@ -7,6 +7,5 @@ const router = new Router();
 
 router.post('/', Employee.Store);
 router.put('/:id', loginRequired, adminPermission, Employee.Update);
-router.delete('/:id', loginRequired, adminPermission, Employee.Delete);
 
 export default router;

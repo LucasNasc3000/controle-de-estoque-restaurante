@@ -15,15 +15,6 @@ class EmployeesList {
 
     return employeeUpdate;
   }
-
-  // eslint-disable-next-line consistent-return
-  async Delete(id) {
-    const deleteEmployee = await Employee.findByPk(id);
-
-    if (!deleteEmployee) return 'funcionário não registrado';
-
-    await deleteEmployee.destroy();
-  }
 }
 
 export default new EmployeesList();

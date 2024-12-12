@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import { BadRequest } from '../../errors/clientErrors';
+import { Forbidden } from '../../errors/forbidden';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import Employees from '../../repositories/Employee/Employee';
@@ -8,6 +9,10 @@ import EmployeeSearch from '../../repositories/Employee/EmployeeSearchCredential
 class EmployeeController {
   async Store(req, res, next) {
     try {
+      const { headerid } = req.headers;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
       const validations = Validation.MainValidations(req.body, true);
       const employeesValidations = Validation.EmployeeValidation(req.body, false, false);
 
@@ -31,6 +36,8 @@ class EmployeeController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
+      const { headerid } = req.headers;
+
       const validations = Validation.MainValidations(req.body, true, false, false, true);
       const usersValidations = Validation.EmployeeValidation(req.body, false, true);
 
@@ -44,27 +51,28 @@ class EmployeeController {
 
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.
+
+      if (headerid) {
+        if (headerid !== id) throw new Forbidden('Ação não autorizada para funcionários');
+
+        const employeeSelfUpdate = await Employees.Update(headerid, req.body);
+
+        if (employeeSelfUpdate === 'funcionário não encontrado') throw new BadRequest('Funcionário não registrado');
+        if (!employeeSelfUpdate) throw new InternalServerError('Erro interno');
+
+        const empSearch = await EmployeeSearch.SearchById(id);
+
+        return res.status(200).send(empSearch);
+      }
+
       const employeeUpdate = await Employees.Update(id, req.body);
 
       if (employeeUpdate === 'funcionário não encontrado') throw new BadRequest('Funcionário não registrado');
       if (!employeeUpdate) throw new InternalServerError('Erro interno');
 
-      return res.status(200).send(employeeUpdate);
-    } catch (err) {
-      next(err);
-    }
-  }
+      const empSearch = await EmployeeSearch.SearchById(id);
 
-  async Delete(req, res, next) {
-    try {
-      const { id } = req.params;
-
-      const employeeDelete = await Employees.Delete(id);
-
-      if (employeeDelete === 'funcionário não registrado') throw new BadRequest('Funcionário não registrado');
-      if (!employeeDelete) throw new InternalServerError('Erro interno');
-
-      return res.status(200).json(`Funcionário ${id} deletado`);
+      return res.status(200).send(empSearch);
     } catch (err) {
       next(err);
     }

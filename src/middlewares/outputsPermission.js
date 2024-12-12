@@ -15,7 +15,6 @@ export default async (req, res, next) => {
     const employee = await Employee.findOne({
       where: {
         email,
-        permission,
         is_active: 1,
       },
     });

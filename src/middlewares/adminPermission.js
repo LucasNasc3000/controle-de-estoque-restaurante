@@ -6,7 +6,9 @@ import Employee from '../models/Employee';
 
 export default async (req, res, next) => {
   try {
-    const { permission, email, adminpassword } = req.headers;
+    const {
+      permission, email, adminpassword, headerid,
+    } = req.headers;
 
     if (!permission || !email || !adminpassword) {
       throw new Unauthorized('Permissao, senha de admin e email necessarios');
@@ -15,7 +17,6 @@ export default async (req, res, next) => {
     const employee = await Employee.findOne({
       where: {
         email,
-        permission,
         is_active: 1,
       },
     });
@@ -30,7 +31,10 @@ export default async (req, res, next) => {
       case (employee.permission !== permission):
         throw new Unauthorized('Acesso negado, permissao incorreta');
 
-      case (employee.permission !== process.env.ADMIN_PERMISSION):
+      case (employee.permission !== process.env.ADMIN_PERMISSION && headerid):
+        return next();
+
+      case (employee.permission !== process.env.ADMIN_PERMISSION && !headerid):
         throw new Unauthorized('Acesso negado, permissao para administrador necessaria');
 
       case (!adminPassValidator):
