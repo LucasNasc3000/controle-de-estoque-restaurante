@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+import { Forbidden } from '../../errors/forbidden';
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
 import EmployeesSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
@@ -6,6 +7,10 @@ import EmployeesSearchCredentials from '../../repositories/Employee/EmployeeSear
 class EmployeesSearchCredentialsController {
   async SearchByID(req, res, next) {
     try {
+      const { headerid } = req.headers;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
       const { id } = req.params;
 
       const employeeIDFinder = await EmployeesSearchCredentials.SearchById(id);
@@ -20,6 +25,10 @@ class EmployeesSearchCredentialsController {
 
   async SearchByName(req, res, next) {
     try {
+      const { headerid } = req.headers;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
       const { name } = req.params;
 
       const employeeNameFinder = await EmployeesSearchCredentials.SearchByName(name);
@@ -35,6 +44,10 @@ class EmployeesSearchCredentialsController {
 
   async SearchOneByName(req, res, next) {
     try {
+      const { headerid } = req.headers;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
       const { uniquename } = req.params;
 
       const employeeNameFinder = await EmployeesSearchCredentials.SearchOneByName(uniquename);
@@ -49,6 +62,10 @@ class EmployeesSearchCredentialsController {
 
   async SearchByEmail(req, res, next) {
     try {
+      const { headerid } = req.headers;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
       const { email } = req.params;
 
       const employeeEmailFinder = await EmployeesSearchCredentials.SearchByEmail(email);
