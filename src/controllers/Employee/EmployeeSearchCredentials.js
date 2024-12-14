@@ -62,16 +62,22 @@ class EmployeesSearchCredentialsController {
 
   async SearchByEmail(req, res, next) {
     try {
-      const { headerid } = req.headers;
+      const { headerid, email } = req.headers;
+      const { emailParam } = req.params;
 
-      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+      if (headerid) {
+        if (email !== emailParam) throw new Forbidden('Ação não autorizada para funcionários');
 
-      const { email } = req.params;
+        const employeeSelfEmailFinder = await EmployeesSearchCredentials.SearchByEmail(emailParam);
 
-      const employeeEmailFinder = await EmployeesSearchCredentials.SearchByEmail(email);
+        if (!employeeSelfEmailFinder) throw new NotFound('Funcionário não encontrado');
 
-      if (!employeeEmailFinder) throw new InternalServerError('Erro interno');
-      if (employeeEmailFinder.length < 1) throw new NotFound('Funcionário não encontrado');
+        return res.status(200).json(employeeSelfEmailFinder);
+      }
+
+      const employeeEmailFinder = await EmployeesSearchCredentials.SearchByEmail(emailParam);
+
+      if (!employeeEmailFinder) throw new NotFound('Funcionário não encontrado');
 
       return res.status(200).json(employeeEmailFinder);
     } catch (err) {
