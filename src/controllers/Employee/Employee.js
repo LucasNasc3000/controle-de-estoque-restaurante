@@ -61,7 +61,7 @@ class EmployeeController {
           throw new Forbidden('Ação não autorizada para funcionários');
         }
 
-        if (typeof req.body.is_active === 'string' || typeof req.body.is_active === 'number') {
+        if (typeof req.body.is_active === 'string' || typeof req.body.is_active === 'number' || typeof req.body.is_active === 'boolean') {
           throw new Forbidden('Ação não autorizada para funcionários');
         }
 
