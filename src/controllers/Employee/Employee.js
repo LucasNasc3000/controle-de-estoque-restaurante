@@ -55,6 +55,16 @@ class EmployeeController {
       if (headerid) {
         if (headerid !== id) throw new Forbidden('Ação não autorizada para funcionários');
 
+        if (req.body.permission
+           || req.body.address_allowed
+            || req.body.boss) {
+          throw new Forbidden('Ação não autorizada para funcionários');
+        }
+
+        if (typeof req.body.is_active === 'string' || typeof req.body.is_active === 'number') {
+          throw new Forbidden('Ação não autorizada para funcionários');
+        }
+
         const employeeSelfUpdate = await Employees.Update(headerid, req.body);
 
         if (employeeSelfUpdate === 'funcionário não encontrado') throw new BadRequest('Funcionário não registrado');
