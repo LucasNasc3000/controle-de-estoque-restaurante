@@ -31,7 +31,7 @@ export default async (req, res, next) => {
       case (employee.permission !== permission):
         throw new Unauthorized('Acesso negado, permissao incorreta');
 
-      case (employee.permission !== process.env.ADMIN_PERMISSION && headerid):
+      case (headerid && employee.permission !== process.env.ADMIN_PERMISSION):
         return next();
 
       case (employee.permission !== process.env.ADMIN_PERMISSION && !headerid):
