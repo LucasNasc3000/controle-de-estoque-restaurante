@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
 /* eslint-disable default-case */
 /* eslint-disable consistent-return */
 import { BadRequest } from '../../errors/clientErrors';
+import { Forbidden } from '../../errors/forbidden';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validations from '../../middlewares/fieldValidations/Validation';
 import Notification from '../../Notifications/Notification';
@@ -77,6 +79,10 @@ class OutputController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
+      const { employee_id } = req.body;
+
+      if (employee_id) throw new Forbidden('Ação não permitida');
+
       const validations = Validations.MainValidations(req.body);
       const outputsValidations = Validations.OutputsValidation(req.body);
 

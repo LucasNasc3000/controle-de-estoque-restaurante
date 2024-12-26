@@ -1,5 +1,7 @@
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 import { BadRequest } from '../../errors/clientErrors';
+import { Forbidden } from '../../errors/forbidden';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import InputMethods from '../../repositories/Input/Input';
@@ -39,6 +41,10 @@ class InputController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
+      const { employee_id } = req.body;
+
+      if (employee_id) throw new Forbidden('Ação não permitida');
+
       const validations = Validation.MainValidations(req.body, false, false, false, true);
       const inputValidations = Validation.InputsValidation(req.body);
 

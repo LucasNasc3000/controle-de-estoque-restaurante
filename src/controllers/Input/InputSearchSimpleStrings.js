@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
+import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 
 class InputSearchSimpleStringsController {
   async SearchByType(req, res, next) {
@@ -56,7 +56,6 @@ class InputSearchSimpleStringsController {
       const inputEmployeeIdFinder = await InputSearchSimpleStrings.SearchByEmployeeId(employeeid);
 
       if (!inputEmployeeIdFinder) throw new InternalServerError('Erro interno');
-      if (inputEmployeeIdFinder.length < 1) throw new NotFound('Insumo não encontrado');
 
       return res.status(200).json(inputEmployeeIdFinder);
     } catch (err) {

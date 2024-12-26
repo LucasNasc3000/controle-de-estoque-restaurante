@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
-import Sales from '../../repositories/Sales/Sales';
-import Validation from '../../middlewares/fieldValidations/Validation';
 import { BadRequest } from '../../errors/clientErrors';
+import { Forbidden } from '../../errors/forbidden';
 import { InternalServerError } from '../../errors/serverErrors';
+import Validation from '../../middlewares/fieldValidations/Validation';
+import Sales from '../../repositories/Sales/Sales';
 
 class SalesController {
   async Store(req, res, next) {
@@ -39,6 +41,10 @@ class SalesController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
+      const { employee_id } = req.body;
+
+      if (employee_id) throw new Forbidden('Ação não permitida');
+
       const validations = Validation.MainValidations(req.body, false, false, true);
       const salesValidations = Validation.SalesValidation(req.body);
 
