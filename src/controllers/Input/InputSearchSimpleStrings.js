@@ -23,7 +23,7 @@ class InputSearchSimpleStringsController {
     try {
       const { name } = req.params;
 
-      const inputNameFinder = await InputSearchSimpleStrings.SearchByName(name);
+      const inputNameFinder = await InputSearchSimpleStrings.SearchByNameForUsers(name);
 
       if (!inputNameFinder) throw new InternalServerError('Erro interno');
       if (inputNameFinder.length < 1) throw new NotFound('Insumo não encontrado');

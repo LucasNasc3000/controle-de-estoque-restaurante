@@ -93,6 +93,16 @@ export default class Input extends Model {
           },
         },
       },
+      status: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [6, 20],
+            msg: 'Status não deve ultrapassar os 20 caracteres e deve ter pelo menos 6',
+          },
+        },
+      },
     }, {
       sequelize,
     });
