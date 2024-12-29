@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 import { BadRequest } from '../../errors/clientErrors';
-import { Forbidden } from '../../errors/forbidden';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import Sales from '../../repositories/Sales/Sales';
@@ -41,9 +40,6 @@ class SalesController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
-      const { employee_id } = req.body;
-
-      if (employee_id) throw new Forbidden('Ação não permitida');
 
       const validations = Validation.MainValidations(req.body, false, false, true);
       const salesValidations = Validation.SalesValidation(req.body);
@@ -51,7 +47,9 @@ class SalesController {
       if (validations !== null) throw new BadRequest(validations);
       if (salesValidations !== null) throw new BadRequest(salesValidations);
 
-      const salesUpdate = await Sales.Update(id, req.body);
+      const { employee_id, ...allowedData } = req.body;
+
+      const salesUpdate = await Sales.Update(id, allowedData);
 
       if (salesUpdate === 'venda não encontrada') throw new BadRequest('Venda não registrada');
       if (!salesUpdate) throw new InternalServerError('Erro desconhecido');

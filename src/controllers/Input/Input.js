@@ -52,11 +52,11 @@ class InputController {
       if (validations !== null) throw new BadRequest(validations);
       if (inputValidations !== null) throw new BadRequest(inputValidations);
 
-      const { employee_id, ...rest } = req.body;
+      const { employee_id, ...allowedData } = req.body;
 
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.
-      const inputUpdate = await InputMethods.Update(id, rest);
+      const inputUpdate = await InputMethods.Update(id, allowedData);
 
       if (inputUpdate === 'insumo não encontrado') throw new BadRequest('Insumo não encontrado');
 

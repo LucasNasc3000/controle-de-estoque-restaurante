@@ -2,7 +2,6 @@
 /* eslint-disable default-case */
 /* eslint-disable consistent-return */
 import { BadRequest } from '../../errors/clientErrors';
-import { Forbidden } from '../../errors/forbidden';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validations from '../../middlewares/fieldValidations/Validation';
 import Notification from '../../Notifications/Notification';
@@ -79,9 +78,6 @@ class OutputController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
-      const { employee_id } = req.body;
-
-      if (employee_id) throw new Forbidden('Ação não permitida');
 
       const validations = Validations.MainValidations(req.body);
       const outputsValidations = Validations.OutputsValidation(req.body);
@@ -89,9 +85,11 @@ class OutputController {
       if (validations !== null) throw new BadRequest(validations);
       if (outputsValidations !== null) throw new BadRequest(outputsValidations);
 
+      const { employee_id, ...allowedData } = req.body;
+
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.
-      const outputUpdate = await OutputMethods.Update(id, req.body);
+      const outputUpdate = await OutputMethods.Update(id, allowedData);
 
       if (outputUpdate === 'saída não encontrada') throw new BadRequest('Insumo não registrado');
       if (!outputUpdate) throw new InternalServerError('Erro interno');
