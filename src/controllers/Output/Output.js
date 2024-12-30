@@ -62,19 +62,6 @@ class OutputController {
     }
   }
 
-  async Index(req, res, next) {
-    try {
-      const outputsList = await OutputMethods.List();
-
-      if (!outputsList) throw new InternalServerError('Erro interno');
-      if (outputsList.length < 1) throw new BadRequest('Não há sáidas registradas');
-
-      return res.status(200).send(outputsList);
-    } catch (err) {
-      next(err);
-    }
-  }
-
   async Update(req, res, next) {
     try {
       const { id } = req.params;

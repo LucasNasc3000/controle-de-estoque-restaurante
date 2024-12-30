@@ -1,16 +1,6 @@
 import Sales from '../../models/Sale';
-import salesAttributes from './Attributes';
 
 class SalesList {
-  async List() {
-    const sales = await Sales.findAll({
-      attributes: salesAttributes,
-      order: [['id', 'DESC']],
-    });
-
-    return sales;
-  }
-
   async Store(data) {
     const newSale = await Sales.create(data);
     return newSale;

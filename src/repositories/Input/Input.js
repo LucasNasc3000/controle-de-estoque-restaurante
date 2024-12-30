@@ -1,16 +1,6 @@
 import Input from '../../models/Input';
-import inputAttributes from './Attributes';
 
 class InputsList {
-  async List() {
-    const inputs = await Input.findAll({
-      attributes: inputAttributes,
-      order: [['id', 'DESC']],
-    });
-
-    return inputs;
-  }
-
   async Store(data) {
     const newInput = await Input.create(data);
     return newInput;

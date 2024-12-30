@@ -24,19 +24,6 @@ class SalesController {
     }
   }
 
-  async Index(req, res, next) {
-    try {
-      const salesList = await Sales.List();
-
-      if (!salesList) throw new InternalServerError('Erro desconhecido');
-      if (salesList.length < 1) throw new BadRequest('Não há vendas registradas');
-
-      return res.status(200).json(salesList);
-    } catch (err) {
-      next(err);
-    }
-  }
-
   async Update(req, res, next) {
     try {
       const { id } = req.params;

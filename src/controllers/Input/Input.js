@@ -25,19 +25,6 @@ class InputController {
     }
   }
 
-  async Index(req, res, next) {
-    try {
-      const inputList = await InputMethods.List();
-
-      if (!inputList) throw new InternalServerError('Erro interno');
-      if (inputList.length < 1) throw new InternalServerError('Não há insumos cadastrados');
-
-      return res.status(200).send(inputList);
-    } catch (err) {
-      next(err);
-    }
-  }
-
   async Update(req, res, next) {
     try {
       const { id } = req.params;

@@ -1,16 +1,6 @@
 import Output from '../../models/Output';
-import outputAttributes from './Attributes';
 
 class OutputsList {
-  async List() {
-    const outputs = await Output.findAll({
-      attributes: outputAttributes,
-      order: [['id', 'DESC']],
-    });
-
-    return outputs;
-  }
-
   async Store(data) {
     const newOutput = await Output.create(data);
     return newOutput;
