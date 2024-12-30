@@ -5,7 +5,7 @@ import {
 
 class SalesValidations {
   CheckPersonalAndSalesData(PersonalAndSalesData) {
-    const phoneNumberCheck = /^([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{5})$/;
+    const phoneNumberCheck = /^([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{4})$/;
     const alphabetCheck = /^[a-zA-Z]+$/;
 
     if (PersonalAndSalesData.phone_number) {
