@@ -15,7 +15,7 @@ class SalesSearchSalesData {
   }
 
   async SearchByemployeeId(employeeId) {
-    const saleFinderByEmployeeId = await Sale.findOne({
+    const saleFinderByEmployeeId = await Sale.findAll({
       where: {
         employee_id: employeeId,
       },

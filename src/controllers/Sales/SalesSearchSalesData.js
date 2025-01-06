@@ -25,7 +25,7 @@ class SalesSearchSalesDataController {
 
       const salesEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeid);
 
-      if (!salesEmployeeIdFinder) throw new NotFound('Venda não encontrada ou não cadastrada pelo funcionário');
+      if (!salesEmployeeIdFinder) throw new InternalServerError('Venda não encontrada ou não cadastrada pelo funcionário');
 
       return res.status(200).json(salesEmployeeIdFinder);
     } catch (err) {

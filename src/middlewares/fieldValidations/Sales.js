@@ -16,7 +16,7 @@ class SalesValidations {
 
     if (PersonalAndSalesData.client_name) {
       if (!alphabetCheck.test(PersonalAndSalesData.client_name)) {
-        return 'client_name must be a letters string';
+        return 'client_name must be a alphabet string';
       }
     }
 
@@ -24,15 +24,11 @@ class SalesValidations {
       if (typeof PersonalAndSalesData.products !== 'string') {
         return 'products must be a string';
       }
-
-      if (!alphabetCheck.test(PersonalAndSalesData.products)) {
-        return 'products must be a string';
-      }
     }
 
-    if (PersonalAndSalesData.address) {
-      if (!alphabetCheck.test(PersonalAndSalesData.address)) {
-        return 'address must be a string';
+    if (PersonalAndSalesData.client_birthday) {
+      if (typeof PersonalAndSalesData.client_birthday !== 'string') {
+        return 'client btd must be a short date string';
       }
     }
     return this.CheckDatesAndHour(PersonalAndSalesData);

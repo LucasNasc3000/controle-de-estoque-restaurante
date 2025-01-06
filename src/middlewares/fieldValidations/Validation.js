@@ -143,10 +143,13 @@ class Validation {
         return 'O nome do cliente deve conter somente letras do alfabeto';
 
       case 'phone_number must be a phone number string':
-        return 'O número de telefone deve ser uma string no formato XX-XXXXX-XXXX';
+        return 'O número de telefone deve ser uma string no formato XX XXXXX-XXXX';
 
       case 'products must be a string':
         return 'Os produtos devem estar em formato de texto';
+
+      case 'client btd must be a short date string':
+        return 'O anv. do cliente precisa ser uma data no formato dd-mm';
 
       default:
         return null;
