@@ -7,6 +7,7 @@ const salesAttributes = [
   'address',
   'products',
   'employee_id',
+  'client_birthday',
   'created_at',
   'updated_at',
 ];
