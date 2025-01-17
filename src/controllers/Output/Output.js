@@ -26,8 +26,7 @@ class OutputController {
 
       const inputExists = await InputSearchSimpleStrings.SearchByNameInternal(name);
 
-      if (inputExists.length < 1) throw new BadRequest(`Ocorreu um erro interno ou o insumo ${name} não está cadastrado`);
-      if (!inputExists) throw new InternalServerError('Erro interno');
+      if (!inputExists) throw new BadRequest(`Ocorreu um erro interno ou o insumo ${name} não está cadastrado`);
 
       const inputConnection = await InputConnection.InputUpdate(inputExists, req.body);
 
