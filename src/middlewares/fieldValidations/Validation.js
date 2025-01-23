@@ -95,6 +95,9 @@ class Validation {
       case 'Password is too short':
         return 'A senha precisa ter pelo menos 8 caracteres';
 
+      case 'Admin password is too short':
+        return 'A senha do admin precisa ter pelo menos 8 caracteres';
+
       case 'Name is too short':
         return 'O nome precisa ter pelo menos 3 caracteres';
     }

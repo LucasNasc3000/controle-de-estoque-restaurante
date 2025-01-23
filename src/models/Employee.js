@@ -58,8 +58,8 @@ export default class Employee extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [0, 60],
-            msg: 'A senha do admin deve ter no máximo 60 caracteres',
+            args: [8, 60],
+            msg: 'A senha do admin precisa ter entre 8 e 60 caracteres',
           },
         },
       },

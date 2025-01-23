@@ -46,7 +46,7 @@ class EmployeeController {
 
       if (req.body.email) {
         const emailExists = await EmployeeSearch.SearchByEmail(req.body.email);
-        if (emailExists.length > 0) throw new BadRequest('E-mail em uso, tente cadastrar outro');
+        if (emailExists) throw new BadRequest('E-mail em uso');
       }
 
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de

@@ -1,5 +1,4 @@
 import {
-  alphabetRegex,
   dateAndHourErrorMsg,
   dateRegex, hourRegex,
 } from './DataRegex';
@@ -23,10 +22,6 @@ class InputsValidations {
   CheckStrings(StringsFieldsData) {
     if (StringsFieldsData.supplier) {
       if (typeof StringsFieldsData.supplier !== 'string') {
-        return 'Supplier must be a string';
-      }
-
-      if (!alphabetRegex.test(StringsFieldsData.supplier)) {
         return 'Supplier must be a string';
       }
     }

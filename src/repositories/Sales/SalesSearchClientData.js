@@ -15,7 +15,7 @@ class SalesSearchClientData {
   }
 
   async SearchByPhoneNumber(phoneNumber) {
-    const SaleFinderByPhoneNumber = await Sale.findAll({
+    const SaleFinderByPhoneNumber = await Sale.findOne({
       where: {
         phone_number: phoneNumber,
       },
@@ -26,7 +26,7 @@ class SalesSearchClientData {
   }
 
   async SearchByAddress(address) {
-    const saleFinderByAddress = await Sale.findAll({
+    const saleFinderByAddress = await Sale.findOne({
       where: {
         address,
       },

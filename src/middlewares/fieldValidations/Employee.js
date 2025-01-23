@@ -35,7 +35,7 @@ class UserValidations {
 
   CheckPassword(PasswordFieldData, isUpdate) {
     if (isUpdate === true && !PasswordFieldData.password) {
-      return this.CheckPermission(PasswordFieldData, isUpdate);
+      return this.CheckAdminPassword(PasswordFieldData, isUpdate);
     }
 
     if (typeof PasswordFieldData.password !== 'string') {
@@ -46,7 +46,23 @@ class UserValidations {
       return 'Password is too short';
     }
 
-    return this.CheckPermission(PasswordFieldData, isUpdate);
+    return this.CheckAdminPassword(PasswordFieldData, isUpdate);
+  }
+
+  CheckAdminPassword(AdminPasswordFieldData, isUpdate) {
+    if (isUpdate === true && !AdminPasswordFieldData.adminpassword) {
+      return this.CheckPermission(AdminPasswordFieldData, isUpdate);
+    }
+
+    if (typeof AdminPasswordFieldData.adminpassword !== 'string') {
+      return 'Admin password must be a string';
+    }
+
+    if (AdminPasswordFieldData.adminpassword.length < 8) {
+      return 'Admin password is too short';
+    }
+
+    return this.CheckPermission(AdminPasswordFieldData, isUpdate);
   }
 
   CheckPermission(PermissionFieldData, isUpdate) {

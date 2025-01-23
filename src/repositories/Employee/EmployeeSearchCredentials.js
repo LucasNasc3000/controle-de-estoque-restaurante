@@ -7,7 +7,6 @@ class EmployeesSearchCredentials {
     const employeeFinder = await Employee.findOne({
       where: {
         id,
-        is_active: 1,
       },
       attributes: employeeAttributes,
     });
@@ -19,7 +18,6 @@ class EmployeesSearchCredentials {
     const employeeFinderByName = await Employee.findAll({
       where: {
         name: { [Op.startsWith]: name },
-        is_active: 1,
       },
       attributes: employeeAttributes,
       order: [['id', 'DESC']],
@@ -32,7 +30,6 @@ class EmployeesSearchCredentials {
     const employeeFinderByName = await Employee.findOne({
       where: {
         name,
-        is_active: 1,
       },
       attributes: employeeAttributes,
     });
@@ -44,7 +41,6 @@ class EmployeesSearchCredentials {
     const employeeFinderByEmail = await Employee.findOne({
       where: {
         email,
-        is_active: 1,
       },
       attributes: employeeAttributes,
     });
