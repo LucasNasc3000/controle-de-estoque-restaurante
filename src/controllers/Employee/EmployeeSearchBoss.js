@@ -24,6 +24,8 @@ class EmployeesSearchBossController {
 
       const employeeBossFinder = await EmployeeSearchBoss.SearchByBoss(boss);
 
+      if (employeeBossFinder === 'Não autorizado') throw new Forbidden('Ação não autorizada');
+
       if (!employeeBossFinder) throw new NotFound('Chefe não encontrado');
 
       return res.status(200).json(employeeBossFinder);

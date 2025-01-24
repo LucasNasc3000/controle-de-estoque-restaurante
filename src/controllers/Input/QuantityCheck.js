@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import Notification from '../../Notifications/Notification';
+import Notification from '../../Notifications/RegistersNotifications';
 
 class QuantityCheck {
   async QuantityCheck(inputData) {

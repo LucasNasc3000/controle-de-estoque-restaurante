@@ -7,7 +7,7 @@ const sgMail = require('@sendgrid/mail');
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-class Notifications {
+class RegistersNotifications {
   async AddressesAllowed() {
     const employeeSearch = await EmployeeSearchCredentials.SearchByAddressAllowed();
     const addressesAllowed = [];
@@ -108,4 +108,4 @@ class Notifications {
   }
 }
 
-export default new Notifications();
+export default new RegistersNotifications();

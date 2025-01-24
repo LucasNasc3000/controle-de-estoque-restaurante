@@ -66,6 +66,15 @@ export default class Sale extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
+      birthday_notice: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: 'aviso de anievrsário precisa ser um número inteiro',
+          },
+        },
+      },
     }, {
       sequelize,
     });

@@ -1,6 +1,6 @@
-import LogList from '../repositories/Employee/Log';
-import Notification from '../Notifications/Notification';
+import Notification from '../Notifications/RegistersNotifications';
 import { LogError } from '../errors/logErrors';
+import LogList from '../repositories/Employee/Log';
 
 class LogRegister {
   setLogData() {

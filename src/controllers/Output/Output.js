@@ -4,7 +4,7 @@
 import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validations from '../../middlewares/fieldValidations/Validation';
-import Notification from '../../Notifications/Notification';
+import Notification from '../../Notifications/RegistersNotifications';
 import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
 import OutputMethods from '../../repositories/Output/Output';
 import InputConnection from './InputConnection';
