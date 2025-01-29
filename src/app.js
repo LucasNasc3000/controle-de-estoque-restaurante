@@ -54,6 +54,9 @@ import saleSearchId from './routes/sales/saleSearchId';
 import saleSearchPhoneNumber from './routes/sales/saleSearchPhoneNumber';
 import saleSearchProducts from './routes/sales/saleSearchProducts';
 
+// notices routes
+import noticeRoutes from './routes/notice/notice';
+
 class App {
   constructor() {
     this.app = express();
@@ -122,6 +125,9 @@ class App {
     this.app.use('/sales/search/id/', saleSearchId);
     this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
     this.app.use('/sales/search/products/', saleSearchProducts);
+
+    // notice routes
+    this.app.use('/notices/', noticeRoutes);
 
     this.app.use(errorHandler);
   }

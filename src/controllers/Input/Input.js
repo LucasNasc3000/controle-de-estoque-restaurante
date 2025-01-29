@@ -4,7 +4,6 @@ import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import InputMethods from '../../repositories/Input/Input';
-import InputSearchIntegers from '../../repositories/Input/InputSearchIntegers';
 
 class InputController {
   async Store(req, res, next) {
@@ -28,10 +27,6 @@ class InputController {
   async Update(req, res, next) {
     try {
       const { id } = req.params;
-
-      const inputSearch = await InputSearchIntegers.SearchByID(id);
-
-      if (!inputSearch) throw new BadRequest('Insumo não registrado');
 
       const validations = Validation.MainValidations(req.body, false, false, false, true);
       const inputValidations = Validation.InputsValidation(req.body);

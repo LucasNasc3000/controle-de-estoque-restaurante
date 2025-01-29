@@ -6,14 +6,14 @@ import {
 class InputsValidations {
   CheckIntegers(integersFieldData) {
     if (integersFieldData.quantity) {
-      if (typeof integersFieldData.quantity !== 'number') {
-        return 'Quantity must be a number';
+      if (!Number.isInteger(integersFieldData.quantity)) {
+        return 'Quantity must be a integer';
       }
     }
 
     if (integersFieldData.minimun_quantity) {
-      if (typeof integersFieldData.minimun_quantity !== 'number') {
-        return 'minimun_quantity must be a number';
+      if (!Number.isInteger(integersFieldData.minimun_quantity)) {
+        return 'minimun_quantity must be a integer';
       }
     }
     return this.CheckStrings(integersFieldData);

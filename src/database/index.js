@@ -1,13 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
-import Input from '../models/Input';
-import Output from '../models/Output';
 import Employee from '../models/Employee';
+import Input from '../models/Input';
 import Log from '../models/Log';
+import Notice from '../models/Notice';
+import Output from '../models/Output';
 import Sale from '../models/Sale';
 
-const models = [Input, Output, Employee, Log, Sale];
+const models = [Input, Output, Employee, Log, Sale, Notice];
 
 const connection = new Sequelize(databaseConfig);
 

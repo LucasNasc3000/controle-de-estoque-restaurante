@@ -1,10 +1,10 @@
-import { dateRegex, hourRegex, dateAndHourErrorMsg } from './DataRegex';
+import { dateAndHourErrorMsg, dateRegex, hourRegex } from './DataRegex';
 
 class OutputsValidations {
   CheckIntegers(integersFieldData) {
     if (integersFieldData.unities) {
-      if (typeof integersFieldData.unities !== 'number') {
-        return 'Unities must be a number';
+      if (!Number.isInteger(integersFieldData.unities)) {
+        return 'Unities must be a integer';
       }
     }
     return this.CheckFloats(integersFieldData);

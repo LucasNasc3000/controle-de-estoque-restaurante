@@ -2,6 +2,7 @@ import CommonValidations from './CommonValidations';
 import Employee from './Employee';
 import Inputs from './Inputs';
 import Logs from './Logs';
+import Notices from './Notices';
 import Outputs from './Outputs';
 import Sales from './Sales';
 
@@ -43,11 +44,11 @@ class Validation {
     const inputValidations = Inputs.CheckIntegers(data);
 
     switch (inputValidations) {
-      case ('Quantity must be a number'):
-        return 'O campo "quantidade" deve ser numérico';
+      case ('Quantity must be a integer'):
+        return 'O campo "quantidade" deve ser um número inteiro';
 
-      case ('minimun_quantity must be a number'):
-        return 'O campo "minimun_quantity" deve ser numérico';
+      case ('minimun_quantity must be a integer'):
+        return 'O campo "minimun_quantity" deve ser um número inteiro';
 
       case ('Supplier must be a string'):
         return 'O campo "fornecedor" precisa estar em formato de texto';
@@ -64,8 +65,8 @@ class Validation {
     const outputsValidations = Outputs.CheckIntegers(data);
 
     switch (outputsValidations) {
-      case ('Unities must be a number'):
-        return 'O campo "unidades" deve ser numérico';
+      case ('Unities must be a integer'):
+        return 'O campo "unidades" deve ser um número inteiro';
 
       case ('Weight must be a number'):
         return 'O campo "peso" precisa estar em formato de texto';
@@ -127,8 +128,6 @@ class Validation {
   SalesValidation(data) {
     const salesValidation = Sales.CheckPersonalAndSalesData(data);
 
-    console.log(salesValidation);
-
     switch (salesValidation) {
       case 'Type must be a string':
         return 'O id do log precisa estar em formato de texto';
@@ -153,6 +152,24 @@ class Validation {
 
       case 'client btd must be a short date string':
         return 'O anv. do cliente precisa ser uma data no formato dd-mm';
+
+      default:
+        return null;
+    }
+  }
+
+  NoticesValidation(data) {
+    const noticesValidation = Notices.CheckDatesAndHour(data);
+
+    switch (noticesValidation) {
+      case 'Field(s) must be a date or hour string':
+        return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
+
+      case 'sale_id must be a uuid string':
+        return 'O id deve ser um uuid';
+
+      case 'timer_id must be a integer':
+        return 'O id do timer precisa ser um número inteiro';
 
       default:
         return null;

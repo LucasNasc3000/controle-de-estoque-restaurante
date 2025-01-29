@@ -66,15 +66,6 @@ export default class Sale extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
-      birthday_notice: {
-        type: Sequelize.INTEGER,
-        defaultValue: '',
-        validate: {
-          isInt: {
-            msg: 'aviso de anievrsário precisa ser um número inteiro',
-          },
-        },
-      },
     }, {
       sequelize,
     });
@@ -83,5 +74,6 @@ export default class Sale extends Model {
 
   static associate(models) {
     this.belongsTo(models.Employee, { foreignKey: 'employee_id' });
+    this.hasMany(models.Notice, { foreignKey: 'sale_id' });
   }
 }
