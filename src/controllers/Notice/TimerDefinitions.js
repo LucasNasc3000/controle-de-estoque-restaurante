@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
+import Notice from '../../repositories/Notice/Notice';
 import { TimerId, Timers } from './timersStore';
 
 class TimerDefinition {
@@ -22,7 +23,15 @@ class TimerDefinition {
     const timer = setTimeout(() => {
       console.log('oi');
 
-      const findElement = Timers.find((time) => time[0] === 2);
+      const findDbId = Timers.find((time) => time[0] === TimerId);
+
+      const deleteFromDb = async () => {
+        await Notice.Delete(findDbId[2]);
+      };
+
+      deleteFromDb();
+
+      const findElement = Timers.find((time) => time[0] === TimerId);
       const findIndex = Timers.indexOf(findElement, 0);
       Timers.splice(findIndex);
     }, notice);
@@ -31,7 +40,6 @@ class TimerDefinition {
 
     return [
       TimerId,
-      timer,
       noticeDate[0],
       noticeDate[1],
       noticeDate[2],
