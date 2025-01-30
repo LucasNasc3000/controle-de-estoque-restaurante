@@ -1,4 +1,7 @@
-import { TimerId } from './timersStore';
+/* eslint-disable no-plusplus */
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+import { TimerId, Timers } from './timersStore';
 
 class TimerDefinition {
   SetTimer(date, hour) {
@@ -18,7 +21,13 @@ class TimerDefinition {
 
     const timer = setTimeout(() => {
       console.log('oi');
+
+      const findElement = Timers.find((time) => time[0] === 2);
+      const findIndex = Timers.indexOf(findElement, 0);
+      Timers.splice(findIndex);
     }, notice);
+
+    Timers.push([TimerId, timer]);
 
     return [
       TimerId,

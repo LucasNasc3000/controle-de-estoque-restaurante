@@ -3,7 +3,6 @@
 /* eslint-disable no-plusplus */
 import { EmailErrors } from '../errors/emailsErrors';
 import EmployeeSearchCredentials from '../repositories/Employee/EmployeeSearchCredentials';
-import { Timers } from './timersStore';
 
 const sgMail = require('@sendgrid/mail');
 

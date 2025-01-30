@@ -6,7 +6,6 @@ import Validation from '../../middlewares/fieldValidations/Validation';
 import Notice from '../../repositories/Notice/Notice';
 import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
 import TimerDefinitions from './TimerDefinitions';
-import { Timers } from './timersStore';
 
 class NoticeController {
   async Store(req, res, next) {
@@ -22,22 +21,22 @@ class NoticeController {
       if (!saleSearch) throw new BadRequest('Não é possível adicionar um lembrete, esta venda não está registrada');
 
       const timer = TimerDefinitions.SetTimer(req.body.date, req.body.hour);
-      Timers.push(timer[0], timer[1]);
+      // Timers.push(timer[0], timer[1]);
 
-      const { date, hour, sale_id } = req.body;
+      // const { date, hour, sale_id } = req.body;
 
-      const toSave = {
-        date,
-        hour,
-        timer_id: timer[0],
-        sale_id,
-      };
+      // const toSave = {
+      //   date,
+      //   hour,
+      //   timer_id: timer[0],
+      //   sale_id,
+      // };
 
-      const store = await Notice.Store(toSave);
+      // const store = await Notice.Store(toSave);
 
-      if (!store) throw new InternalServerError('Erro interno');
+      // if (!store) throw new InternalServerError('Erro interno');
 
-      return res.status(201).json(store);
+      // return res.status(201).json(store);
     } catch (err) {
       next(err);
     }
