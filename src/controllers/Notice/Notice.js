@@ -4,29 +4,40 @@ import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import Notice from '../../repositories/Notice/Notice';
+import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
 import TimerDefinitions from './TimerDefinitions';
 import { Timers } from './timersStore';
 
 class NoticeController {
   async Store(req, res, next) {
     try {
-      // calcular a diferença entre datas e horas (deixar isso aqui ou criar uma classe específica)
-
       const validations = Validation.MainValidations(req.body);
       const noticeValidations = Validation.NoticesValidation(req.body);
 
       if (validations !== null) throw new BadRequest(validations);
       if (noticeValidations !== null) throw new BadRequest(noticeValidations);
 
+      const saleSearch = await SalesSearchSalesData.SearchById(req.body.sale_id);
+
+      if (!saleSearch) throw new BadRequest('Não é possível adicionar um lembrete, esta venda não está registrada');
+
       const timer = TimerDefinitions.SetTimer(req.body.date, req.body.hour);
-      Timers.push(timer);
-      console.log(Timers);
+      Timers.push(timer[0], timer[1]);
 
-      // const store = await Notice.Store(req.body);
+      const { date, hour, sale_id } = req.body;
 
-      // if (!store) throw new InternalServerError('Erro interno');
+      const toSave = {
+        date,
+        hour,
+        timer_id: timer[0],
+        sale_id,
+      };
 
-      // return res.status(201).json(store);
+      const store = await Notice.Store(toSave);
+
+      if (!store) throw new InternalServerError('Erro interno');
+
+      return res.status(201).json(store);
     } catch (err) {
       next(err);
     }

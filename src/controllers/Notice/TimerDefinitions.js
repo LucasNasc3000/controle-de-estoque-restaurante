@@ -20,7 +20,14 @@ class TimerDefinition {
       console.log('oi');
     }, notice);
 
-    return [TimerId, timer];
+    return [
+      TimerId,
+      timer,
+      noticeDate[0],
+      noticeDate[1],
+      noticeDate[2],
+      noticeDate[3],
+    ];
   }
 
   GetCurrentDateHour() {
@@ -73,12 +80,12 @@ class TimerDefinition {
 
   NoticeFormatCorrectDateHour(date, hour) {
     let returnToStringLessTenNotice = '';
-    let returnToStringDay = '';
-    let localDateForeignFormat = '';
 
     const year = date.slice(6, 10);
     const month = date.slice(3, 5);
     const day = date.slice(0, 2);
+
+    const localDateForeignFormat = `${year}-${month}-${day}`;
 
     const hours = hour.slice(0, 2);
     const minutes = hour.slice(3, 5);
@@ -88,23 +95,6 @@ class TimerDefinition {
     const correctedHours = intHours - 3;
 
     if (correctedHours < 10) returnToStringLessTenNotice = String(`0${correctedHours}`);
-
-    // A partir de 21:00 no horário de Brasília GMT será 00:00 no UTC, fuso horário do Date()
-    if (correctedHours > 20 && correctedHours < 24) {
-      if (day[1] === '0') {
-        let numericDay = parseInt(day[1], 10);
-        numericDay += 1;
-        returnToStringDay = String(numericDay);
-        localDateForeignFormat = `${year}-${month}-${returnToStringDay}`;
-      }
-
-      let numericDay = parseInt(day, 10);
-      numericDay += 1;
-      returnToStringDay = String(numericDay);
-      localDateForeignFormat = `${year}-${month}-${returnToStringDay}`;
-    } else {
-      localDateForeignFormat = `${year}-${month}-${day}`;
-    }
 
     if (returnToStringLessTenNotice.length > 0) {
       return [

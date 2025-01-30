@@ -21,14 +21,7 @@ class NoticesValidations {
         return dateAndHourErrorMsg;
       }
     }
-    return this.CheckIntegers(datesFieldsData);
-  }
-
-  CheckIntegers(integersFieldData) {
-    if (!Number.isInteger(integersFieldData.timer_id)) {
-      return 'timer_id must be a integer';
-    }
-    return this.CheckUUID(integersFieldData);
+    return this.CheckUUID(datesFieldsData);
   }
 
   CheckUUID(UUIDFieldData) {

@@ -168,9 +168,6 @@ class Validation {
       case 'sale_id must be a uuid string':
         return 'O id deve ser um uuid';
 
-      case 'timer_id must be a integer':
-        return 'O id do timer precisa ser um número inteiro';
-
       default:
         return null;
     }
