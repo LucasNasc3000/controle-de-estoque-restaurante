@@ -168,6 +168,9 @@ class Validation {
       case 'sale_id must be a uuid string':
         return 'O id deve ser um uuid';
 
+      case 'employee_id must be a uuid string':
+        return 'O id do funcionário deve ser um uuid';
+
       default:
         return null;
     }

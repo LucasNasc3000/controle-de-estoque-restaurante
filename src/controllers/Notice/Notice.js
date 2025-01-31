@@ -24,22 +24,22 @@ class NoticeController {
 
       const timer = TimerDefinitions.NewNotice(req.body.date, req.body.hour);
 
-      const { date, hour, sale_id } = req.body;
+      const {
+        date, hour, sale_id, employee_id,
+      } = req.body;
 
       const toSave = {
         date,
         hour,
         timer_id: timer[0],
         sale_id,
+        employee_id,
       };
 
       const store = await Notice.Store(toSave);
 
       const findElement = Timers.find((time) => time[0] === timer[0]);
       findElement.push(store.dataValues.id);
-
-      console.log('CONTROLLER');
-      console.log(Timers);
 
       if (!store) throw new InternalServerError('Erro interno');
 
@@ -59,7 +59,7 @@ class NoticeController {
       if (validations !== null) throw new BadRequest(validations);
       if (noticeValidations !== null) throw new BadRequest(noticeValidations);
 
-      const { sale_id, ...allowedData } = req.body;
+      const { sale_id, employee_id, ...allowedData } = req.body;
 
       const findNotice = await NoticeSearch.SearchById(id);
 

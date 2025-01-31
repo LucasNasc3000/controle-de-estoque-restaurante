@@ -74,6 +74,6 @@ export default class Sale extends Model {
 
   static associate(models) {
     this.belongsTo(models.Employee, { foreignKey: 'employee_id' });
-    this.hasMany(models.Notice, { foreignKey: 'sale_id' });
+    this.hasOne(models.Notice, { foreignKey: 'sale_id' });
   }
 }

@@ -28,6 +28,10 @@ class NoticesValidations {
     if (!uuidCheck.test(UUIDFieldData.sale_id)) {
       return 'sale_id must be a uuid string';
     }
+
+    if (!uuidCheck.test(UUIDFieldData.employee_id)) {
+      return 'employee_id must be a uuid string';
+    }
     return null;
   }
 }

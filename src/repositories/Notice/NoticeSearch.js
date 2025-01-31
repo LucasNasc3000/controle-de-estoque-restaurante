@@ -12,6 +12,28 @@ class NoticeSearch {
 
     return timerIdSearch;
   }
+
+  async SearchBySaleId(saleId) {
+    const saleIdSearch = await Notice.findOne({
+      where: {
+        sale_id: saleId,
+      },
+      attributes: noticeAttributes,
+    });
+
+    return saleIdSearch;
+  }
+
+  async SearchByEmployeeId(employeeId) {
+    const employeeIdSearch = await Notice.findAll({
+      where: {
+        employee_id: employeeId,
+      },
+      attributes: noticeAttributes,
+    });
+
+    return employeeIdSearch;
+  }
 }
 
 export default new NoticeSearch();

@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import InputSearchIntegers from '../../repositories/Input/InputSearchIntegers';
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
+import InputSearchIntegers from '../../repositories/Input/InputSearchIntegers';
 
 class InputSearchIntegersController {
   async SearchByID(req, res, next) {
