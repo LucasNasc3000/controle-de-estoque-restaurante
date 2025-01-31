@@ -9,8 +9,6 @@ class NoticeList {
   async Update(id, data) {
     const findNotice = await Notice.findByPk(id);
 
-    if (!findNotice) return 'Lembrete não encontrado';
-
     const noticeUpdate = await findNotice.update(data);
 
     return noticeUpdate;

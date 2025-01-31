@@ -1,3 +1,4 @@
+/* eslint-disable no-import-assign */
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
@@ -17,34 +18,7 @@ class TimerDefinition {
 
     const notice = setNoticeDate.getTime() - setCurrentDate.getTime();
 
-    // eslint-disable-next-line no-import-assign
-    TimerId += 1;
-
-    const timer = setTimeout(() => {
-      console.log('oi');
-
-      const findDbId = Timers.find((time) => time[0] === TimerId);
-
-      const deleteFromDb = async () => {
-        await Notice.Delete(findDbId[2]);
-      };
-
-      deleteFromDb();
-
-      const findElement = Timers.find((time) => time[0] === TimerId);
-      const findIndex = Timers.indexOf(findElement, 0);
-      Timers.splice(findIndex);
-    }, notice);
-
-    Timers.push([TimerId, timer]);
-
-    return [
-      TimerId,
-      noticeDate[0],
-      noticeDate[1],
-      noticeDate[2],
-      noticeDate[3],
-    ];
+    return notice;
   }
 
   GetCurrentDateHour() {
@@ -130,6 +104,60 @@ class TimerDefinition {
       minutes,
       seconds,
     ];
+  }
+
+  NewNotice(date, hour) {
+    const getNotice = this.SetTimer(date, hour);
+
+    TimerId += 1;
+
+    const timer = setTimeout(() => {
+      console.log('oi');
+
+      const findDbId = Timers.find((time) => time[0] === TimerId);
+
+      const deleteFromDb = async () => {
+        await Notice.Delete(findDbId[2]);
+      };
+
+      deleteFromDb();
+
+      const findElement = Timers.find((time) => time[0] === TimerId);
+      const findIndex = Timers.indexOf(findElement, 0);
+      Timers.splice(findIndex);
+    }, getNotice);
+
+    Timers.push([TimerId, timer]);
+
+    return [TimerId];
+  }
+
+  UpdatingNotice(date, hour, timerId) {
+    const getNotice = this.SetTimer(date, hour);
+
+    const findElement = Timers.find((time) => time[0] === timerId);
+
+    clearTimeout(findElement[1]);
+
+    const timer = setTimeout(() => {
+      console.log('oi');
+
+      const findDbId = Timers.find((time) => time[0] === TimerId);
+
+      const deleteFromDb = async () => {
+        await Notice.Delete(findDbId[2]);
+      };
+
+      deleteFromDb();
+
+      const findElementUpdatedTimer = Timers.find((time) => time[0] === TimerId);
+      const findIndex = Timers.indexOf(findElementUpdatedTimer, 0);
+      Timers.splice(findIndex);
+    }, getNotice);
+
+    const findElementUpdate = Timers.find((time) => time[0] === timerId);
+    const findIndex = Timers.indexOf(findElementUpdate, 0);
+    Timers[findIndex][1] = timer;
   }
 }
 

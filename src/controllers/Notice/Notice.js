@@ -4,6 +4,7 @@ import { BadRequest } from '../../errors/clientErrors';
 import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import Notice from '../../repositories/Notice/Notice';
+import NoticeSearch from '../../repositories/Notice/NoticeSearch';
 import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
 import TimerDefinitions from './TimerDefinitions';
 import { Timers } from './timersStore';
@@ -21,7 +22,7 @@ class NoticeController {
 
       if (!saleSearch) throw new BadRequest('Não é possível adicionar um lembrete, esta venda não está registrada');
 
-      const timer = TimerDefinitions.SetTimer(req.body.date, req.body.hour);
+      const timer = TimerDefinitions.NewNotice(req.body.date, req.body.hour);
 
       const { date, hour, sale_id } = req.body;
 
@@ -37,6 +38,9 @@ class NoticeController {
       const findElement = Timers.find((time) => time[0] === timer[0]);
       findElement.push(store.dataValues.id);
 
+      console.log('CONTROLLER');
+      console.log(Timers);
+
       if (!store) throw new InternalServerError('Erro interno');
 
       return res.status(201).json(store);
@@ -50,18 +54,25 @@ class NoticeController {
       const { id } = req.params;
 
       const validations = Validation.MainValidations(req.body, false, false, false, true);
-      const inputValidations = Validation.NoticesValidation(req.body);
+      const noticeValidations = Validation.NoticesValidation(req.body);
 
       if (validations !== null) throw new BadRequest(validations);
-      if (inputValidations !== null) throw new BadRequest(inputValidations);
+      if (noticeValidations !== null) throw new BadRequest(noticeValidations);
 
       const { sale_id, ...allowedData } = req.body;
 
+      const findNotice = await NoticeSearch.SearchById(id);
+
+      if (findNotice === 'Lembrete não encontrado') throw new BadRequest('Lembrete não encontrado');
+
+      const { timer_id } = findNotice.dataValues;
+
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.
-      const noticeUpdate = await Notice.Update(id, allowedData);
 
-      if (noticeUpdate === 'Lembrete não encontrado') throw new BadRequest('Lembrete não encontrado');
+      TimerDefinitions.UpdatingNotice(allowedData.date, allowedData.hour, timer_id);
+
+      const noticeUpdate = await Notice.Update(id, allowedData);
 
       if (!noticeUpdate) throw new InternalServerError('Erro interno');
 

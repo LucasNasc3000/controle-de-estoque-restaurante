@@ -2,10 +2,10 @@ import Notice from '../../models/Notice';
 import noticeAttributes from './Attributes';
 
 class NoticeSearch {
-  async SearchByTimerId(timerId) {
+  async SearchById(id) {
     const timerIdSearch = await Notice.findOne({
       where: {
-        timerId,
+        id,
       },
       attributes: noticeAttributes,
     });
