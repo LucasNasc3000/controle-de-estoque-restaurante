@@ -19,9 +19,9 @@ class NoticeList {
 
     if (!findNotice) return 'Lembrete não encontrado';
 
-    await findNotice.destroy();
+    const noticeDelete = await findNotice.destroy();
 
-    return 'deletado';
+    return noticeDelete;
   }
 }
 

@@ -7,5 +7,6 @@ const router = new Router();
 
 router.post('/', loginRequired, salesPermission, Notice.Store);
 router.patch('/:id', loginRequired, salesPermission, Notice.Update);
+router.delete('/:id', loginRequired, salesPermission, Notice.Delete);
 
 export default router;

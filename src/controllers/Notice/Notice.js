@@ -81,6 +81,23 @@ class NoticeController {
       next(err);
     }
   }
+
+  async Delete(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      TimerDefinitions.DeletingNotice(id);
+
+      const noticeDelete = await Notice.Delete(id);
+
+      if (noticeDelete === 'Lembrete não encontrado') throw new BadRequest('O lembrete já foi deletado ou não existe');
+      if (!noticeDelete) throw new InternalServerError('Erro ao tentar deletar o lembrete');
+
+      return res.status(200).send('Lembrete deletado');
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new NoticeController();

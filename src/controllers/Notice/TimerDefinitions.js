@@ -159,6 +159,18 @@ class TimerDefinition {
     const findIndex = Timers.indexOf(findElementUpdate, 0);
     Timers[findIndex][1] = timer;
   }
+
+  DeletingNotice(databaseId) {
+    const numberId = parseInt(databaseId, 10);
+
+    const findElementDelete = Timers.find((time) => time[2] === numberId);
+    const findIndex = Timers.indexOf(findElementDelete, 0);
+
+    clearTimeout(Timers[findIndex][1]);
+
+    const findIndexSplice = Timers.indexOf(findIndex, 0);
+    Timers.splice(findIndexSplice);
+  }
 }
 
 export default new TimerDefinition();
