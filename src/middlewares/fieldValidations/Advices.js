@@ -2,7 +2,7 @@ import {
   dateAndHourErrorMsg, uuidCheck,
 } from './DataRegex';
 
-class NoticesValidations {
+class AdvicesValidations {
   constructor() {
     // eslint-disable-next-line no-useless-escape
     this.dateRegex = /d{0,9}\-\d{0,9}\-\d{0,9}/;
@@ -32,8 +32,19 @@ class NoticesValidations {
     if (!uuidCheck.test(UUIDFieldData.employee_id)) {
       return 'employee_id must be a uuid string';
     }
+    return this.CheckStringFields(UUIDFieldData);
+  }
+
+  CheckStringFields(StringFieldsData) {
+    if (typeof StringFieldsData.subject !== 'string') {
+      return 'subject must be a string';
+    }
+
+    if (typeof StringFieldsData.email_body !== 'string') {
+      return 'email_body must be a string';
+    }
     return null;
   }
 }
 
-export default new NoticesValidations();
+export default new AdvicesValidations();

@@ -1,24 +1,25 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-import-assign */
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import Notice from '../../repositories/Notice/Notice';
+import Advice from '../../repositories/Advice/Advice';
 import { TimerId, Timers } from './timersStore';
 
 class TimerDefinition {
   SetTimer(date, hour) {
     const currentDate = this.GetCurrentDateHour();
-    const noticeDate = this.NoticeFormatCorrectDateHour(date, hour);
+    const adviceDate = this.AdviceFormatCorrectDateHour(date, hour);
 
     const setCurrentDate = new Date(currentDate[0]);
     setCurrentDate.setHours(currentDate[1], currentDate[2], currentDate[3]);
 
-    const setNoticeDate = new Date(noticeDate[0]);
-    setNoticeDate.setHours(noticeDate[1], noticeDate[2], noticeDate[3]);
+    const setAdviceDate = new Date(adviceDate[0]);
+    setAdviceDate.setHours(adviceDate[1], adviceDate[2], adviceDate[3]);
 
-    const notice = setNoticeDate.getTime() - setCurrentDate.getTime();
+    const advice = setAdviceDate.getTime() - setCurrentDate.getTime();
 
-    return notice;
+    return advice;
   }
 
   GetCurrentDateHour() {
@@ -69,8 +70,8 @@ class TimerDefinition {
     ];
   }
 
-  NoticeFormatCorrectDateHour(date, hour) {
-    let returnToStringLessTenNotice = '';
+  AdviceFormatCorrectDateHour(date, hour) {
+    let returnToStringLessTenAdvice = '';
 
     const year = date.slice(6, 10);
     const month = date.slice(3, 5);
@@ -85,12 +86,12 @@ class TimerDefinition {
     const intHours = parseInt(hours, 10);
     const correctedHours = intHours - 3;
 
-    if (correctedHours < 10) returnToStringLessTenNotice = String(`0${correctedHours}`);
+    if (correctedHours < 10) returnToStringLessTenAdvice = String(`0${correctedHours}`);
 
-    if (returnToStringLessTenNotice.length > 0) {
+    if (returnToStringLessTenAdvice.length > 0) {
       return [
         localDateForeignFormat,
-        returnToStringLessTenNotice,
+        returnToStringLessTenAdvice,
         minutes,
         seconds,
       ];
@@ -106,18 +107,18 @@ class TimerDefinition {
     ];
   }
 
-  NewNotice(date, hour) {
-    const getNotice = this.SetTimer(date, hour);
+  NewAdvice(date, hour, emailData, dbId) {
+    const getAdvice = this.SetTimer(date, hour);
 
     TimerId += 1;
 
     const timer = setTimeout(() => {
-      console.log('oi');
+      console.log(emailData);
 
       const findDbId = Timers.find((time) => time[0] === TimerId);
 
       const deleteFromDb = async () => {
-        await Notice.Delete(findDbId[2]);
+        await Advice.Delete(findDbId[4]);
       };
 
       deleteFromDb();
@@ -125,27 +126,41 @@ class TimerDefinition {
       const findElement = Timers.find((time) => time[0] === TimerId);
       const findIndex = Timers.indexOf(findElement, 0);
       Timers.splice(findIndex);
-    }, getNotice);
+    }, getAdvice);
 
-    Timers.push([TimerId, timer]);
+    if (dbId) {
+      Timers.push([TimerId, timer, emailData[0], emailData[1], dbId]);
+    } else {
+      Timers.push([TimerId, timer, emailData[0], emailData[1]]);
+    }
 
     return [TimerId];
   }
 
-  UpdatingNotice(date, hour, timerId) {
-    const getNotice = this.SetTimer(date, hour);
+  UpdatingAdvice(date, hour, timerId, emailData) {
+    const getAdvice = this.SetTimer(date, hour);
 
     const findElement = Timers.find((time) => time[0] === timerId);
+    const findIndexEmailData = Timers.indexOf(findElement, 0);
 
     clearTimeout(findElement[1]);
 
-    const timer = setTimeout(() => {
-      console.log('oi');
+    if (emailData.length > 0) {
+      // assunto
+      if (emailData[0].length > 0) {
+        Timers[findIndexEmailData][2] = emailData[0];
+      }
+      // corpo do email
+      if (emailData[1].length > 0) {
+        Timers[findIndexEmailData][3] = emailData[1];
+      }
+    }
 
+    const timer = setTimeout(() => {
       const findDbId = Timers.find((time) => time[0] === TimerId);
 
       const deleteFromDb = async () => {
-        await Notice.Delete(findDbId[2]);
+        await Advice.Delete(findDbId[4]);
       };
 
       deleteFromDb();
@@ -153,23 +168,54 @@ class TimerDefinition {
       const findElementUpdatedTimer = Timers.find((time) => time[0] === TimerId);
       const findIndex = Timers.indexOf(findElementUpdatedTimer, 0);
       Timers.splice(findIndex);
-    }, getNotice);
+    }, getAdvice);
 
+    // Atualiza o timer no superglobal Timers
+    // As últimas 3 linnhas abaixo executam
+    // na hora em que a função é chamada mas a função no timer fica pendente
     const findElementUpdate = Timers.find((time) => time[0] === timerId);
     const findIndex = Timers.indexOf(findElementUpdate, 0);
     Timers[findIndex][1] = timer;
   }
 
-  DeletingNotice(databaseId) {
+  DeletingAdvice(databaseId) {
+    console.log(Timers);
     const numberId = parseInt(databaseId, 10);
 
-    const findElementDelete = Timers.find((time) => time[2] === numberId);
+    const findElementDelete = Timers.find((time) => time[4] === numberId);
     const findIndex = Timers.indexOf(findElementDelete, 0);
 
     clearTimeout(Timers[findIndex][1]);
 
     const findIndexSplice = Timers.indexOf(findIndex, 0);
     Timers.splice(findIndexSplice);
+  }
+
+  async Recovery(advicesDbCheck) {
+    const adviceData = [];
+
+    advicesDbCheck.map((advice) => {
+      adviceData.push(
+        [
+          advice.date,
+          advice.hour,
+          advice.subject,
+          advice.email_body,
+          advice.id,
+        ],
+      );
+    });
+
+    if (advicesDbCheck.length > 0 && Timers.length < 1) {
+      for (let i = 0; i < adviceData.length; i++) {
+        this.NewAdvice(
+          adviceData[i][0],
+          adviceData[i][1],
+          [adviceData[i][2], adviceData[i][3]],
+          adviceData[i][4],
+        );
+      }
+    }
   }
 }
 

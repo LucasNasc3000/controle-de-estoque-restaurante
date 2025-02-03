@@ -55,9 +55,9 @@ import saleSearchPhoneNumber from './routes/sales/saleSearchPhoneNumber';
 import saleSearchProducts from './routes/sales/saleSearchProducts';
 
 // notices routes
-import noticeRoutes from './routes/notice/notice';
-import noticeSearchEmployeeId from './routes/notice/noticeSearchByEmployeeId';
-import noticeSearchSaleId from './routes/notice/noticeSearchBySaleId';
+import adviceRoutes from './routes/advice/advice';
+import adviceSearchEmployeeId from './routes/advice/adviceSearchByEmployeeId';
+import adviceSearchSaleId from './routes/advice/adviceSearchBySaleId';
 
 class App {
   constructor() {
@@ -128,10 +128,10 @@ class App {
     this.app.use('/sales/search/phonenumber/', saleSearchPhoneNumber);
     this.app.use('/sales/search/products/', saleSearchProducts);
 
-    // notice routes
-    this.app.use('/notices/', noticeRoutes);
-    this.app.use('/notices/search/saleid', noticeSearchSaleId);
-    this.app.use('/notices/search/employeeid', noticeSearchEmployeeId);
+    // advice routes
+    this.app.use('/advices/', adviceRoutes);
+    this.app.use('/advices/search/saleid', adviceSearchSaleId);
+    this.app.use('/advices/search/employeeid', adviceSearchEmployeeId);
 
     this.app.use(errorHandler);
   }

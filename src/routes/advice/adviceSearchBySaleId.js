@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import NoticeSearch from '../../controllers/Notice/NoticeSearch';
+import AdviceSearch from '../../controllers/Advice/AdviceSearch';
 import loginRequired from '../../middlewares/loginRequired';
 import salesPermission from '../../middlewares/salesPermission';
 
 const router = new Router();
 
-router.get('/:saleid', loginRequired, salesPermission, NoticeSearch.SearchBySaleId);
+router.get('/:saleid', loginRequired, salesPermission, AdviceSearch.SearchBySaleId);
 
 export default router;

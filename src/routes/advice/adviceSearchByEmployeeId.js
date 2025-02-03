@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import NoticeSearch from '../../controllers/Notice/NoticeSearch';
+import AdviceSearch from '../../controllers/Advice/AdviceSearch';
 import loginRequired from '../../middlewares/loginRequired';
 import salesPermission from '../../middlewares/salesPermission';
 
 const router = new Router();
 
-router.get('/:employeeid', loginRequired, salesPermission, NoticeSearch.SearchByEmployeeId);
+router.get('/:employeeid', loginRequired, salesPermission, AdviceSearch.SearchByEmployeeId);
 
 export default router;

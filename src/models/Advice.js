@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Sequelize, { Model } from 'sequelize';
 
-export default class Notice extends Model {
+export default class Advices extends Model {
   static init(sequelize) {
     super.init({
       date: {
@@ -40,6 +40,26 @@ export default class Notice extends Model {
       employee_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
+      },
+      subject: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [10, 50],
+            msg: 'O assunto não deve ultrapassar os 50 caracteres e deve ter pelo menos 10',
+          },
+        },
+      },
+      email_body: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [10, 200],
+            msg: 'O corpo do email não deve ultrapassar os 200 caracteres e deve ter pelo menos 10',
+          },
+        },
       },
     }, {
       sequelize,

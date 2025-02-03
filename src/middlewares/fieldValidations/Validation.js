@@ -1,8 +1,8 @@
+import Advices from './Advices';
 import CommonValidations from './CommonValidations';
 import Employee from './Employee';
 import Inputs from './Inputs';
 import Logs from './Logs';
-import Notices from './Notices';
 import Outputs from './Outputs';
 import Sales from './Sales';
 
@@ -158,10 +158,10 @@ class Validation {
     }
   }
 
-  NoticesValidation(data) {
-    const noticesValidation = Notices.CheckDatesAndHour(data);
+  AdvicesValidation(data) {
+    const advicesValidation = Advices.CheckDatesAndHour(data);
 
-    switch (noticesValidation) {
+    switch (advicesValidation) {
       case 'Field(s) must be a date or hour string':
         return 'Um ou mais campos precisam ser uma data ou hora em formato de texto --> hh:mm:ss dd-mm-yyyy';
 
@@ -170,6 +170,12 @@ class Validation {
 
       case 'employee_id must be a uuid string':
         return 'O id do funcionário deve ser um uuid';
+
+      case 'subject must be a string':
+        return 'O assunto do email deve ser uma string';
+
+      case 'email_body must be a string':
+        return 'O corpo do email precisa ser uma string';
 
       default:
         return null;
