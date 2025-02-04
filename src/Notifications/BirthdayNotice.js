@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 /* eslint-disable consistent-return */
 /* eslint-disable no-plusplus */
 import { EmailErrors } from '../errors/emailsErrors';
@@ -8,18 +7,15 @@ const sgMail = require('@sendgrid/mail');
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-class BirthdayNotice {
-  constructor() {
-    this.idCounter = 1;
-  }
-
+class BirthdaysNotifications {
   async AddressesAllowed() {
     const employeeSearch = await EmployeeSearchCredentials.SearchByAddressAllowed();
     const addressesAllowed = [];
     let correctPermission = false;
 
     for (let i = 0; i < employeeSearch.length; i++) {
-      if (employeeSearch[i].dataValues.permission === process.env.INPUTS_OUTPUTS_PERMISSION
+      if (employeeSearch[i].dataValues.permission === process.env.SALES_PERMISSION
+          || employeeSearch[i].dataValues.permission === process.env.SO_PERMISSION
           || employeeSearch[i].dataValues.permission === process.env.SOI_PERMISSION
           || employeeSearch[i].dataValues.permission === process.env.ADMIN_PERMISSION
       ) {
@@ -35,40 +31,14 @@ class BirthdayNotice {
     return null;
   }
 
-  async DataFilter() {
-    const destinatary = await this.AddressesAllowed();
-    // const subjects = ['Aniversário de um ou mais clientes próximo da data'];
-    // const emailBodies = [];
-    // const btNotices = [];
-    // const btDays = [];
-    // const employees = [];
-
-    if (destinatary === null) return 'no destinataries';
-
-    const timer = setTimeout(() => {
-      console.log('agora vai');
-    }, 20000);
-
-    this.idCounter++;
-
-    const inArray = [this.idCounter, timer];
-    Timers.push(inArray);
-
-    // Executa a cada uma semana
-    // setInterval(async () => {
-    //   const getSales = await SalesSearchSalesData.ShowBtNotices();
-    //   console.log(getSales);
-    // }, 604800016.56);
-  }
-
-  async SendEmail(emailSubject, emailBody, destinatary) {
+  async SendEmail(emailSubject, emailBody) {
     const destinataryVerify = await this.AddressesAllowed();
 
     if (destinataryVerify === null) return null;
 
-    if (destinatary.length === 1) {
+    if (destinataryVerify.length === 1) {
       const msg = {
-        to: destinatary[0],
+        to: destinataryVerify[0],
         from: process.env.FROM_EMAIL,
         subject: emailSubject,
         text: emailBody,
@@ -87,10 +57,10 @@ class BirthdayNotice {
         });
     }
 
-    if (destinatary.length > 1) {
-      for (let i = 0; i < destinatary.length; i++) {
+    if (destinataryVerify.length > 1) {
+      for (let i = 0; i < destinataryVerify.length; i++) {
         const msg = {
-          to: destinatary[i],
+          to: destinataryVerify[i],
           from: process.env.FROM_EMAIL,
           subject: emailSubject,
           text: emailBody,
@@ -112,4 +82,4 @@ class BirthdayNotice {
   }
 }
 
-export default new BirthdayNotice();
+export default new BirthdaysNotifications();

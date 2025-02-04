@@ -3,6 +3,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
+import BirthdayNotice from '../../Notifications/BirthdayNotice';
 import Advice from '../../repositories/Advice/Advice';
 import { TimerId, Timers } from './timersStore';
 
@@ -113,7 +114,11 @@ class TimerDefinition {
     TimerId += 1;
 
     const timer = setTimeout(() => {
-      console.log(emailData);
+      const sendEmail = async () => {
+        BirthdayNotice.SendEmail(emailData[0], emailData[1]);
+      };
+
+      sendEmail();
 
       const findDbId = Timers.find((time) => time[0] === TimerId);
 
@@ -150,6 +155,7 @@ class TimerDefinition {
       if (emailData[0].length > 0) {
         Timers[findIndexEmailData][2] = emailData[0];
       }
+
       // corpo do email
       if (emailData[1].length > 0) {
         Timers[findIndexEmailData][3] = emailData[1];
@@ -157,6 +163,12 @@ class TimerDefinition {
     }
 
     const timer = setTimeout(() => {
+      const sendEmail = async () => {
+        BirthdayNotice.SendEmail(emailData[0], emailData[1]);
+      };
+
+      sendEmail();
+
       const findDbId = Timers.find((time) => time[0] === TimerId);
 
       const deleteFromDb = async () => {
@@ -178,14 +190,15 @@ class TimerDefinition {
     Timers[findIndex][1] = timer;
   }
 
-  DeletingAdvice(databaseId) {
-    console.log(Timers);
+  async DeletingAdvice(databaseId) {
     const numberId = parseInt(databaseId, 10);
 
     const findElementDelete = Timers.find((time) => time[4] === numberId);
     const findIndex = Timers.indexOf(findElementDelete, 0);
 
     clearTimeout(Timers[findIndex][1]);
+
+    await Advice.Delete(Timers[findIndex][4]);
 
     const findIndexSplice = Timers.indexOf(findIndex, 0);
     Timers.splice(findIndexSplice);
