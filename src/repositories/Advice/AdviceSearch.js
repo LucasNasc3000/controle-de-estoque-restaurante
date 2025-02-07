@@ -13,17 +13,6 @@ class AdviceSearch {
     return timerIdSearch;
   }
 
-  async SearchBySaleId(saleId) {
-    const saleIdSearch = await Advice.findOne({
-      where: {
-        sale_id: saleId,
-      },
-      attributes: adviceAttributes,
-    });
-
-    return saleIdSearch;
-  }
-
   async SearchByEmployeeId(employeeId) {
     const employeeIdSearch = await Advice.findAll({
       where: {

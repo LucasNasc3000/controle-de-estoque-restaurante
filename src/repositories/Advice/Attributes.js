@@ -3,7 +3,6 @@ const adviceAttributes = [
   'date',
   'hour',
   'timer_id',
-  'sale_id',
   'subject',
   'email_body',
   'created_at',

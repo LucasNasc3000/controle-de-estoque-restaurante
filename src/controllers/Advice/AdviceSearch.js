@@ -21,12 +21,11 @@ class AdviceSearchController {
 
   async SearchByEmployeeId(req, res, next) {
     try {
-      const { employeeId } = req.params;
+      const { employeeid } = req.params;
 
-      const adviceEmployeeIdFinder = await AdviceSearch.SearchByEmployeeId(employeeId);
+      const adviceEmployeeIdFinder = await AdviceSearch.SearchByEmployeeId(employeeid);
 
       if (!adviceEmployeeIdFinder) throw new InternalServerError('Erro interno');
-      if (adviceEmployeeIdFinder.length < 1) throw new NotFound('Lembretes não encontrados');
 
       return res.status(200).json(adviceEmployeeIdFinder);
     } catch (err) {

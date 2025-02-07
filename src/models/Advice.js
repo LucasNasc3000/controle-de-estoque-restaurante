@@ -33,10 +33,6 @@ export default class Advices extends Model {
           },
         },
       },
-      sale_id: {
-        type: Sequelize.UUIDV1,
-        defaultValue: Sequelize.UUIDV1,
-      },
       employee_id: {
         type: Sequelize.UUIDV1,
         defaultValue: Sequelize.UUIDV1,
@@ -68,7 +64,6 @@ export default class Advices extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Sale, { foreignKey: 'sale_id' });
     this.belongsTo(models.Employee, { foreignKey: 'employee_id' });
   }
 }

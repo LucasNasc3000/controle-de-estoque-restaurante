@@ -57,7 +57,6 @@ import saleSearchProducts from './routes/sales/saleSearchProducts';
 // notices routes
 import adviceRoutes from './routes/advice/advice';
 import adviceSearchEmployeeId from './routes/advice/adviceSearchByEmployeeId';
-import adviceSearchSaleId from './routes/advice/adviceSearchBySaleId';
 
 class App {
   constructor() {
@@ -130,7 +129,6 @@ class App {
 
     // advice routes
     this.app.use('/advices/', adviceRoutes);
-    this.app.use('/advices/search/saleid', adviceSearchSaleId);
     this.app.use('/advices/search/employeeid', adviceSearchEmployeeId);
 
     this.app.use(errorHandler);
