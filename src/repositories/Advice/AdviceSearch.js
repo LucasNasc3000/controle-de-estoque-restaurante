@@ -23,6 +23,11 @@ class AdviceSearch {
 
     return employeeIdSearch;
   }
+
+  async FoundMaxTimerId() {
+    const maxTimerId = await Advice.max('timer_id');
+    return maxTimerId;
+  }
 }
 
 export default new AdviceSearch();

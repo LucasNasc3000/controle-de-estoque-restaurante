@@ -5,6 +5,7 @@
 /* eslint-disable array-callback-return */
 import BirthdayNotice from '../../Notifications/BirthdayNotice';
 import Advice from '../../repositories/Advice/Advice';
+import AdviceSearch from '../../repositories/Advice/AdviceSearch';
 import { TimerId, Timers } from './timersStore';
 
 class TimerDefinition {
@@ -108,10 +109,23 @@ class TimerDefinition {
     ];
   }
 
-  NewAdvice(date, hour, emailData, dbId) {
+  async NewAdvice(date, hour, emailData, dbId, savedTimerId) {
     const getAdvice = this.SetTimer(date, hour);
+    let maxTimerIdValue = 0;
 
-    TimerId += 1;
+    const GetMaxTimerIdValue = async () => {
+      const getMaxTimerIdValue = await AdviceSearch.FoundMaxTimerId();
+      maxTimerIdValue = getMaxTimerIdValue;
+    };
+
+    // se o timerId não der certo msm retornar o timer e procurar o indice no Timers pelo timer
+    if (!savedTimerId) {
+      await GetMaxTimerIdValue();
+      TimerId = maxTimerIdValue + 1;
+      console.log(TimerId);
+    }
+
+    if (savedTimerId && typeof savedTimerId === 'number') TimerId = savedTimerId;
 
     const timer = setTimeout(() => {
       const sendEmail = async () => {
@@ -134,7 +148,7 @@ class TimerDefinition {
     }, getAdvice);
 
     if (dbId) {
-      Timers.push([TimerId, timer, emailData[0], emailData[1], dbId]);
+      Timers.push([TimerId, timer, emailData[0], emailData[1]], dbId);
     } else {
       Timers.push([TimerId, timer, emailData[0], emailData[1]]);
     }
@@ -215,6 +229,7 @@ class TimerDefinition {
           advice.subject,
           advice.email_body,
           advice.id,
+          advice.timer_id,
         ],
       );
     });
@@ -226,6 +241,7 @@ class TimerDefinition {
           adviceData[i][1],
           [adviceData[i][2], adviceData[i][3]],
           adviceData[i][4],
+          adviceData[i][5],
         );
       }
     }

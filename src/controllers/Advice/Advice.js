@@ -5,7 +5,6 @@ import { InternalServerError } from '../../errors/serverErrors';
 import Validation from '../../middlewares/fieldValidations/Validation';
 import Advice from '../../repositories/Advice/Advice';
 import AdviceSearch from '../../repositories/Advice/AdviceSearch';
-import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
 import TimerDefinitions from './TimerDefinitions';
 import { Timers } from './timersStore';
 
@@ -19,20 +18,15 @@ class AdviceController {
       if (adviceValidations !== null) throw new BadRequest(adviceValidations);
 
       const {
-        date, hour, sale_id, employee_id, subject, email_body,
+        date, hour, employee_id, subject, email_body,
       } = req.body;
 
-      const saleSearch = await SalesSearchSalesData.SearchById(sale_id);
-
-      if (!saleSearch) throw new BadRequest('Não é possível adicionar um lembrete, esta venda não está registrada');
-
-      const timer = TimerDefinitions.NewAdvice(date, hour, [subject, email_body]);
+      const timer = await TimerDefinitions.NewAdvice(date, hour, [subject, email_body]);
 
       const toSave = {
         date,
         hour,
         timer_id: timer[0],
-        sale_id,
         employee_id,
         subject,
         email_body,
@@ -61,7 +55,7 @@ class AdviceController {
       if (validations !== null) throw new BadRequest(validations);
       if (adviceValidations !== null) throw new BadRequest(adviceValidations);
 
-      const { sale_id, employee_id, ...allowedData } = req.body;
+      const { employee_id, ...allowedData } = req.body;
 
       const findAdvice = await AdviceSearch.SearchById(id);
 
@@ -82,6 +76,7 @@ class AdviceController {
       const adviceUpdate = await Advice.Update(id, allowedData);
 
       if (!adviceUpdate) throw new InternalServerError('Erro interno');
+      console.log(Timers);
 
       return res.status(200).send(adviceUpdate);
     } catch (err) {
