@@ -122,7 +122,6 @@ class TimerDefinition {
     if (!savedTimerId) {
       await GetMaxTimerIdValue();
       TimerId = maxTimerIdValue + 1;
-      console.log(TimerId);
     }
 
     if (savedTimerId && typeof savedTimerId === 'number') TimerId = savedTimerId;

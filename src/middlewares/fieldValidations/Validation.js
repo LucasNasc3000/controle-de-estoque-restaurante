@@ -177,6 +177,12 @@ class Validation {
       case 'email_body must be a string':
         return 'O corpo do email precisa ser uma string';
 
+      case 'min-max length limit reached subject':
+        return 'O assunto deve ter entre 10 e 50 caracteres';
+
+      case 'min-max length limit reached email_body':
+        return 'O corpo do e-mail deve ter entre 10 e 200 caracteres';
+
       default:
         return null;
     }

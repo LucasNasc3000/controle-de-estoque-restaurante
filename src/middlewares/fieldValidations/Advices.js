@@ -32,12 +32,24 @@ class AdvicesValidations {
   }
 
   CheckStringFields(StringFieldsData) {
-    if (typeof StringFieldsData.subject !== 'string') {
-      return 'subject must be a string';
+    if (StringFieldsData.subject) {
+      if (typeof StringFieldsData.subject !== 'string') {
+        return 'subject must be a string';
+      }
+
+      if (StringFieldsData.subject.length < 10 || StringFieldsData.subject.length > 50) {
+        return 'min-max length limit reached subject';
+      }
     }
 
-    if (typeof StringFieldsData.email_body !== 'string') {
-      return 'email_body must be a string';
+    if (StringFieldsData.email_body) {
+      if (typeof StringFieldsData.email_body !== 'string') {
+        return 'email_body must be a string';
+      }
+
+      if (StringFieldsData.email_body.length < 10 || StringFieldsData.email_body.length > 200) {
+        return 'min-max length limit reached email_body';
+      }
     }
     return null;
   }
