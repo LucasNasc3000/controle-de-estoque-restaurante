@@ -147,10 +147,11 @@ class TimerDefinition {
     }, getAdvice);
 
     if (dbId) {
-      Timers.push([TimerId, timer, emailData[0], emailData[1]], dbId);
+      Timers.push([TimerId, timer, emailData[0], emailData[1], dbId]);
     } else {
       Timers.push([TimerId, timer, emailData[0], emailData[1]]);
     }
+    console.log(Timers);
 
     return [TimerId];
   }

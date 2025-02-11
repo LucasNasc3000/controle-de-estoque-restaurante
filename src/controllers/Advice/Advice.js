@@ -36,6 +36,7 @@ class AdviceController {
 
       const findElement = Timers.find((time) => time[0] === timer[0]);
       findElement.push(store.dataValues.id);
+      console.log(Timers);
 
       if (!store) throw new InternalServerError('Erro interno');
 
@@ -108,6 +109,8 @@ class AdviceController {
       if (!advicesDbCheck) throw new InternalServerError('Erro ao verificar timers. Os mesmos já podem estar em funcionamento');
 
       await TimerDefinitions.Recovery(advicesDbCheck);
+
+      if (Timers.length < 1) throw new InternalServerError('Erro ao recuperar timers');
 
       return res.status(200).send('Timers recuperados');
     } catch (err) {
