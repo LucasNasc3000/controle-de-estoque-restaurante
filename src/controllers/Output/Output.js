@@ -61,6 +61,20 @@ class OutputController {
     }
   }
 
+  async List(req, res, next) {
+    try {
+      const outputs = await OutputMethods.List();
+
+      if (!outputs) throw new InternalServerError('Erro interno');
+
+      if (outputs.length < 1) return res.status(204).send('Nenhuma saída cadastrada ainda');
+
+      return res.status(200).json(outputs);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async Update(req, res, next) {
     try {
       const { id } = req.params;

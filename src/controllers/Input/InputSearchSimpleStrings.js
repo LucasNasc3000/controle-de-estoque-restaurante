@@ -52,10 +52,15 @@ class InputSearchSimpleStringsController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
+      const { forDashboard } = req.body;
 
       const inputEmployeeIdFinder = await InputSearchSimpleStrings.SearchByEmployeeId(employeeid);
 
       if (!inputEmployeeIdFinder) throw new InternalServerError('Erro interno');
+
+      if (forDashboard === true && inputEmployeeIdFinder.length < 1) return;
+
+      if (!forDashboard && inputEmployeeIdFinder.length < 1) throw new NotFound('Insumo não encontrado');
 
       return res.status(200).json(inputEmployeeIdFinder);
     } catch (err) {

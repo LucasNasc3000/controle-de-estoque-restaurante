@@ -36,7 +36,6 @@ class AdviceController {
 
       const findElement = Timers.find((time) => time[0] === timer[0]);
       findElement.push(store.dataValues.id);
-      console.log(Timers);
 
       if (!store) throw new InternalServerError('Erro interno');
 
@@ -77,7 +76,6 @@ class AdviceController {
       const adviceUpdate = await Advice.Update(id, allowedData);
 
       if (!adviceUpdate) throw new InternalServerError('Erro interno');
-      console.log(Timers);
 
       return res.status(200).send(adviceUpdate);
     } catch (err) {

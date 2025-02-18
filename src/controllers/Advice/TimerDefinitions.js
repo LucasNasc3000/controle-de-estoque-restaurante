@@ -216,6 +216,7 @@ class TimerDefinition {
 
     const findIndexSplice = Timers.indexOf(findIndex, 0);
     Timers.splice(findIndexSplice);
+    console.log(Timers);
   }
 
   async Recovery(advicesDbCheck) {

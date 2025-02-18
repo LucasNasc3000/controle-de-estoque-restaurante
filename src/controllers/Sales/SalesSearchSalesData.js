@@ -22,10 +22,15 @@ class SalesSearchSalesDataController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
+      const { forListSales } = req.body;
 
       const salesEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeid);
 
-      if (!salesEmployeeIdFinder) throw new InternalServerError('Venda não encontrada ou não cadastrada pelo funcionário');
+      if (!salesEmployeeIdFinder) throw new InternalServerError('Erro interno');
+
+      if (forListSales === true && salesEmployeeIdFinder.length < 1) return;
+
+      if (!forListSales && salesEmployeeIdFinder.length < 1) throw new NotFound('Venda não encontrada');
 
       return res.status(200).json(salesEmployeeIdFinder);
     } catch (err) {
@@ -52,12 +57,16 @@ class SalesSearchSalesDataController {
   async SearchByDate(req, res, next) {
     try {
       const { date } = req.params;
+      const { forDashboard } = req.body;
 
       const employeeDateFinder = await
       SalesSearchSalesData.SearchDate(date);
 
       if (!employeeDateFinder) throw new InternalServerError('Erro interno');
-      if (employeeDateFinder.length < 1) throw new NotFound('Venda não encontrada');
+
+      if (forDashboard === true && employeeDateFinder.length < 1) return;
+
+      if (!forDashboard && employeeDateFinder.length < 1) throw new NotFound('Venda não encontrada');
 
       return res.status(200).json(employeeDateFinder);
     } catch (err) {

@@ -10,6 +10,7 @@ class AdviceList {
   async List() {
     const advices = await Advice.findAll({
       attributes: adviceAttributes,
+      order: [['id', 'DESC']],
     });
 
     return advices;
