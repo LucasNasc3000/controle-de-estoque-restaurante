@@ -151,7 +151,6 @@ class TimerDefinition {
     } else {
       Timers.push([TimerId, timer, emailData[0], emailData[1]]);
     }
-    console.log(Timers);
 
     return [TimerId];
   }
@@ -216,7 +215,6 @@ class TimerDefinition {
 
     const findIndexSplice = Timers.indexOf(findIndex, 0);
     Timers.splice(findIndexSplice);
-    console.log(Timers);
   }
 
   async Recovery(advicesDbCheck) {

@@ -1,9 +1,21 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _CommonValidations = require('./CommonValidations'); var _CommonValidations2 = _interopRequireDefault(_CommonValidations);
-var _Inputs = require('./Inputs'); var _Inputs2 = _interopRequireDefault(_Inputs);
-var _Outputs = require('./Outputs'); var _Outputs2 = _interopRequireDefault(_Outputs);
-var _Employee = require('./Employee'); var _Employee2 = _interopRequireDefault(_Employee);
-var _Logs = require('./Logs'); var _Logs2 = _interopRequireDefault(_Logs);
-var _Sales = require('./Sales'); var _Sales2 = _interopRequireDefault(_Sales);
+Object.defineProperty(exports, '__esModule', { value: true }); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } const _CommonValidations = require('./CommonValidations');
+
+const _CommonValidations2 = _interopRequireDefault(_CommonValidations);
+const _Inputs = require('./Inputs');
+
+const _Inputs2 = _interopRequireDefault(_Inputs);
+const _Outputs = require('./Outputs');
+
+const _Outputs2 = _interopRequireDefault(_Outputs);
+const _Employee = require('./Employee');
+
+const _Employee2 = _interopRequireDefault(_Employee);
+const _Logs = require('./Logs');
+
+const _Logs2 = _interopRequireDefault(_Logs);
+const _Sales = require('./Sales');
+
+const _Sales2 = _interopRequireDefault(_Sales);
 
 class Validation {
   MainValidations(data, isEmployee, isLog, isSale) {
@@ -109,8 +121,6 @@ class Validation {
   SalesValidation(data) {
     const salesValidation = _Sales2.default.CheckIDs(data);
 
-    console.log(salesValidation);
-
     switch (salesValidation) {
       case 'Type must be a string':
         return 'O id do log precisa ser do tipo string';
@@ -139,4 +149,4 @@ class Validation {
   }
 }
 
-exports. default = new Validation();
+exports.default = new Validation();
