@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable consistent-return */
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
@@ -22,17 +23,31 @@ class SalesSearchSalesDataController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
-      const { forListSales } = req.body;
+      const { forListSales, employeeidBody } = req.body;
 
-      const salesEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeid);
+      const WhichSearch = async () => {
+        if (employeeidBody && !employeeid) {
+          const saleEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeidBody);
+          return saleEmployeeIdFinder;
+        }
 
-      if (!salesEmployeeIdFinder) throw new InternalServerError('Erro interno');
+        if (!employeeidBody && employeeid) {
+          const saleEmployeeIdFinder = await SalesSearchSalesData.SearchByemployeeId(employeeid);
+          return saleEmployeeIdFinder;
+        }
+      };
 
-      if (forListSales === true && salesEmployeeIdFinder.length < 1) return;
+      const saleEmployeeIdSearch = await WhichSearch();
 
-      if (!forListSales && salesEmployeeIdFinder.length < 1) throw new NotFound('Venda não encontrada');
+      if (!saleEmployeeIdSearch) throw new InternalServerError('Erro interno');
 
-      return res.status(200).json(salesEmployeeIdFinder);
+      if (!forListSales && saleEmployeeIdSearch.length < 1) throw new NotFound('Vendas não encontradas');
+
+      if (forListSales === true && saleEmployeeIdSearch.length < 1) {
+        return res.status(204).send('Não há vendas cadastradas pelo funcionário');
+      }
+
+      return res.status(200).json(saleEmployeeIdSearch);
     } catch (err) {
       next(err);
     }

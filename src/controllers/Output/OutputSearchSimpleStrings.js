@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable consistent-return */
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
@@ -37,17 +38,31 @@ class OutputSearchSimpleStringsController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
-      const { forListOutputs } = req.body;
+      const { forListOutputs, employeeidBody } = req.body;
 
-      const outputEmployeeIdFinder = await OutputSearchSimpleStrings.SearchByEmployeeId(employeeid);
+      const WhichSearch = async () => {
+        if (employeeidBody && !employeeid) {
+          const outputEmployeeIdFinder = await OutputSearchSimpleStrings.SearchByEmployeeId(employeeidBody);
+          return outputEmployeeIdFinder;
+        }
 
-      if (!outputEmployeeIdFinder) throw new InternalServerError('Erro interno');
+        if (!employeeidBody && employeeid) {
+          const outputEmployeeIdFinder = await OutputSearchSimpleStrings.SearchByEmployeeId(employeeid);
+          return outputEmployeeIdFinder;
+        }
+      };
 
-      if (forListOutputs === true && outputEmployeeIdFinder.length < 1) return;
+      const outputEmployeeIdSearch = await WhichSearch();
 
-      if (!forListOutputs && outputEmployeeIdFinder.length < 1) throw new NotFound('Saída não encontrada');
+      if (!outputEmployeeIdSearch) throw new InternalServerError('Erro interno');
 
-      return res.status(200).json(outputEmployeeIdFinder);
+      if (!forListOutputs && outputEmployeeIdSearch.length < 1) throw new NotFound('Saídas não encontradas');
+
+      if (forListOutputs === true && outputEmployeeIdSearch.length < 1) {
+        return res.status(204).send('Não há saídas cadastradas pelo funcionário');
+      }
+
+      return res.status(200).json(outputEmployeeIdSearch);
     } catch (err) {
       next(err);
     }
