@@ -47,6 +47,16 @@ class SalesSearchSalesData {
     return salesFinderDate;
   }
 
+  async SearchDateForDashboard(date) {
+    const salesFinderDate = await Sale.count({
+      where: {
+        date,
+      },
+    });
+
+    return salesFinderDate;
+  }
+
   async SearchByHour(hour) {
     const salesFinderByHour = await Sale.findAll({
       where: {

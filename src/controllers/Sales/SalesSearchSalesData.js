@@ -73,10 +73,11 @@ class SalesSearchSalesDataController {
     try {
       const { date } = req.params;
       const { forDashboard, saledateBody } = req.body;
+      console.log(req.body);
 
       const WhichSearch = async () => {
         if (saledateBody && !date) {
-          const saleDateFinder = await SalesSearchSalesData.SearchDate(saledateBody);
+          const saleDateFinder = await SalesSearchSalesData.SearchDateForDashboard(saledateBody);
           return saleDateFinder;
         }
 
@@ -88,11 +89,11 @@ class SalesSearchSalesDataController {
 
       const saleDateSearch = await WhichSearch();
 
-      if (!saleDateSearch) throw new InternalServerError('Erro interno');
+      if (!saleDateSearch && saleDateSearch !== 0) throw new InternalServerError('Erro interno');
 
       if (!forDashboard && saleDateSearch.length < 1) throw new NotFound('Vendas não encontradas');
 
-      if (forDashboard === true && saleDateSearch.length < 1) {
+      if (forDashboard === true && saleDateSearch === 0) {
         return res.status(204).send('Não há vendas cadastradas pelo funcionário');
       }
 
