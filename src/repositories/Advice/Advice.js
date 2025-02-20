@@ -1,19 +1,9 @@
 import Advice from '../../models/Advice';
-import adviceAttributes from './Attributes';
 
 class AdviceList {
   async Store(data) {
     const newAdvice = await Advice.create(data);
     return newAdvice;
-  }
-
-  async List() {
-    const advices = await Advice.findAll({
-      attributes: adviceAttributes,
-      order: [['id', 'DESC']],
-    });
-
-    return advices;
   }
 
   async Update(id, data) {

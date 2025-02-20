@@ -72,18 +72,31 @@ class SalesSearchSalesDataController {
   async SearchByDate(req, res, next) {
     try {
       const { date } = req.params;
-      const { forDashboard } = req.body;
+      const { forDashboard, saledateBody } = req.body;
 
-      const employeeDateFinder = await
-      SalesSearchSalesData.SearchDate(date);
+      const WhichSearch = async () => {
+        if (saledateBody && !date) {
+          const saleDateFinder = await SalesSearchSalesData.SearchDate(saledateBody);
+          return saleDateFinder;
+        }
 
-      if (!employeeDateFinder) throw new InternalServerError('Erro interno');
+        if (!saledateBody && date) {
+          const saleDateFinder = await SalesSearchSalesData.SearchDate(date);
+          return saleDateFinder;
+        }
+      };
 
-      if (forDashboard === true && employeeDateFinder.length < 1) return;
+      const saleDateSearch = await WhichSearch();
 
-      if (!forDashboard && employeeDateFinder.length < 1) throw new NotFound('Venda não encontrada');
+      if (!saleDateSearch) throw new InternalServerError('Erro interno');
 
-      return res.status(200).json(employeeDateFinder);
+      if (!forDashboard && saleDateSearch.length < 1) throw new NotFound('Vendas não encontradas');
+
+      if (forDashboard === true && saleDateSearch.length < 1) {
+        return res.status(204).send('Não há vendas cadastradas pelo funcionário');
+      }
+
+      return res.status(200).json(saleDateSearch);
     } catch (err) {
       next(err);
     }

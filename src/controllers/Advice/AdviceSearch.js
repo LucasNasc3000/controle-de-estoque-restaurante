@@ -11,6 +11,10 @@ class AdviceSearchController {
 
       if (!adviceEmployeeIdFinder) throw new InternalServerError('Erro interno');
 
+      if (adviceEmployeeIdFinder.length < 1) {
+        return res.status(204).send('Ainda não registrado pelo funcionário');
+      }
+
       return res.status(200).json(adviceEmployeeIdFinder);
     } catch (err) {
       next(err);
