@@ -12,6 +12,10 @@ class ExEmployeesSearchController {
 
       const exEmployeesFinder = await ExEmployeesSearch.SearchExemployees();
 
+      if (exEmployeesFinder.length < 1) {
+        return res.status(204).json('Não há ex-funcionários');
+      }
+
       if (!exEmployeesFinder) throw new InternalServerError('Erro interno');
 
       return res.status(200).json(exEmployeesFinder);

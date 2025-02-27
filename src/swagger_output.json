@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Storage manager",
+    "title": "Storage Manager System",
     "description": "API para ser o back-end de um sistema de controle de estoque"
   },
   "host": "localhost:3333",
@@ -24,7 +24,7 @@
         }
       }
     },
-    "/tokens/": {
+   "/tokens/": {
       "post": {
         "tags": [
           "Tokens"
@@ -80,7 +80,6 @@
       }
     },
     "/inputs/": {
-      "description": "",
       "post": {
         "tags": [
           "Inputs"
@@ -179,12 +178,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -194,92 +187,7 @@
                   "minimun_quantity": {
                     "type": "number"
                   },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "updated_at": {
-                    "type": "date"
-                  }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Inputs"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "quantity": {
-                    "type": "number"
-                  },
-                  "totalweight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
-                    "type": "number"
-                  },
-                  "supplier": {
-                    "type": "string"
-                  },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
-                  "expirationdate": {
-                    "type": "string"
-                  },
-                  "employee_id": {
-                    "type": "string"
-                  },
-                  "minimun_quantity": {
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -290,15 +198,18 @@
                   }
                 }
               }
+            }
           },
           "400": {
             "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      }
     },
     "/inputs/{id}": {
       "put": {
@@ -360,16 +271,13 @@
                 "expirationdate": {
                   "type": "string"
                 },
-                "entrydate": {
-                  "type": "string"
-                },
-                "entryhour": {
-                  "type": "string"
-                },
                 "employee_id": {
                   "type": "string"
                 },
                 "minimun_quantity": {
+                  "type": "number"
+                },
+                "rateisnear": {
                   "type": "number"
                 }
               }
@@ -405,12 +313,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -418,6 +320,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -504,12 +409,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -517,6 +416,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -603,12 +505,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -616,6 +512,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -702,12 +601,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -715,6 +608,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -738,7 +634,7 @@
         }
       }
     },
-    "/inputs/search/quantity/{quantity}": {
+   "/inputs/search/quantity/{quantity}": {
       "get": {
         "tags": [
           "Inputs"
@@ -801,12 +697,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -814,6 +704,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -900,12 +793,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -913,6 +800,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -999,12 +889,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -1012,6 +896,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -1098,12 +985,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -1111,6 +992,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -1197,12 +1081,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -1212,103 +1090,7 @@
                   "minimun_quantity": {
                     "type": "number"
                   },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "updated_at": {
-                    "type": "date"
-                  }
-                }
-              }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/inputs/search/entrydate/{entrydate}": {
-      "get": {
-        "tags": [
-          "Inputs"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "entrydate",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "type": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "quantity": {
-                    "type": "number"
-                  },
-                  "totalweight": {
-                    "type": "number"
-                  },
-                  "weightperunit": {
-                    "type": "number"
-                  },
-                  "supplier": {
-                    "type": "string"
-                  },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
-                  "expirationdate": {
-                    "type": "string"
-                  },
-                  "employee_id": {
-                    "type": "string"
-                  },
-                  "minimun_quantity": {
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -1395,12 +1177,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -1408,6 +1184,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -1494,12 +1273,6 @@
                   "supplier": {
                     "type": "string"
                   },
-                  "entrydate": {
-                    "type": "string"
-                  },
-                  "entryhour": {
-                    "type": "string"
-                  },
                   "expirationdate": {
                     "type": "string"
                   },
@@ -1507,6 +1280,9 @@
                     "type": "string"
                   },
                   "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
                     "type": "number"
                   },
                   "created_at": {
@@ -1523,6 +1299,111 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/inputs/search/employeeid/": {
+      "post": {
+        "tags": [
+          "Inputs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "forListInputs": {
+                  "example": "string"
+                },
+                "employeeidBody": {
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  },
+                  "totalweight": {
+                    "type": "number"
+                  },
+                  "weightperunit": {
+                    "type": "number"
+                  },
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "expirationdate": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "minimun_quantity": {
+                    "type": "number"
+                  },
+                  "rateisnear": {
+                    "type": "number"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1575,9 +1456,6 @@
                 "type": {
                   "type": "string"
                 },
-                "weight": {
-                  "type": "number"
-                },
                 "unities": {
                   "type": "number"
                 },
@@ -1614,9 +1492,6 @@
                   "type": {
                     "type": "string"
                   },
-                  "weight": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -1637,82 +1512,9 @@
           },
           "401": {
             "description": "Unauthorized"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Outputs"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "date": {
-                    "type": "string"
-                  },
-                  "hour": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
-                  },
-                  "unities": {
-                    "type": "number"
-                  },
-                  "employee_id": {
-                    "type": "string"
-                  },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "updated_at": {
-                    "type": "date"
-                  }
-                }
-              }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1804,9 +1606,6 @@
                   "type": {
                     "type": "string"
                   },
-                  "weight": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -1891,9 +1690,6 @@
                   "type": {
                     "type": "string"
                   },
-                  "weight": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -1921,7 +1717,7 @@
         }
       }
     },
-    "/outputs/search/type/{type}": {
+   "/outputs/search/type/{type}": {
       "get": {
         "tags": [
           "Outputs"
@@ -1977,9 +1773,6 @@
                   },
                   "type": {
                     "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
                   },
                   "unities": {
                     "type": "number"
@@ -2065,9 +1858,6 @@
                   "type": {
                     "type": "string"
                   },
-                  "weight": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -2151,9 +1941,6 @@
                   },
                   "type": {
                     "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
                   },
                   "unities": {
                     "type": "number"
@@ -2239,9 +2026,6 @@
                   "type": {
                     "type": "string"
                   },
-                  "weight": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -2325,96 +2109,6 @@
                   },
                   "type": {
                     "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
-                  },
-                  "unities": {
-                    "type": "number"
-                  },
-                  "employee_id": {
-                    "type": "string"
-                  },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "updated_at": {
-                    "type": "date"
-                  }
-                }
-              }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/outputs/search/weight/{weight}": {
-      "get": {
-        "tags": [
-          "Outputs"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "weight",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "date": {
-                    "type": "string"
-                  },
-                  "hour": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
                   },
                   "unities": {
                     "type": "number"
@@ -2500,9 +2194,6 @@
                   "type": {
                     "type": "string"
                   },
-                  "weight": {
-                    "type": "number"
-                  },
                   "unities": {
                     "type": "number"
                   },
@@ -2523,6 +2214,102 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/outputs/search/employeeid/": {
+      "post": {
+        "tags": [
+          "Outputs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "forListOutputs": {
+                  "example": "any"
+                },
+                "employeeidBody": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "unities": {
+                    "type": "number"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2583,6 +2370,9 @@
                 },
                 "boss": {
                   "type": "string|null"
+                },
+                "is_active": {
+                  "type": "boolean"
                 }
               }
             }
@@ -2635,8 +2425,14 @@
           "400": {
             "description": "Bad Request"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -2755,60 +2551,8 @@
           "400": {
             "description": "Bad Request"
           },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Employees"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              }
+          "403": {
+            "description": "Forbidden"
           },
           "401": {
             "description": "Unauthorized"
@@ -2900,6 +2644,9 @@
           "401": {
             "description": "Unauthorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -2989,6 +2736,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -3083,13 +2833,16 @@
           "404": {
             "description": "Not Found"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/employees/search/email/{email}": {
+    "/employees/search/email/{emailParam}": {
       "get": {
         "tags": [
           "Employees"
@@ -3172,6 +2925,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3260,11 +3016,106 @@
           "401": {
             "description": "Unauthorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/exemployees/": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "headerid",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "200": {
+            "description": "OK",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password_hash": {
+                    "type": "string"
+                  },
+                  "adminpassword_hash": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "address_allowed": {
+                    "type": "string"
+                  },
+                  "boss": {
+                    "type": "string|null"
+                  },
+                  "is_active": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description":"Internal Server Error"
           }
         }
       }
@@ -3370,79 +3221,9 @@
           },
           "401": {
             "description": "Unauthorized"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Sales"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           },
-          {
-            "name": "permission",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "adminpassword",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "date": {
-                    "type": "string"
-                  },
-                  "hour": {
-                    "type": "string"
-                  },
-                  "client_name": {
-                    "type": "string"
-                  },
-                  "phone_number": {
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "string"
-                  },
-                  "products": {
-                    "type": "string"
-                  },
-                  "employee_id": {
-                    "type": "string"
-                  },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "updated_at": {
-                    "type": "date"
-                  }
-                }
-              }
-          },
-          "401": {
-            "description": "Unauthorized"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -3452,7 +3233,7 @@
         "tags": [
           "Sales"
         ],
-        "description": "",
+        "description": "Apenas alguns campos foram colocados aqui para lembrar que o patch não permite que todos os campos sejam atualizados de uma vez",
         "parameters": [
           {
             "name": "id",
@@ -3532,6 +3313,9 @@
                     "type": "string"
                   },
                   "employee_id": {
+                    "type": "string"
+                  },
+                  "client_birthday": {
                     "type": "string"
                   },
                   "created_at": {
@@ -3621,6 +3405,9 @@
                   "employee_id": {
                     "type": "string"
                   },
+                  "client_birthday": {
+                    "type": "string"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -3706,6 +3493,9 @@
                     "type": "string"
                   },
                   "employee_id": {
+                    "type": "string"
+                  },
+                  "client_birthday": {
                     "type": "string"
                   },
                   "created_at": {
@@ -3795,6 +3585,9 @@
                   "employee_id": {
                     "type": "string"
                   },
+                  "client_birthday": {
+                    "type": "string"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -3809,6 +3602,105 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/sales/search/date/": {
+      "post": {
+        "tags": [
+          "Sales"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "forDashboard": {
+                  "example": "any"
+                },
+                "saledateBody": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "client_birthday": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3882,6 +3774,9 @@
                   "employee_id": {
                     "type": "string"
                   },
+                  "client_birthday": {
+                    "type": "string"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -3899,6 +3794,102 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/sales/search/employeeid/": {
+      "post": {
+        "tags": [
+          "Sales"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "forListSales": {
+                  "example": "any"
+                },
+                "employeeidBody": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "client_name": {
+                    "type": "string"
+                  },
+                  "phone_number": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "products": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "client_birthday": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "updated_at": {
+                    "type": "date"
+                  }
+                }
+              }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -3967,6 +3958,9 @@
                     "type": "string"
                   },
                   "employee_id": {
+                    "type": "string"
+                  },
+                  "client_birthday": {
                     "type": "string"
                   },
                   "created_at": {
@@ -4056,6 +4050,9 @@
                   "employee_id": {
                     "type": "string"
                   },
+                  "client_birthday": {
+                    "type": "string"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -4141,6 +4138,9 @@
                     "type": "string"
                   },
                   "employee_id": {
+                    "type": "string"
+                  },
+                  "client_birthday": {
                     "type": "string"
                   },
                   "created_at": {
@@ -4230,6 +4230,9 @@
                   "employee_id": {
                     "type": "string"
                   },
+                  "client_birthday": {
+                    "type": "string"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -4244,6 +4247,330 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/advices/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "hour": {
+                  "type": "string"
+                },
+                "employee_id": {
+                  "type": "string"
+                },
+                "timer_id": {
+                  "type": "number"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "email_body": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "timer_id": {
+                    "type": "number"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "email_body": {
+                    "type": "string"
+                  }
+                }
+              }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/advices/{id}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "employee_id": {
+                  "example": "any"
+                },
+                "allowedData": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "timer_id": {
+                    "type": "number"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "email_body": {
+                    "type": "string"
+                  }
+                }
+              }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/advices/search/employeeid/{employeeid}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "employeeid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "adminpassword",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string"
+                  },
+                  "hour": {
+                    "type": "string"
+                  },
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "timer_id": {
+                    "type": "number"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "email_body": {
+                    "type": "string"
+                  }
+                }
+              }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
