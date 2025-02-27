@@ -14,6 +14,17 @@ export default async (req, res, next) => {
       throw new Unauthorized('Permissao, senha de admin e email necessarios');
     }
 
+    if (headerid) {
+      const employeeById = await Employee.findOne({
+        where: {
+          id: headerid,
+          is_active: 1,
+        },
+      });
+
+      if (!employeeById) throw new Unauthorized('O funcionário não existe');
+    }
+
     const employee = await Employee.findOne({
       where: {
         email,
