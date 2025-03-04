@@ -67,10 +67,38 @@ o front-end estiver em desenvolvimento.
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
 
 ## Documentação e uso
-### Quem desejar acessar a documentação em swagger, caso tenha instalado em sua máquina o Nodejs --><br>
+### Variáveis de ambiente
+- Na raiz do projeto crie um arquivo com o nome .env
+- Copie e cole no .env estas variáveis de ambiente:
+  DATABASE=nome da sua base de dados
+  DATABASE_HOST=127.0.0.1 ou o ip da sua máquina
+  DATABASE_PORT=3306
+  DATABASE_USERNAME=usuario da sua base de dados
+  DATABASE_PASSWORD=senha da sua base de dados
+
+  JWT_SECRET=escolha uma sequencia de caracteres grande e complexa
+  JWT_EXPIRATION=5d
+
+  OUTPUTS_PERMISSION=escolha um nome
+  INPUTS_PERMISSION=escolha um nome
+  INPUTS_OUTPUTS_PERMISSION=escolha um nome
+  SALES_PERMISSION=escolha um nome
+  SO_PERMISSION=escolha um nome
+  SOI_PERMISSION=escolha um nome
+  ADMIN_PERMISSION=escolha um nome
+
+  FROM_EMAIL=escolha um e-mail
+  ADDRESS_ALLOWED=escolha uma sequência de caracteres para funcionários com autorização para receber e-mails (ex: y/n)
+  SENDGRID_API_KEY=caso você use, coloque aqui sua api key do sendgrid, necessário somente para o envio de e-mails
+
+### Banco de dados
+- Crie um schema MySql e o sequelize fará todo o resto
+
+### Quem desejar acessar a documentação em swagger, ou rodar o projeto caso tenha instaladas em sua máquina todas as dependências necessárias --><br>
 - `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
 - Na raiz do projeto --><br>
 - `npm install` ou `npm i`<br>
+- `npx sequelize db:migrate`<br>
 - `npm run dev`<br>
 - Acessar no seu navegador a url `localhost:3000/doc`
 
@@ -146,10 +174,38 @@ Note: updates will be made according to the needs of the front-end. Some additio
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
 
 ## Documentation and usage
-### If you want to access the documentation in swagger, if you have Nodejs installed on your machine --><br>
+### Environment variables
+- In the root of project create a file named .env
+- Copy and paste these env variables below:
+  DATABASE=your database name
+  DATABASE_HOST=127.0.0.1 or your pc ip
+  DATABASE_PORT=3306
+  DATABASE_USERNAME=your database username
+  DATABASE_PASSWORD=your database password
+
+  JWT_SECRET=choose a big and complex sequence of characters
+  JWT_EXPIRATION=5d
+
+  OUTPUTS_PERMISSION=choose a name
+  INPUTS_PERMISSION=choose a name
+  INPUTS_OUTPUTS_PERMISSION=choose a name
+  SALES_PERMISSION=choose a name
+  SO_PERMISSION=choose a name
+  SOI_PERMISSION=choose a name
+  ADMIN_PERMISSION=choose a name
+
+  FROM_EMAIL=choose a e-mail
+  ADDRESS_ALLOWED=choose a sequence of characters for employees whose authorized to receive e-mails (ex: y/n)
+  SENDGRID_API_KEY=if you do use, write here your sendgrid api key, it's necessary only for sending e-mails
+
+### Banco de dados
+- Create a MySql schema, sequelize will do all the rest
+
+### If you want to access the documentation in swagger or run the project, if you have all necessary dependencies installed on your machine --><br>
 - `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
 - In the root of the project --><br>
 - `npm install` or `npm i`<br>
+- `npx sequelize db:migrate`<br>
 - `npm run dev`<br>
 - Access the url `localhost:3000/doc` in your browser
 
