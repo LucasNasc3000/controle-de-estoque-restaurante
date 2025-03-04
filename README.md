@@ -69,17 +69,17 @@ o front-end estiver em desenvolvimento.
 ## Documentação e uso
 ### Variáveis de ambiente
 - Na raiz do projeto crie um arquivo com o nome .env
-- Copie e cole no .env estas variáveis de ambiente:
+- Copie e cole no .env estas variáveis de ambiente:<br>
   DATABASE=nome da sua base de dados<br>
-  DATABASE_HOST=127.0.0.1 ou o ip da sua máquinas<br>
-  DATABASE_PORT=3306s<br>
-  DATABASE_USERNAME=usuario da sua base de dadoss<br>
+  DATABASE_HOST=127.0.0.1 ou o ip da sua máquina<br>
+  DATABASE_PORT=3306<br>
+  DATABASE_USERNAME=usuario da sua base de dados<br>
   DATABASE_PASSWORD=senha da sua base de dados<br><br>
 
-  JWT_SECRET=escolha uma sequencia de caracteres grande e complexas<br>
+  JWT_SECRET=escolha uma sequencia de caracteres grande e complexa<br>
   JWT_EXPIRATION=5d<br><br>
 
-  OUTPUTS_PERMISSION=escolha um nomes<br>
+  OUTPUTS_PERMISSION=escolha um nome<br>
   INPUTS_PERMISSION=escolha um nome<br>
   INPUTS_OUTPUTS_PERMISSION=escolha um nome<br>
   SALES_PERMISSION=escolha um nome<br>
@@ -176,7 +176,7 @@ Note: updates will be made according to the needs of the front-end. Some additio
 ## Documentation and usage
 ### Environment variables
 - In the root of project create a file named .env
-- Copy and paste these env variables below:
+- Copy and paste these env variables below:<br>
   DATABASE=your database name<br>
   DATABASE_HOST=127.0.0.1 or your pc ip<br>
   DATABASE_PORT=3306<br>
