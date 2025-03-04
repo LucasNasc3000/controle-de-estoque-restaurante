@@ -7,37 +7,40 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 ### Funcionalidades dos Insumos
 
 1 - Cadastrar novos insumos<br>
-2 - Fornecer uma lista contendo todos os insumos <br>
-3 - Pesquisar por um ou mais insumos de acordo com seus dados<br>
-4 - Atualizar um ou mais dados relativos aos insumos<br>
-5 - Determinar uma quantidade mínima de insumos no estoque (opcional)<br>
-6 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira<br>
+2 - Pesquisar por um ou mais insumos de acordo com seus dados<br>
+3 - Atualizar um ou mais dados relativos aos insumos<br>
+4 - Determinar uma quantidade mínima de insumos no estoque (opcional)<br>
+5 - Registrar todas as operações que os usuários realizarem por meio de uma chave estrangeira<br>
 
 ### Funcionalidades das Saídas
 
 1 - Registrar os dados relativos aos insumos que saíram<br>
-2 - Listar todas as saídas<br>
-3 - Pesquisar pelas saídas dos insumos de acordo com seus dados<br>
-4 - Enivar emails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma<br>
-5 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras.<br>
-6 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas. Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas<br>
+2 - Pesquisar pelas saídas dos insumos de acordo com seus dados<br>
+3 - Enivar e-mails aos destinatários autorizados caso algum insumo esteja próximo à quantidade limite ou caso chegue a mesma<br>
+4 - Resgistrar as atividades dos funcionários por meio de chaves estrangeiras<br>
+5 - Atualizar a base de dados dos insumos cadastrados de acordo com as saídas Por exemplo, se sair 1kg de arroz, as linhas responsáveis pelo peso total e quantidade na tabela dos insumos serão alteradas<br>
 
 ### Funcionalidades dos Funcionários
 
-1 - Listar funcionários<br>
-2 - Criar novos funcionários<br>
-3 - Atualizar os dados dos funcionários<br>
-4 - Deletar funcionários<br>
-5 - Pesquisar funcionários de acordo com seus dados<br>
-6 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira)<br>
-7 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso<br>
+1 - Criar novos funcionários<br>
+2 - Atualizar os dados dos funcionários<br>
+3 - Pesquisar funcionários de acordo com seus dados<br>
+4 - Registrar em uma tabela os logs dos funcionários (data e hora do login, email e chave estrangeira)<br>
+5 - Gerar JWT para o login de todos os funcionários, independentemente do nível de acesso<br>
 
 ### Funcionalidades das Vendas
 
 1 - Registrar vendas<br>
-2 - Listar as vendas<br>
-3 - Atualizar dados das vendas<br>
-4 - Pesquisar por vendas de acordo com seus dados<br>
+2 - Atualizar dados das vendas<br>
+3 - Pesquisar por vendas de acordo com seus dados<br>
+
+### Funcionalidades dos Lembretes
+
+1 - Registrar lembretes<br>
+2 - Atualizar lembretes<br>
+3 - Deletar lembretes<br>
+4 - Recuperar lembretes<br>
+5 - Enviar os lembretes por e-mail<br>
 
 ## Acessos
 
@@ -86,34 +89,36 @@ This is an API developed for the storage control of a restaurant. The system was
 ## Features
 ### Input Features
 1 - Register new inputs<br>
-2 - Provide a list containing all inputs<br>
-3 - Search for one or more inputs according to their data<br>
-4 - Update one or more data related to inputs<br>
-5 - Determine a minimum quantity of inputs in stock (optional)<br>
-6 - Record all operations that users perform using a foreign key<br>
+2 - Search for one or more inputs according to their data<br>
+3 - Update one or more data related to inputs<br>
+4 - Determine a minimum quantity of inputs in stock (optional)<br>
+5 - Record all operations that users perform using a foreign key<br>
 
 ### Output Features
 1 - Record data related to inputs that have been output<br>
-2 - List all outputs<br>
-3 - Search for outputs of inputs according to their data<br>
-4 - Send emails to authorized recipients if any input is close to the limit quantity or if it reaches it<br>
-5 - Record employee activities using foreign keys.<br>
-6 - Update the database of registered inputs according to outputs. For example, if 1kg of rice is purchased, the lines responsible for the total weight and quantity in the inputs table will be changed.<br>
+2 - Search for outputs of inputs according to their data<br>
+3 - Send emails to authorized recipients if any input is close to the limit quantity or if it reaches it<br>
+4 - Record employee activities using foreign keys<br>
+5 - Update the database of registered inputs according to outputs. For example, if 1kg of rice is purchased, the lines responsible for the total weight and quantity in the inputs table will be changed<br>
 
-### Employee Functionalities
-1 - List employees<br>
-2 - Create new employees<br>
-3 - Update employee data<br>
-4 - Delete employees<br>
-5 - Search for employees according to their data<br>
-6 - Record employee logs in a table (login date and time, email and foreign key)<br>
-7 - Generate JWT for all employees' logins, regardless of their access level<br>
+### Employee Features
+1 - Create new employees<br>
+2 - Update employee data<br>
+3 - Search for employees according to their data<br>
+4 - Record employee logs in a table (login date and time, email and foreign key)<br>
+5 - Generate JWT for all employees' logins, regardless of their access level<br>
 
-### Sales Functionalities
+### Sales Features
 1 - Register sales<br>
-2 - List sales<br>
-3 - Update sales data<br>
-4 - Search for sales according to their data<br>
+2 - Update sales data<br>
+3 - Search for sales according to their data<br>
+
+### Advices Features
+1 - Register advices<br>
+2 - Update advices<br>
+3 - Delete advices<br>
+4 - Recover advices<br>
+5 - Send advices content by e-mail<br>
 
 ## Accesses
 In this application, there are different accesses for each functionality and these are granted by checking specific data sent by the request header, such as ID, permission and administrator password, if the employee has this access, in addition to the JWT, required for all employees.
