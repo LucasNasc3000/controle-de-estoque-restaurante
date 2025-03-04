@@ -70,26 +70,26 @@ o front-end estiver em desenvolvimento.
 ### Variáveis de ambiente
 - Na raiz do projeto crie um arquivo com o nome .env
 - Copie e cole no .env estas variáveis de ambiente:
-  DATABASE=nome da sua base de dados
-  DATABASE_HOST=127.0.0.1 ou o ip da sua máquina
-  DATABASE_PORT=3306
-  DATABASE_USERNAME=usuario da sua base de dados
-  DATABASE_PASSWORD=senha da sua base de dados
+  DATABASE=nome da sua base de dados<br>
+  DATABASE_HOST=127.0.0.1 ou o ip da sua máquinas<br>
+  DATABASE_PORT=3306s<br>
+  DATABASE_USERNAME=usuario da sua base de dadoss<br>
+  DATABASE_PASSWORD=senha da sua base de dados<br><br>
 
-  JWT_SECRET=escolha uma sequencia de caracteres grande e complexa
-  JWT_EXPIRATION=5d
+  JWT_SECRET=escolha uma sequencia de caracteres grande e complexas<br>
+  JWT_EXPIRATION=5d<br><br>
 
-  OUTPUTS_PERMISSION=escolha um nome
-  INPUTS_PERMISSION=escolha um nome
-  INPUTS_OUTPUTS_PERMISSION=escolha um nome
-  SALES_PERMISSION=escolha um nome
-  SO_PERMISSION=escolha um nome
-  SOI_PERMISSION=escolha um nome
-  ADMIN_PERMISSION=escolha um nome
+  OUTPUTS_PERMISSION=escolha um nomes<br>
+  INPUTS_PERMISSION=escolha um nome<br>
+  INPUTS_OUTPUTS_PERMISSION=escolha um nome<br>
+  SALES_PERMISSION=escolha um nome<br>
+  SO_PERMISSION=escolha um nome<br>
+  SOI_PERMISSION=escolha um nome<br>
+  ADMIN_PERMISSION=escolha um nome<br><br>
 
-  FROM_EMAIL=escolha um e-mail
-  ADDRESS_ALLOWED=escolha uma sequência de caracteres para funcionários com autorização para receber e-mails (ex: y/n)
-  SENDGRID_API_KEY=caso você use, coloque aqui sua api key do sendgrid, necessário somente para o envio de e-mails
+  FROM_EMAIL=escolha um e-mail<br>
+  ADDRESS_ALLOWED=escolha uma sequência de caracteres para funcionários com autorização para receber e-mails (ex: y/n)<br>
+  SENDGRID_API_KEY=caso você use, coloque aqui sua api key do sendgrid, necessário somente para o envio de e-mails<br>
 
 ### Banco de dados
 - Crie um schema MySql e o sequelize fará todo o resto
@@ -177,26 +177,26 @@ Note: updates will be made according to the needs of the front-end. Some additio
 ### Environment variables
 - In the root of project create a file named .env
 - Copy and paste these env variables below:
-  DATABASE=your database name
-  DATABASE_HOST=127.0.0.1 or your pc ip
-  DATABASE_PORT=3306
-  DATABASE_USERNAME=your database username
-  DATABASE_PASSWORD=your database password
+  DATABASE=your database name<br>
+  DATABASE_HOST=127.0.0.1 or your pc ip<br>
+  DATABASE_PORT=3306<br>
+  DATABASE_USERNAME=your database username<br>
+  DATABASE_PASSWORD=your database password<br><br>
 
-  JWT_SECRET=choose a big and complex sequence of characters
-  JWT_EXPIRATION=5d
+  JWT_SECRET=choose a big and complex sequence of characters<br>
+  JWT_EXPIRATION=5d<br><br>
 
-  OUTPUTS_PERMISSION=choose a name
-  INPUTS_PERMISSION=choose a name
-  INPUTS_OUTPUTS_PERMISSION=choose a name
-  SALES_PERMISSION=choose a name
-  SO_PERMISSION=choose a name
-  SOI_PERMISSION=choose a name
-  ADMIN_PERMISSION=choose a name
+  OUTPUTS_PERMISSION=choose a name<br>
+  INPUTS_PERMISSION=choose a name<br>
+  INPUTS_OUTPUTS_PERMISSION=choose a name<br>
+  SALES_PERMISSION=choose a name<br>
+  SO_PERMISSION=choose a name<br>
+  SOI_PERMISSION=choose a name<br>
+  ADMIN_PERMISSION=choose a name<br><br>
 
-  FROM_EMAIL=choose a e-mail
-  ADDRESS_ALLOWED=choose a sequence of characters for employees whose authorized to receive e-mails (ex: y/n)
-  SENDGRID_API_KEY=if you do use, write here your sendgrid api key, it's necessary only for sending e-mails
+  FROM_EMAIL=choose a e-mail<br>
+  ADDRESS_ALLOWED=choose a sequence of characters for employees whose authorized to receive e-mails (ex: y/n)<br>
+  SENDGRID_API_KEY=if you do use, write here your sendgrid api key, it's necessary only for sending e-mails<br>
 
 ### Banco de dados
 - Create a MySql schema, sequelize will do all the rest
