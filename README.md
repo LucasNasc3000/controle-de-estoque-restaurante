@@ -104,12 +104,12 @@ o front-end estiver em desenvolvimento.
 
 ### Para usar a api, caso você tenha docker na sua máquina --><br>
 - `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
-- Entrar em `dist/database` e rodar `docker build -t mydb:database .`<br>
-- Rodar em dist/database `docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=controleestoque -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword mydb:database`<br>
+- Entrar em `dist/database` e rodar `sudo docker build -t mydb:database .`<br>
+- Rodar em dist/database `sudo docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=controleestoque -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword mydb:database`<br>
 - Alterar a variável de ambiente `DATABASE_HOST` no dockerfile na raiz do proejeto para localhost ou o ip da sua máquina<br>
-- Na raiz do projeto rodar `docker build -t nodeapp:app .`
-- Rodar o comando `docker images` e copiar o id da imagem nodeapp:app
-- `docker run -p 3000:3000 <id_nodeapp>`
+- Na raiz do projeto rodar `sudo docker build -t nodeapp:app .`
+- Rodar o comando `sudo docker images` e copiar o id da imagem nodeapp:app
+- `sudo docker run -p 3000:3000 <id_nodeapp>`
 
 # Storage Manager system
 This is an API developed for the storage control of a restaurant. The system was built in the REST architecture. Being the server side of a web application, this system was developed with Node js for programming routines, routes and data validations. The database is in MySql and to handle it I used the Sequelize ORM (Object Relational Mapper) for data modeling and to facilitate the use of the database.
@@ -211,9 +211,9 @@ Note: updates will be made according to the needs of the front-end. Some additio
 
 ### To use the api, if you have docker on your machine --><br>
 - `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
-- Enter `dist/database` and run `docker build -t mydb:database .`<br>
-- Run `docker run -d in dist/database -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=controleestoque -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword mydb:database`<br>
+- Enter `dist/database` and run `sudo docker build -t mydb:database .`<br>
+- Run `sudo docker run -d in dist/database -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=controleestoque -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword mydb:database`<br>
 - Change the environment variable `DATABASE_HOST` in the dockerfile at the root of the project to localhost or the IP of your machine<br>
-- At the root of the project, run `docker build -t nodeapp:app .`
-- Run the command `docker images` and copy the image id nodeapp:app
-- `docker run -p 3000:3000 <id_nodeapp>`
+- At the root of the project, run `sudo docker build -t nodeapp:app .`
+- Run the command `sudo docker images` and copy the image id nodeapp:app
+- `sudo docker run -p 3000:3000 <id_nodeapp>`
