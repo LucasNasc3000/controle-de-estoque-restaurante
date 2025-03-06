@@ -70,6 +70,7 @@ o front-end estiver em desenvolvimento.
 ### Variáveis de ambiente
 - Na raiz do projeto crie um arquivo com o nome .env
 - Copie e cole no .env estas variáveis de ambiente:<br>
+  *Importante: use os mesmos nomes para base de dados, usuário e senha do comando docker ou troque quando rodar o comando
   DATABASE=nome da sua base de dados<br>
   DATABASE_HOST=127.0.0.1 ou o ip da sua máquina<br>
   DATABASE_PORT=3306<br>
@@ -100,7 +101,7 @@ o front-end estiver em desenvolvimento.
 - `npm install` ou `npm i`<br>
 - `npx sequelize db:migrate`<br>
 - `npm run dev`<br>
-- Acessar no seu navegador a url `localhost:3000/doc`
+- Acessar no seu navegador a url `localhost:3333/doc`
 
 ### Para usar a api, caso você tenha docker na sua máquina --><br>
 - `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
@@ -109,7 +110,7 @@ o front-end estiver em desenvolvimento.
 - Alterar a variável de ambiente `DATABASE_HOST` no dockerfile na raiz do proejeto para localhost ou o ip da sua máquina<br>
 - Na raiz do projeto rodar `sudo docker build -t nodeapp:app .`
 - Rodar o comando `sudo docker images` e copiar o id da imagem nodeapp:app
-- `sudo docker run -p 3000:3000 <id_nodeapp>`
+- `sudo docker run -p 3333:3333 <id_nodeapp>`
 
 # Storage Manager system
 This is an API developed for the storage control of a restaurant. The system was built in the REST architecture. Being the server side of a web application, this system was developed with Node js for programming routines, routes and data validations. The database is in MySql and to handle it I used the Sequelize ORM (Object Relational Mapper) for data modeling and to facilitate the use of the database.
@@ -177,6 +178,7 @@ Note: updates will be made according to the needs of the front-end. Some additio
 ### Environment variables
 - In the root of project create a file named .env
 - Copy and paste these env variables below:<br>
+  *Important: use the same database name, username and password of the docker statement or switch it
   DATABASE=your database name<br>
   DATABASE_HOST=127.0.0.1 or your pc ip<br>
   DATABASE_PORT=3306<br>
@@ -207,7 +209,7 @@ Note: updates will be made according to the needs of the front-end. Some additio
 - `npm install` or `npm i`<br>
 - `npx sequelize db:migrate`<br>
 - `npm run dev`<br>
-- Access the url `localhost:3000/doc` in your browser
+- Access the url `localhost:3333/doc` in your browser
 
 ### To use the api, if you have docker on your machine --><br>
 - `git clone https://github.com/LucasNasc3000/controle-de-estoque-restaurante`<br>
@@ -216,4 +218,4 @@ Note: updates will be made according to the needs of the front-end. Some additio
 - Change the environment variable `DATABASE_HOST` in the dockerfile at the root of the project to localhost or the IP of your machine<br>
 - At the root of the project, run `sudo docker build -t nodeapp:app .`
 - Run the command `sudo docker images` and copy the image id nodeapp:app
-- `sudo docker run -p 3000:3000 <id_nodeapp>`
+- `sudo docker run -p 3333:3333 <id_nodeapp>`
