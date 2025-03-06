@@ -33,6 +33,21 @@ module.exports = {
         type: Sequelize.CHAR,
         allowNull: true,
       },
+      boss: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
+        allowNull: true,
+        references: {
+          model: 'employees',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      },
+      is_active: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

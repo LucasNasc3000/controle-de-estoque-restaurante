@@ -18,19 +18,15 @@ module.exports = {
         allowNull: false,
       },
       name: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       type: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      weight: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       unities: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       employee_id: {

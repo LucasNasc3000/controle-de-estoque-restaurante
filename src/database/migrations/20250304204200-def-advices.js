@@ -2,12 +2,12 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('sales', {
+    await queryInterface.createTable('advices', {
       id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV1,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: 1,
       },
       date: {
         type: Sequelize.STRING,
@@ -17,20 +17,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      client_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      phone_number: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      products: {
-        type: Sequelize.TEXT,
+      timer_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       employee_id: {
@@ -44,9 +32,13 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
-      client_birthday: {
+      subject: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+      email_body: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -60,6 +52,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('sales');
+    await queryInterface.dropTable('advices');
   },
 };
