@@ -84,7 +84,7 @@ export default class Employee extends Model {
       },
       is_active: {
         type: Sequelize.BOOLEAN,
-        allowNull: true,
+        allowNull: false,
         defaultValue: true,
       },
     }, {

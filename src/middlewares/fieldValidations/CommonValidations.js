@@ -23,6 +23,10 @@ class CommomValidations {
       }
 
       if (allData[i] === null) {
+        if (allData[i] === allData.boss && allData.boss === null) {
+          return this.CheckStrings(allData);
+        }
+
         return 'Null field(s)';
       }
     }

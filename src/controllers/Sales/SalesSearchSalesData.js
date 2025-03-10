@@ -73,7 +73,6 @@ class SalesSearchSalesDataController {
     try {
       const { date } = req.params;
       const { forDashboard, saledateBody } = req.body;
-      console.log(req.body);
 
       const WhichSearch = async () => {
         if (saledateBody && !date) {
