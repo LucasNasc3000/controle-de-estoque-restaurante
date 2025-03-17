@@ -38,6 +38,25 @@ class EmployeesSearchBossController {
       next(err);
     }
   }
+
+  async SearchByBossForList(req, res, next) {
+    try {
+      const { headerid } = req.headers;
+      const { boss } = req.body;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
+      const employeeBossFinder = await EmployeeSearchBoss.SearchByBoss(boss);
+
+      if (employeeBossFinder === 'Não autorizado') throw new Forbidden('Ação não autorizada');
+
+      if (!employeeBossFinder) throw new InternalServerError('Erro interno');
+
+      return res.status(200).json(employeeBossFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new EmployeesSearchBossController();
