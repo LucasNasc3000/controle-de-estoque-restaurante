@@ -47,10 +47,11 @@ class SalesSearchSalesData {
     return salesFinderDate;
   }
 
-  async SearchDateForDashboard(date) {
+  async SearchDateForDashboard(date, employeeId) {
     const salesFinderDate = await Sale.count({
       where: {
         date,
+        employee_id: employeeId,
       },
     });
 

@@ -25,9 +25,11 @@ class EmployeeController {
 
       const employeeStore = await Employees.Store(req.body);
 
+      const { password, adminpassword, ...allowedData } = employeeStore;
+
       if (!employeeStore) throw new InternalServerError('Erro interno');
 
-      return res.status(201).json(employeeStore);
+      return res.status(201).json(allowedData);
     } catch (err) {
       next(err);
     }

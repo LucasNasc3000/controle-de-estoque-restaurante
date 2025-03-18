@@ -4,7 +4,6 @@ const employeeAttributes = [
   'email',
   'password_hash',
   'adminpassword_hash',
-  'adminpassword',
   'permission',
   'address_allowed',
   'boss',
