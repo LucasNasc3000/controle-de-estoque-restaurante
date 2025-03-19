@@ -34,10 +34,12 @@ class EmployeesSearchBossController {
 
   async SearchByBossForListItems(req, res, next) {
     try {
-      const { headerid } = req.headers;
+      const { email } = req.headers;
       const { boss } = req.body;
 
-      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+      const findByEmail = await EmployeesSearchCredentials.SearchByEmail(email);
+
+      if (findByEmail.dataValues.boss !== boss) throw new Forbidden('Ação não autorizada');
 
       const employeeBossFinder = await EmployeeSearchBoss.SearchByBossForListItems(boss);
 
