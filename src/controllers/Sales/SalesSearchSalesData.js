@@ -4,8 +4,6 @@
 /* eslint-disable consistent-return */
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
-import EmployeeSearchBoss from '../../repositories/Employee/EmployeeSearchBoss';
-import EmployeeSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
 
 class SalesSearchSalesDataController {
@@ -78,37 +76,9 @@ class SalesSearchSalesDataController {
       const { date } = req.params;
       const { forDashboard, saledateBody, employeeId } = req.body;
 
-      const employeeBoss = await EmployeeSearchCredentials.SearchById(employeeId);
-
-      if (!employeeBoss) throw new NotFound('Funcionário não encontrado');
-
-      const { boss } = employeeBoss.dataValues;
-
-      const allEmployeesByBoss = await EmployeeSearchBoss.SearchByBoss(boss);
-
-      if (!allEmployeesByBoss) throw new InternalServerError('Erro interno');
-
-      if (allEmployeesByBoss === 'Não autorizado') {
-        const thisBossEmployees = await EmployeeSearchBoss.SearchByBoss(employeeId);
-
-        const employeesIds = thisBossEmployees.map((employee) => employee.id);
-        console.log(employeesIds);
-
-        for (let i = 0; i < employeesIds.length; i++) {
-          const saleCountByDate = await SalesSearchSalesData.SearchDateForDashboard(saledateBody, employeesIds[i]);
-          console.log(saleCountByDate);
-        }
-      }
-      // criar outro método? Este vai servir mesmo para as pesquisas normais?
-
-      // for (let i = 0; i < allEmployeesByBoss.dataValues.length; i++) {
-      //   // eslint-disable-next-line no-await-in-loop
-      //   const saleSearchByDate = await SalesSearchSalesData.SearchByemployeeId(allEmployeesByBoss.length);
-      // }
-
       const WhichSearch = async () => {
         if (saledateBody && !date) {
-          const saleDateFinder = await SalesSearchSalesData.SearchDateForDashboard(saledateBody);
+          const saleDateFinder = await SalesSearchSalesData.SearchDateForDashboard(saledateBody, employeeId);
           return saleDateFinder;
         }
 
@@ -120,7 +90,7 @@ class SalesSearchSalesDataController {
 
       const saleDateSearch = await WhichSearch();
 
-      if (!saleDateSearch && saleDateSearch !== 0) throw new InternalServerError('Erro interno');
+      if (forDashboard && !saleDateSearch && saleDateSearch !== 0) throw new InternalServerError('Erro interno');
 
       if (!forDashboard && saleDateSearch.length < 1) throw new NotFound('Vendas não encontradas');
 
