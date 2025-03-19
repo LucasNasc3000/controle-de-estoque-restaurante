@@ -15,6 +15,20 @@ class EmployeesSearchBoss {
 
     return employeeFinder;
   }
+
+  async SearchByBossForListItems(boss) {
+    if (boss === null) return 'Não autorizado';
+
+    const employeeFinder = await Employee.findAll({
+      where: {
+        boss,
+      },
+      attributes: ['id'],
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinder;
+  }
 }
 
 export default new EmployeesSearchBoss();
