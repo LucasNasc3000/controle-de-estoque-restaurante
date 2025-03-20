@@ -91,11 +91,16 @@ class SalesSearchSalesDataController {
             empIds.push(emps.id);
           });
         }
+
+        empIds.push(findEmpByEmail.dataValues.id);
       } else {
         const findEmpsByBoss = await EmployeeSearchBoss.SearchByBoss(findEmpByEmail.dataValues.boss);
+
         findEmpsByBoss.map((emps) => {
           empIds.push(emps.id);
         });
+
+        empIds.push(findEmpByEmail.dataValues.boss);
       }
 
       for (let i = 0; i < empIds.length; i++) {
