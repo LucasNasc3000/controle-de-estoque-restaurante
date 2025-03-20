@@ -1,9 +1,12 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-plusplus */
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
+import EmployeeSearchBoss from '../../repositories/Employee/EmployeeSearchBoss';
+import EmployeeSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
 
 class SalesSearchSalesDataController {
@@ -59,13 +62,53 @@ class SalesSearchSalesDataController {
     try {
       const { products } = req.params;
 
-      const employeeProductsFinder = await
+      const saleProductsFinder = await
       SalesSearchSalesData.SearchByProducts(products);
 
-      if (!employeeProductsFinder) throw new InternalServerError('Erro interno');
-      if (employeeProductsFinder.length < 1) throw new NotFound('Venda não encontrada');
+      if (!saleProductsFinder) throw new InternalServerError('Erro interno');
+      if (saleProductsFinder.length < 1) throw new NotFound('Venda não encontrada');
 
-      return res.status(200).json(employeeProductsFinder);
+      return res.status(200).json(saleProductsFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchByDateDashboard(req, res, next) {
+    try {
+      const { email } = req.headers;
+      const { saledateBody } = req.body;
+      const empIds = [];
+      const registers = [];
+
+      const findEmpByEmail = await EmployeeSearchCredentials.SearchByEmail(email);
+
+      if (findEmpByEmail.dataValues.boss === null) {
+        const findEmpsByBoss = await EmployeeSearchBoss.SearchByBoss(findEmpByEmail.dataValues.id);
+
+        if (findEmpsByBoss.length > 0) {
+          findEmpsByBoss.map((emps) => {
+            empIds.push(emps.id);
+          });
+        }
+      } else {
+        const findEmpsByBoss = await EmployeeSearchBoss.SearchByBoss(findEmpByEmail.dataValues.boss);
+        findEmpsByBoss.map((emps) => {
+          empIds.push(emps.id);
+        });
+      }
+
+      for (let i = 0; i < empIds.length; i++) {
+        const saleDateFinder = await SalesSearchSalesData.SearchDateForDashboard(saledateBody, empIds[i]);
+
+        if (!saleDateFinder && saleDateFinder !== 0) throw new InternalServerError('Erro interno');
+
+        registers.push(saleDateFinder);
+      }
+
+      const registersSum = registers.reduce((ac, cr) => ac + cr, 0);
+
+      return res.status(200).json(registersSum);
     } catch (err) {
       next(err);
     }
@@ -74,31 +117,14 @@ class SalesSearchSalesDataController {
   async SearchByDate(req, res, next) {
     try {
       const { date } = req.params;
-      const { forDashboard, saledateBody, employeeId } = req.body;
 
-      const WhichSearch = async () => {
-        if (saledateBody && !date) {
-          const saleDateFinder = await SalesSearchSalesData.SearchDateForDashboard(saledateBody, employeeId);
-          return saleDateFinder;
-        }
+      const saleDateFinder = await SalesSearchSalesData.SearchDate(date);
 
-        if (!saledateBody && date) {
-          const saleDateFinder = await SalesSearchSalesData.SearchDate(date);
-          return saleDateFinder;
-        }
-      };
+      if (!saleDateFinder) throw new InternalServerError('Erro interno');
 
-      const saleDateSearch = await WhichSearch();
+      if (saleDateFinder.length < 1) throw new NotFound('Venda não encontrada');
 
-      if (forDashboard && !saleDateSearch && saleDateSearch !== 0) throw new InternalServerError('Erro interno');
-
-      if (!forDashboard && saleDateSearch.length < 1) throw new NotFound('Vendas não encontradas');
-
-      if (forDashboard === true && saleDateSearch === 0) {
-        return res.status(204).send('Não há vendas cadastradas pelo funcionário');
-      }
-
-      return res.status(200).json(saleDateSearch);
+      return res.status(200).json(saleDateFinder);
     } catch (err) {
       next(err);
     }
@@ -108,13 +134,13 @@ class SalesSearchSalesDataController {
     try {
       const { hour } = req.params;
 
-      const employeeHourFinder = await
+      const saleHourFinder = await
       SalesSearchSalesData.SearchByHour(hour);
 
-      if (!employeeHourFinder) throw new InternalServerError('Erro interno');
-      if (employeeHourFinder.length < 1) throw new NotFound('Venda não encontrada');
+      if (!saleHourFinder) throw new InternalServerError('Erro interno');
+      if (saleHourFinder.length < 1) throw new NotFound('Venda não encontrada');
 
-      return res.status(200).json(employeeHourFinder);
+      return res.status(200).json(saleHourFinder);
     } catch (err) {
       next(err);
     }

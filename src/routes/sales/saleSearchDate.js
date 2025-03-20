@@ -6,6 +6,6 @@ import salesPermission from '../../middlewares/salesPermission';
 const router = new Router();
 
 router.get('/:date', loginRequired, salesPermission, SalesSearchSalesData.SearchByDate);
-router.post('/', loginRequired, salesPermission, SalesSearchSalesData.SearchByDate);
+router.post('/', loginRequired, salesPermission, SalesSearchSalesData.SearchByDateDashboard);
 
 export default router;
