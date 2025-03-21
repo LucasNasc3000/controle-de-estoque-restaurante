@@ -133,16 +133,13 @@
                 "expirationdate": {
                   "type": "string"
                 },
-                "entrydate": {
-                  "type": "string"
-                },
-                "entryhour": {
-                  "type": "string"
-                },
                 "employee_id": {
                   "type": "string"
                 },
                 "minimun_quantity": {
+                  "type": "number"
+                },
+                "rateisnear": {
                   "type": "number"
                 }
               }
@@ -1340,10 +1337,10 @@
               "type": "object",
               "properties": {
                 "forListInputs": {
-                  "example": "string"
+                  "type": "string"
                 },
                 "employeeidBody": {
-                  "example": "string"
+                  "type": "string"
                 }
               }
             }
@@ -2255,10 +2252,10 @@
               "type": "object",
               "properties": {
                 "forListOutputs": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "employeeidBody": {
-                  "example": "any"
+                  "type": "string"
                 }
               }
             }
@@ -2286,9 +2283,6 @@
                   },
                   "type": {
                     "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
                   },
                   "unities": {
                     "type": "number"
@@ -2791,7 +2785,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                  "id": {
                     "type": "string"
                   },
                   "name": {
@@ -2977,7 +2971,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                  "id": {
                     "type": "string"
                   },
                   "name": {
@@ -3072,7 +3066,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                  "id": {
                     "type": "string"
                   },
                   "name": {
@@ -3171,6 +3165,9 @@
                 "products": {
                   "type": "string"
                 },
+                "client_birthday": {
+                  "type": "string|null"
+                },
                 "employee_id": {
                   "type": "string"
                 }
@@ -3210,6 +3207,9 @@
                   "employee_id": {
                     "type": "string"
                   },
+                  "client_birthday": {
+                    "type": "string|null"
+                  },
                   "created_at": {
                     "type": "date"
                   },
@@ -3233,7 +3233,7 @@
         "tags": [
           "Sales"
         ],
-        "description": "Apenas alguns campos foram colocados aqui para lembrar que o patch não permite que todos os campos sejam atualizados de uma vez",
+        "description": "Apenas alguns campos foram colocados aqui para lembrar que o patch não permite que todos os campos sejam atualizados de uma só vez",
         "parameters": [
           {
             "name": "id",
@@ -3273,8 +3273,8 @@
                 "hour": {
                   "type": "string"
                 },
-                "client_name": {
-                  "type": "string"
+                "client_birthday": {
+                  "type": "string|null"
                 },
                 "phone_number": {
                   "type": "string"
@@ -3316,7 +3316,7 @@
                     "type": "string"
                   },
                   "client_birthday": {
-                    "type": "string"
+                    "type": "string|null"
                   },
                   "created_at": {
                     "type": "date"
@@ -3642,11 +3642,8 @@
             "schema": {
               "type": "object",
               "properties": {
-                "forDashboard": {
-                  "example": "any"
-                },
                 "saledateBody": {
-                  "example": "any"
+                  "type": "string"
                 }
               }
             }
@@ -3832,10 +3829,10 @@
               "type": "object",
               "properties": {
                 "forListSales": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "employeeidBody": {
-                  "example": "any"
+                  "type": "string"
                 }
               }
             }
@@ -4391,7 +4388,7 @@
         "tags": [
           "Advices"
         ],
-        "description": "",
+        "description": "Apenas alguns campos foram colocados aqui para lembrar que o patch não permite que todos os campos sejam atualizados de uma só vez",
         "parameters": [
           {
             "name": "id",
@@ -4425,11 +4422,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "employee_id": {
-                  "example": "any"
+                "email_body": {
+                  "type": "string"
                 },
-                "allowedData": {
-                  "example": "any"
+                "hour": {
+                  "type": "string"
                 }
               }
             }
