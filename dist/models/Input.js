@@ -71,26 +71,6 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
           },
         },
       },
-      entrydate: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [4, 20],
-            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
-          },
-        },
-      },
-      entryhour: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [4, 20],
-            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
-          },
-        },
-      },
       employee_id: {
         type: _sequelize2.default.UUIDV1,
         defaultValue: _sequelize2.default.UUIDV1,
@@ -101,6 +81,15 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
         validate: {
           isInt: {
             msg: 'quantidade mínima precisa ser um número inteiro',
+          },
+        },
+      },
+      rateisnear: {
+        type: _sequelize2.default.INTEGER,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: 'a quantidade próxima ao limite precisa ser um número inteiro',
           },
         },
       },

@@ -4,18 +4,18 @@ var _QuantityCheck = require('../Input/QuantityCheck'); var _QuantityCheck2 = _i
 
 class InputConnectionController {
   async InputUpdate(inputSearchData, outputData) {
-    const updatedQuantity = inputSearchData[0].dataValues.quantity - outputData.unities;
-    const updatedTotalWeight = inputSearchData[0].dataValues.totalweight - outputData.weight;
+    const updatedQuantity = inputSearchData.dataValues.quantity - outputData.unities;
 
     const updatedData = {
       quantity: updatedQuantity,
-      totalweight: updatedTotalWeight,
     };
 
     const dataForQuantityCheck = [
-      inputSearchData[0].dataValues.quantity,
-      inputSearchData[0].dataValues.minimun_quantity,
-      inputSearchData[0].dataValues.name,
+      inputSearchData.dataValues.quantity,
+      inputSearchData.dataValues.minimun_quantity,
+      inputSearchData.dataValues.name,
+      inputSearchData.dataValues.rateisnear,
+      updatedData.quantity,
     ];
 
     const check = await _QuantityCheck2.default.QuantityCheck(dataForQuantityCheck);
@@ -24,17 +24,17 @@ class InputConnectionController {
       // eslint-disable-next-line default-case
       switch (check[0]) {
         case 'rate is near':
-          await _Input2.default.Update(inputSearchData[0].dataValues.id, updatedData);
+          await _Input2.default.Update(inputSearchData.dataValues.id, updatedData);
           return check;
 
         case 'limit reached':
           return check;
       }
-    } else {
-      return null;
+
+      if (check === 'no destinataries') return 'no destinataries';
     }
 
-    await _Input2.default.Update(inputSearchData[0].dataValues.id, updatedData);
+    await _Input2.default.Update(inputSearchData.dataValues.id, updatedData);
   }
 }
 

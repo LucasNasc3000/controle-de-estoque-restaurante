@@ -14,10 +14,21 @@ class InputSimpleStringSearch {
     return inputFinder;
   }
 
-  async SearchByName(name) {
+  async SearchByNameForUsers(name) {
     const inputFinder = await _Input2.default.findAll({
       where: {
         name: { [_sequelize.Op.startsWith]: name },
+      },
+      attributes: _Attributes2.default,
+    });
+
+    return inputFinder;
+  }
+
+  async SearchByNameInternal(name) {
+    const inputFinder = await _Input2.default.findOne({
+      where: {
+        name,
       },
       attributes: _Attributes2.default,
     });

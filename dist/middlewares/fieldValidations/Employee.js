@@ -1,12 +1,12 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});/* eslint-disable default-case */
 class UserValidations {
-  CheckEmail(EmailFieldData, isLog) {
+  CheckEmail(EmailFieldData, isLog, isUpdate) {
     const { email } = EmailFieldData;
     const { password } = EmailFieldData;
 
     switch (true) {
-      case (!email || !password):
-        return null;
+      case (isUpdate === true && (!email || !password)):
+        return this.CheckName(EmailFieldData, isUpdate);
 
       case (!email.includes('@')):
         return 'Must be a valid email';
@@ -18,25 +18,69 @@ class UserValidations {
         return true;
     }
 
-    return this.CheckPassword(EmailFieldData);
+    return this.CheckName(EmailFieldData, isUpdate);
   }
 
-  CheckPassword(PasswordFieldData) {
+  CheckName(NameFieldData, isUpdate) {
+    if (isUpdate === true && !NameFieldData.name) {
+      return this.CheckPassword(NameFieldData, isUpdate);
+    }
+
+    if (NameFieldData.name.length < 3) {
+      return 'Name is too short';
+    }
+
+    return this.CheckPassword(NameFieldData, isUpdate);
+  }
+
+  CheckPassword(PasswordFieldData, isUpdate) {
+    if (isUpdate === true && !PasswordFieldData.password) {
+      return this.CheckAdminPassword(PasswordFieldData, isUpdate);
+    }
+
     if (typeof PasswordFieldData.password !== 'string') {
       return 'Password must be a string';
     }
 
-    return this.CheckPermission(PasswordFieldData);
+    if (PasswordFieldData.password.length < 8) {
+      return 'Password is too short';
+    }
+
+    return this.CheckAdminPassword(PasswordFieldData, isUpdate);
   }
 
-  CheckPermission(PermissionFieldData) {
-    if (typeof PermissionFieldData.permission !== 'string') {
-      return 'Permission must be a string';
+  CheckAdminPassword(AdminPasswordFieldData, isUpdate) {
+    if (isUpdate === true && !AdminPasswordFieldData.adminpassword) {
+      return this.CheckPermission(AdminPasswordFieldData, isUpdate);
+    }
+
+    if (typeof AdminPasswordFieldData.adminpassword !== 'string') {
+      return 'Admin password must be a string';
+    }
+
+    if (AdminPasswordFieldData.adminpassword.length < 8) {
+      return 'Admin password is too short';
+    }
+
+    return this.CheckPermission(AdminPasswordFieldData, isUpdate);
+  }
+
+  CheckPermission(PermissionFieldData, isUpdate) {
+    switch (true) {
+      case isUpdate === true && !PermissionFieldData.permission:
+        return null;
+
+      case typeof PermissionFieldData.permission !== 'string':
+        return 'Permission must be a string';
     }
 
     if (PermissionFieldData.permission !== process.env.INPUTS_PERMISSION
         && PermissionFieldData.permission !== process.env.OUTPUTS_PERMISSION
         && PermissionFieldData.permission !== process.env.ADMIN_PERMISSION
+        && PermissionFieldData.permission !== process.env.INPUTS_OUTPUTS_PERMISSION
+        && PermissionFieldData.permission !== process.env.SALES_PERMISSION
+        && PermissionFieldData.permission !== process.env.SO_PERMISSION
+        && PermissionFieldData.permission !== process.env.SOI_PERMISSION
     ) {
       return 'Invalid permission';
     }

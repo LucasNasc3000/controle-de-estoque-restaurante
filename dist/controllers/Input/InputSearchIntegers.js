@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable consistent-return */
-var _InputSearchIntegers = require('../../repositories/Input/InputSearchIntegers'); var _InputSearchIntegers2 = _interopRequireDefault(_InputSearchIntegers);
 var _notFound = require('../../errors/notFound');
 var _serverErrors = require('../../errors/serverErrors');
+var _InputSearchIntegers = require('../../repositories/Input/InputSearchIntegers'); var _InputSearchIntegers2 = _interopRequireDefault(_InputSearchIntegers);
 
 class InputSearchIntegersController {
   async SearchByID(req, res, next) {

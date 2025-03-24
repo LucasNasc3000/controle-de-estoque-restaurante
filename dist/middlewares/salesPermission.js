@@ -1,21 +1,26 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _EmployeeSearchCredentials = require('../repositories/Employee/EmployeeSearchCredentials'); var _EmployeeSearchCredentials2 = _interopRequireDefault(_EmployeeSearchCredentials);
-var _authErrors = require('../errors/authErrors');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _authErrors = require('../errors/authErrors');
 var _clientErrors = require('../errors/clientErrors');
+var _Employee = require('../models/Employee'); var _Employee2 = _interopRequireDefault(_Employee);
 
 // eslint-disable-next-line consistent-return
 exports. default = async (req, res, next) => {
   try {
-    const { permission, employeeid, adminpassword } = req.headers;
+    const { permission, email, adminpassword } = req.headers;
     let adminPassValidator = '';
 
-    if (!permission || !employeeid) {
+    if (!permission || !email) {
       throw new (0, _authErrors.Unauthorized)('Permissao para vendas e id necessarios');
     }
 
-    const employee = await _EmployeeSearchCredentials2.default.SearchById(employeeid);
+    const employee = await _Employee2.default.findOne({
+      where: {
+        email,
+        is_active: 1,
+      },
+    });
 
     if (!employee) {
-      throw new (0, _clientErrors.BadRequest)('Funcionário não encontrado');
+      throw new (0, _clientErrors.BadRequest)('Funcionário não encontrado ou inativo');
     }
 
     if (adminpassword) {

@@ -1,9 +1,17 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _DataRegex = require('./DataRegex');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});
+
+
+
+var _DataRegex = require('./DataRegex');
 
 class LogsValidations {
   CheckEmployeeId(data) {
     if (data.employeeId) {
       if (typeof data.employeeId !== 'string') {
+        return 'Type must be a string';
+      }
+
+      if (!_DataRegex.uuidCheck.test(data.employeeId)) {
         return 'Type must be a string';
       }
     }

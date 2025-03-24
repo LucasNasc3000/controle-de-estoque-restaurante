@@ -58,8 +58,8 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
         defaultValue: '',
         validate: {
           len: {
-            args: [0, 60],
-            msg: 'A senha do admin deve ter no máximo 60 caracteres',
+            args: [8, 60],
+            msg: 'A senha do admin precisa ter entre 8 e 60 caracteres',
           },
         },
       },
@@ -76,6 +76,16 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
       address_allowed: {
         type: _sequelize2.default.CHAR,
         defaultValue: '',
+      },
+      boss: {
+        type: _sequelize2.default.DataTypes.UUIDV1,
+        defaultValue: _sequelize2.default.DataTypes.UUIDV1,
+        allowNull: true,
+      },
+      is_active: {
+        type: _sequelize2.default.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
     }, {
       sequelize,
@@ -106,6 +116,7 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
     this.hasMany(models.Input, { foreignKey: 'employee_id' });
     this.hasMany(models.Output, { foreignKey: 'employee_id' });
     this.hasMany(models.Sale, { foreignKey: 'employee_id' });
+    this.hasMany(models.Advices, { foreignKey: 'employee_id' });
   }
 } exports.default = Employee;
 

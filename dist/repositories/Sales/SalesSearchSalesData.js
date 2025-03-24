@@ -15,7 +15,7 @@ class SalesSearchSalesData {
   }
 
   async SearchByemployeeId(employeeId) {
-    const saleFinderByEmployeeId = await _Sale2.default.findOne({
+    const saleFinderByEmployeeId = await _Sale2.default.findAll({
       where: {
         employee_id: employeeId,
       },
@@ -42,6 +42,17 @@ class SalesSearchSalesData {
         date: { [_sequelize.Op.startsWith]: date },
       },
       attributes: _Attributes2.default,
+    });
+
+    return salesFinderDate;
+  }
+
+  async SearchDateForDashboard(date, employeeId) {
+    const salesFinderDate = await _Sale2.default.count({
+      where: {
+        date,
+        employee_id: employeeId,
+      },
     });
 
     return salesFinderDate;

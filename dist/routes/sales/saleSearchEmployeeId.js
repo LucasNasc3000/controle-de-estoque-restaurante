@@ -6,5 +6,6 @@ var _salesPermission = require('../../middlewares/salesPermission'); var _salesP
 const router = new (0, _express.Router)();
 
 router.get('/:employeeid', _loginRequired2.default, _salesPermission2.default, _SalesSearchSalesData2.default.SearchByEmployeeId);
+router.post('/', _loginRequired2.default, _salesPermission2.default, _SalesSearchSalesData2.default.SearchByEmployeeId);
 
 exports. default = router;

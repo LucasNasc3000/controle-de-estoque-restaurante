@@ -62,6 +62,10 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
         type: _sequelize2.default.UUIDV1,
         defaultValue: _sequelize2.default.UUIDV1,
       },
+      client_birthday: {
+        type: _sequelize2.default.STRING,
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });

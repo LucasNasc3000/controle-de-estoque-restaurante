@@ -1,25 +1,27 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable consistent-return */
-var _Notification = require('../../Notifications/Notification'); var _Notification2 = _interopRequireDefault(_Notification);
+var _RegistersNotifications = require('../../Notifications/RegistersNotifications'); var _RegistersNotifications2 = _interopRequireDefault(_RegistersNotifications);
 
 class QuantityCheck {
   async QuantityCheck(inputData) {
     const rate = inputData[0] - inputData[1];
     const warningAndData = [];
 
-    if (inputData.minimun_quantity === null) return;
+    if (inputData[1] === null) return;
 
-    if (rate <= 15 && rate > 0) {
+    if (rate <= inputData[3] && rate > 0) {
       warningAndData.push('rate is near', inputData[2]);
-      const rateisNear = await _Notification2.default.DataFilter(inputData, 'rateIsNear');
+      const rateisNear = await _RegistersNotifications2.default.DataFilter(inputData, 'rateIsNear');
 
-      if (rateisNear === null) return null;
+      if (rateisNear === 'no destinataries') return 'no destinataries';
 
       return warningAndData;
-    } if (rate <= 0) {
-      warningAndData.push('limit reached', inputData[2]);
-      const limitReached = await _Notification2.default.DataFilter(inputData, 'limitReached');
+    }
 
-      if (limitReached === null) return null;
+    if (rate <= 0) {
+      warningAndData.push('limit reached', inputData[2]);
+      const limitReached = await _RegistersNotifications2.default.DataFilter(inputData, 'limitReached');
+
+      if (limitReached === 'no destinataries') return 'no destinataries';
 
       return warningAndData;
     }

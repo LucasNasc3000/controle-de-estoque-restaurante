@@ -41,14 +41,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      entrydate: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      entryhour: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       employee_id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1,
@@ -59,6 +51,10 @@ module.exports = {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
+      },
+      rateisnear: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,

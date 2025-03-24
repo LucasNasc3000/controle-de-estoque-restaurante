@@ -20,13 +20,25 @@ class EmployeesSearchCredentials {
         name: { [_sequelize.Op.startsWith]: name },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinderByName;
+  }
+
+  async SearchOneByName(name) {
+    const employeeFinderByName = await _Employee2.default.findOne({
+      where: {
+        name,
+      },
+      attributes: _Attributes2.default,
     });
 
     return employeeFinderByName;
   }
 
   async SearchByEmail(email) {
-    const employeeFinderByEmail = await _Employee2.default.findAll({
+    const employeeFinderByEmail = await _Employee2.default.findOne({
       where: {
         email,
       },
@@ -40,6 +52,7 @@ class EmployeesSearchCredentials {
     const employeeFinderByAddressAllowed = await _Employee2.default.findAll({
       where: {
         address_allowed: process.env.ADDRESS_ALLOWED,
+        is_active: 1,
       },
       attributes: _Attributes2.default,
     });

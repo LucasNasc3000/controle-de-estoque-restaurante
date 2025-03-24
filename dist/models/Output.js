@@ -44,23 +44,9 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
           },
         },
       },
-      weight: {
-        type: _sequelize2.default.FLOAT,
-        defaultValue: '',
-        validate: {
-          isFloat: {
-            msg: 'O peso total precisa ser um número',
-          },
-        },
-      },
       unities: {
         type: _sequelize2.default.INTEGER,
         defaultValue: '',
-        validate: {
-          isInteger: {
-            msg: 'O campo unidades precisa ser um número',
-          },
-        },
       },
       employee_id: {
         type: _sequelize2.default.UUIDV1,

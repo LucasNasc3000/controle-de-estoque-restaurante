@@ -6,7 +6,6 @@ var _outputsPermission = require('../../middlewares/outputsPermission'); var _ou
 const router = new (0, _express.Router)();
 
 router.post('/', _loginRequired2.default, _outputsPermission2.default, _Output2.default.Store);
-router.get('/', _loginRequired2.default, _outputsPermission2.default, _Output2.default.Index);
 router.put('/:id', _loginRequired2.default, _outputsPermission2.default, _Output2.default.Update);
 
 exports. default = router;
