@@ -101,6 +101,18 @@ class Validation {
 
       case 'Name is too short':
         return 'O nome precisa ter pelo menos 3 caracteres';
+
+      case 'CheckERA must be a string':
+        return 'A autorização para receber e-mails precisa estar em formato de texto';
+
+      case 'CheckERA doesnt fit':
+        return 'A autorização para receber e-mails não corresponde com as definições';
+
+      case 'Admin password must be a string':
+        return 'A senha do admin precisa estar em formato de texto';
+
+      case 'Invalid permission':
+        return 'A permissão não corresponde com as definições';
     }
 
     return null;

@@ -22,8 +22,9 @@ class EmployeesSearchBoss {
     const employeeFinder = await _Employee2.default.findAll({
       where: {
         boss,
+        is_active: 1,
       },
-      attributes: ['id'],
+      attributes: _Attributes2.default,
       order: [['id', 'DESC']],
     });
 

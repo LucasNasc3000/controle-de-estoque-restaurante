@@ -5,7 +5,11 @@
     "title": "Storage Manager System",
     "description": "API para ser o back-end de um sistema de controle de estoque"
   },
+<<<<<<< HEAD
   "host": "56.124.61.78",
+=======
+  "host": "localhost:3333",
+>>>>>>> f03df5c4439778451f35507497ec163598dbe0c3
   "basePath": "/",
   "schemes": [
     "http"
