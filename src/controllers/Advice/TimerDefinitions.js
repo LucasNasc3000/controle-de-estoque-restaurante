@@ -128,7 +128,7 @@ class TimerDefinition {
 
     const timer = setTimeout(() => {
       const sendEmail = async () => {
-        BirthdayNotice.SendEmail(emailData[0], emailData[1]);
+        await BirthdayNotice.SendEmail(emailData[0], emailData[1]);
       };
 
       sendEmail();
