@@ -1,5 +1,5 @@
-/* eslint-disable prefer-const */
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* eslint-disable prefer-const */
 /* eslint-disable import/no-mutable-exports */
 // eslint-disable-next-line import/prefer-default-export
-export const Timers = [];
-export let TimerId = 0;
+ const Timers = []; exports.Timers = Timers;
+ let TimerId = 0; exports.TimerId = TimerId;

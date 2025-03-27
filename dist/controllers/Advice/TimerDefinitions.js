@@ -1,15 +1,15 @@
-/* eslint-disable prefer-destructuring */
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable prefer-destructuring */
 /* eslint-disable no-import-assign */
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import BirthdayNotice from '../../Notifications/BirthdayNotice';
-import Advice from '../../repositories/Advice/Advice';
-import AdviceSearch from '../../repositories/Advice/AdviceSearch';
-import { TimerId, Timers } from './timersStore';
+var _BirthdayNotice = require('../../Notifications/BirthdayNotice'); var _BirthdayNotice2 = _interopRequireDefault(_BirthdayNotice);
+var _Advice = require('../../repositories/Advice/Advice'); var _Advice2 = _interopRequireDefault(_Advice);
+var _AdviceSearch = require('../../repositories/Advice/AdviceSearch'); var _AdviceSearch2 = _interopRequireDefault(_AdviceSearch);
+var _timersStore = require('./timersStore');
 
 class TimerDefinition {
-  SetTimer(date, hour) {
+  async SetTimer(date, hour) {
     const currentDate = this.GetCurrentDateHour();
     const adviceDate = this.AdviceFormatCorrectDateHour(date, hour);
 
@@ -110,111 +110,111 @@ class TimerDefinition {
   }
 
   async NewAdvice(date, hour, emailData, dbId, savedTimerId) {
-    const getAdvice = this.SetTimer(date, hour);
+    const getAdvice = await this.SetTimer(date, hour);
     let maxTimerIdValue = 0;
 
     const GetMaxTimerIdValue = async () => {
-      const getMaxTimerIdValue = await AdviceSearch.FoundMaxTimerId();
+      const getMaxTimerIdValue = await _AdviceSearch2.default.FoundMaxTimerId();
       maxTimerIdValue = getMaxTimerIdValue;
     };
 
     // se o timerId não der certo msm retornar o timer e procurar o indice no Timers pelo timer
     if (!savedTimerId) {
       await GetMaxTimerIdValue();
-      TimerId = maxTimerIdValue + 1;
+      _timersStore.TimerId = maxTimerIdValue + 1;
     }
 
-    if (savedTimerId && typeof savedTimerId === 'number') TimerId = savedTimerId;
+    if (savedTimerId && typeof savedTimerId === 'number') _timersStore.TimerId = savedTimerId;
 
     const timer = setTimeout(() => {
       const sendEmail = async () => {
-        await BirthdayNotice.SendEmail(emailData[0], emailData[1]);
+        await _BirthdayNotice2.default.SendEmail(emailData[0], emailData[1]);
       };
 
       sendEmail();
 
-      const findDbId = Timers.find((time) => time[0] === TimerId);
+      const findDbId = _timersStore.Timers.find((time) => time[0] === _timersStore.TimerId);
 
       const deleteFromDb = async () => {
-        await Advice.Delete(findDbId[4]);
+        await _Advice2.default.Delete(findDbId[4]);
       };
 
       deleteFromDb();
 
-      const findElement = Timers.find((time) => time[0] === TimerId);
-      const findIndex = Timers.indexOf(findElement, 0);
-      Timers.splice(findIndex);
+      const findElement = _timersStore.Timers.find((time) => time[0] === _timersStore.TimerId);
+      const findIndex = _timersStore.Timers.indexOf(findElement, 0);
+      _timersStore.Timers.splice(findIndex);
     }, getAdvice);
 
     if (dbId) {
-      Timers.push([TimerId, timer, emailData[0], emailData[1], dbId]);
+      _timersStore.Timers.push([_timersStore.TimerId, timer, emailData[0], emailData[1], dbId]);
     } else {
-      Timers.push([TimerId, timer, emailData[0], emailData[1]]);
+      _timersStore.Timers.push([_timersStore.TimerId, timer, emailData[0], emailData[1]]);
     }
 
-    return [TimerId];
+    return [_timersStore.TimerId];
   }
 
   UpdatingAdvice(date, hour, timerId, emailData) {
     const getAdvice = this.SetTimer(date, hour);
 
-    const findElement = Timers.find((time) => time[0] === timerId);
-    const findIndexEmailData = Timers.indexOf(findElement, 0);
+    const findElement = _timersStore.Timers.find((time) => time[0] === timerId);
+    const findIndexEmailData = _timersStore.Timers.indexOf(findElement, 0);
 
     clearTimeout(findElement[1]);
 
     if (emailData.length > 0) {
       // assunto
       if (emailData[0].length > 0) {
-        Timers[findIndexEmailData][2] = emailData[0];
+        _timersStore.Timers[findIndexEmailData][2] = emailData[0];
       }
 
       // corpo do email
       if (emailData[1].length > 0) {
-        Timers[findIndexEmailData][3] = emailData[1];
+        _timersStore.Timers[findIndexEmailData][3] = emailData[1];
       }
     }
 
     const timer = setTimeout(() => {
       const sendEmail = async () => {
-        BirthdayNotice.SendEmail(emailData[0], emailData[1]);
+        _BirthdayNotice2.default.SendEmail(emailData[0], emailData[1]);
       };
 
       sendEmail();
 
-      const findDbId = Timers.find((time) => time[0] === TimerId);
+      const findDbId = _timersStore.Timers.find((time) => time[0] === _timersStore.TimerId);
 
       const deleteFromDb = async () => {
-        await Advice.Delete(findDbId[4]);
+        await _Advice2.default.Delete(findDbId[4]);
       };
 
       deleteFromDb();
 
-      const findElementUpdatedTimer = Timers.find((time) => time[0] === TimerId);
-      const findIndex = Timers.indexOf(findElementUpdatedTimer, 0);
-      Timers.splice(findIndex);
+      const findElementUpdatedTimer = _timersStore.Timers.find((time) => time[0] === _timersStore.TimerId);
+      const findIndex = _timersStore.Timers.indexOf(findElementUpdatedTimer, 0);
+      _timersStore.Timers.splice(findIndex);
     }, getAdvice);
 
     // Atualiza o timer no superglobal Timers
     // As últimas 3 linnhas abaixo executam
     // na hora em que a função é chamada mas a função no timer fica pendente
-    const findElementUpdate = Timers.find((time) => time[0] === timerId);
-    const findIndex = Timers.indexOf(findElementUpdate, 0);
-    Timers[findIndex][1] = timer;
+    const findElementUpdate = _timersStore.Timers.find((time) => time[0] === timerId);
+    const findIndex = _timersStore.Timers.indexOf(findElementUpdate, 0);
+    _timersStore.Timers[findIndex][1] = timer;
   }
 
   async DeletingAdvice(databaseId) {
     const numberId = parseInt(databaseId, 10);
 
-    const findElementDelete = Timers.find((time) => time[4] === numberId);
-    const findIndex = Timers.indexOf(findElementDelete, 0);
+    const findElementDelete = _timersStore.Timers.find((time) => time[4] === numberId);
+    const findIndex = _timersStore.Timers.indexOf(findElementDelete, 0);
 
-    clearTimeout(Timers[findIndex][1]);
+    clearTimeout(_timersStore.Timers[findIndex][1]);
 
-    await Advice.Delete(Timers[findIndex][4]);
+    await _Advice2.default.Delete(_timersStore.Timers[findIndex][4]);
 
-    const findIndexSplice = Timers.indexOf(findIndex, 0);
-    Timers.splice(findIndexSplice);
+    const findIndexSplice = _timersStore.Timers.indexOf(findIndex, 0);
+    _timersStore.Timers.splice(findIndexSplice);
   }
 
   async Recovery(advicesDbCheck) {
@@ -233,7 +233,7 @@ class TimerDefinition {
       );
     });
 
-    if (advicesDbCheck.length > 0 && Timers.length < 1) {
+    if (advicesDbCheck.length > 0 && _timersStore.Timers.length < 1) {
       for (let i = 0; i < adviceData.length; i++) {
         this.NewAdvice(
           adviceData[i][0],
@@ -247,4 +247,4 @@ class TimerDefinition {
   }
 }
 
-export default new TimerDefinition();
+exports. default = new TimerDefinition();
