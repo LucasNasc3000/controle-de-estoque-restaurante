@@ -155,7 +155,7 @@ class TimerDefinition {
 
     Timers.push([TimerId, timer, emailData[0], emailData[1]]);
 
-    return [TimerId];
+    return [Timers, getAdvice];
   }
 
   UpdatingAdvice(date, hour, timerId, emailData) {

@@ -22,6 +22,7 @@ class AdviceController {
       } = req.body;
 
       const timer = await TimerDefinitions.NewAdvice(date, hour, [subject, email_body]);
+      console.log(timer);
 
       const toSave = {
         date,
@@ -36,8 +37,6 @@ class AdviceController {
 
       const findElement = Timers.find((time) => time[0] === timer[0]);
       findElement.push(store.dataValues.id);
-
-      console.log(Timers);
 
       if (!store) throw new InternalServerError('Erro interno');
 
