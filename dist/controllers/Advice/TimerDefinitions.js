@@ -121,6 +121,9 @@ class TimerDefinition {
     // se o timerId não der certo msm retornar o timer e procurar o indice no Timers pelo timer
     if (!savedTimerId) {
       await GetMaxTimerIdValue();
+
+      if (!maxTimerIdValue) _timersStore.TimerId += 1;
+
       _timersStore.TimerId = maxTimerIdValue + 1;
     }
 
@@ -148,9 +151,9 @@ class TimerDefinition {
 
     if (dbId) {
       _timersStore.Timers.push([_timersStore.TimerId, timer, emailData[0], emailData[1], dbId]);
-    } else {
-      _timersStore.Timers.push([_timersStore.TimerId, timer, emailData[0], emailData[1]]);
     }
+
+    _timersStore.Timers.push([_timersStore.TimerId, timer, emailData[0], emailData[1]]);
 
     return [_timersStore.TimerId];
   }
