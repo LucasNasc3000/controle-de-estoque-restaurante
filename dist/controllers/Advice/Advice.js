@@ -1,27 +1,27 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable camelcase */
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
-var _clientErrors = require('../../errors/clientErrors');
-var _serverErrors = require('../../errors/serverErrors');
-var _Validation = require('../../middlewares/fieldValidations/Validation'); var _Validation2 = _interopRequireDefault(_Validation);
-var _Advice = require('../../repositories/Advice/Advice'); var _Advice2 = _interopRequireDefault(_Advice);
-var _AdviceSearch = require('../../repositories/Advice/AdviceSearch'); var _AdviceSearch2 = _interopRequireDefault(_AdviceSearch);
-var _TimerDefinitions = require('./TimerDefinitions'); var _TimerDefinitions2 = _interopRequireDefault(_TimerDefinitions);
-var _timersStore = require('./timersStore');
+import { BadRequest } from '../../errors/clientErrors';
+import { InternalServerError } from '../../errors/serverErrors';
+import Validation from '../../middlewares/fieldValidations/Validation';
+import Advice from '../../repositories/Advice/Advice';
+import AdviceSearch from '../../repositories/Advice/AdviceSearch';
+import TimerDefinitions from './TimerDefinitions';
+import { Timers } from './timersStore';
 
 class AdviceController {
   async Store(req, res, next) {
     try {
-      const validations = _Validation2.default.MainValidations(req.body);
-      const adviceValidations = _Validation2.default.AdvicesValidation(req.body);
+      const validations = Validation.MainValidations(req.body);
+      const adviceValidations = Validation.AdvicesValidation(req.body);
 
-      if (validations !== null) throw new (0, _clientErrors.BadRequest)(validations);
-      if (adviceValidations !== null) throw new (0, _clientErrors.BadRequest)(adviceValidations);
+      if (validations !== null) throw new BadRequest(validations);
+      if (adviceValidations !== null) throw new BadRequest(adviceValidations);
 
       const {
         date, hour, employee_id, subject, email_body,
       } = req.body;
 
-      const timer = await _TimerDefinitions2.default.NewAdvice(date, hour, [subject, email_body]);
+      const timer = await TimerDefinitions.NewAdvice(date, hour, [subject, email_body]);
       console.log(timer);
 
       const toSave = {
@@ -33,12 +33,12 @@ class AdviceController {
         email_body,
       };
 
-      const store = await _Advice2.default.Store(toSave);
+      const store = await Advice.Store(toSave);
 
-      const findElement = _timersStore.Timers.find((time) => time[0] === timer[0]);
+      const findElement = Timers.find((time) => time[0] === timer[0]);
       findElement.push(store.dataValues.id);
 
-      if (!store) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+      if (!store) throw new InternalServerError('Erro interno');
 
       return res.status(201).json(store);
     } catch (err) {
@@ -50,33 +50,33 @@ class AdviceController {
     try {
       const { id } = req.params;
 
-      const validations = _Validation2.default.MainValidations(req.body, false, false, false, true);
-      const adviceValidations = _Validation2.default.AdvicesValidation(req.body);
+      const validations = Validation.MainValidations(req.body, false, false, false, true);
+      const adviceValidations = Validation.AdvicesValidation(req.body);
 
-      if (validations !== null) throw new (0, _clientErrors.BadRequest)(validations);
-      if (adviceValidations !== null) throw new (0, _clientErrors.BadRequest)(adviceValidations);
+      if (validations !== null) throw new BadRequest(validations);
+      if (adviceValidations !== null) throw new BadRequest(adviceValidations);
 
       const { employee_id, ...allowedData } = req.body;
 
-      const findAdvice = await _AdviceSearch2.default.SearchById(id);
+      const findAdvice = await AdviceSearch.SearchById(id);
 
-      if (findAdvice === 'Lembrete não encontrado') throw new (0, _clientErrors.BadRequest)('Lembrete não encontrado');
+      if (findAdvice === 'Lembrete não encontrado') throw new BadRequest('Lembrete não encontrado');
 
       const { timer_id } = findAdvice.dataValues;
 
       // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
       // requisições como insomnia.
 
-      _TimerDefinitions2.default.UpdatingAdvice(
+      TimerDefinitions.UpdatingAdvice(
         allowedData.date,
         allowedData.hour,
         timer_id,
         [allowedData.subject, allowedData.email_body],
       );
 
-      const adviceUpdate = await _Advice2.default.Update(id, allowedData);
+      const adviceUpdate = await Advice.Update(id, allowedData);
 
-      if (!adviceUpdate) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+      if (!adviceUpdate) throw new InternalServerError('Erro interno');
 
       return res.status(200).send(adviceUpdate);
     } catch (err) {
@@ -88,12 +88,12 @@ class AdviceController {
     try {
       const { id } = req.params;
 
-      _TimerDefinitions2.default.DeletingAdvice(id);
+      TimerDefinitions.DeletingAdvice(id);
 
-      const adviceDelete = await _Advice2.default.Delete(id);
+      const adviceDelete = await Advice.Delete(id);
 
-      if (adviceDelete === 'Lembrete não encontrado') throw new (0, _clientErrors.BadRequest)('O lembrete já foi deletado ou não existe');
-      if (!adviceDelete) throw new (0, _serverErrors.InternalServerError)('Erro ao tentar deletar o lembrete');
+      if (adviceDelete === 'Lembrete não encontrado') throw new BadRequest('O lembrete já foi deletado ou não existe');
+      if (!adviceDelete) throw new InternalServerError('Erro ao tentar deletar o lembrete');
 
       return res.status(200).send('Lembrete deletado');
     } catch (err) {
@@ -103,13 +103,13 @@ class AdviceController {
 
   async Recovery(req, res, next) {
     try {
-      const advicesDbCheck = await _Advice2.default.List();
+      const advicesDbCheck = await Advice.List();
 
-      if (!advicesDbCheck) throw new (0, _serverErrors.InternalServerError)('Erro ao verificar timers. Os mesmos já podem estar em funcionamento');
+      if (!advicesDbCheck) throw new InternalServerError('Erro ao verificar timers. Os mesmos já podem estar em funcionamento');
 
-      await _TimerDefinitions2.default.Recovery(advicesDbCheck);
+      await TimerDefinitions.Recovery(advicesDbCheck);
 
-      if (_timersStore.Timers.length < 1) throw new (0, _serverErrors.InternalServerError)('Erro ao recuperar timers');
+      if (Timers.length < 1) throw new InternalServerError('Erro ao recuperar timers');
 
       return res.status(200).send('Timers recuperados');
     } catch (err) {
@@ -118,4 +118,4 @@ class AdviceController {
   }
 }
 
-exports. default = new AdviceController();
+export default new AdviceController();

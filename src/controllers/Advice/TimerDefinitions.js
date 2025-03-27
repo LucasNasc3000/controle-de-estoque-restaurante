@@ -121,9 +121,6 @@ class TimerDefinition {
     // se o timerId não der certo msm retornar o timer e procurar o indice no Timers pelo timer
     if (!savedTimerId) {
       await GetMaxTimerIdValue();
-
-      if (!maxTimerIdValue) TimerId += 1;
-
       TimerId = maxTimerIdValue + 1;
     }
 
@@ -151,11 +148,11 @@ class TimerDefinition {
 
     if (dbId) {
       Timers.push([TimerId, timer, emailData[0], emailData[1], dbId]);
+    } else {
+      Timers.push([TimerId, timer, emailData[0], emailData[1]]);
     }
 
-    Timers.push([TimerId, timer, emailData[0], emailData[1]]);
-
-    return [Timers, getAdvice];
+    return [TimerId];
   }
 
   UpdatingAdvice(date, hour, timerId, emailData) {

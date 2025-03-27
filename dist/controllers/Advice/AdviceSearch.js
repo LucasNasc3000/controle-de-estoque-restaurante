@@ -1,15 +1,15 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable consistent-return */
-var _serverErrors = require('../../errors/serverErrors');
-var _AdviceSearch = require('../../repositories/Advice/AdviceSearch'); var _AdviceSearch2 = _interopRequireDefault(_AdviceSearch);
+/* eslint-disable consistent-return */
+import { InternalServerError } from '../../errors/serverErrors';
+import AdviceSearch from '../../repositories/Advice/AdviceSearch';
 
 class AdviceSearchController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
 
-      const adviceEmployeeIdFinder = await _AdviceSearch2.default.SearchByEmployeeId(employeeid);
+      const adviceEmployeeIdFinder = await AdviceSearch.SearchByEmployeeId(employeeid);
 
-      if (!adviceEmployeeIdFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+      if (!adviceEmployeeIdFinder) throw new InternalServerError('Erro interno');
 
       if (adviceEmployeeIdFinder.length < 1) {
         return res.status(204).send('Ainda não registrado pelo funcionário');
@@ -22,4 +22,4 @@ class AdviceSearchController {
   }
 }
 
-exports. default = new AdviceSearchController();
+export default new AdviceSearchController();
