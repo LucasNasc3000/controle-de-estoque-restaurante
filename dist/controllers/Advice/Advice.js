@@ -22,6 +22,7 @@ class AdviceController {
       } = req.body;
 
       const timer = await _TimerDefinitions2.default.NewAdvice(date, hour, [subject, email_body]);
+      console.log(timer);
 
       const toSave = {
         date,
