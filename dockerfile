@@ -27,4 +27,4 @@ ENV FROM_EMAIL=
 ENV ADDRESS_ALLOWED=y
 ENV ADRRESS_NOT_ALLOWED=n
 
-ENTRYPOINT ["sh", "-c", "npx sequelize db:migrate && node dist/server.js"]
+ENTRYPOINT ["sh", "-c", "npx sequelize db:migrate && npm run dev"]

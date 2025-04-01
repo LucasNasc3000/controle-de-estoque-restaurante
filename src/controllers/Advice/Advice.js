@@ -34,12 +34,8 @@ class AdviceController {
 
       const store = await Advice.Store(toSave);
 
-      const GetTimers = async () => {
-        const findElement = await Timers.find((time) => time[0] === timer[0]);
-        findElement.push(store.dataValues.id);
-      };
-
-      GetTimers();
+      const findElement = await Timers.find((time) => time[0] === timer[0]);
+      findElement.push(store.dataValues.id);
 
       if (!store) throw new InternalServerError('Erro interno');
 
