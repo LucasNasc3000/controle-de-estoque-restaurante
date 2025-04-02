@@ -27,6 +27,10 @@ class CommomValidations {
           return this.CheckStrings(allData);
         }
 
+        if (allData[i] === allData.client_birthday && allData.client_birthday === null) {
+          return this.CheckStrings(allData);
+        }
+
         return 'Null field(s)';
       }
     }

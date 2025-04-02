@@ -11,7 +11,7 @@ class UserValidations {
       case (!email.includes('@')):
         return 'Must be a valid email';
 
-      case (!email.includes('.com')):
+      case (!email.includes('.com') && !email.includes('.online')):
         return 'Must be a valid email';
 
       case (isLog === true):
