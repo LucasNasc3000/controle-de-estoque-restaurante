@@ -67,9 +67,6 @@ o front-end estiver em desenvolvimento.
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
 
 ## Documentação e uso
-### Documentação online
-➡️ https://devmainserver.com/doc
-
 ### Variáveis de ambiente
 - Na raiz do projeto crie um arquivo com o nome .env
 - Copie e cole no .env estas variáveis de ambiente:<br>
