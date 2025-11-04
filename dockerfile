@@ -22,5 +22,9 @@ ENV SALES_PERMISSION=salesCRUS
 ENV SO_PERMISSION=sales-outputsCRUS
 ENV SOI_PERMISSION=salesInOutCRUS
 ENV ADMIN_PERMISSION=fullAccess
+ENV EMAIL_SENDER_PROVIDER_API_KEY=
+ENV FROM_EMAIL=
+ENV ADDRESS_ALLOWED=y
+ENV ADRRESS_NOT_ALLOWED=n
 
-ENTRYPOINT ["sh", "-c", "npx sequelize db:migrate && node dist/server.js"]
+ENTRYPOINT ["sh", "-c", "npx sequelize db:migrate && npm run dev"]

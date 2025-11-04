@@ -47,13 +47,13 @@ A base de dados é em MySql e para lidar ela fiz uso do Sequelize ORM (Mapeador 
 Nesta aplicação existem diferentes acessos para cada funcionalidade e estes são concedidos por meio da verificação de dados específicos enviados pelo cabeçalho da requisição, como id, permissão e a senha de administrador, caso o funcionário tenha este acesso, além do JWT, exigido para todos os funcionários.<br>Os acessos são:<br>
 - Acesso total: acesso à todas as funcionalidades da API. Este é o único tipo de acesso com o qual é possível utilizar as funcionalidades dos funcionários <br>
 ### Acessos únicos <br>
-- Insumos: permite ao funcionário utilizar todas as funcionalidades dos insumos
-- Saídas: permite ao funcionário utilizar todas as funcionalidades das saídas
-- Vendas: permite ao funcionário utilizar todas as funcionalidades das vendas <br>
+- Insumos: permite ao funcionário utilizar todas as funcionalidades dos insumos --> inputsCRUS
+- Saídas: permite ao funcionário utilizar todas as funcionalidades das saídas --> outputsCRS
+- Vendas: permite ao funcionário utilizar todas as funcionalidades das vendas --> salesCRUS <br>
 ### Acessos mistos <br>
-- Insumos e saídas: funcionalidades dos insumos e das saídas disponíveis
-- Saídas e vendas: funcionalidades das saídas e das vendas disponíveis
-- Insumos, saídas e vendas: funcionalidades dos insumos, das saídas e das vendas disponíveis
+- Insumos e saídas: funcionalidades dos insumos e das saídas disponíveis --> inputs-outputs
+- Saídas e vendas: funcionalidades das saídas e das vendas disponíveis --> sales-outputsCRUS
+- Insumos, saídas e vendas: funcionalidades dos insumos, das saídas e das vendas disponíveis --> salesInOutCRUS
 
 ## Status
 Finalizado ✔️<br>
@@ -158,13 +158,13 @@ The accesses are:
 ### Full access <br>
 - access to all API functionalities. This is the only type of access with which it is possible to use employee features
 ### Single access <br>
-- Inputs: allows the employee to use all input features
-- Outputs: allows the employee to use all output features
-- Sales: allows the employee to use all sales features
+- Inputs: allows the employee to use all input features --> inputsCRUS
+- Outputs: allows the employee to use all output features --> outputsCRS
+- Sales: allows the employee to use all sales features --> salesCRUS
 ### Mixed access <br>
-- Inputs and outputs: available input and output features
-- Outputs and sales: available output and sales features
-- Inputs, outputs and sales: available input, output and sales features
+- Inputs and outputs: available input and output features --> inputs-outputs
+- Outputs and sales: available output and sales features --> sales-outputsCRUS
+- Inputs, outputs and sales: available input, output and sales features --> salesInOutCRUS
 
 ## Status
 Finalized ✔️ <br>
@@ -176,7 +176,6 @@ Note: updates will be made according to the needs of the front-end. Some additio
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" hight=50px width=50px />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sequelize/sequelize-original-wordmark.svg" hight=50px width=50px />
 
-## Documentation and usage
 ### Environment variables
 - In the root of project create a file named .env
 - Copy and paste these env variables below:<br>

@@ -17,7 +17,11 @@ class OutputController {
         throw new (0, _clientErrors.BadRequest)('É necessário haver ao menos um funcionário autorizado a receber e-mails');
       }
 
+<<<<<<< HEAD
       const { name, unities } = req.body;
+=======
+      const { name } = req.body;
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
       const validations = _Validation2.default.MainValidations(req.body);
       const outputsValidations = _Validation2.default.OutputsValidation(req.body);
 
@@ -53,6 +57,7 @@ class OutputController {
         }
       }
 
+<<<<<<< HEAD
       await _InputConnection2.default.InputUpdateTotalWeight(inputExists, unities);
 
       const store2 = await _Output2.default.Store(req.body);
@@ -60,6 +65,38 @@ class OutputController {
       if (!store2) throw new (0, _serverErrors.InternalServerError)('Erro interno');
 
       return res.status(201).json(store2);
+=======
+      const store2 = await _Output2.default.Store(req.body);
+
+      if (!store2) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+
+      return res.status(201).json(store2);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async Update(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const validations = _Validation2.default.MainValidations(req.body);
+      const outputsValidations = _Validation2.default.OutputsValidation(req.body);
+
+      if (validations !== null) throw new (0, _clientErrors.BadRequest)(validations);
+      if (outputsValidations !== null) throw new (0, _clientErrors.BadRequest)(outputsValidations);
+
+      const { employee_id, ...allowedData } = req.body;
+
+      // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
+      // requisições como insomnia.
+      const outputUpdate = await _Output2.default.Update(id, allowedData);
+
+      if (outputUpdate === 'saída não encontrada') throw new (0, _clientErrors.BadRequest)('Insumo não registrado');
+      if (!outputUpdate) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+
+      return res.status(200).send(outputUpdate);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     } catch (err) {
       next(err);
     }

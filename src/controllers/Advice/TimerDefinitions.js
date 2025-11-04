@@ -9,7 +9,7 @@ import AdviceSearch from '../../repositories/Advice/AdviceSearch';
 import { TimerId, Timers } from './timersStore';
 
 class TimerDefinition {
-  SetTimer(date, hour) {
+  async SetTimer(date, hour) {
     const currentDate = this.GetCurrentDateHour();
     const adviceDate = this.AdviceFormatCorrectDateHour(date, hour);
 
@@ -110,7 +110,7 @@ class TimerDefinition {
   }
 
   async NewAdvice(date, hour, emailData, dbId, savedTimerId) {
-    const getAdvice = this.SetTimer(date, hour);
+    const getAdvice = await this.SetTimer(date, hour);
     let maxTimerIdValue = 0;
 
     const GetMaxTimerIdValue = async () => {

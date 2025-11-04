@@ -5,7 +5,11 @@ var _loginRequired = require('../../middlewares/loginRequired'); var _loginRequi
 
 const router = new (0, _express.Router)();
 
+<<<<<<< HEAD
 router.post('/', _loginRequired2.default, _adminPermission2.default, _Employee2.default.Store);
+=======
+router.post('/', _Employee2.default.Store);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 router.put('/:id', _loginRequired2.default, _adminPermission2.default, _Employee2.default.Update);
 
 exports. default = router;

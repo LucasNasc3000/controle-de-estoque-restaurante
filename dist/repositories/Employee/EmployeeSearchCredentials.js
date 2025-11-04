@@ -33,7 +33,10 @@ class EmployeesSearchCredentials {
         name,
       },
       attributes: _Attributes2.default,
+<<<<<<< HEAD
       order: [['id', 'DESC']],
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     });
 
     return employeeFinderByName;

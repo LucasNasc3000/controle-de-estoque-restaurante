@@ -55,9 +55,13 @@ class SalesSearchSalesDataController {
         return res.status(204).send('Não há vendas cadastradas pelo funcionário');
       }
 
+<<<<<<< HEAD
       const replacedDotPriceObj = _ReplaceDot.ReplaceDot.call(void 0, saleEmployeeIdSearch);
 
       return res.status(200).json(replacedDotPriceObj);
+=======
+      return res.status(200).json(saleEmployeeIdSearch);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     } catch (err) {
       next(err);
     }
@@ -148,6 +152,7 @@ class SalesSearchSalesDataController {
       _SalesSearchSalesData2.default.SearchByHour(hour);
 
       if (!saleHourFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+<<<<<<< HEAD
 
       if (saleHourFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
 
@@ -172,6 +177,11 @@ class SalesSearchSalesDataController {
       _ReplaceDot.ReplaceDot.call(void 0, salePriceFinder);
 
       return res.status(200).json(salePriceFinder);
+=======
+      if (saleHourFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+
+      return res.status(200).json(saleHourFinder);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     } catch (err) {
       next(err);
     }

@@ -1,11 +1,17 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
+<<<<<<< HEAD
 var _decimaljs = require('decimal.js'); var _decimaljs2 = _interopRequireDefault(_decimaljs);
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 var _clientErrors = require('../../errors/clientErrors');
 var _serverErrors = require('../../errors/serverErrors');
 var _Validation = require('../../middlewares/fieldValidations/Validation'); var _Validation2 = _interopRequireDefault(_Validation);
 var _Sales = require('../../repositories/Sales/Sales'); var _Sales2 = _interopRequireDefault(_Sales);
+<<<<<<< HEAD
 var _ReplaceDot = require('./ReplaceDot');
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 
 class SalesController {
   async Store(req, res, next) {
@@ -45,6 +51,11 @@ class SalesController {
       if (salesValidations !== null) throw new (0, _clientErrors.BadRequest)(salesValidations);
 
       const { employee_id, ...allowedData } = req.body;
+<<<<<<< HEAD
+=======
+
+      const salesUpdate = await _Sales2.default.Update(id, allowedData);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 
       const withDots = _ReplaceDot.InsertDot.call(void 0, allowedData);
 

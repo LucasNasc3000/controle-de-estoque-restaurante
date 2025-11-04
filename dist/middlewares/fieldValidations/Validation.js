@@ -29,7 +29,11 @@ class Validation {
       case 'Type must be a number':
         return 'O tipo deve ser numérico';
 
+<<<<<<< HEAD
       case 'Type must be a string':
+=======
+      case ('Type must be a string'):
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
         return 'O tipo precisa estar em formato de texto';
 
       case 'employee_id must be a uuid':
@@ -44,6 +48,7 @@ class Validation {
     const inputValidations = _Inputs2.default.CheckIntegers(data);
 
     switch (inputValidations) {
+<<<<<<< HEAD
       case 'Quantity must be a integer':
         return 'O campo "quantidade" deve ser um número inteiro';
 
@@ -51,6 +56,15 @@ class Validation {
         return 'O campo "minimun_quantity" deve ser um número inteiro';
 
       case 'Supplier must be a string':
+=======
+      case ('Quantity must be a integer'):
+        return 'O campo "quantidade" deve ser um número inteiro';
+
+      case ('minimun_quantity must be a integer'):
+        return 'O campo "minimun_quantity" deve ser um número inteiro';
+
+      case ('Supplier must be a string'):
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
         return 'O campo "fornecedor" precisa estar em formato de texto';
 
       case 'Fields must be a date or hour string':
@@ -92,10 +106,17 @@ class Validation {
     const outputsValidations = _Outputs2.default.CheckIntegers(data);
 
     switch (outputsValidations) {
+<<<<<<< HEAD
       case 'Unities must be a integer':
         return 'O campo "unidades" deve ser um número inteiro';
 
       case 'Weight must be a number':
+=======
+      case ('Unities must be a integer'):
+        return 'O campo "unidades" deve ser um número inteiro';
+
+      case ('Weight must be a number'):
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
         return 'O campo "peso" precisa estar em formato de texto';
 
       case 'Field(s) must be a date or hour string':
@@ -137,6 +158,21 @@ class Validation {
 
       case 'Name is too short':
         return 'O nome precisa ter pelo menos 3 caracteres';
+<<<<<<< HEAD
+=======
+
+      case 'CheckERA must be a string':
+        return 'A autorização para receber e-mails precisa estar em formato de texto';
+
+      case 'CheckERA doesnt fit':
+        return 'A autorização para receber e-mails não corresponde com as definições';
+
+      case 'Admin password must be a string':
+        return 'A senha do admin precisa estar em formato de texto';
+
+      case 'Invalid permission':
+        return 'A permissão não corresponde com as definições';
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     }
 
     return null;
@@ -161,7 +197,10 @@ class Validation {
 
   SalesValidation(data) {
     const salesValidation = _Sales2.default.CheckPersonalAndSalesData(data);
+<<<<<<< HEAD
     console.log(salesValidation);
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 
     switch (salesValidation) {
       case 'Type must be a string':

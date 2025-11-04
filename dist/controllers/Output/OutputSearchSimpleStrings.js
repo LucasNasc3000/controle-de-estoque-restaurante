@@ -64,6 +64,7 @@ class OutputSearchSimpleStringsController {
       }
 
       return res.status(200).json(outputEmployeeIdSearch);
+<<<<<<< HEAD
     } catch (err) {
       next(err);
     }
@@ -84,6 +85,8 @@ class OutputSearchSimpleStringsController {
       _ReplaceDot.ReplaceDot.call(void 0, saleReasonFinder);
 
       return res.status(200).json(saleReasonFinder);
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     } catch (err) {
       next(err);
     }

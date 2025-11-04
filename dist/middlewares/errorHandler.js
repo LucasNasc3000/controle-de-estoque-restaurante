@@ -1,6 +1,9 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});var _authErrors = require('../errors/authErrors');
 var _clientErrors = require('../errors/clientErrors');
+<<<<<<< HEAD
 var _conflict = require('../errors/conflict');
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 var _emailsErrors = require('../errors/emailsErrors');
 var _forbidden = require('../errors/forbidden');
 var _logErrors = require('../errors/logErrors');

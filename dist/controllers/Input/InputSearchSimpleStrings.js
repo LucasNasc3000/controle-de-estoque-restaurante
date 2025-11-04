@@ -3,7 +3,10 @@
 var _notFound = require('../../errors/notFound');
 var _serverErrors = require('../../errors/serverErrors');
 var _InputSearchSimpleStrings = require('../../repositories/Input/InputSearchSimpleStrings'); var _InputSearchSimpleStrings2 = _interopRequireDefault(_InputSearchSimpleStrings);
+<<<<<<< HEAD
 var _ReplaceDot = require('./ReplaceDot');
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 
 class InputSearchSimpleStringsController {
   async SearchByCategory(req, res, next) {
@@ -78,9 +81,13 @@ class InputSearchSimpleStringsController {
         return res.status(204).send('Não há insumos cadastrados pelo funcionário');
       }
 
+<<<<<<< HEAD
       const replacedDotPriceObj = _ReplaceDot.ReplaceDot.call(void 0, inputEmployeeIdSearch);
 
       return res.status(200).json(replacedDotPriceObj);
+=======
+      return res.status(200).json(inputEmployeeIdSearch);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     } catch (err) {
       next(err);
     }

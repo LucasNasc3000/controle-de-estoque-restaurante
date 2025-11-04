@@ -36,6 +36,7 @@ class InputConnectionController {
     }
 
     await _Input2.default.Update(inputSearchData.dataValues.id, updatedData);
+<<<<<<< HEAD
   }
 
   async InputUpdateTotalWeight(inputSearchData, unities) {
@@ -55,6 +56,8 @@ class InputConnectionController {
     };
 
     await _Input2.default.Update(id, updatedData);
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
   }
 }
 

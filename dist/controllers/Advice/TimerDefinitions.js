@@ -9,7 +9,11 @@ var _AdviceSearch = require('../../repositories/Advice/AdviceSearch'); var _Advi
 var _timersStore = require('./timersStore');
 
 class TimerDefinition {
+<<<<<<< HEAD
   SetTimer(date, hour) {
+=======
+  async SetTimer(date, hour) {
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     const currentDate = this.GetCurrentDateHour();
     const adviceDate = this.AdviceFormatCorrectDateHour(date, hour);
 
@@ -110,7 +114,11 @@ class TimerDefinition {
   }
 
   async NewAdvice(date, hour, emailData, dbId, savedTimerId) {
+<<<<<<< HEAD
     const getAdvice = this.SetTimer(date, hour);
+=======
+    const getAdvice = await this.SetTimer(date, hour);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     let maxTimerIdValue = 0;
 
     const GetMaxTimerIdValue = async () => {

@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Storage Manager System",
-    "description": "API para ser o back-end de um sistema de controle de estoque"
+    "description": "API para ser o back-end do Storage Manager System"
   },
   "host": "localhost:3333",
   "basePath": "/",
@@ -4256,7 +4256,7 @@
         "tags": [
           "Advices"
         ],
-        "description": "",
+        "description": "Cria novos timers no servidor a partir dos dados armazenados na base de dados",
         "parameters": [
           {
             "name": "authorization",

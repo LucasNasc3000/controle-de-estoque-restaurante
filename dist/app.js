@@ -5,18 +5,27 @@ _dotenv2.default.config();
 // eslint-disable-next-line import/no-extraneous-dependencies
 var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
 var _express = require('express'); var _express2 = _interopRequireDefault(_express);
+<<<<<<< HEAD
+=======
+var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 var _swaggeruiexpress = require('swagger-ui-express'); var _swaggeruiexpress2 = _interopRequireDefault(_swaggeruiexpress);
 var _errorHandler = require('./middlewares/errorHandler'); var _errorHandler2 = _interopRequireDefault(_errorHandler);
 var _swagger_outputjson = require('./swagger_output.json'); var _swagger_outputjson2 = _interopRequireDefault(_swagger_outputjson);
 
 // input routes
 var _home = require('./routes/home'); var _home2 = _interopRequireDefault(_home);
+<<<<<<< HEAD
 var _inputSearchByCategory = require('./routes/input/inputSearchByCategory'); var _inputSearchByCategory2 = _interopRequireDefault(_inputSearchByCategory);
+=======
+var _input = require('./routes/input/input'); var _input2 = _interopRequireDefault(_input);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 var _inputSearchByEmployeeId = require('./routes/input/inputSearchByEmployeeId'); var _inputSearchByEmployeeId2 = _interopRequireDefault(_inputSearchByEmployeeId);
 var _inputSearchByExpirationDate = require('./routes/input/inputSearchByExpirationDate'); var _inputSearchByExpirationDate2 = _interopRequireDefault(_inputSearchByExpirationDate);
 var _inputSearchById = require('./routes/input/inputSearchById'); var _inputSearchById2 = _interopRequireDefault(_inputSearchById);
 var _inputSearchByMinimunQuantity = require('./routes/input/inputSearchByMinimunQuantity'); var _inputSearchByMinimunQuantity2 = _interopRequireDefault(_inputSearchByMinimunQuantity);
 var _inputSearchByName = require('./routes/input/inputSearchByName'); var _inputSearchByName2 = _interopRequireDefault(_inputSearchByName);
+<<<<<<< HEAD
 var _inputSearchByPrice = require('./routes/input/inputSearchByPrice'); var _inputSearchByPrice2 = _interopRequireDefault(_inputSearchByPrice);
 var _inputSearchByQuantity = require('./routes/input/inputSearchByQuantity'); var _inputSearchByQuantity2 = _interopRequireDefault(_inputSearchByQuantity);
 var _inputSearchBySupplier = require('./routes/input/inputSearchBySupplier'); var _inputSearchBySupplier2 = _interopRequireDefault(_inputSearchBySupplier);
@@ -43,6 +52,14 @@ var _inputSearchByWeightPerUnit3 = require('./routes/inputHistory/inputSearchByW
 // import mfaUser from './routes/mfa/preMfaUser';
 var _token = require('./routes/token'); var _token2 = _interopRequireDefault(_token);
 // import tokenUser from './routes/tokenUser';
+=======
+var _inputSearchByQuantity = require('./routes/input/inputSearchByQuantity'); var _inputSearchByQuantity2 = _interopRequireDefault(_inputSearchByQuantity);
+var _inputSearchBySupplier = require('./routes/input/inputSearchBySupplier'); var _inputSearchBySupplier2 = _interopRequireDefault(_inputSearchBySupplier);
+var _inputSearchByTotalWeight = require('./routes/input/inputSearchByTotalWeight'); var _inputSearchByTotalWeight2 = _interopRequireDefault(_inputSearchByTotalWeight);
+var _inputSearchByType = require('./routes/input/inputSearchByType'); var _inputSearchByType2 = _interopRequireDefault(_inputSearchByType);
+var _inputSearchByWeightPerUnit = require('./routes/input/inputSearchByWeightPerUnit'); var _inputSearchByWeightPerUnit2 = _interopRequireDefault(_inputSearchByWeightPerUnit);
+var _token = require('./routes/token'); var _token2 = _interopRequireDefault(_token);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 
 // output routes
 var _output = require('./routes/output/output'); var _output2 = _interopRequireDefault(_output);
@@ -60,7 +77,10 @@ var _employeeSearchByBoss = require('./routes/employee/employeeSearchByBoss'); v
 var _employeeSearchByEmail = require('./routes/employee/employeeSearchByEmail'); var _employeeSearchByEmail2 = _interopRequireDefault(_employeeSearchByEmail);
 var _employeeSearchById = require('./routes/employee/employeeSearchById'); var _employeeSearchById2 = _interopRequireDefault(_employeeSearchById);
 var _employeeSearchByName = require('./routes/employee/employeeSearchByName'); var _employeeSearchByName2 = _interopRequireDefault(_employeeSearchByName);
+<<<<<<< HEAD
 var _employeeSearchByPermission = require('./routes/employee/employeeSearchByPermission'); var _employeeSearchByPermission2 = _interopRequireDefault(_employeeSearchByPermission);
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 var _employeeSearchOneByName = require('./routes/employee/employeeSearchOneByName'); var _employeeSearchOneByName2 = _interopRequireDefault(_employeeSearchOneByName);
 var _exEmployeeSearch = require('./routes/employee/exEmployeeSearch'); var _exEmployeeSearch2 = _interopRequireDefault(_exEmployeeSearch);
 
@@ -96,6 +116,10 @@ class App {
     this.app.use(_cors2.default.call(void 0, {
       origin: '*',
     }));
+<<<<<<< HEAD
+=======
+    this.app.use(_helmet2.default.call(void 0, ));
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
   }
@@ -150,7 +174,10 @@ class App {
     this.app.use('/employees/', _employee2.default);
     this.app.use('/employees/search/id', _employeeSearchById2.default);
     this.app.use('/employees/search/name', _employeeSearchByName2.default);
+<<<<<<< HEAD
     this.app.use('/employees/search/permission', _employeeSearchByPermission2.default);
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     this.app.use('/employees/search/uniquename', _employeeSearchOneByName2.default);
     this.app.use('/employees/search/email', _employeeSearchByEmail2.default);
     this.app.use('/employees/search/boss', _employeeSearchByBoss2.default);
@@ -167,6 +194,10 @@ class App {
     this.app.use('/sales/search/phonenumber/', _saleSearchPhoneNumber2.default);
     this.app.use('/sales/search/products/', _saleSearchProducts2.default);
     this.app.use('/sales/search/price', _saleSearchPrice2.default);
+
+    // advice routes
+    this.app.use('/advices/', _advice2.default);
+    this.app.use('/advices/search/employeeid', _adviceSearchByEmployeeId2.default);
 
     // advice routes
     this.app.use('/advices/', _advice2.default);

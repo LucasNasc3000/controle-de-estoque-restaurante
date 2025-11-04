@@ -42,6 +42,7 @@ class EmployeesSearchCredentialsController {
     }
   }
 
+<<<<<<< HEAD
   async SearchByPermission(req, res, next) {
     try {
       const { headerid } = req.headers;
@@ -62,6 +63,8 @@ class EmployeesSearchCredentialsController {
     }
   }
 
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
   async SearchOneByName(req, res, next) {
     try {
       const { headerid } = req.headers;

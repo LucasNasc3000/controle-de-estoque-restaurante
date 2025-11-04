@@ -8,7 +8,10 @@ class EmployeesSearchBoss {
     const employeeFinder = await _Employee2.default.findAll({
       where: {
         boss,
+<<<<<<< HEAD
         is_active: 1,
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
       },
       attributes: _Attributes2.default,
       order: [['id', 'DESC']],
@@ -23,8 +26,14 @@ class EmployeesSearchBoss {
     const employeeFinder = await _Employee2.default.findAll({
       where: {
         boss,
+<<<<<<< HEAD
       },
       attributes: ['id'],
+=======
+        is_active: 1,
+      },
+      attributes: _Attributes2.default,
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
       order: [['id', 'DESC']],
     });
 

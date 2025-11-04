@@ -11,7 +11,7 @@ class UserValidations {
       case (!email.includes('@')):
         return 'Must be a valid email';
 
-      case (!email.includes('.com')):
+      case (!email.includes('.com') && !email.includes('.online')):
         return 'Must be a valid email';
 
       case (isLog === true):
@@ -62,7 +62,30 @@ class UserValidations {
       return 'Admin password is too short';
     }
 
+<<<<<<< HEAD
     return this.CheckPermission(AdminPasswordFieldData, isUpdate);
+=======
+    return this.CheckEmailReceiverAuthorization(AdminPasswordFieldData, isUpdate);
+  }
+
+  CheckEmailReceiverAuthorization(CheckERAFieldData, isUpdate) {
+    if (isUpdate === true && !CheckERAFieldData.address_allowed) {
+      return this.CheckPermission(CheckERAFieldData, isUpdate);
+    }
+
+    if (typeof CheckERAFieldData.address_allowed !== 'string') {
+      return 'CheckERA must be a string';
+    }
+    console.log(CheckERAFieldData.address_allowed !== process.env.ADRRESS_ALLOWED
+      && CheckERAFieldData.address_allowed !== process.env.ADRRESS_NOT_ALLOWED);
+
+    if (CheckERAFieldData.address_allowed !== process.env.ADDRESS_ALLOWED
+       && CheckERAFieldData.address_allowed !== process.env.ADDRESS_NOT_ALLOWED) {
+      return 'CheckERA doesnt fit';
+    }
+
+    return this.CheckPermission(CheckERAFieldData, isUpdate);
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
   }
 
   CheckPermission(PermissionFieldData, isUpdate) {

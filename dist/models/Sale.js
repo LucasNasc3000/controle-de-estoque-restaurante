@@ -66,10 +66,13 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
         type: _sequelize2.default.STRING,
         defaultValue: '',
       },
+<<<<<<< HEAD
       price: {
         type: _sequelize2.default.DECIMAL(10, 2),
         defaultValue: '',
       },
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     }, {
       sequelize,
     });

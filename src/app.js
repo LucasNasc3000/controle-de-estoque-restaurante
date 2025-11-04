@@ -5,6 +5,7 @@ dotenv.config();
 // eslint-disable-next-line import/no-extraneous-dependencies
 import cors from 'cors';
 import express from 'express';
+import helmet from 'helmet';
 import swaggerUi from 'swagger-ui-express';
 import errorHandler from './middlewares/errorHandler';
 import swaggerFile from './swagger_output.json';
@@ -96,6 +97,7 @@ class App {
     this.app.use(cors({
       origin: '*',
     }));
+    this.app.use(helmet());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }

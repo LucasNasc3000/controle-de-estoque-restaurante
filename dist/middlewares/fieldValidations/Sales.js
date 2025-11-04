@@ -1,13 +1,22 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
 var _DataRegex = require('./DataRegex');
 
 class SalesValidations {
   CheckPersonalAndSalesData(PersonalAndSalesData) {
+<<<<<<< HEAD
+=======
+    const phoneNumberCheck = /^([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{4})$/;
+    const alphabetCheck = /^[a-zA-Z]+$/;
+
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
     if (PersonalAndSalesData.phone_number) {
       if (!_DataRegex.phoneNumberRegex.test(PersonalAndSalesData.phone_number)) {
         return 'phone_number must be a phone number string';
@@ -15,7 +24,11 @@ class SalesValidations {
     }
 
     if (PersonalAndSalesData.client_name) {
+<<<<<<< HEAD
       if (!_DataRegex.alphabetRegex.test(PersonalAndSalesData.client_name)) {
+=======
+      if (!alphabetCheck.test(PersonalAndSalesData.client_name)) {
+>>>>>>> da0b638e2fb708fcbf35744bbead69d63c9fbbc9
         return 'client_name must be a alphabet string';
       }
     }
