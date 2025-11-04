@@ -1,21 +1,22 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
+
+
+
+
 var _DataRegex = require('./DataRegex');
 
 class SalesValidations {
   CheckPersonalAndSalesData(PersonalAndSalesData) {
-    const phoneNumberCheck = /^([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{5})$/;
-    const alphabetCheck = /^[a-zA-Z]+$/;
-
     if (PersonalAndSalesData.phone_number) {
-      if (!phoneNumberCheck.test(PersonalAndSalesData.phone_number)) {
+      if (!_DataRegex.phoneNumberRegex.test(PersonalAndSalesData.phone_number)) {
         return 'phone_number must be a phone number string';
       }
     }
 
     if (PersonalAndSalesData.client_name) {
-      if (!alphabetCheck.test(PersonalAndSalesData.client_name)) {
-        return 'client_name must be a letters string';
+      if (!_DataRegex.alphabetRegex.test(PersonalAndSalesData.client_name)) {
+        return 'client_name must be a alphabet string';
       }
     }
 
@@ -25,9 +26,9 @@ class SalesValidations {
       }
     }
 
-    if (PersonalAndSalesData.address) {
-      if (typeof PersonalAndSalesData.address !== 'string') {
-        return 'address must be a string';
+    if (PersonalAndSalesData.client_birthday) {
+      if (typeof PersonalAndSalesData.client_birthday !== 'string') {
+        return 'client btd must be a short date string';
       }
     }
     return this.CheckDatesAndHour(PersonalAndSalesData);

@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Input from '../../models/Input';
 import inputAttributes from './Attributes';
 
@@ -8,6 +9,7 @@ class InputFloatsSearch {
         totalweight,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -19,9 +21,22 @@ class InputFloatsSearch {
         weightperunit,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
+  }
+
+  async SearchByPrice(price) {
+    const inputsFinderByPrice = await Input.findAll({
+      where: {
+        price: { [Op.startsWith]: price },
+      },
+      attributes: inputAttributes,
+      order: [['id', 'DESC']],
+    });
+
+    return inputsFinderByPrice;
   }
 }
 

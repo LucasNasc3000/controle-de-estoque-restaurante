@@ -6,6 +6,5 @@ import outputsPermission from '../../middlewares/outputsPermission';
 const router = new Router();
 
 router.post('/', loginRequired, outputsPermission, Output.Store);
-router.put('/:id', loginRequired, outputsPermission, Output.Update);
 
 export default router;

@@ -30,7 +30,7 @@ export default class Employee extends Model {
         },
         validate: {
           isEmail: {
-            args: [3, 255],
+            args: [13, 255],
             msg: 'Email inválido',
           },
         },
@@ -66,12 +66,7 @@ export default class Employee extends Model {
       permission: {
         type: Sequelize.STRING,
         defaultValue: '',
-        validate: {
-          len: {
-            args: [8, 20],
-            msg: 'A permissao deve ter entre 8 e 20 caracteres',
-          },
-        },
+        allowNull: false,
       },
       address_allowed: {
         type: Sequelize.CHAR,

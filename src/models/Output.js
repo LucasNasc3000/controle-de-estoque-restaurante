@@ -34,13 +34,23 @@ export default class Output extends Model {
           },
         },
       },
-      type: {
+      category: {
         type: Sequelize.STRING,
         defaultValue: '',
         validate: {
           len: {
             args: [1, 100],
             msg: 'O tipo não deve ultrapassar os 100 caracteres',
+          },
+        },
+      },
+      reason: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [5, 50],
+            msg: 'O motivo deve ter entre 5 e 50 caracteres',
           },
         },
       },

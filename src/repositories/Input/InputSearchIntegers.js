@@ -8,6 +8,7 @@ class InputIntegerSearch {
         id,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -19,6 +20,7 @@ class InputIntegerSearch {
         quantity,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -30,6 +32,7 @@ class InputIntegerSearch {
         minimun_quantity: minimunQuantity,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;

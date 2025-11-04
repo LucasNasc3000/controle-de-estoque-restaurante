@@ -4,18 +4,21 @@ import Sequelize, { Model } from 'sequelize';
 export default class Input extends Model {
   static init(sequelize) {
     super.init({
-      type: {
+      category: {
         type: Sequelize.STRING,
         defaultValue: '',
         validate: {
           len: {
             args: [1, 100],
-            msg: 'O nome do tipo não deve ultrapassar os 100 caracteres',
+            msg: 'O nome da categoria não deve ultrapassar os 100 caracteres',
           },
         },
       },
       name: {
         type: Sequelize.STRING,
+        unique: {
+          msg: 'O insumo já existe',
+        },
         defaultValue: '',
         validate: {
           len: {
@@ -34,20 +37,20 @@ export default class Input extends Model {
         },
       },
       totalweight: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(10, 2),
         defaultValue: '',
         validate: {
-          isFloat: {
-            msg: 'peso total precisa ser um número',
+          isDecimal: {
+            msg: 'peso total precisa ser do tipo decimal',
           },
         },
       },
       weightperunit: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(10, 2),
         defaultValue: '',
         validate: {
-          isFloat: {
-            msg: 'peso por unidade precisa ser um número',
+          isDecimal: {
+            msg: 'peso unitário precisa ser do tipo decimal',
           },
         },
       },
@@ -92,6 +95,10 @@ export default class Input extends Model {
             msg: 'a quantidade próxima ao limite precisa ser um número inteiro',
           },
         },
+      },
+      price: {
+        type: Sequelize.DECIMAL(10, 2),
+        defaultValue: '',
       },
     }, {
       sequelize,

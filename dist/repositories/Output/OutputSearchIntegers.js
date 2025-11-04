@@ -8,6 +8,7 @@ class OutputIntegersSearch {
         id,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -19,6 +20,7 @@ class OutputIntegersSearch {
         unities,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;

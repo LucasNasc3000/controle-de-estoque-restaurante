@@ -37,22 +37,7 @@ class CommomValidations {
       return this.CheckStrings(allData);
     }
 
-    return this.CheckNumericFields(allData);
-  }
-
-  CheckNumericFields(numericFieldsData) {
-    if (numericFieldsData.totalweight) {
-      if (typeof numericFieldsData.totalweight !== 'number') {
-        return 'Type must be a number';
-      }
-    }
-
-    if (numericFieldsData.weightperunit) {
-      if (typeof numericFieldsData.weightperunit !== 'number') {
-        return 'Type must be a number';
-      }
-    }
-    return this.CheckStrings(numericFieldsData);
+    return this.CheckStrings(allData);
   }
 
   CheckStrings(StringsFieldsData) {

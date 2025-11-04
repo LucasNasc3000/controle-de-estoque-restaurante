@@ -9,6 +9,7 @@ class SalesSearchClientData {
         client_name: { [Op.startsWith]: clientName },
       },
       attributes: salesAttributes,
+      order: [['id', 'DESC']],
     });
 
     return SaleFinder;
@@ -20,6 +21,7 @@ class SalesSearchClientData {
         phone_number: phoneNumber,
       },
       attributes: salesAttributes,
+      order: [['id', 'DESC']],
     });
 
     return SaleFinderByPhoneNumber;
@@ -31,6 +33,7 @@ class SalesSearchClientData {
         address,
       },
       attributes: salesAttributes,
+      order: [['id', 'DESC']],
     });
 
     return saleFinderByAddress;

@@ -62,26 +62,7 @@ class UserValidations {
       return 'Admin password is too short';
     }
 
-    return this.CheckEmailReceiverAuthorization(AdminPasswordFieldData, isUpdate);
-  }
-
-  CheckEmailReceiverAuthorization(CheckERAFieldData, isUpdate) {
-    if (isUpdate === true && !CheckERAFieldData.address_allowed) {
-      return this.CheckPermission(CheckERAFieldData, isUpdate);
-    }
-
-    if (typeof CheckERAFieldData.address_allowed !== 'string') {
-      return 'CheckERA must be a string';
-    }
-    console.log(CheckERAFieldData.address_allowed !== process.env.ADRRESS_ALLOWED
-      && CheckERAFieldData.address_allowed !== process.env.ADRRESS_NOT_ALLOWED);
-
-    if (CheckERAFieldData.address_allowed !== process.env.ADDRESS_ALLOWED
-       && CheckERAFieldData.address_allowed !== process.env.ADDRESS_NOT_ALLOWED) {
-      return 'CheckERA doesnt fit';
-    }
-
-    return this.CheckPermission(CheckERAFieldData, isUpdate);
+    return this.CheckPermission(AdminPasswordFieldData, isUpdate);
   }
 
   CheckPermission(PermissionFieldData, isUpdate) {

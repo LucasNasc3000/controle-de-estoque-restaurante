@@ -9,28 +9,31 @@ class SalesSearchClientData {
         client_name: { [_sequelize.Op.startsWith]: clientName },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return SaleFinder;
   }
 
   async SearchByPhoneNumber(phoneNumber) {
-    const SaleFinderByPhoneNumber = await _Sale2.default.findAll({
+    const SaleFinderByPhoneNumber = await _Sale2.default.findOne({
       where: {
         phone_number: phoneNumber,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return SaleFinderByPhoneNumber;
   }
 
   async SearchByAddress(address) {
-    const saleFinderByAddress = await _Sale2.default.findAll({
+    const saleFinderByAddress = await _Sale2.default.findOne({
       where: {
         address,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return saleFinderByAddress;

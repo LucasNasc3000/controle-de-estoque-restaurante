@@ -3,6 +3,7 @@
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
 import OutputSearchSimpleStrings from '../../repositories/Output/OutputSearchSimpleStrings';
+import { InsertDotForSearch, ReplaceDot } from './ReplaceDot';
 
 class OutputSearchSimpleStringsController {
   async SearchByType(req, res, next) {
@@ -63,6 +64,26 @@ class OutputSearchSimpleStringsController {
       }
 
       return res.status(200).json(outputEmployeeIdSearch);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchByReason(req, res, next) {
+    try {
+      const { reason } = req.params;
+
+      const withDots = InsertDotForSearch(reason);
+
+      const saleReasonFinder = await OutputSearchSimpleStrings.SearchByReason(withDots);
+
+      if (!saleReasonFinder) throw new InternalServerError('Erro interno');
+
+      if (saleReasonFinder.length < 1) throw new NotFound('Venda não encontrada');
+
+      ReplaceDot(saleReasonFinder);
+
+      return res.status(200).json(saleReasonFinder);
     } catch (err) {
       next(err);
     }

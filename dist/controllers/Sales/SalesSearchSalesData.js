@@ -1,7 +1,16 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable consistent-return */
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable array-callback-return */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-plusplus */
+/* eslint-disable max-len */
+/* eslint-disable consistent-return */
 var _notFound = require('../../errors/notFound');
 var _serverErrors = require('../../errors/serverErrors');
+var _EmployeeSearchBoss = require('../../repositories/Employee/EmployeeSearchBoss'); var _EmployeeSearchBoss2 = _interopRequireDefault(_EmployeeSearchBoss);
+var _EmployeeSearchCredentials = require('../../repositories/Employee/EmployeeSearchCredentials'); var _EmployeeSearchCredentials2 = _interopRequireDefault(_EmployeeSearchCredentials);
 var _SalesSearchSalesData = require('../../repositories/Sales/SalesSearchSalesData'); var _SalesSearchSalesData2 = _interopRequireDefault(_SalesSearchSalesData);
+
+
+var _ReplaceDot = require('./ReplaceDot');
 
 class SalesSearchSalesDataController {
   async SearchById(req, res, next) {
@@ -22,12 +31,33 @@ class SalesSearchSalesDataController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
+      const { forListSales, employeeidBody } = req.body;
 
-      const salesEmployeeIdFinder = await _SalesSearchSalesData2.default.SearchByemployeeId(employeeid);
+      const WhichSearch = async () => {
+        if (employeeidBody && !employeeid) {
+          const saleEmployeeIdFinder = await _SalesSearchSalesData2.default.SearchByemployeeId(employeeidBody);
+          return saleEmployeeIdFinder;
+        }
 
-      if (!salesEmployeeIdFinder) throw new (0, _notFound.NotFound)('Venda não encontrada');
+        if (!employeeidBody && employeeid) {
+          const saleEmployeeIdFinder = await _SalesSearchSalesData2.default.SearchByemployeeId(employeeid);
+          return saleEmployeeIdFinder;
+        }
+      };
 
-      return res.status(200).json(salesEmployeeIdFinder);
+      const saleEmployeeIdSearch = await WhichSearch();
+
+      if (!saleEmployeeIdSearch) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+
+      if (!forListSales && saleEmployeeIdSearch.length < 1) throw new (0, _notFound.NotFound)('Vendas não encontradas');
+
+      if (forListSales === true && saleEmployeeIdSearch.length < 1) {
+        return res.status(204).send('Não há vendas cadastradas pelo funcionário');
+      }
+
+      const replacedDotPriceObj = _ReplaceDot.ReplaceDot.call(void 0, saleEmployeeIdSearch);
+
+      return res.status(200).json(replacedDotPriceObj);
     } catch (err) {
       next(err);
     }
@@ -37,13 +67,58 @@ class SalesSearchSalesDataController {
     try {
       const { products } = req.params;
 
-      const employeeProductsFinder = await
+      const saleProductsFinder = await
       _SalesSearchSalesData2.default.SearchByProducts(products);
 
-      if (!employeeProductsFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
-      if (employeeProductsFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+      if (!saleProductsFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+      if (saleProductsFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
 
-      return res.status(200).json(employeeProductsFinder);
+      return res.status(200).json(saleProductsFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchByDateDashboard(req, res, next) {
+    try {
+      const { email } = req.headers;
+      const { saledateBody } = req.body;
+      const empIds = [];
+      const registers = [];
+
+      const findEmpByEmail = await _EmployeeSearchCredentials2.default.SearchByEmail(email);
+
+      if (findEmpByEmail.dataValues.boss === null) {
+        const findEmpsByBoss = await _EmployeeSearchBoss2.default.SearchByBoss(findEmpByEmail.dataValues.id);
+
+        if (findEmpsByBoss.length > 0) {
+          findEmpsByBoss.map((emps) => {
+            empIds.push(emps.id);
+          });
+        }
+
+        empIds.push(findEmpByEmail.dataValues.id);
+      } else {
+        const findEmpsByBoss = await _EmployeeSearchBoss2.default.SearchByBoss(findEmpByEmail.dataValues.boss);
+
+        findEmpsByBoss.map((emps) => {
+          empIds.push(emps.id);
+        });
+
+        empIds.push(findEmpByEmail.dataValues.boss);
+      }
+
+      for (let i = 0; i < empIds.length; i++) {
+        const saleDateFinder = await _SalesSearchSalesData2.default.SearchDateForDashboard(saledateBody, empIds[i]);
+
+        if (!saleDateFinder && saleDateFinder !== 0) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+
+        registers.push(saleDateFinder);
+      }
+
+      const registersSum = registers.reduce((ac, cr) => ac + cr, 0);
+
+      return res.status(200).json(registersSum);
     } catch (err) {
       next(err);
     }
@@ -53,13 +128,13 @@ class SalesSearchSalesDataController {
     try {
       const { date } = req.params;
 
-      const employeeDateFinder = await
-      _SalesSearchSalesData2.default.SearchDate(date);
+      const saleDateFinder = await _SalesSearchSalesData2.default.SearchDate(date);
 
-      if (!employeeDateFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
-      if (employeeDateFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+      if (!saleDateFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
 
-      return res.status(200).json(employeeDateFinder);
+      if (saleDateFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+
+      return res.status(200).json(saleDateFinder);
     } catch (err) {
       next(err);
     }
@@ -69,13 +144,34 @@ class SalesSearchSalesDataController {
     try {
       const { hour } = req.params;
 
-      const employeeHourFinder = await
+      const saleHourFinder = await
       _SalesSearchSalesData2.default.SearchByHour(hour);
 
-      if (!employeeHourFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
-      if (employeeHourFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+      if (!saleHourFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
 
-      return res.status(200).json(employeeHourFinder);
+      if (saleHourFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+
+      return res.status(200).json(saleHourFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchByPrice(req, res, next) {
+    try {
+      const { price } = req.params;
+
+      const withDots = _ReplaceDot.InsertDotForSearch.call(void 0, price);
+
+      const salePriceFinder = await _SalesSearchSalesData2.default.SearchByPrice(withDots);
+
+      if (!salePriceFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+
+      if (salePriceFinder.length < 1) throw new (0, _notFound.NotFound)('Venda não encontrada');
+
+      _ReplaceDot.ReplaceDot.call(void 0, salePriceFinder);
+
+      return res.status(200).json(salePriceFinder);
     } catch (err) {
       next(err);
     }

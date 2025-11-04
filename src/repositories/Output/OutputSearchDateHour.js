@@ -9,6 +9,7 @@ class OutputSearchDateHourRepository {
         date: { [Op.startsWith]: date },
       },
       attributes: outputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -20,6 +21,7 @@ class OutputSearchDateHourRepository {
         hour: { [Op.startsWith]: hour },
       },
       attributes: outputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;

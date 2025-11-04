@@ -9,6 +9,7 @@ class InputDatesSearch {
         expirationdate: { [Op.startsWith]: expirationdate },
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;

@@ -1,19 +1,21 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable consistent-return */
-var _InputSearchSimpleStrings = require('../../repositories/Input/InputSearchSimpleStrings'); var _InputSearchSimpleStrings2 = _interopRequireDefault(_InputSearchSimpleStrings);
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable max-len */
+/* eslint-disable consistent-return */
 var _notFound = require('../../errors/notFound');
 var _serverErrors = require('../../errors/serverErrors');
+var _InputSearchSimpleStrings = require('../../repositories/Input/InputSearchSimpleStrings'); var _InputSearchSimpleStrings2 = _interopRequireDefault(_InputSearchSimpleStrings);
+var _ReplaceDot = require('./ReplaceDot');
 
 class InputSearchSimpleStringsController {
-  async SearchByType(req, res, next) {
+  async SearchByCategory(req, res, next) {
     try {
-      const { type } = req.params;
+      const { category } = req.params;
 
-      const inputTypeFinder = await _InputSearchSimpleStrings2.default.SearchByType(type);
+      const inputCategoryFinder = await _InputSearchSimpleStrings2.default.SearchByCategory(category);
 
-      if (!inputTypeFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
-      if (inputTypeFinder.length < 1) throw new (0, _notFound.NotFound)('Insumo não encontrado');
+      if (!inputCategoryFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+      if (inputCategoryFinder.length < 1) throw new (0, _notFound.NotFound)('Insumo não encontrado');
 
-      return res.status(200).json(inputTypeFinder);
+      return res.status(200).json(inputCategoryFinder);
     } catch (err) {
       next(err);
     }
@@ -23,7 +25,7 @@ class InputSearchSimpleStringsController {
     try {
       const { name } = req.params;
 
-      const inputNameFinder = await _InputSearchSimpleStrings2.default.SearchByName(name);
+      const inputNameFinder = await _InputSearchSimpleStrings2.default.SearchByNameForUsers(name);
 
       if (!inputNameFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
       if (inputNameFinder.length < 1) throw new (0, _notFound.NotFound)('Insumo não encontrado');
@@ -52,13 +54,33 @@ class InputSearchSimpleStringsController {
   async SearchByEmployeeId(req, res, next) {
     try {
       const { employeeid } = req.params;
+      const { forListInputs, employeeidBody } = req.body;
 
-      const inputEmployeeIdFinder = await _InputSearchSimpleStrings2.default.SearchByEmployeeId(employeeid);
+      const WhichSearch = async () => {
+        if (employeeidBody && !employeeid) {
+          const inputEmployeeIdFinder = await _InputSearchSimpleStrings2.default.SearchByEmployeeId(employeeidBody);
+          return inputEmployeeIdFinder;
+        }
 
-      if (!inputEmployeeIdFinder) throw new (0, _serverErrors.InternalServerError)('Erro interno');
-      if (inputEmployeeIdFinder.length < 1) throw new (0, _notFound.NotFound)('Insumo não encontrado');
+        if (!employeeidBody && employeeid) {
+          const inputEmployeeIdFinder = await _InputSearchSimpleStrings2.default.SearchByEmployeeId(employeeid);
+          return inputEmployeeIdFinder;
+        }
+      };
 
-      return res.status(200).json(inputEmployeeIdFinder);
+      const inputEmployeeIdSearch = await WhichSearch();
+
+      if (!inputEmployeeIdSearch) throw new (0, _serverErrors.InternalServerError)('Erro interno');
+
+      if (!forListInputs && inputEmployeeIdSearch.length < 1) throw new (0, _notFound.NotFound)('Insumos não encontrados');
+
+      if (forListInputs === true && inputEmployeeIdSearch.length < 1) {
+        return res.status(204).send('Não há insumos cadastrados pelo funcionário');
+      }
+
+      const replacedDotPriceObj = _ReplaceDot.ReplaceDot.call(void 0, inputEmployeeIdSearch);
+
+      return res.status(200).json(replacedDotPriceObj);
     } catch (err) {
       next(err);
     }

@@ -3,12 +3,13 @@ import Input from '../../models/Input';
 import inputAttributes from './Attributes';
 
 class InputSimpleStringSearch {
-  async SearchByType(type) {
+  async SearchByCategory(category) {
     const inputFinder = await Input.findAll({
       where: {
-        type: { [Op.startsWith]: type },
+        category: { [Op.startsWith]: category },
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -20,6 +21,7 @@ class InputSimpleStringSearch {
         name: { [Op.startsWith]: name },
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -31,6 +33,7 @@ class InputSimpleStringSearch {
         name,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -42,6 +45,7 @@ class InputSimpleStringSearch {
         supplier: { [Op.startsWith]: supplier },
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -53,6 +57,7 @@ class InputSimpleStringSearch {
         employee_id: employeeId,
       },
       attributes: inputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return inputFinderByEmployeeId;

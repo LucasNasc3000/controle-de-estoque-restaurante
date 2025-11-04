@@ -66,6 +66,10 @@ export default class Sale extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
       },
+      price: {
+        type: Sequelize.DECIMAL(10, 2),
+        defaultValue: '',
+      },
     }, {
       sequelize,
     });

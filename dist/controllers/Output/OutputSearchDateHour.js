@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }/* eslint-disable consistent-return */
-var _OutputSearchDateHour = require('../../repositories/Output/OutputSearchDateHour'); var _OutputSearchDateHour2 = _interopRequireDefault(_OutputSearchDateHour);
 var _notFound = require('../../errors/notFound');
 var _serverErrors = require('../../errors/serverErrors');
+var _OutputSearchDateHour = require('../../repositories/Output/OutputSearchDateHour'); var _OutputSearchDateHour2 = _interopRequireDefault(_OutputSearchDateHour);
 
 class OutputSearchDateHourController {
   async SearchByDate(req, res, next) {

@@ -4,18 +4,21 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
  class Input extends _sequelize.Model {
   static init(sequelize) {
     super.init({
-      type: {
+      category: {
         type: _sequelize2.default.STRING,
         defaultValue: '',
         validate: {
           len: {
             args: [1, 100],
-            msg: 'O nome do tipo não deve ultrapassar os 100 caracteres',
+            msg: 'O nome da categoria não deve ultrapassar os 100 caracteres',
           },
         },
       },
       name: {
         type: _sequelize2.default.STRING,
+        unique: {
+          msg: 'O insumo já existe',
+        },
         defaultValue: '',
         validate: {
           len: {
@@ -34,20 +37,20 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
         },
       },
       totalweight: {
-        type: _sequelize2.default.FLOAT,
+        type: _sequelize2.default.DECIMAL(10, 2),
         defaultValue: '',
         validate: {
-          isFloat: {
-            msg: 'peso total precisa ser um número',
+          isDecimal: {
+            msg: 'peso total precisa ser do tipo decimal',
           },
         },
       },
       weightperunit: {
-        type: _sequelize2.default.FLOAT,
+        type: _sequelize2.default.DECIMAL(10, 2),
         defaultValue: '',
         validate: {
-          isFloat: {
-            msg: 'peso por unidade precisa ser um número',
+          isDecimal: {
+            msg: 'peso unitário precisa ser do tipo decimal',
           },
         },
       },
@@ -71,26 +74,6 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
           },
         },
       },
-      entrydate: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [4, 20],
-            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
-          },
-        },
-      },
-      entryhour: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [4, 20],
-            msg: 'A data não deve ultrapassar os 20 caracteres e deve ter pelo menos 12',
-          },
-        },
-      },
       employee_id: {
         type: _sequelize2.default.UUIDV1,
         defaultValue: _sequelize2.default.UUIDV1,
@@ -103,6 +86,19 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
             msg: 'quantidade mínima precisa ser um número inteiro',
           },
         },
+      },
+      rateisnear: {
+        type: _sequelize2.default.INTEGER,
+        defaultValue: '',
+        validate: {
+          isInt: {
+            msg: 'a quantidade próxima ao limite precisa ser um número inteiro',
+          },
+        },
+      },
+      price: {
+        type: _sequelize2.default.DECIMAL(10, 2),
+        defaultValue: '',
       },
     }, {
       sequelize,

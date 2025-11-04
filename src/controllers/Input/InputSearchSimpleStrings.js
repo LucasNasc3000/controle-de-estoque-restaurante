@@ -3,18 +3,19 @@
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
 import InputSearchSimpleStrings from '../../repositories/Input/InputSearchSimpleStrings';
+import { ReplaceDot } from './ReplaceDot';
 
 class InputSearchSimpleStringsController {
-  async SearchByType(req, res, next) {
+  async SearchByCategory(req, res, next) {
     try {
-      const { type } = req.params;
+      const { category } = req.params;
 
-      const inputTypeFinder = await InputSearchSimpleStrings.SearchByType(type);
+      const inputCategoryFinder = await InputSearchSimpleStrings.SearchByCategory(category);
 
-      if (!inputTypeFinder) throw new InternalServerError('Erro interno');
-      if (inputTypeFinder.length < 1) throw new NotFound('Insumo não encontrado');
+      if (!inputCategoryFinder) throw new InternalServerError('Erro interno');
+      if (inputCategoryFinder.length < 1) throw new NotFound('Insumo não encontrado');
 
-      return res.status(200).json(inputTypeFinder);
+      return res.status(200).json(inputCategoryFinder);
     } catch (err) {
       next(err);
     }
@@ -77,7 +78,9 @@ class InputSearchSimpleStringsController {
         return res.status(204).send('Não há insumos cadastrados pelo funcionário');
       }
 
-      return res.status(200).json(inputEmployeeIdSearch);
+      const replacedDotPriceObj = ReplaceDot(inputEmployeeIdSearch);
+
+      return res.status(200).json(replacedDotPriceObj);
     } catch (err) {
       next(err);
     }

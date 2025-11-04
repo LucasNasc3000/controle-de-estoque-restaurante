@@ -1,21 +1,21 @@
 import {
+  alphabetRegex,
   dateAndHourErrorMsg,
-  dateRegex, hourRegex,
+  dateRegex,
+  hourRegex,
+  phoneNumberRegex,
 } from './DataRegex';
 
 class SalesValidations {
   CheckPersonalAndSalesData(PersonalAndSalesData) {
-    const phoneNumberCheck = /^([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{4})$/;
-    const alphabetCheck = /^[a-zA-Z]+$/;
-
     if (PersonalAndSalesData.phone_number) {
-      if (!phoneNumberCheck.test(PersonalAndSalesData.phone_number)) {
+      if (!phoneNumberRegex.test(PersonalAndSalesData.phone_number)) {
         return 'phone_number must be a phone number string';
       }
     }
 
     if (PersonalAndSalesData.client_name) {
-      if (!alphabetCheck.test(PersonalAndSalesData.client_name)) {
+      if (!alphabetRegex.test(PersonalAndSalesData.client_name)) {
         return 'client_name must be a alphabet string';
       }
     }

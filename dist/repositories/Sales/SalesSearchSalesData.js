@@ -9,17 +9,19 @@ class SalesSearchSalesData {
         id,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return SaleFinder;
   }
 
   async SearchByemployeeId(employeeId) {
-    const saleFinderByEmployeeId = await _Sale2.default.findOne({
+    const saleFinderByEmployeeId = await _Sale2.default.findAll({
       where: {
         employee_id: employeeId,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return saleFinderByEmployeeId;
@@ -47,6 +49,17 @@ class SalesSearchSalesData {
     return salesFinderDate;
   }
 
+  async SearchDateForDashboard(date, employeeId) {
+    const salesFinderDate = await _Sale2.default.count({
+      where: {
+        date,
+        employee_id: employeeId,
+      },
+    });
+
+    return salesFinderDate;
+  }
+
   async SearchByHour(hour) {
     const salesFinderByHour = await _Sale2.default.findAll({
       where: {
@@ -56,6 +69,18 @@ class SalesSearchSalesData {
     });
 
     return salesFinderByHour;
+  }
+
+  async SearchByPrice(price) {
+    const salesFinderByPrice = await _Sale2.default.findAll({
+      where: {
+        price: { [_sequelize.Op.startsWith]: price },
+      },
+      attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return salesFinderByPrice;
   }
 }
 

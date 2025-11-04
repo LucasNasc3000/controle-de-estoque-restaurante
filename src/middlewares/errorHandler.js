@@ -1,5 +1,6 @@
 import { Unauthorized } from '../errors/authErrors';
 import { BadRequest } from '../errors/clientErrors';
+import { Conflict } from '../errors/conflict';
 import { EmailErrors } from '../errors/emailsErrors';
 import { Forbidden } from '../errors/forbidden';
 import { LogError } from '../errors/logErrors';
@@ -36,18 +37,30 @@ const errorHandler = (err, req, res, next) => {
         error: [err.message],
       });
 
+    case (err instanceof Conflict):
+      return res.status(409).json({
+        error: [err.message],
+      });
+
     case (err instanceof EmailErrors):
       return res.status(500).json({
-        error: [err.name],
+        error: ['Erro ao tentar enviar e-mail', err.name],
       });
 
     case (err instanceof LogError):
       return res.status(500).json({
-        error: [err.name],
+        error: ['Erro ao tentar registrar log', err.name],
       });
 
     default:
-      next(err.message);
+      next(res.status(500).json({
+        error: [
+          err.name,
+          err.stack,
+          err.message,
+        ],
+      }));
+      console.log(err);
   }
 };
 

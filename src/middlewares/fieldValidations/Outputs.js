@@ -1,4 +1,6 @@
-import { dateAndHourErrorMsg, dateRegex, hourRegex } from './DataRegex';
+import {
+  alphabetRegex, dateAndHourErrorMsg, dateRegex, hourRegex,
+} from './DataRegex';
 
 class OutputsValidations {
   CheckIntegers(integersFieldData) {
@@ -7,16 +9,28 @@ class OutputsValidations {
         return 'Unities must be a integer';
       }
     }
-    return this.CheckFloats(integersFieldData);
+    return this.CheckStrings(integersFieldData);
   }
 
-  CheckFloats(floatsFieldData) {
-    if (floatsFieldData.weight) {
-      if (typeof floatsFieldData.weight !== 'number') {
-        return 'Weight must be a number';
+  CheckStrings(StringsFieldsData) {
+    if (StringsFieldsData.reason) {
+      if (!alphabetRegex.test(StringsFieldsData.reason)) {
+        return 'Reason must be an alphabet string';
       }
     }
-    return this.CheckDatesAndHour(floatsFieldData);
+
+    if (StringsFieldsData.category) {
+      if (!alphabetRegex.test(StringsFieldsData.category)) {
+        return 'Category must be an alphabet string';
+      }
+    }
+
+    if (StringsFieldsData.name) {
+      if (typeof StringsFieldsData.name !== 'string') {
+        return 'Name must be an alphabet string';
+      }
+    }
+    return this.CheckDatesAndHour(StringsFieldsData);
   }
 
   CheckDatesAndHour(DatesFieldsData) {

@@ -1,22 +1,36 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _DataRegex = require('./DataRegex');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});
+
+var _DataRegex = require('./DataRegex');
 
 class OutputsValidations {
   CheckIntegers(integersFieldData) {
     if (integersFieldData.unities) {
-      if (typeof integersFieldData.unities !== 'number') {
-        return 'Unities must be a number';
+      if (!Number.isInteger(integersFieldData.unities)) {
+        return 'Unities must be a integer';
       }
     }
-    return this.CheckFloats(integersFieldData);
+    return this.CheckStrings(integersFieldData);
   }
 
-  CheckFloats(floatsFieldData) {
-    if (floatsFieldData.weight) {
-      if (typeof floatsFieldData.weight !== 'number') {
-        return 'Weight must be a number';
+  CheckStrings(StringsFieldsData) {
+    if (StringsFieldsData.reason) {
+      if (!_DataRegex.alphabetRegex.test(StringsFieldsData.reason)) {
+        return 'Reason must be an alphabet string';
       }
     }
-    return this.CheckDatesAndHour(floatsFieldData);
+
+    if (StringsFieldsData.category) {
+      if (!_DataRegex.alphabetRegex.test(StringsFieldsData.category)) {
+        return 'Category must be an alphabet string';
+      }
+    }
+
+    if (StringsFieldsData.name) {
+      if (typeof StringsFieldsData.name !== 'string') {
+        return 'Name must be an alphabet string';
+      }
+    }
+    return this.CheckDatesAndHour(StringsFieldsData);
   }
 
   CheckDatesAndHour(DatesFieldsData) {

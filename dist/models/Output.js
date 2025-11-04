@@ -34,7 +34,7 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
           },
         },
       },
-      type: {
+      category: {
         type: _sequelize2.default.STRING,
         defaultValue: '',
         validate: {
@@ -44,23 +44,19 @@ var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(
           },
         },
       },
-      weight: {
-        type: _sequelize2.default.FLOAT,
+      reason: {
+        type: _sequelize2.default.STRING,
         defaultValue: '',
         validate: {
-          isFloat: {
-            msg: 'O peso total precisa ser um número',
+          len: {
+            args: [5, 50],
+            msg: 'O motivo deve ter entre 5 e 50 caracteres',
           },
         },
       },
       unities: {
         type: _sequelize2.default.INTEGER,
         defaultValue: '',
-        validate: {
-          isInteger: {
-            msg: 'O campo unidades precisa ser um número',
-          },
-        },
       },
       employee_id: {
         type: _sequelize2.default.UUIDV1,

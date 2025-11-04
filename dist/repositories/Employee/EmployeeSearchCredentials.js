@@ -9,6 +9,7 @@ class EmployeesSearchCredentials {
         id,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinder;
@@ -20,31 +21,72 @@ class EmployeesSearchCredentials {
         name: { [_sequelize.Op.startsWith]: name },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinderByName;
+  }
+
+  async SearchOneByName(name) {
+    const employeeFinderByName = await _Employee2.default.findOne({
+      where: {
+        name,
+      },
+      attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByName;
   }
 
   async SearchByEmail(email) {
-    const employeeFinderByEmail = await _Employee2.default.findAll({
+    const employeeFinderByEmail = await _Employee2.default.findOne({
       where: {
         email,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByEmail;
   }
 
+  async SearchByPermission(permission) {
+    const employeeFinderByPermission = await _Employee2.default.findAll({
+      where: {
+        permission,
+      },
+      attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinderByPermission;
+  }
+
   async SearchByAddressAllowed() {
+    // const addressAllowed = SecretsHandler('addressAllowed');
     const employeeFinderByAddressAllowed = await _Employee2.default.findAll({
       where: {
         address_allowed: process.env.ADDRESS_ALLOWED,
+        is_active: 1,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByAddressAllowed;
+  }
+
+  async SearchByForActives() {
+    const employeeFinderActives = await _Employee2.default.findAll({
+      where: {
+        is_active: 1,
+      },
+      attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinderActives;
   }
 }
 

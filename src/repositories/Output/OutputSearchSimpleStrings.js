@@ -3,12 +3,13 @@ import Output from '../../models/Output';
 import outputAttributes from './Attributes';
 
 class OutputSimpleStringSearch {
-  async SearchByType(type) {
+  async SearchByCategory(category) {
     const outputFinder = await Output.findAll({
       where: {
-        type: { [Op.startsWith]: type },
+        category: { [Op.startsWith]: category },
       },
       attributes: outputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -20,6 +21,7 @@ class OutputSimpleStringSearch {
         name: { [Op.startsWith]: name },
       },
       attributes: outputAttributes,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -34,6 +36,18 @@ class OutputSimpleStringSearch {
     });
 
     return outputFinderByEmployeeId;
+  }
+
+  async SearchByReason(reason) {
+    const inputFinder = await Output.findAll({
+      where: {
+        reason: { [Op.startsWith]: reason },
+      },
+      attributes: outputAttributes,
+      order: [['id', 'DESC']],
+    });
+
+    return inputFinder;
   }
 }
 

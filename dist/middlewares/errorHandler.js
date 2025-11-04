@@ -1,9 +1,11 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _clientErrors = require('../errors/clientErrors');
-var _serverErrors = require('../errors/serverErrors');
-var _notFound = require('../errors/notFound');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _authErrors = require('../errors/authErrors');
+var _clientErrors = require('../errors/clientErrors');
+var _conflict = require('../errors/conflict');
 var _emailsErrors = require('../errors/emailsErrors');
+var _forbidden = require('../errors/forbidden');
 var _logErrors = require('../errors/logErrors');
-var _authErrors = require('../errors/authErrors');
+var _notFound = require('../errors/notFound');
+var _serverErrors = require('../errors/serverErrors');
 
 // O return evita a quebra da aplicação e outras requisições podem ser feitas mesmo que seja
 // retornado um erro, como o erro 500 abaixo, por exemplo.
@@ -25,23 +27,40 @@ const errorHandler = (err, req, res, next) => {
         error: [err.message],
       });
 
+    case (err instanceof _forbidden.Forbidden):
+      return res.status(403).json({
+        error: [err.message],
+      });
+
     case (err instanceof _authErrors.Unauthorized):
       return res.status(401).json({
         error: [err.message],
       });
 
+    case (err instanceof _conflict.Conflict):
+      return res.status(409).json({
+        error: [err.message],
+      });
+
     case (err instanceof _emailsErrors.EmailErrors):
       return res.status(500).json({
-        error: [err.name],
+        error: ['Erro ao tentar enviar e-mail', err.name],
       });
 
     case (err instanceof _logErrors.LogError):
       return res.status(500).json({
-        error: [err.name],
+        error: ['Erro ao tentar registrar log', err.name],
       });
 
     default:
-      next(err.message);
+      next(res.status(500).json({
+        error: [
+          err.name,
+          err.stack,
+          err.message,
+        ],
+      }));
+      console.log(err);
   }
 };
 

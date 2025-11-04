@@ -9,6 +9,7 @@ class OutputSearchDateHourRepository {
         date: { [_sequelize.Op.startsWith]: date },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -20,6 +21,7 @@ class OutputSearchDateHourRepository {
         hour: { [_sequelize.Op.startsWith]: hour },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;

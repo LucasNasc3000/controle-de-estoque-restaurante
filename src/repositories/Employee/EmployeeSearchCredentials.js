@@ -9,6 +9,7 @@ class EmployeesSearchCredentials {
         id,
       },
       attributes: employeeAttributes,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinder;
@@ -32,6 +33,7 @@ class EmployeesSearchCredentials {
         name,
       },
       attributes: employeeAttributes,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByName;
@@ -43,21 +45,48 @@ class EmployeesSearchCredentials {
         email,
       },
       attributes: employeeAttributes,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByEmail;
   }
 
+  async SearchByPermission(permission) {
+    const employeeFinderByPermission = await Employee.findAll({
+      where: {
+        permission,
+      },
+      attributes: employeeAttributes,
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinderByPermission;
+  }
+
   async SearchByAddressAllowed() {
+    // const addressAllowed = SecretsHandler('addressAllowed');
     const employeeFinderByAddressAllowed = await Employee.findAll({
       where: {
         address_allowed: process.env.ADDRESS_ALLOWED,
         is_active: 1,
       },
       attributes: employeeAttributes,
+      order: [['id', 'DESC']],
     });
 
     return employeeFinderByAddressAllowed;
+  }
+
+  async SearchByForActives() {
+    const employeeFinderActives = await Employee.findAll({
+      where: {
+        is_active: 1,
+      },
+      attributes: employeeAttributes,
+      order: [['id', 'DESC']],
+    });
+
+    return employeeFinderActives;
   }
 }
 

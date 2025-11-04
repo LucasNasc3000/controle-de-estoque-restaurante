@@ -17,7 +17,7 @@ class OutputController {
         throw new BadRequest('É necessário haver ao menos um funcionário autorizado a receber e-mails');
       }
 
-      const { name } = req.body;
+      const { name, unities } = req.body;
       const validations = Validations.MainValidations(req.body);
       const outputsValidations = Validations.OutputsValidation(req.body);
 
@@ -42,6 +42,8 @@ class OutputController {
         if (inputConnection[0] === 'rate is near') {
           const store = await OutputMethods.Store(req.body);
 
+          await InputConnection.InputUpdateTotalWeight(inputExists, unities);
+
           return res.json({
             warning: [`ATENÇÃO: Faltam ${inputExists.dataValues.rateisnear} unidades ou menos para o limite do insumo ${inputConnection[1]}.`],
             saida: [
@@ -51,36 +53,13 @@ class OutputController {
         }
       }
 
+      await InputConnection.InputUpdateTotalWeight(inputExists, unities);
+
       const store2 = await OutputMethods.Store(req.body);
 
       if (!store2) throw new InternalServerError('Erro interno');
 
       return res.status(201).json(store2);
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  async Update(req, res, next) {
-    try {
-      const { id } = req.params;
-
-      const validations = Validations.MainValidations(req.body);
-      const outputsValidations = Validations.OutputsValidation(req.body);
-
-      if (validations !== null) throw new BadRequest(validations);
-      if (outputsValidations !== null) throw new BadRequest(outputsValidations);
-
-      const { employee_id, ...allowedData } = req.body;
-
-      // Funciona sem await mas não retorna os dados na requisição caso ela seja feita com um app de
-      // requisições como insomnia.
-      const outputUpdate = await OutputMethods.Update(id, allowedData);
-
-      if (outputUpdate === 'saída não encontrada') throw new BadRequest('Insumo não registrado');
-      if (!outputUpdate) throw new InternalServerError('Erro interno');
-
-      return res.status(200).send(outputUpdate);
     } catch (err) {
       next(err);
     }

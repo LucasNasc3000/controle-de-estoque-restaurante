@@ -1,9 +1,17 @@
 import Advice from '../../models/Advice';
+import Attributes from './Attributes';
 
 class AdviceList {
   async Store(data) {
     const newAdvice = await Advice.create(data);
     return newAdvice;
+  }
+
+  async List() {
+    const advices = await Advice.findAll({
+      attributes: Attributes,
+    });
+    return advices;
   }
 
   async Update(id, data) {

@@ -9,6 +9,7 @@ class SalesSearchSalesData {
         id,
       },
       attributes: salesAttributes,
+      order: [['id', 'DESC']],
     });
 
     return SaleFinder;
@@ -20,6 +21,7 @@ class SalesSearchSalesData {
         employee_id: employeeId,
       },
       attributes: salesAttributes,
+      order: [['id', 'DESC']],
     });
 
     return saleFinderByEmployeeId;
@@ -67,6 +69,18 @@ class SalesSearchSalesData {
     });
 
     return salesFinderByHour;
+  }
+
+  async SearchByPrice(price) {
+    const salesFinderByPrice = await Sale.findAll({
+      where: {
+        price: { [Op.startsWith]: price },
+      },
+      attributes: salesAttributes,
+      order: [['id', 'DESC']],
+    });
+
+    return salesFinderByPrice;
   }
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import OutputSearchDateHour from '../../repositories/Output/OutputSearchDateHour';
 import { NotFound } from '../../errors/notFound';
 import { InternalServerError } from '../../errors/serverErrors';
+import OutputSearchDateHour from '../../repositories/Output/OutputSearchDateHour';
 
 class OutputSearchDateHourController {
   async SearchByDate(req, res, next) {

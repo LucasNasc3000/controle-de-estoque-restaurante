@@ -3,12 +3,13 @@ var _Output = require('../../models/Output'); var _Output2 = _interopRequireDefa
 var _Attributes = require('./Attributes'); var _Attributes2 = _interopRequireDefault(_Attributes);
 
 class OutputSimpleStringSearch {
-  async SearchByType(type) {
+  async SearchByCategory(category) {
     const outputFinder = await _Output2.default.findAll({
       where: {
-        type: { [_sequelize.Op.startsWith]: type },
+        category: { [_sequelize.Op.startsWith]: category },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -20,6 +21,7 @@ class OutputSimpleStringSearch {
         name: { [_sequelize.Op.startsWith]: name },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return outputFinder;
@@ -34,6 +36,18 @@ class OutputSimpleStringSearch {
     });
 
     return outputFinderByEmployeeId;
+  }
+
+  async SearchByReason(reason) {
+    const inputFinder = await _Output2.default.findAll({
+      where: {
+        reason: { [_sequelize.Op.startsWith]: reason },
+      },
+      attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return inputFinder;
   }
 }
 

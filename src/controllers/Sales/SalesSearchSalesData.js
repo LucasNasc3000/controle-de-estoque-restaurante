@@ -8,6 +8,9 @@ import { InternalServerError } from '../../errors/serverErrors';
 import EmployeeSearchBoss from '../../repositories/Employee/EmployeeSearchBoss';
 import EmployeeSearchCredentials from '../../repositories/Employee/EmployeeSearchCredentials';
 import SalesSearchSalesData from '../../repositories/Sales/SalesSearchSalesData';
+import {
+  InsertDotForSearch, ReplaceDot,
+} from './ReplaceDot';
 
 class SalesSearchSalesDataController {
   async SearchById(req, res, next) {
@@ -52,7 +55,9 @@ class SalesSearchSalesDataController {
         return res.status(204).send('Não há vendas cadastradas pelo funcionário');
       }
 
-      return res.status(200).json(saleEmployeeIdSearch);
+      const replacedDotPriceObj = ReplaceDot(saleEmployeeIdSearch);
+
+      return res.status(200).json(replacedDotPriceObj);
     } catch (err) {
       next(err);
     }
@@ -143,9 +148,30 @@ class SalesSearchSalesDataController {
       SalesSearchSalesData.SearchByHour(hour);
 
       if (!saleHourFinder) throw new InternalServerError('Erro interno');
+
       if (saleHourFinder.length < 1) throw new NotFound('Venda não encontrada');
 
       return res.status(200).json(saleHourFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async SearchByPrice(req, res, next) {
+    try {
+      const { price } = req.params;
+
+      const withDots = InsertDotForSearch(price);
+
+      const salePriceFinder = await SalesSearchSalesData.SearchByPrice(withDots);
+
+      if (!salePriceFinder) throw new InternalServerError('Erro interno');
+
+      if (salePriceFinder.length < 1) throw new NotFound('Venda não encontrada');
+
+      ReplaceDot(salePriceFinder);
+
+      return res.status(200).json(salePriceFinder);
     } catch (err) {
       next(err);
     }

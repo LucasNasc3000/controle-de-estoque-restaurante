@@ -42,6 +42,26 @@ class EmployeesSearchCredentialsController {
     }
   }
 
+  async SearchByPermission(req, res, next) {
+    try {
+      const { headerid } = req.headers;
+
+      if (headerid) throw new Forbidden('Ação não autorizada para funcionários');
+
+      const { permission } = req.params;
+
+      const employeePermissionFinder = await
+      EmployeesSearchCredentials.SearchByPermission(permission);
+
+      if (!employeePermissionFinder) throw new InternalServerError('Erro interno');
+      if (employeePermissionFinder.length < 1) throw new NotFound('Funcionário não encontrado');
+
+      return res.status(200).json(employeePermissionFinder);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async SearchOneByName(req, res, next) {
     try {
       const { headerid } = req.headers;

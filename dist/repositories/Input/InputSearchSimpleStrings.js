@@ -3,23 +3,37 @@ var _Input = require('../../models/Input'); var _Input2 = _interopRequireDefault
 var _Attributes = require('./Attributes'); var _Attributes2 = _interopRequireDefault(_Attributes);
 
 class InputSimpleStringSearch {
-  async SearchByType(type) {
+  async SearchByCategory(category) {
     const inputFinder = await _Input2.default.findAll({
       where: {
-        type: { [_sequelize.Op.startsWith]: type },
+        category: { [_sequelize.Op.startsWith]: category },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
   }
 
-  async SearchByName(name) {
+  async SearchByNameForUsers(name) {
     const inputFinder = await _Input2.default.findAll({
       where: {
         name: { [_sequelize.Op.startsWith]: name },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
+    });
+
+    return inputFinder;
+  }
+
+  async SearchByNameInternal(name) {
+    const inputFinder = await _Input2.default.findOne({
+      where: {
+        name,
+      },
+      attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -31,6 +45,7 @@ class InputSimpleStringSearch {
         supplier: { [_sequelize.Op.startsWith]: supplier },
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return inputFinder;
@@ -42,6 +57,7 @@ class InputSimpleStringSearch {
         employee_id: employeeId,
       },
       attributes: _Attributes2.default,
+      order: [['id', 'DESC']],
     });
 
     return inputFinderByEmployeeId;
